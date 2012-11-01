@@ -26,7 +26,14 @@
 
 - (void)viewDidLoad
 {
-    [self setTexts];
+//    [self setTexts];
+    
+    
+    // 지문 : 학교 : 학년
+    pArray = [self setExam:[dbMsg getExamSentence:examId]:1 :1];
+    
+    [self labelInit];
+    [self setTexts:0];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -61,6 +68,15 @@
     
 }
 
+-(void)labelInit{
+    label[0] = questionLabel;
+    label[1] = answerLabel01;
+    label[2] = answerLabel02;
+    label[3] = answerLabel03;
+    label[4] = answerLabel04;
+
+}
+
 - (IBAction)saveExam:(id)sender {
     [self saveRepository];
     [self dismissModalViewControllerAnimated:YES];
@@ -82,23 +98,75 @@
     NSLog(@"count :::::: %d",rArray.count);
 }
 
-- (void)setTexts{
+- (void)setSentence:(NSString *)sentence{
     
     [bookName setText:bName];
     [pageNumber setText:pNumber];
-    [sentenceTextView setText:[dbMsg getExamSentence:examId]];
-    [sentenceTextView setEditable:NO];
+    
+    [sentenceTextView setText:sentence];
+//    [sentenceTextView setText:[dbMsg getExamSentence:examId]];
+//    [sentenceTextView setEditable:NO];
+}
+
+- (void)setTexts:(int)poz{
+    
+    if (poz == 0) {
+        int check = [[pArray objectAtIndex:5] intValue];
+        
+        for (int i = 0; i < 5; i++) {
+            if (check == i) {
+                [label[i] setTextColor:[UIColor redColor]];
+            }
+            [label[i] setText:[pArray objectAtIndex:i]];
+        }
+    }else{
+        int check = [[pArray objectAtIndex:poz * 5 + 6] intValue];
+        
+        for (int i = 0; i < 5; i++) {
+            if (check == i) {
+                [label[i] setTextColor:[UIColor redColor]];
+            }
+            [label[i] setText:[pArray objectAtIndex:poz * 5 + (i + 1)]];
+        }
+    }
 }
 
 
 /* ----------------------------------------
- 
  문제 생성.. 
  msg : 지문
- class : 학년
+ class : 중 = 1 , 고 = 2
+ class2 : 학년
+ 
+ %%여기에다 넣어주세요 ㅋㅋ
  ---------------------------------------- */
 
-- (void)setExam:(NSString *)msg:(int)class{
+- (NSMutableArray *)setExam:(NSString *)msg:(int)class:(int)class2{
     
+    NSMutableArray *eArray = [NSMutableArray arrayWithCapacity:0];
+    
+    
+    // 지문
+    NSString *sText = msg;
+    
+    // 문제
+    [eArray insertObject:[NSString stringWithFormat:@"문제1"] atIndex:0];
+    // 보기
+    [eArray insertObject:[NSString stringWithFormat:@"보기 1"] atIndex:1];
+    // 보기2
+    [eArray insertObject:[NSString stringWithFormat:@"보기 2"] atIndex:2];
+    // 보기3
+    [eArray insertObject:[NSString stringWithFormat:@"보기 3"] atIndex:3];
+    // 보기4
+    [eArray insertObject:[NSString stringWithFormat:@"보기 4"] atIndex:4];
+    // 정답 번호
+    [eArray insertObject:[NSNumber numberWithInt:3] atIndex:5];
+    
+    
+    
+    
+    [self setSentence:sText];
+    
+    return eArray;
 }
 @end

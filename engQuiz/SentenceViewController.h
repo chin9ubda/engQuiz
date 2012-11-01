@@ -29,6 +29,9 @@
     IBOutlet UILabel *answerLabel02;
     IBOutlet UILabel *answerLabel03;
     IBOutlet UILabel *answerLabel04;
+    
+    NSMutableArray *pArray;
+    UILabel *label[5];
 }
 - (IBAction)backEvent:(id)sender;
 - (void)setInit:(NSString *)name:(NSString *)page:(int)_id;
