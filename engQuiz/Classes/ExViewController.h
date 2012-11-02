@@ -8,7 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExViewController : UIViewController<UIActionSheetDelegate>
+@class MBProgressHUD;
+
+//namespace tesseract {
+//    class TessBaseAPI;
+//};
+
+@interface ExViewController : UIViewController<UIActionSheetDelegate, UIImagePickerControllerDelegate>{
+    
+    UIImagePickerController *imagepickerController;
+//    MBProgressHUD *progressHud;
+//    
+//    tesseract::TessBaseAPI *tesseract;
+//    uint32_t *pixels;
+//    UIImage *img;
+}
 
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)exLoadEvent:(id)sender;
