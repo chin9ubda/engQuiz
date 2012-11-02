@@ -12,7 +12,7 @@
 #import "RepositoryViewController.h"
 #import "DataBase.h"
 
-@interface ViewController : UIViewController{
+@interface MainViewController : UIViewController{
     
     ExViewController *exView;
     VocaViewController *vocaView;
