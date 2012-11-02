@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		438DFD8E163C19FC008AE0A6 /* RepositoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438DFD8C163C19FC008AE0A6 /* RepositoryViewController.m */; };
 		438DFD8F163C19FC008AE0A6 /* RepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 438DFD8D163C19FC008AE0A6 /* RepositoryViewController.xib */; };
+		43924CE016426A5800B05EFE /* BookListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43924CDF16426A5700B05EFE /* BookListCell.m */; };
+		43924CE316426A6C00B05EFE /* BookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43924CE216426A6C00B05EFE /* BookListCell.xib */; };
 		4394506B16406B6E00CBDD76 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4394506A16406B6E00CBDD76 /* engquiz.sqlite */; };
 		439AF569163BD7500016DE4E /* VocaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439AF567163BD7500016DE4E /* VocaViewController.m */; };
 		439AF56A163BD7500016DE4E /* VocaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439AF568163BD7500016DE4E /* VocaViewController.xib */; };
@@ -53,6 +55,9 @@
 		438DFD8B163C19FC008AE0A6 /* RepositoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepositoryViewController.h; path = Classes/RepositoryViewController.h; sourceTree = "<group>"; };
 		438DFD8C163C19FC008AE0A6 /* RepositoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepositoryViewController.m; path = Classes/RepositoryViewController.m; sourceTree = "<group>"; };
 		438DFD8D163C19FC008AE0A6 /* RepositoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RepositoryViewController.xib; path = Classes/RepositoryViewController.xib; sourceTree = "<group>"; };
+		43924CDE16426A5700B05EFE /* BookListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookListCell.h; path = Classes/BookListCell.h; sourceTree = "<group>"; };
+		43924CDF16426A5700B05EFE /* BookListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookListCell.m; path = Classes/BookListCell.m; sourceTree = "<group>"; };
+		43924CE216426A6C00B05EFE /* BookListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListCell.xib; sourceTree = "<group>"; };
 		4394506A16406B6E00CBDD76 /* engquiz.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = engquiz.sqlite; sourceTree = "<group>"; };
 		439AF566163BD7500016DE4E /* VocaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VocaViewController.h; path = Classes/VocaViewController.h; sourceTree = "<group>"; };
 		439AF567163BD7500016DE4E /* VocaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VocaViewController.m; path = Classes/VocaViewController.m; sourceTree = "<group>"; };
@@ -256,6 +261,9 @@
 				439D2D19163BC6200071551C /* ThemeCell.h */,
 				439D2D1A163BC6200071551C /* ThemeCell.m */,
 				439D2D1C163BC6470071551C /* ThemeCell.xib */,
+				43924CDE16426A5700B05EFE /* BookListCell.h */,
+				43924CDF16426A5700B05EFE /* BookListCell.m */,
+				43924CE216426A6C00B05EFE /* BookListCell.xib */,
 			);
 			name = Ex;
 			sourceTree = "<group>";
@@ -336,6 +344,7 @@
 				439AF56F163BE4300016DE4E /* VocaCell.xib in Resources */,
 				438DFD8F163C19FC008AE0A6 /* RepositoryViewController.xib in Resources */,
 				4394506B16406B6E00CBDD76 /* engquiz.sqlite in Resources */,
+				43924CE316426A6C00B05EFE /* BookListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +366,7 @@
 				439AF569163BD7500016DE4E /* VocaViewController.m in Sources */,
 				439AF56D163BE4220016DE4E /* VocaCell.m in Sources */,
 				438DFD8E163C19FC008AE0A6 /* RepositoryViewController.m in Sources */,
+				43924CE016426A5800B05EFE /* BookListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +451,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
 				INFOPLIST_FILE = "engQuiz/engQuiz-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7950D8ED-92D9-4F33-BC07-F408C433B6C3";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7950D8ED-92D9-4F33-BC07-F408C433B6C3";
@@ -458,7 +468,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
 				INFOPLIST_FILE = "engQuiz/engQuiz-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7950D8ED-92D9-4F33-BC07-F408C433B6C3";

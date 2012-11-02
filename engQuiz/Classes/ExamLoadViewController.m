@@ -10,6 +10,17 @@
 #import "SentenceViewController.h"
 #import "ThemeCell.h"
 
+
+#define BookTableTag 1
+#define ChapterTableTag 2
+#define ThemeTableTag 3
+
+
+#define PublicTag 11
+#define Class1Tag 12
+#define Class2Tag 13
+
+
 @interface ExamLoadViewController ()
 
 @end
@@ -21,6 +32,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         dbMsg = [DataBase getInstance];
+        bCell = [[BookListCell alloc]init];
+        
     }
     return self;
 }
@@ -28,6 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -53,7 +67,7 @@
     pArray = [dbMsg getPublisherIds];
     
     tableCellCount = pArray.count + 1;
-    myView.tag = 1;
+    myView.tag = PublicTag;
     myView.delegate = self;
     myView.dataSource = self;
     [alert addSubview:myView];
@@ -71,7 +85,7 @@
     UITableView *myView = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)];
     
     tableCellCount = 3;
-    myView.tag = 2;
+    myView.tag = Class1Tag;
     myView.delegate = self;
     myView.dataSource = self;
     [alert addSubview:myView];
@@ -89,7 +103,7 @@
     UITableView *myView = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)];
     
     tableCellCount = 4;
-    myView.tag = 3;
+    myView.tag = Class2Tag;
     myView.delegate = self;
     myView.dataSource = self;
     [alert addSubview:myView];
@@ -98,10 +112,15 @@
 }
 
 - (IBAction)searchEvent:(id)sender {
+    
+    [chapterTable setFrame:CGRectMake(320, chapterTable.frame.origin.y, chapterTable.frame.size.width, chapterTable.frame.size.height)];
+    [themeTable setFrame:CGRectMake(380, themeTable.frame.origin.y, themeTable.frame.size.width, themeTable.frame.size.height)];
+
+    bookNumber = 0;
+    chapterNumber = 0;
+    
     bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
     tableCellCount = bArray.count;
-    
-    bookTable.tag = 0;
     
     [bookTable reloadData];    
 }
@@ -115,12 +134,29 @@
     
     UITableViewCell *cell = [[UITableViewCell alloc]init];
     
-    if (tableView.tag == 0) {
+    if (tableView.tag == BookTableTag) {
+        
         cell.textLabel.text = [dbMsg getBookName:[[bArray objectAtIndex:index]integerValue]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;        
+        
     }
     
-    else if (tableView.tag == 1) {
+    else if (tableView.tag == ChapterTableTag) {
+        if (index == 0) {
+            cell.textLabel.text = [cArray objectAtIndex:1];
+        }else {
+            cell.textLabel.text = [cArray objectAtIndex:index * 2 + 1];
+        }
+    }
+
+    else if (tableView.tag == ThemeTableTag) {
+        if (index == 0) {
+            cell.textLabel.text = [tArray objectAtIndex:1];
+        }else {
+            cell.textLabel.text = [tArray objectAtIndex:index * 2 + 1];
+        }
+    }
+
+    else if (tableView.tag == PublicTag) {
         if (index == 0) {
             cell.textLabel.text = @"전체";
         }else{
@@ -128,7 +164,7 @@
         }
     }
     
-    else if (tableView.tag == 2) {
+    else if (tableView.tag == Class1Tag) {
         
         switch (index) {
                 
@@ -148,7 +184,7 @@
         }
     }
     
-    else if (tableView.tag == 3) {
+    else if (tableView.tag == Class2Tag) {
         
         switch (index) {
             case 0:
@@ -172,29 +208,6 @@
         }
     }
     
-    else if (tableView.tag == 4) {
-        
-        //        cell.textLabel.text = [dbMsg getPublisherName:[[tArray objectAtIndex:index]integerValue]];
-        
-        //        cell = [[ThemeCell alloc]init];
-        
-        examArray = [dbMsg getExamTheme:[[tArray objectAtIndex:index]integerValue]];
-        
-        ThemeCell *themeCell = [[ThemeCell alloc]init];
-        
-        themeCell = [tableView dequeueReusableCellWithIdentifier:@"CELL_ID"];
-        if(themeCell == nil){
-            
-            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"ThemeCell" owner:nil options:nil];
-            
-            themeCell = [array objectAtIndex:0];
-            
-            themeCell.themeLabel.text = [examArray objectAtIndex:0];
-            themeCell.pageNum.text = [NSString stringWithFormat:@"%@p",[examArray objectAtIndex:1]];
-        }
-        return themeCell;
-    }
-    
     return cell;
 }
 
@@ -205,7 +218,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return tableCellCount;
+//    return tableCellCount;
+    if (tableView.tag == PublicTag) {
+        return pArray.count + 1;
+    }else if (tableView.tag == Class1Tag) {
+        return 3;
+    }else if (tableView.tag == Class2Tag) {
+        return 3;
+    }else if ( tableView.tag == BookTableTag) {
+        return bArray.count;
+    }else if ( tableView.tag == ChapterTableTag) {
+        return cArray.count / 2;
+    }else if ( tableView.tag == ThemeTableTag) {
+        return tArray.count / 2;
+    }
+    
+    return 0;
 }
 
 
@@ -217,25 +245,51 @@
     
     int index = [indexPath row];
     
-    if (tableView.tag == 0) {
-        alert = [[UIAlertView alloc] initWithTitle:@"선택"
-                                           message:@"\n\n\n\n\n\n\n"
-                                          delegate:nil
-                                 cancelButtonTitle:@"Cancel"
-                                 otherButtonTitles:nil, nil];
+    if (tableView.tag == BookTableTag) {
+        if (bookNumber == index + 1) {
+            [cArray removeAllObjects];
+            [self tableRePoz:2];
+        }else{
+            bookNumber = index + 1;
+            [cArray removeAllObjects];
+            cArray = [dbMsg getChapterData:[[bArray objectAtIndex:index]integerValue]];
+            if (cArray.count != 0) {
+                [self moveView2:chapterTable duration:0.3 curve: UIViewAnimationCurveLinear x:80];
+            }else{
+                [self tableRePoz:2];
+            }
+            [chapterTable reloadData];
+        }
+        [bookTable reloadData];
+    }else if ( tableView.tag == ChapterTableTag) {
+        if (chapterNumber == index + 1) {
+            [tArray removeAllObjects];
+            [self tableRePoz:1];
+        }else{
+            chapterNumber = index + 1;
+            [tArray removeAllObjects];
+            tArray = [dbMsg getThemeData:[[cArray objectAtIndex:index]integerValue]];
+            if (tArray.count != 0) {
+                [self moveView2:themeTable duration:0.3 curve: UIViewAnimationCurveLinear x:140];
+            }else{
+                [self tableRePoz:1];
+            }
+            [themeTable reloadData];
+        }
+        [bookTable reloadData];
+    }else if ( tableView.tag == ThemeTableTag){
+        SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
         
-        UITableView *myView = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)];
+        if (index == 0) {
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber + 1]integerValue]]:[[tArray objectAtIndex:0]integerValue]];
+        }else {
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber + 1]integerValue]]:[[tArray objectAtIndex:index * 2]integerValue]];
+        }
         
-        tArray = [dbMsg getExamIds:[[bArray objectAtIndex:index]integerValue]];
-        tableCellCount = tArray.count;
-        myView.tag = 4;
-        myView.delegate = self;
-        myView.dataSource = self;
-        [alert addSubview:myView];
-        
-        [alert show];
-    }else{
-        if (tableView.tag == 1) {
+        [self presentModalViewController:sentenceVeiw animated:YES];
+    }
+    else{
+        if (tableView.tag == PublicTag) {
             if (index == 0) {
                 pNumber = index;
                 [publisherName setTitle: @"전체" forState:UIControlStateNormal];
@@ -245,7 +299,7 @@
             }
         }
         
-        else if (tableView.tag == 2) {
+        else if (tableView.tag == Class1Tag) {
             
             switch (index) {
                 case 0:
@@ -268,7 +322,7 @@
             }
         }
         
-        else if (tableView.tag == 3) {
+        else if (tableView.tag == Class2Tag) {
             
             switch (index) {
                 case 0:
@@ -295,18 +349,28 @@
                     break;
             }
         }
-        
-        else if (tableView.tag == 4) {
-            
-            SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
-            
-            examArray = [dbMsg getExamTheme:[[tArray objectAtIndex:index]integerValue]];
-            [sentenceVeiw setInit:[examArray objectAtIndex:0] :[NSString stringWithFormat:@"%@p",[examArray objectAtIndex:1]]:[[tArray objectAtIndex:index]integerValue]];
-            
-            [self presentModalViewController:sentenceVeiw animated:YES];
-            
-        }
         [self disAlert];
+    }
+}
+
+- (void)tableRePoz:(int)type{
+    switch (type) {
+        case 0:
+            bookNumber = 0;
+            [self moveView2:chapterTable duration:0.1 curve: UIViewAnimationCurveLinear x:320];
+            break;
+        case 1:
+            chapterNumber = 0;
+            [self moveView2:themeTable duration:0.1 curve: UIViewAnimationCurveLinear x:380];
+            break;
+        case 2:
+            bookNumber = 0;
+            chapterNumber = 0;
+            [self moveView2:chapterTable duration:0.1 curve: UIViewAnimationCurveLinear x:320];
+            [self moveView2:themeTable duration:0.1 curve: UIViewAnimationCurveLinear x:380];
+            break;
+        default:
+            break;
     }
 }
 
@@ -320,8 +384,52 @@
     classNumber = nil;
     //    [self setSearchEvent:nil];
     bookTable = nil;
+    chapterTable = nil;
+    themeTable = nil;
     [super viewDidUnload];
 }
 
+
+// ---------------- MoveView ---------------- //
+/* ------------------------------------------
+ View Move Animation
+ ------------------------------------------ */
+
+- (void)moveView:(UIView *)view duration:(NSTimeInterval)duration
+           curve:(int)curve x:(CGFloat)x y:(CGFloat)y
+{
+    // Setup the animation
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    // The transform matrix
+    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
+    view.transform = transform;
+    
+    // Commit the changes
+    [UIView commitAnimations];
+    
+}
+
+- (void)moveView2:(UIView *)view duration:(NSTimeInterval)duration
+            curve:(int)curve x:(CGFloat)x
+{
+    // Setup the animation
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    // The transform matrix
+    //    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
+    //    view.transform = transform;
+    
+    view.frame = CGRectMake(x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+    // Commit the changes
+    [UIView commitAnimations];
+    
+}
 
 @end

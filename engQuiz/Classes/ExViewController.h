@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExViewController : UIViewController
+@interface ExViewController : UIViewController<UIActionSheetDelegate>
 
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)exLoadEvent:(id)sender;
+- (IBAction)addBtnEvent:(id)sender;
 @end

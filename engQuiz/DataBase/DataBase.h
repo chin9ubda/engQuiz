@@ -30,6 +30,9 @@
 -(NSMutableArray *)getVocaData;
 -(NSMutableArray *)searchVoca:(NSString *)msg;
 
+-(NSMutableArray *)getChapterData:(int)bid;
+-(NSMutableArray *)getThemeData:(int)cid;
+
 -(int)saveRSentence:(NSString *)content:(NSString *)date:(int)type;
 -(int)saveRQuestion:(int)sid:(NSString *)qtext:(int)qnumber;
 -(void)saveRAnswer:(int)pid:(NSString *)qcontent:(int)solution;

@@ -60,10 +60,10 @@
 }
 
 
--(void)setInit:(NSString *)name:(NSString *)page:(int)_id{
+- (void)setInit:(NSString *)name:(int)_id{
     
     bName = name;
-    pNumber = page;
+//    pNumber = page;
     examId = _id;
     
 }

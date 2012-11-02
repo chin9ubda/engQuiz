@@ -14,6 +14,8 @@
 #define Book_TableName @"Book"
 #define ContentBook_TableName @"contentbook"
 #define Dictionary_TableName @"dictionary"
+#define Chapter_TableName @"chapter"
+
 #define Problem_TableName @"problem"
 #define Problemitem_TableName @"problemitem"
 #define Contenttray_TableName @"contenttray"
@@ -366,6 +368,56 @@
 }
 
 
+
+
+-(NSMutableArray *)getChapterData:(int)bid{
+    NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
+    sqlite3_stmt *selectStatement;
+    int count = 0;
+    
+    NSString *query = [NSString stringWithFormat:@"SELECT cid, text FROM %@ WHERE bid = %d",Chapter_TableName, bid];
+    
+    const char *selectSql = [query UTF8String];
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+            count++;            
+        }
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return array;
+}
+
+
+-(NSMutableArray *)getThemeData:(int)cid{
+    NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
+    sqlite3_stmt *selectStatement;
+    int count = 0;
+    
+    NSString *query = [NSString stringWithFormat:@"SELECT id, theme FROM %@ WHERE cid = %d",ContentBook_TableName, cid];
+    
+    const char *selectSql = [query UTF8String];
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+            count++;
+        }
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return array;
+}
 
 - (int)saveRSentence:(NSString *)content:(NSString *)date:(int)type{
     sqlite3_stmt *insertStatement;

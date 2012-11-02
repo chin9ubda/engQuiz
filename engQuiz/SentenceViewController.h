@@ -34,6 +34,6 @@
     UILabel *label[5];
 }
 - (IBAction)backEvent:(id)sender;
-- (void)setInit:(NSString *)name:(NSString *)page:(int)_id;
+- (void)setInit:(NSString *)name:(int)_id;
 - (IBAction)saveExam:(id)sender;
 @end

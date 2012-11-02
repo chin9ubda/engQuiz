@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
+#import "BookListCell.h"
 
 @interface ExamLoadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     
@@ -19,7 +20,7 @@
     NSMutableArray *pArray;
     NSMutableArray *bArray;
     NSMutableArray *tArray;
-    NSMutableArray *examArray;
+    NSMutableArray *cArray;
     
     DataBase *dbMsg;
     
@@ -29,6 +30,12 @@
     
     UIAlertView *alert;
     IBOutlet UITableView *bookTable;
+    IBOutlet UITableView *chapterTable;
+    IBOutlet UITableView *themeTable;
+    
+    int bookNumber;
+    int chapterNumber;
+    BookListCell *bCell;
 }
 
 - (IBAction)publisherSelect:(id)sender;
