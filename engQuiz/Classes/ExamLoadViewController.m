@@ -39,7 +39,8 @@
 }
 
 - (void)viewDidLoad
-{
+{    [chapterTable setHidden:YES];
+    [themeTable setHidden:YES];
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
@@ -113,16 +114,16 @@
 
 - (IBAction)searchEvent:(id)sender {
     
-    [chapterTable setFrame:CGRectMake(320, chapterTable.frame.origin.y, chapterTable.frame.size.width, chapterTable.frame.size.height)];
-    [themeTable setFrame:CGRectMake(380, themeTable.frame.origin.y, themeTable.frame.size.width, themeTable.frame.size.height)];
-
-    bookNumber = 0;
-    chapterNumber = 0;
-    
-    bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
-    tableCellCount = bArray.count;
-    
-    [bookTable reloadData];    
+//    [chapterTable setFrame:CGRectMake(320, chapterTable.frame.origin.y, chapterTable.frame.size.width, chapterTable.frame.size.height)];
+//    [themeTable setFrame:CGRectMake(380, themeTable.frame.origin.y, themeTable.frame.size.width, themeTable.frame.size.height)];
+//
+//    bookNumber = 0;
+//    chapterNumber = 0;
+//    
+//    bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
+//    tableCellCount = bArray.count;
+//    
+//    [bookTable reloadData];    
 }
 
 
@@ -254,6 +255,7 @@
             [cArray removeAllObjects];
             cArray = [dbMsg getChapterData:[[bArray objectAtIndex:index]integerValue]];
             if (cArray.count != 0) {
+                [chapterTable setHidden:NO];
                 [self moveView2:chapterTable duration:0.3 curve: UIViewAnimationCurveLinear x:80];
             }else{
                 [self tableRePoz:2];
@@ -270,6 +272,7 @@
             [tArray removeAllObjects];
             tArray = [dbMsg getThemeData:[[cArray objectAtIndex:index]integerValue]];
             if (tArray.count != 0) {
+                [themeTable setHidden:NO];
                 [self moveView2:themeTable duration:0.3 curve: UIViewAnimationCurveLinear x:140];
             }else{
                 [self tableRePoz:1];
@@ -281,9 +284,9 @@
         SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
         
         if (index == 0) {
-            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber + 1]integerValue]]:[[tArray objectAtIndex:0]integerValue]];
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[[tArray objectAtIndex:0]integerValue]];
         }else {
-            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber + 1]integerValue]]:[[tArray objectAtIndex:index * 2]integerValue]];
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[[tArray objectAtIndex:index * 2]integerValue]];
         }
         
         [self presentModalViewController:sentenceVeiw animated:YES];
@@ -375,7 +378,25 @@
 }
 
 - (void)disAlert{
+    [chapterTable setFrame:CGRectMake(320, chapterTable.frame.origin.y, chapterTable.frame.size.width, chapterTable.frame.size.height)];
+    [themeTable setFrame:CGRectMake(380, themeTable.frame.origin.y, themeTable.frame.size.width, themeTable.frame.size.height)];
+    
+    [chapterTable setHidden:YES];
+    [themeTable setHidden:YES];
+
+//    [self moveView2:chapterTable duration:0 curve: UIViewAnimationCurveLinear x:320];
+//    [self moveView2:themeTable duration:0 curve: UIViewAnimationCurveLinear x:380];
+    
     [alert dismissWithClickedButtonIndex:0 animated:YES];
+//    [alert dismissWithClickedButtonIndex:alert.cancelButtonIndex animated:NO];
+
+    bookNumber = 0;
+    chapterNumber = 0;
+    
+    bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
+    tableCellCount = bArray.count;
+    
+    [bookTable reloadData];
 }
 
 - (void)viewDidUnload {
