@@ -27,7 +27,7 @@
 -(NSMutableArray *)getExamTheme:(int)_id;
 -(NSString *)getExamSentence:(int)_id;
 
--(NSMutableArray *)getVocaData;
+-(NSMutableArray *)getVocaData:(int)type:(int)check;
 -(NSMutableArray *)searchVoca:(NSString *)msg;
 
 -(NSMutableArray *)getChapterData:(int)bid;
@@ -37,6 +37,7 @@
 -(int)saveRQuestion:(int)sid:(NSString *)qtext:(int)qnumber;
 -(void)saveRAnswer:(int)pid:(NSString *)qcontent:(int)solution;
 
+-(void)setVocaCheck:(int)did:(int)check;
 
 
 -(NSMutableArray *)getRSentenceData:(int)type;

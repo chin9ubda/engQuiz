@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataBase.h"
 
 @interface EduViewController : UIViewController{
     NSMutableArray *vArray;
@@ -17,6 +18,9 @@
     IBOutlet UIButton *lastWordBtn;
     IBOutlet UIButton *nextWordBtn;
     IBOutlet UIButton *meanBtn;
+    IBOutlet UIButton *vocaCheckBtn;
+    
+    DataBase *dbMsg;
 }
 
 - (IBAction)backBtnEvent:(id)sender;
@@ -25,4 +29,5 @@
 - (IBAction)lastWordBtnEvent:(id)sender;
 - (IBAction)nextWordBtnEvent:(id)sender;
 - (IBAction)meanBtnEvent:(id)sender;
+- (IBAction)vocaCheckBtnEvent:(id)sender;
 @end

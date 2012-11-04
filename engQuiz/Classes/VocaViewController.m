@@ -48,10 +48,14 @@
 }
 
 - (IBAction)eduBtnEvent:(id)sender {
-    EduViewController *eduView = [[EduViewController alloc]init];
     
-    [eduView setVocaArray:vArray];
-    [self presentModalViewController:eduView animated:YES];
+    UIActionSheet *actionsheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"취소"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"틀린 단어 위주", @"순서대로",@"단어",@"숙어", nil];
+    [actionsheet showInView:self.view];
 }
 
 -(void) searchEvent{
@@ -59,16 +63,17 @@
         [self setAllVocaData];
     }else {
         vArray = [dbMsg searchVoca:searchMsg.text];
-        cellCount = vArray.count / 4;
+//        cellCount = vArray.count / 4;
     }
     [self keyBoardDown];
     [vocaTable reloadData];
+    [vocaTable scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
 
 - (void)setAllVocaData{
-    vArray = [dbMsg getVocaData];
+    vArray = [dbMsg getVocaData:0:3];
     
-    cellCount = vArray.count / 4;
+//    cellCount = vArray.count / 4;
 }
 
 
@@ -93,18 +98,18 @@
     if (index == 0) {
         vocaCell.wordLabel.text = [vArray objectAtIndex:0];
         vocaCell.meanLabel.text = [vArray objectAtIndex:1];
-        if ([[vArray objectAtIndex:3]integerValue] == 1)
+        if ([[vArray objectAtIndex:2]integerValue] == 1)
             vocaCell.classLabel.text = @"중";
-        else if([[vArray objectAtIndex:3]integerValue] == 2)
+        else if([[vArray objectAtIndex:2]integerValue] == 2)
             vocaCell.classLabel.text = @"고";
         else
             vocaCell.classLabel.text = @"기";
-    }else{
+    }else if (index <= vArray.count / 4 - 1){
         vocaCell.wordLabel.text = [vArray objectAtIndex:index * 4];
         vocaCell.meanLabel.text = [vArray objectAtIndex:index * 4 + 1];
-        if ([[vArray objectAtIndex:index * 4 + 3]integerValue] == 1)
+        if ([[vArray objectAtIndex:index * 4 + 2]integerValue] == 1)
             vocaCell.classLabel.text = @"중";
-        else if([[vArray objectAtIndex:index * 4 + 3]integerValue] == 2)
+        else if([[vArray objectAtIndex:index * 4 + 2]integerValue] == 2)
             vocaCell.classLabel.text = @"고";
         else
             vocaCell.classLabel.text = @"기";
@@ -120,7 +125,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return cellCount;
+    return vArray.count / 4;
 }
 
 
@@ -165,9 +170,65 @@
 }
 
 
+#pragma mark UIActionSheet Delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        EduViewController *eduView = [[EduViewController alloc]init];
+        
+        if (buttonIndex == 0) {
+            NSLog(@"틀린 단어 위주");
+            [eduView setVocaArray:[dbMsg getVocaData:0:3]];
+        }else if(buttonIndex == 1){
+            NSLog(@"순서대로");
+            [eduView setVocaArray:vArray];
+        }else if(buttonIndex == 2){
+            NSLog(@"단어");
+            [eduView setVocaArray:[dbMsg getVocaData:1:0]];
+        }else if(buttonIndex == 3){
+            NSLog(@"숙어");
+            [eduView setVocaArray:[dbMsg getVocaData:2:0]];
+        }
+        
+        [self presentModalViewController:eduView animated:YES];
+    }
+}
+
+#pragma mark UITabber Delegate
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    
+    
+    switch ([item tag] ) {
+        case 0:
+            vArray = [dbMsg getVocaData:0:3];
+            break;
+        case 1:
+            vArray = [dbMsg getVocaData:0:1];
+            break;
+        case 2:
+            vArray = [dbMsg getVocaData:0:3];
+            break;
+        case 3:
+            vArray = [dbMsg getVocaData:1:3];
+            break;
+        case 4:
+            vArray = [dbMsg getVocaData:2:3];
+            break;
+        default:
+            break;
+    }
+    
+    [vocaTable reloadData];
+    [vocaTable scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+//    NSLog(@"check : %d",[item tag]);
+}
+
+
 - (void)viewDidUnload {
     vocaTable = nil;
     searchMsg = nil;
+    tabbalContoller = nil;
     [super viewDidUnload];
 }
 @end

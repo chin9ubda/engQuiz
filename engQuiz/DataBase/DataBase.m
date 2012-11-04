@@ -299,13 +299,26 @@
     return data;
 }
 
--(NSMutableArray *)getVocaData{
+-(NSMutableArray *)getVocaData:(int)type:(int)check{
     
     NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
     sqlite3_stmt *selectStatement;
     int count = 0;
+    NSString *query;
+    if (check == 3) {
+        if (type == 0) {
+            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@",Dictionary_TableName];
+        }else {
+            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE wtype = %d",Dictionary_TableName,type];
+        }
+    }else{
+        if (type == 0) {
+            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE vcheck = %d",Dictionary_TableName, check];
+        }else {
+            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE wtype = %d AND vcheck = %d",Dictionary_TableName,type,check];
+        }
+    }
     
-    NSString *query = [NSString stringWithFormat:@"SELECT word, mean, dtype, dtype FROM %@",Dictionary_TableName];
     
     const char *selectSql = [query UTF8String];
     
@@ -337,7 +350,7 @@
     
     sqlite3_stmt *selectStatement;
 
-    query = [NSString stringWithFormat:@"SELECT word, mean, wtype, dtype FROM %@ WHERE word LIKE '%@%%'",Dictionary_TableName,msg];
+    query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%'",Dictionary_TableName,msg];
 //    query = [NSString stringWithFormat:@"SELECT word, mean, type, class FROM %@ WHERE word LIKE '%%%@%%'",Voca_TableName,msg];
     
     const char *selectSql = [query UTF8String];
@@ -523,6 +536,20 @@
     }
     
     sqlite3_finalize(insertStatement);
+}
+
+
+-(void)setVocaCheck:(int)did:(int)check{
+    NSString *query = [NSString stringWithFormat:@"UPDATE %@ SET vcheck = %d  WHERE did = %d",Dictionary_TableName,check,did];
+    
+    const char *updateSql = [query UTF8String];
+    
+    if (sqlite3_exec(database, updateSql, nil,nil,nil) != SQLITE_OK) {
+        NSLog(@"Error");
+    }else{
+        NSLog(@"OK");
+    }
+
 }
 
 -(NSMutableArray *)getRSentenceData:(int)type{

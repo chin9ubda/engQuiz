@@ -32,7 +32,7 @@
 		439274531643EA8400EA98EF /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 439274511643EA8400EA98EF /* libtesseract_all.a */; };
 		439274581646105D00EA98EF /* EduViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439274561646105D00EA98EF /* EduViewController.m */; };
 		439274591646105D00EA98EF /* EduViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439274571646105D00EA98EF /* EduViewController.xib */; };
-		4394506B16406B6E00CBDD76 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4394506A16406B6E00CBDD76 /* engquiz.sqlite */; };
+		4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4398BC4916463BA700338CC6 /* engquiz.sqlite */; };
 		439AF569163BD7500016DE4E /* VocaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439AF567163BD7500016DE4E /* VocaViewController.m */; };
 		439AF56A163BD7500016DE4E /* VocaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439AF568163BD7500016DE4E /* VocaViewController.xib */; };
 		439AF56D163BE4220016DE4E /* VocaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 439AF56C163BE4210016DE4E /* VocaCell.m */; };
@@ -131,7 +131,7 @@
 		439274551646105D00EA98EF /* EduViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EduViewController.h; path = Classes/EduViewController.h; sourceTree = "<group>"; };
 		439274561646105D00EA98EF /* EduViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EduViewController.m; path = Classes/EduViewController.m; sourceTree = "<group>"; };
 		439274571646105D00EA98EF /* EduViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EduViewController.xib; path = Classes/EduViewController.xib; sourceTree = "<group>"; };
-		4394506A16406B6E00CBDD76 /* engquiz.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = engquiz.sqlite; sourceTree = "<group>"; };
+		4398BC4916463BA700338CC6 /* engquiz.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = engquiz.sqlite; sourceTree = "<group>"; };
 		439AF566163BD7500016DE4E /* VocaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VocaViewController.h; path = Classes/VocaViewController.h; sourceTree = "<group>"; };
 		439AF567163BD7500016DE4E /* VocaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VocaViewController.m; path = Classes/VocaViewController.m; sourceTree = "<group>"; };
 		439AF568163BD7500016DE4E /* VocaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VocaViewController.xib; path = Classes/VocaViewController.xib; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 		439D2CE3163BB5B30071551C /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
-				4394506A16406B6E00CBDD76 /* engquiz.sqlite */,
+				4398BC4916463BA700338CC6 /* engquiz.sqlite */,
 				439D2CE0163BB5AE0071551C /* DataBase.h */,
 				439D2CE1163BB5AE0071551C /* DataBase.m */,
 			);
@@ -518,7 +518,6 @@
 				439AF56A163BD7500016DE4E /* VocaViewController.xib in Resources */,
 				439AF56F163BE4300016DE4E /* VocaCell.xib in Resources */,
 				438DFD8F163C19FC008AE0A6 /* RepositoryViewController.xib in Resources */,
-				4394506B16406B6E00CBDD76 /* engquiz.sqlite in Resources */,
 				43924CE316426A6C00B05EFE /* BookListCell.xib in Resources */,
 				43924D011643BB4100B05EFE /* test11-4.jpg in Resources */,
 				439273DE1643DD5B00EA98EF /* bobtn.png in Resources */,
@@ -535,6 +534,7 @@
 				439273E91643DD5B00EA98EF /* tongbtn@2x.png in Resources */,
 				439274121643E41B00EA98EF /* tessdata in Resources */,
 				439274591646105D00EA98EF /* EduViewController.xib in Resources */,
+				4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,14 +18,21 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        dbMsg = [DataBase getInstance];
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    [self setEduText:nowPoz];
+    if (vArray.count != 0) {
+        [self setEduText:nowPoz];
+    }else {
+        [lastWordBtn setEnabled:NO];
+        [nextWordBtn setEnabled:NO];
+        [meanBtn setEnabled:NO];
+        [vocaCheckBtn setEnabled:NO];
+    }
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -58,37 +65,36 @@
     [meanBtn setHidden:YES];
 }
 
+- (IBAction)vocaCheckBtnEvent:(id)sender {
+    if (nowPoz == 0) {
+        [dbMsg setVocaCheck:[[vArray objectAtIndex:3] intValue] :1];
+    }else {
+        [dbMsg setVocaCheck: [[vArray objectAtIndex:nowPoz * 4 + 3] intValue]:1];
+    }
+}
+
 - (void)setEduText:(int)poz{
+    
     if (poz == 0) {
+        if(vArray.count ==  4){
+            [lastWordBtn setEnabled:NO];
+            [nextWordBtn setEnabled:NO];
+        }else{
+            [lastWordBtn setEnabled:NO];
+            [nextWordBtn setEnabled:YES];
+        }
         wordLabel.text = [vArray objectAtIndex:0];
         meanLabel.text = [vArray objectAtIndex:1];
-        
-        
-        [lastWordBtn setEnabled:NO];
-        [nextWordBtn setEnabled:YES];
-        
-//        if ([[vArray objectAtIndex:3]integerValue] == 1)
-//            vocaCell.classLabel.text = @"중";
-//        else if([[vArray objectAtIndex:3]integerValue] == 2)
-//            vocaCell.classLabel.text = @"고";
-//        else
-//            vocaCell.classLabel.text = @"기";
     }else{
-        wordLabel.text = [vArray objectAtIndex:poz * 4];
-        meanLabel.text = [vArray objectAtIndex:poz * 4 + 1];
-        if(poz == vArray.count/4){
+        if(poz == vArray.count/4 - 1){
             [lastWordBtn setEnabled:YES];
             [nextWordBtn setEnabled:NO];
         }else{
             [lastWordBtn setEnabled:YES];
             [nextWordBtn setEnabled:YES];
         }
-//        if ([[vArray objectAtIndex:index * 4 + 3]integerValue] == 1)
-//            vocaCell.classLabel.text = @"중";
-//        else if([[vArray objectAtIndex:index * 4 + 3]integerValue] == 2)
-//            vocaCell.classLabel.text = @"고";
-//        else
-//            vocaCell.classLabel.text = @"기";
+        wordLabel.text = [vArray objectAtIndex:poz * 4];
+        meanLabel.text = [vArray objectAtIndex:poz * 4 + 1];
     }
     
     [meanBtn setHidden:NO];
@@ -100,6 +106,7 @@
     lastWordBtn = nil;
     nextWordBtn = nil;
     meanBtn = nil;
+    vocaCheckBtn = nil;
     [super viewDidUnload];
 }
 @end

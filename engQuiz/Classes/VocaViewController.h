@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
 
-@interface VocaViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>{
+@interface VocaViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate, UIActionSheetDelegate, UITabBarDelegate>{
     
     IBOutlet UITableView *vocaTable;
     DataBase *dbMsg;
@@ -22,6 +22,7 @@
     UITapGestureRecognizer *tap;
 
     int cellCount;
+    IBOutlet UITabBar *tabbalContoller;
 }
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)searchBtnEvent:(id)sender;
