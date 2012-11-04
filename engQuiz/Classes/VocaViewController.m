@@ -8,6 +8,7 @@
 
 #import "VocaViewController.h"
 #import "VocaCell.h"
+#import "EduViewController.h"
 
 @interface VocaViewController ()
 
@@ -44,6 +45,13 @@
 
 - (IBAction)searchBtnEvent:(id)sender {
     [self searchEvent];
+}
+
+- (IBAction)eduBtnEvent:(id)sender {
+    EduViewController *eduView = [[EduViewController alloc]init];
+    
+    [eduView setVocaArray:vArray];
+    [self presentModalViewController:eduView animated:YES];
 }
 
 -(void) searchEvent{

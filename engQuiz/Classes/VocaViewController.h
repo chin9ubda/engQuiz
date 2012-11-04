@@ -25,5 +25,6 @@
 }
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)searchBtnEvent:(id)sender;
+- (IBAction)eduBtnEvent:(id)sender;
 
 @end

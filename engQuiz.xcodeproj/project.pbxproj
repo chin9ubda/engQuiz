@@ -30,6 +30,8 @@
 		4392741F1643E89500EA98EF /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4392741E1643E89500EA98EF /* ViewController.mm */; };
 		439274521643EA8400EA98EF /* liblept.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 439274501643EA8400EA98EF /* liblept.a */; };
 		439274531643EA8400EA98EF /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 439274511643EA8400EA98EF /* libtesseract_all.a */; };
+		439274581646105D00EA98EF /* EduViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439274561646105D00EA98EF /* EduViewController.m */; };
+		439274591646105D00EA98EF /* EduViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439274571646105D00EA98EF /* EduViewController.xib */; };
 		4394506B16406B6E00CBDD76 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4394506A16406B6E00CBDD76 /* engquiz.sqlite */; };
 		439AF569163BD7500016DE4E /* VocaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439AF567163BD7500016DE4E /* VocaViewController.m */; };
 		439AF56A163BD7500016DE4E /* VocaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439AF568163BD7500016DE4E /* VocaViewController.xib */; };
@@ -126,6 +128,9 @@
 		4392744E1643EA8400EA98EF /* unichar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unichar.h; sourceTree = "<group>"; };
 		439274501643EA8400EA98EF /* liblept.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblept.a; sourceTree = "<group>"; };
 		439274511643EA8400EA98EF /* libtesseract_all.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtesseract_all.a; sourceTree = "<group>"; };
+		439274551646105D00EA98EF /* EduViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EduViewController.h; path = Classes/EduViewController.h; sourceTree = "<group>"; };
+		439274561646105D00EA98EF /* EduViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EduViewController.m; path = Classes/EduViewController.m; sourceTree = "<group>"; };
+		439274571646105D00EA98EF /* EduViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EduViewController.xib; path = Classes/EduViewController.xib; sourceTree = "<group>"; };
 		4394506A16406B6E00CBDD76 /* engquiz.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = engquiz.sqlite; sourceTree = "<group>"; };
 		439AF566163BD7500016DE4E /* VocaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VocaViewController.h; path = Classes/VocaViewController.h; sourceTree = "<group>"; };
 		439AF567163BD7500016DE4E /* VocaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VocaViewController.m; path = Classes/VocaViewController.m; sourceTree = "<group>"; };
@@ -323,9 +328,20 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		439274541646104300EA98EF /* Edu */ = {
+			isa = PBXGroup;
+			children = (
+				439274551646105D00EA98EF /* EduViewController.h */,
+				439274561646105D00EA98EF /* EduViewController.m */,
+				439274571646105D00EA98EF /* EduViewController.xib */,
+			);
+			name = Edu;
+			sourceTree = "<group>";
+		};
 		439AF562163BD7070016DE4E /* Voca */ = {
 			isa = PBXGroup;
 			children = (
+				439274541646104300EA98EF /* Edu */,
 				439AF566163BD7500016DE4E /* VocaViewController.h */,
 				439AF567163BD7500016DE4E /* VocaViewController.m */,
 				439AF568163BD7500016DE4E /* VocaViewController.xib */,
@@ -518,6 +534,7 @@
 				439273E81643DD5B00EA98EF /* tongbtn.png in Resources */,
 				439273E91643DD5B00EA98EF /* tongbtn@2x.png in Resources */,
 				439274121643E41B00EA98EF /* tessdata in Resources */,
+				439274591646105D00EA98EF /* EduViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +559,7 @@
 				43924D481643BE4700B05EFE /* MBProgressHUD.m in Sources */,
 				439274161643E79900EA98EF /* MainViewController.mm in Sources */,
 				4392741F1643E89500EA98EF /* ViewController.mm in Sources */,
+				439274581646105D00EA98EF /* EduViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
