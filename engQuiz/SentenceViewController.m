@@ -28,6 +28,7 @@
 {
 //    [self setTexts];
     
+    navi = true;
     
     // 지문 : 학교 : 학년
     pArray = [self setExam:[dbMsg getExamSentence:examId]:1 :1];
@@ -53,6 +54,8 @@
     answerLabel02 = nil;
     answerLabel03 = nil;
     answerLabel04 = nil;
+    navigationBar = nil;
+    sentenceView = nil;
     [super viewDidUnload];
 }
 - (IBAction)backEvent:(id)sender {
@@ -82,6 +85,36 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (IBAction)naviEvent:(id)sender {
+    if (navi) {
+//        [navigationBar setHidden:YES];
+        [self moveView:navigationBar duration:0.2 curve:UIViewAnimationCurveLinear y:-44];
+        
+        navi = false;
+    }else{
+//        [navigationBar setHidden:NO];
+        [self moveView:navigationBar duration:0.2 curve:UIViewAnimationCurveLinear y:0];
+
+        navi = true;
+    }
+}
+
+
+- (void)naviEvent {
+    if (navi) {
+        //        [navigationBar setHidden:YES];
+        [self moveView:navigationBar duration:0.2 curve:UIViewAnimationCurveLinear y:-44];
+        
+        navi = false;
+    }else{
+        //        [navigationBar setHidden:NO];
+        [self moveView:navigationBar duration:0.2 curve:UIViewAnimationCurveLinear y:0];
+        
+        navi = true;
+    }
+}
+
+
 
 - (void)saveRepository{
     
@@ -104,6 +137,8 @@
     [pageNumber setText:pNumber];
     
     [sentenceTextView setText:sentence];
+    
+//    NSLog(@"%d",sentenceTextView.)
 //    [sentenceTextView setText:[dbMsg getExamSentence:examId]];
 //    [sentenceTextView setEditable:NO];
 }
@@ -169,4 +204,57 @@
     
     return eArray;
 }
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//    NSLog(@"down");
+    [self naviEvent];
+//    if ([[touches anyObject]locationInView:sentenceTextView] )
+//    [touches anyObject]location
+    
+    
+//    UITouch *touch = [[event allTouches] anyObject];
+////.    if(Ball.hidden == YES){
+//    float touch_x = [touch locationInView:touch.view].x;
+//    float touch_y = [touch locationInView:touch.view].y;
+//    
+//    if (sentenceView.frame.origin.x <= touch_x <= sentenceView.frame.origin.x + sentenceView.frame.size.width && sentenceView.frame.origin.y <= touch_y <= sentenceView.frame.origin.y + sentenceView.frame.size.height) {
+//        NSLog(@"down");
+//    }
+    
+//        if(touch_x < 50){ //일정 Y값 범위 내에서만 발사
+//            Ball_move_x = (touch_x - 60) / 10;
+//            Ball_move_y = (touch_y - 30) / 10;
+//            moveSign = YES;
+}
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+}
+
+
+- (void)moveView:(UIView *)view duration:(NSTimeInterval)duration
+            curve:(int)curve y:(CGFloat)y
+{
+    // Setup the animation
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    view.frame = CGRectMake(view.frame.origin.x, y, view.frame.size.width, view.frame.size.height);
+    // Commit the changes
+    [UIView commitAnimations];
+
+}
+
+
+//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView;
+//- (BOOL)textViewShouldEndEditing:(UITextView *)textView;
+//
+//- (void)textViewDidBeginEditing:(UITextView *)textView;
+//- (void)textViewDidEndEditing:(UITextView *)textView;
+
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
+//- (void)textViewDidChange:(UITextView *)textView{
+//    NSLog(@"ohohoh");
+//}
+//
 @end

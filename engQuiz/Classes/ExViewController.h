@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExamLoadViewController.h"
 
 @interface ExViewController : UIViewController<UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
     
     UIImagePickerController *imagePickerController;
     uint32_t *pixels;
     UIImage *img;
+    IBOutlet UINavigationBar *navigationbar;
+    
+    ExamLoadViewController *exLoadView;
 }
 
 - (IBAction)backBtnEvent:(id)sender;

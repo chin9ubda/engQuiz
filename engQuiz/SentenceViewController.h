@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
 
-@interface SentenceViewController : UIViewController{
+@interface SentenceViewController : UIViewController<UITextViewDelegate>{
     
     IBOutlet UILabel *bookName;
     IBOutlet UILabel *pageNumber;
@@ -23,6 +23,8 @@
     int sid;
     int qid;
     
+    BOOL navi;
+    
     
     IBOutlet UILabel *questionLabel;
     IBOutlet UILabel *answerLabel01;
@@ -32,8 +34,11 @@
     
     NSMutableArray *pArray;
     UILabel *label[5];
+    IBOutlet UINavigationBar *navigationBar;
+    IBOutlet UIView *sentenceView;
 }
 - (IBAction)backEvent:(id)sender;
 - (void)setInit:(NSString *)name:(int)_id;
 - (IBAction)saveExam:(id)sender;
+- (IBAction)naviEvent:(id)sender;
 @end
