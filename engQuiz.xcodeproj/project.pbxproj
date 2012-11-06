@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		433B11011649329C00181487 /* ExamLoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 433B11001649329C00181487 /* ExamLoadViewController.xib */; };
 		438DFD8E163C19FC008AE0A6 /* RepositoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438DFD8C163C19FC008AE0A6 /* RepositoryViewController.m */; };
 		438DFD8F163C19FC008AE0A6 /* RepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 438DFD8D163C19FC008AE0A6 /* RepositoryViewController.xib */; };
 		43924CE016426A5800B05EFE /* BookListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43924CDF16426A5700B05EFE /* BookListCell.m */; };
@@ -52,7 +53,6 @@
 		439D2D0F163BBDAB0071551C /* ExViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D0D163BBDAB0071551C /* ExViewController.mm */; };
 		439D2D10163BBDAB0071551C /* ExViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D0E163BBDAB0071551C /* ExViewController.xib */; };
 		439D2D14163BBFF20071551C /* ExamLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D12163BBFF20071551C /* ExamLoadViewController.m */; };
-		439D2D15163BBFF20071551C /* ExamLoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D13163BBFF20071551C /* ExamLoadViewController.xib */; };
 		439D2D1B163BC6210071551C /* ThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1A163BC6200071551C /* ThemeCell.m */; };
 		439D2D1D163BC6470071551C /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D1C163BC6470071551C /* ThemeCell.xib */; };
 		439D2D21163BC7440071551C /* SentenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1F163BC7430071551C /* SentenceViewController.m */; };
@@ -60,6 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		433B11001649329C00181487 /* ExamLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamLoadViewController.xib; sourceTree = "<group>"; };
 		438DFD8B163C19FC008AE0A6 /* RepositoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepositoryViewController.h; path = Classes/RepositoryViewController.h; sourceTree = "<group>"; };
 		438DFD8C163C19FC008AE0A6 /* RepositoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepositoryViewController.m; path = Classes/RepositoryViewController.m; sourceTree = "<group>"; };
 		438DFD8D163C19FC008AE0A6 /* RepositoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RepositoryViewController.xib; path = Classes/RepositoryViewController.xib; sourceTree = "<group>"; };
@@ -161,7 +162,6 @@
 		439D2D0E163BBDAB0071551C /* ExViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExViewController.xib; path = Classes/ExViewController.xib; sourceTree = "<group>"; };
 		439D2D11163BBFF20071551C /* ExamLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExamLoadViewController.h; path = Classes/ExamLoadViewController.h; sourceTree = "<group>"; };
 		439D2D12163BBFF20071551C /* ExamLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExamLoadViewController.m; path = Classes/ExamLoadViewController.m; sourceTree = "<group>"; };
-		439D2D13163BBFF20071551C /* ExamLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExamLoadViewController.xib; path = Classes/ExamLoadViewController.xib; sourceTree = "<group>"; };
 		439D2D19163BC6200071551C /* ThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeCell.h; path = Classes/ThemeCell.h; sourceTree = "<group>"; };
 		439D2D1A163BC6200071551C /* ThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeCell.m; path = Classes/ThemeCell.m; sourceTree = "<group>"; };
 		439D2D1C163BC6470071551C /* ThemeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeCell.xib; sourceTree = "<group>"; };
@@ -444,7 +444,7 @@
 				439D2D0E163BBDAB0071551C /* ExViewController.xib */,
 				439D2D11163BBFF20071551C /* ExamLoadViewController.h */,
 				439D2D12163BBFF20071551C /* ExamLoadViewController.m */,
-				439D2D13163BBFF20071551C /* ExamLoadViewController.xib */,
+				433B11001649329C00181487 /* ExamLoadViewController.xib */,
 				439D2D19163BC6200071551C /* ThemeCell.h */,
 				439D2D1A163BC6200071551C /* ThemeCell.m */,
 				439D2D1C163BC6470071551C /* ThemeCell.xib */,
@@ -512,7 +512,6 @@
 				439D2CD4163BB5770071551C /* Default-568h@2x.png in Resources */,
 				439D2CDA163BB5770071551C /* MainViewController.xib in Resources */,
 				439D2D10163BBDAB0071551C /* ExViewController.xib in Resources */,
-				439D2D15163BBFF20071551C /* ExamLoadViewController.xib in Resources */,
 				439D2D1D163BC6470071551C /* ThemeCell.xib in Resources */,
 				439D2D22163BC7440071551C /* SentenceViewController.xib in Resources */,
 				439AF56A163BD7500016DE4E /* VocaViewController.xib in Resources */,
@@ -535,6 +534,7 @@
 				439274121643E41B00EA98EF /* tessdata in Resources */,
 				439274591646105D00EA98EF /* EduViewController.xib in Resources */,
 				4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */,
+				433B11011649329C00181487 /* ExamLoadViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,8 +39,10 @@
 }
 
 - (void)viewDidLoad
-{    [chapterTable setHidden:YES];
-    [themeTable setHidden:YES];
+{
+    
+    [self setScrollViewInit];
+    [scrollView setHidden:YES];
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
@@ -54,6 +56,36 @@
 
 - (IBAction)backBtnEvent:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)setScrollViewInit{
+    NSMutableArray *views = [[NSMutableArray alloc]init];
+    
+    [views addObject:bookTable];
+    [views addObject:chapterTable];
+    [views addObject:themeTable];
+    
+    for (int index = 0; index < views.count; index++) {
+        CGRect frame;
+        frame.origin.x = scrollView.frame.size.width * index;
+        frame.origin.y = 0;
+        frame.size = scrollView.frame.size;
+        
+        UITableView *subTableView = [[UITableView alloc] initWithFrame:frame];
+        subTableView = [views objectAtIndex:index];
+        
+        [subTableView setFrame:frame];
+        
+        [scrollView addSubview:subTableView];
+    }
+    
+    scrollView.pagingEnabled = YES;
+    scrollView.contentSize = CGSizeMake(0, 0);
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.scrollsToTop = NO;
+    scrollView.delegate = self;
+    [scrollView setContentOffset:CGPointMake(0,0) animated:NO];
 }
 
 - (IBAction)publisherSelect:(id)sender {
@@ -110,20 +142,6 @@
     [alert addSubview:myView];
     
     [alert show];
-}
-
-- (IBAction)searchEvent:(id)sender {
-    
-//    [chapterTable setFrame:CGRectMake(320, chapterTable.frame.origin.y, chapterTable.frame.size.width, chapterTable.frame.size.height)];
-//    [themeTable setFrame:CGRectMake(380, themeTable.frame.origin.y, themeTable.frame.size.width, themeTable.frame.size.height)];
-//
-//    bookNumber = 0;
-//    chapterNumber = 0;
-//    
-//    bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
-//    tableCellCount = bArray.count;
-//    
-//    [bookTable reloadData];    
 }
 
 
@@ -255,14 +273,17 @@
             [cArray removeAllObjects];
             cArray = [dbMsg getChapterData:[[bArray objectAtIndex:index]integerValue]];
             if (cArray.count != 0) {
-                [chapterTable setHidden:NO];
-                [self moveView2:chapterTable duration:0.3 curve: UIViewAnimationCurveLinear x:80];
             }else{
                 [self tableRePoz:2];
             }
             [chapterTable reloadData];
         }
-        [bookTable reloadData];
+        if (cArray.count != 0){
+            [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width,0) animated:YES];
+            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 2, 0);
+        }else {
+            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 1, 0);
+        }
     }else if ( tableView.tag == ChapterTableTag) {
         if (chapterNumber == index + 1) {
             [tArray removeAllObjects];
@@ -273,13 +294,17 @@
             tArray = [dbMsg getThemeData:[[cArray objectAtIndex:index]integerValue]];
             if (tArray.count != 0) {
                 [themeTable setHidden:NO];
-                [self moveView2:themeTable duration:0.3 curve: UIViewAnimationCurveLinear x:140];
             }else{
                 [self tableRePoz:1];
             }
             [themeTable reloadData];
         }
-        [bookTable reloadData];
+        if (tArray.count != 0){
+            [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width * 2,0) animated:YES];
+            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 3, 0);
+        }else {
+            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 2, 0);
+        }
     }else if ( tableView.tag == ThemeTableTag){
         SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
         
@@ -360,17 +385,13 @@
     switch (type) {
         case 0:
             bookNumber = 0;
-            [self moveView2:chapterTable duration:0.1 curve: UIViewAnimationCurveLinear x:320];
             break;
         case 1:
             chapterNumber = 0;
-            [self moveView2:themeTable duration:0.1 curve: UIViewAnimationCurveLinear x:380];
             break;
         case 2:
             bookNumber = 0;
             chapterNumber = 0;
-            [self moveView2:chapterTable duration:0.1 curve: UIViewAnimationCurveLinear x:320];
-            [self moveView2:themeTable duration:0.1 curve: UIViewAnimationCurveLinear x:380];
             break;
         default:
             break;
@@ -378,17 +399,7 @@
 }
 
 - (void)disAlert{
-    [chapterTable setFrame:CGRectMake(320, chapterTable.frame.origin.y, chapterTable.frame.size.width, chapterTable.frame.size.height)];
-    [themeTable setFrame:CGRectMake(380, themeTable.frame.origin.y, themeTable.frame.size.width, themeTable.frame.size.height)];
-    
-    [chapterTable setHidden:YES];
-    [themeTable setHidden:YES];
-
-//    [self moveView2:chapterTable duration:0 curve: UIViewAnimationCurveLinear x:320];
-//    [self moveView2:themeTable duration:0 curve: UIViewAnimationCurveLinear x:380];
-    
     [alert dismissWithClickedButtonIndex:0 animated:YES];
-//    [alert dismissWithClickedButtonIndex:alert.cancelButtonIndex animated:NO];
 
     bookNumber = 0;
     chapterNumber = 0;
@@ -396,8 +407,33 @@
     bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
     tableCellCount = bArray.count;
     
+    if (bArray.count != 0)
+        [scrollView setHidden:NO];
+    else
+        [scrollView setHidden:YES];
+    
     [bookTable reloadData];
 }
+
+
+//---------------------------------------------------
+// ScrollView Delegate
+//---------------------------------------------------
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    
+    // Update the page when more than 50% of the previous/next page is visible
+//    CGFloat pageWidth = scrollView.frame.size.width;
+//    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+}
+
+// At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    SJ_DEBUG_LOG(@"page Number :%d", pageController.currentPage);
+//    nowIndex = pageControl.currentPage;
+    pageControlUsed = NO;
+    
+}
+
 
 - (void)viewDidUnload {
     publisherName = nil;
@@ -407,6 +443,7 @@
     bookTable = nil;
     chapterTable = nil;
     themeTable = nil;
+    scrollView = nil;
     [super viewDidUnload];
 }
 
@@ -416,41 +453,41 @@
  View Move Animation
  ------------------------------------------ */
 
-- (void)moveView:(UIView *)view duration:(NSTimeInterval)duration
-           curve:(int)curve x:(CGFloat)x y:(CGFloat)y
-{
-    // Setup the animation
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:duration];
-    [UIView setAnimationCurve:curve];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    
-    // The transform matrix
-    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
-    view.transform = transform;
-    
-    // Commit the changes
-    [UIView commitAnimations];
-    
-}
-
-- (void)moveView2:(UIView *)view duration:(NSTimeInterval)duration
-            curve:(int)curve x:(CGFloat)x
-{
-    // Setup the animation
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:duration];
-    [UIView setAnimationCurve:curve];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    
-    // The transform matrix
-    //    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
-    //    view.transform = transform;
-    
-    view.frame = CGRectMake(x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-    // Commit the changes
-    [UIView commitAnimations];
-    
-}
+//- (void)moveView:(UIView *)view duration:(NSTimeInterval)duration
+//           curve:(int)curve x:(CGFloat)x y:(CGFloat)y
+//{
+//    // Setup the animation
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:duration];
+//    [UIView setAnimationCurve:curve];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    
+//    // The transform matrix
+//    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
+//    view.transform = transform;
+//    
+//    // Commit the changes
+//    [UIView commitAnimations];
+//    
+//}
+//
+//- (void)moveView2:(UIView *)view duration:(NSTimeInterval)duration
+//            curve:(int)curve x:(CGFloat)x
+//{
+//    // Setup the animation
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:duration];
+//    [UIView setAnimationCurve:curve];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    
+//    // The transform matrix
+//    //    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
+//    //    view.transform = transform;
+//    
+//    view.frame = CGRectMake(x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+//    // Commit the changes
+//    [UIView commitAnimations];
+//    
+//}
 
 @end

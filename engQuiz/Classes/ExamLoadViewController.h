@@ -10,7 +10,7 @@
 #import "DataBase.h"
 #import "BookListCell.h"
 
-@interface ExamLoadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+@interface ExamLoadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>{
     
     int tableCellCount;
     int pNumber;
@@ -36,12 +36,14 @@
     int bookNumber;
     int chapterNumber;
     BookListCell *bCell;
+    IBOutlet UIScrollView *scrollView;
+    
+    BOOL pageControlUsed;
 }
 
 - (IBAction)publisherSelect:(id)sender;
 - (IBAction)classSelect:(id)sender;
 - (IBAction)numberSelect:(id)sender;
-- (IBAction)searchEvent:(id)sender;
 
 - (IBAction)backBtnEvent:(id)sender;
 @end
