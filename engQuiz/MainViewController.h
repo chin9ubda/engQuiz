@@ -10,6 +10,7 @@
 #import "ExViewController.h"
 #import "VocaViewController.h"
 #import "RepositoryViewController.h"
+#import "ChartViewController.h"
 #import "DataBase.h"
 
 @interface MainViewController : UIViewController{
@@ -17,10 +18,12 @@
     ExViewController *exView;
     VocaViewController *vocaView;
     RepositoryViewController *repositoryView;
+    ChartViewController *chartView;
     DataBase *dbMsg;
 }
 
 - (IBAction)exBtnEvent:(id)sender;
 - (IBAction)vocaBtnEvent:(id)sender;
 - (IBAction)repositoryBtnEvent:(id)sender;
+- (IBAction)chartBtnEvent:(id)sender;
 @end

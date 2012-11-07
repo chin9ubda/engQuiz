@@ -25,6 +25,7 @@
     exView = [[ExViewController alloc]init];
     vocaView = [[VocaViewController alloc]init];
     repositoryView = [[RepositoryViewController alloc]init];
+    chartView = [[ChartViewController alloc]init];
 
 }
 
@@ -45,5 +46,9 @@
 - (IBAction)repositoryBtnEvent:(id)sender {
     [repositoryView reLoadTable];
     [self presentModalViewController:repositoryView animated:YES];
+}
+
+- (IBAction)chartBtnEvent:(id)sender {
+    [self presentModalViewController:chartView animated:YES];
 }
 @end

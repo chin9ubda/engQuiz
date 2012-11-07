@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		433B11011649329C00181487 /* ExamLoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 433B11001649329C00181487 /* ExamLoadViewController.xib */; };
+		433B1106164947CE00181487 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B1104164947CE00181487 /* ChartViewController.m */; };
+		433B1107164947CE00181487 /* ChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 433B1105164947CE00181487 /* ChartViewController.xib */; };
 		438DFD8E163C19FC008AE0A6 /* RepositoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438DFD8C163C19FC008AE0A6 /* RepositoryViewController.m */; };
 		438DFD8F163C19FC008AE0A6 /* RepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 438DFD8D163C19FC008AE0A6 /* RepositoryViewController.xib */; };
 		43924CE016426A5800B05EFE /* BookListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43924CDF16426A5700B05EFE /* BookListCell.m */; };
@@ -61,6 +63,9 @@
 
 /* Begin PBXFileReference section */
 		433B11001649329C00181487 /* ExamLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamLoadViewController.xib; sourceTree = "<group>"; };
+		433B1103164947CE00181487 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewController.h; path = Classes/ChartViewController.h; sourceTree = "<group>"; };
+		433B1104164947CE00181487 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartViewController.m; path = Classes/ChartViewController.m; sourceTree = "<group>"; };
+		433B1105164947CE00181487 /* ChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChartViewController.xib; path = Classes/ChartViewController.xib; sourceTree = "<group>"; };
 		438DFD8B163C19FC008AE0A6 /* RepositoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepositoryViewController.h; path = Classes/RepositoryViewController.h; sourceTree = "<group>"; };
 		438DFD8C163C19FC008AE0A6 /* RepositoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepositoryViewController.m; path = Classes/RepositoryViewController.m; sourceTree = "<group>"; };
 		438DFD8D163C19FC008AE0A6 /* RepositoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RepositoryViewController.xib; path = Classes/RepositoryViewController.xib; sourceTree = "<group>"; };
@@ -187,6 +192,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		433B1102164947BA00181487 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				433B1103164947CE00181487 /* ChartViewController.h */,
+				433B1104164947CE00181487 /* ChartViewController.m */,
+				433B1105164947CE00181487 /* ChartViewController.xib */,
+			);
+			name = Chart;
+			sourceTree = "<group>";
+		};
 		438DFD8A163C19AE008AE0A6 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +398,7 @@
 		439D2CC3163BB5760071551C /* engQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				433B1102164947BA00181487 /* Chart */,
 				43924D061643BC2F00B05EFE /* TessercatSample */,
 				43924CFE1643BB2E00B05EFE /* TestImage */,
 				438DFD8A163C19AE008AE0A6 /* Repository */,
@@ -535,6 +551,7 @@
 				439274591646105D00EA98EF /* EduViewController.xib in Resources */,
 				4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */,
 				433B11011649329C00181487 /* ExamLoadViewController.xib in Resources */,
+				433B1107164947CE00181487 /* ChartViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +577,7 @@
 				439274161643E79900EA98EF /* MainViewController.mm in Sources */,
 				4392741F1643E89500EA98EF /* ViewController.mm in Sources */,
 				439274581646105D00EA98EF /* EduViewController.m in Sources */,
+				433B1106164947CE00181487 /* ChartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,10 +671,9 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/engQuiz/build_dependencies/dependencies/lib\"",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7950D8ED-92D9-4F33-BC07-F408C433B6C3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7950D8ED-92D9-4F33-BC07-F408C433B6C3";
+				PROVISIONING_PROFILE = "A2A4879D-6174-4A10-A9BD-322B9E377462";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -681,9 +698,9 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7950D8ED-92D9-4F33-BC07-F408C433B6C3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7950D8ED-92D9-4F33-BC07-F408C433B6C3";
+				PROVISIONING_PROFILE = "A2A4879D-6174-4A10-A9BD-322B9E377462";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
