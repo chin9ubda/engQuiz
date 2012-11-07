@@ -105,6 +105,8 @@
     myView.dataSource = self;
     [alert addSubview:myView];
     
+    [alert setAutoresizesSubviews:YES];
+    
     [alert show];
 }
 
@@ -243,7 +245,7 @@
     }else if (tableView.tag == Class1Tag) {
         return 3;
     }else if (tableView.tag == Class2Tag) {
-        return 3;
+        return 4;
     }else if ( tableView.tag == BookTableTag) {
         return bArray.count;
     }else if ( tableView.tag == ChapterTableTag) {
@@ -309,9 +311,9 @@
         SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
         
         if (index == 0) {
-            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:2]];
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:2]:0:0];
         }else {
-            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:index * 3 + 2]];
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:index * 3 + 2]:0:0];
         }
         
         [self presentModalViewController:sentenceVeiw animated:YES];

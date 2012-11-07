@@ -47,7 +47,7 @@
         rArray = [dbMsg getRSentenceData:1];
     if(rAndi.selectedSegmentIndex == 1)
         rArray = [dbMsg getRSentenceData:2];
-    cellCount = rArray.count/2;
+    cellCount = rArray.count/3;
     
     NSLog(@"count :::  %d selected ::: %d",rArray.count, rAndi.selectedSegmentIndex);
     [rTableView reloadData];
@@ -70,7 +70,7 @@
     if (index == 0) {
         cell.textLabel.text = [rArray objectAtIndex:1];
     }else {
-        cell.textLabel.text = [rArray objectAtIndex:(index * 2) - 1];
+        cell.textLabel.text = [rArray objectAtIndex:(index * 3) + 1];
     }
     
     return cell;
@@ -98,9 +98,9 @@
     SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
     
     if (index == 0) {
-        [sentenceVeiw setInit:@"보관함":[rArray objectAtIndex:1]];
+        [sentenceVeiw setInit:@"보관함":[rArray objectAtIndex:1]:1:[[rArray objectAtIndex:0] intValue]];
     }else {
-        [sentenceVeiw setInit:@"보관함":[rArray objectAtIndex:(index * 2) - 1]];
+        [sentenceVeiw setInit:@"보관함":[rArray objectAtIndex:(index * 3) + 1]:1:[[rArray objectAtIndex:(index * 3)] intValue]];
     }
     
     [self presentModalViewController:sentenceVeiw animated:YES];
