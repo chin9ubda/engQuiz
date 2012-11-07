@@ -15,7 +15,7 @@
     IBOutlet UILabel *pageNumber;
     IBOutlet UITextView *sentenceTextView;
     
-    int examId;
+    NSString *examSentence;
     DataBase *dbMsg;
     NSString *bName;
     NSString *pNumber;
@@ -38,7 +38,7 @@
     IBOutlet UIView *sentenceView;
 }
 - (IBAction)backEvent:(id)sender;
-- (void)setInit:(NSString *)name:(int)_id;
+- (void)setInit:(NSString *)name:(NSString *)getSentence;
 - (IBAction)saveExam:(id)sender;
 - (IBAction)naviEvent:(id)sender;
 @end

@@ -31,7 +31,7 @@
     navi = true;
     
     // 지문 : 학교 : 학년
-    pArray = [self setExam:[dbMsg getExamSentence:examId]:1 :1];
+    pArray = [self setExam:examSentence:1 :1];
     
     [self labelInit];
     [self setTexts:0];
@@ -63,11 +63,11 @@
 }
 
 
-- (void)setInit:(NSString *)name:(int)_id{
+- (void)setInit:(NSString *)name:(NSString *)getSentence{
     
     bName = name;
 //    pNumber = page;
-    examId = _id;
+    examSentence = getSentence;
     
 }
 

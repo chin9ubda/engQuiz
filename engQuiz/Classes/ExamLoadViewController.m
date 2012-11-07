@@ -171,7 +171,7 @@
         if (index == 0) {
             cell.textLabel.text = [tArray objectAtIndex:1];
         }else {
-            cell.textLabel.text = [tArray objectAtIndex:index * 2 + 1];
+            cell.textLabel.text = [tArray objectAtIndex:index * 3 + 1];
         }
     }
 
@@ -249,7 +249,7 @@
     }else if ( tableView.tag == ChapterTableTag) {
         return cArray.count / 2;
     }else if ( tableView.tag == ThemeTableTag) {
-        return tArray.count / 2;
+        return tArray.count / 3;
     }
     
     return 0;
@@ -309,9 +309,9 @@
         SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
         
         if (index == 0) {
-            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[[tArray objectAtIndex:0]integerValue]];
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:2]];
         }else {
-            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[[tArray objectAtIndex:index * 2]integerValue]];
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:index * 3 + 2]];
         }
         
         [self presentModalViewController:sentenceVeiw animated:YES];

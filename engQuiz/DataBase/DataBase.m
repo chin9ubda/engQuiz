@@ -413,7 +413,7 @@
     sqlite3_stmt *selectStatement;
     int count = 0;
     
-    NSString *query = [NSString stringWithFormat:@"SELECT id, theme FROM %@ WHERE cid = %d",ContentBook_TableName, cid];
+    NSString *query = [NSString stringWithFormat:@"SELECT id, theme, text FROM %@ WHERE cid = %d",ContentBook_TableName, cid];
     
     const char *selectSql = [query UTF8String];
     
@@ -423,6 +423,8 @@
             [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
             count++;
             [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 2) ] atIndex:count];
             count++;
         }
     }

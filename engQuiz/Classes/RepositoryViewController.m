@@ -7,6 +7,7 @@
 //
 
 #import "RepositoryViewController.h"
+#import "SentenceViewController.h"
 
 @interface RepositoryViewController ()
 
@@ -92,6 +93,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    int index = [indexPath row];
+    
+    SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
+    
+    if (index == 0) {
+        [sentenceVeiw setInit:@"보관함":[rArray objectAtIndex:1]];
+    }else {
+        [sentenceVeiw setInit:@"보관함":[rArray objectAtIndex:(index * 2) - 1]];
+    }
+    
+    [self presentModalViewController:sentenceVeiw animated:YES];
 }
 
 
