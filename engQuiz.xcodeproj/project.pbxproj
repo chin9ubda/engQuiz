@@ -414,11 +414,8 @@
 		439D2CC3163BB5760071551C /* engQuiz */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				433B1102164947BA00181487 /* Chart */,
-=======
 				7D3B07B81648B3E300B75F2B /* GenProb */,
->>>>>>> problemwork
 				43924D061643BC2F00B05EFE /* TessercatSample */,
 				43924CFE1643BB2E00B05EFE /* TestImage */,
 				438DFD8A163C19AE008AE0A6 /* Repository */,
@@ -615,15 +612,12 @@
 				439274161643E79900EA98EF /* MainViewController.mm in Sources */,
 				4392741F1643E89500EA98EF /* ViewController.mm in Sources */,
 				439274581646105D00EA98EF /* EduViewController.m in Sources */,
-<<<<<<< HEAD
 				433B1106164947CE00181487 /* ChartViewController.m in Sources */,
-=======
 				7D3B07C01648B78000B75F2B /* IProblemMaker.cpp in Sources */,
 				7D3B07C11648B78000B75F2B /* SimpleProblemMaker.cpp in Sources */,
 				7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */,
 				7D3B07C51649A72300B75F2B /* Tokenizer.cpp in Sources */,
 				7D3B07C81649EA0100B75F2B /* SQLDictionary.mm in Sources */,
->>>>>>> problemwork
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
