@@ -169,10 +169,10 @@
         result = @"틀렸습니다.";
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"확인"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:result
                                        message:msg
                                       delegate:nil
-                             cancelButtonTitle:result
+                             cancelButtonTitle:@"확 인"
                              otherButtonTitles:nil, nil];
     
     [alert show];
