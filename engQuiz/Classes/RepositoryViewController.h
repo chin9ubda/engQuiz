@@ -16,8 +16,6 @@
     NSMutableArray *rArray;
     int cellCount;
     IBOutlet UISegmentedControl *rAndi;
-    
-    int type;
 }
 
 - (IBAction)backBtnEvent:(id)sender;

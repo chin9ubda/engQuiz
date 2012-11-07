@@ -78,22 +78,22 @@
     if (buttonIndex == 0) {
         NSLog(@"사진 찍기");
         
-        imagePickerController = [[UIImagePickerController alloc] init];
-        imagePickerController.delegate = self;
-        
-        [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
+//        imagepickerController = [[UIImagePickerController alloc] init];
+//        imagepickerController.delegate = self;
+//        
+//        [imagepickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
         
 //        NSArray *xibs = [[NSBundle mainBundle]  loadNibNamed:@"OverlayView" owner:self options:nil];
 //        OverlayView *overlay = (OverlayView *)[xibs objectAtIndex:0];
-        
-        imagePickerController.allowsEditing=NO;
-//        imagePickerController.showsCameraControls = NO;
-//        imagePickerController.cameraViewTransform = CGAffineTransformScale(imagepickerController.cameraViewTransform,CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
-//
+//        
+//        imagepickerController.allowsEditing=NO;
+//        imagepickerController.showsCameraControls = NO;
+//        imagepickerController.cameraViewTransform = CGAffineTransformScale(imagepickerController.cameraViewTransform,CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
+//        
 //        imagepickerController.cameraOverlayView = overlay;
         
         
-        [self presentModalViewController:imagePickerController animated:YES];
+//        [self presentModalViewController:imagepickerController animated:YES];
         
     }else if(buttonIndex == 1){
         NSLog(@"앨범에서 불러오기");
@@ -115,7 +115,7 @@
 
 // 사진 찍기 취소
 - (IBAction)closeCamer:(id)sender {
-    [imagePickerController dismissModalViewControllerAnimated:YES];
+//    [imagepickerController dismissModalViewControllerAnimated:YES];
 }
 
 

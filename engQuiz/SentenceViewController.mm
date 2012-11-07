@@ -32,23 +32,10 @@
     navi = true;
     
     // 지문 : 학교 : 학년
-    if (nowType == 0) {
-        pArray = [self setExam:examSentence:1 :1];
-    }else {
-        pArray = [self getRepository];
-        [saveBtn setEnabled:NO];
-    }
+    pArray = [self setExam:[dbMsg getExamSentence:examId]:1 :1];
     
     [self labelInit];
     [self setTexts:0];
-    
-    if (nowType == 2) {
-        [answerHiddenBtn1 setHidden:YES];
-        [answerHiddenBtn2 setHidden:YES];
-        [answerHiddenBtn3 setHidden:YES];
-        [answerHiddenBtn4 setHidden:YES];
-    }
-    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -70,15 +57,6 @@
     answerLabel04 = nil;
     navigationBar = nil;
     sentenceView = nil;
-    answerCheck1Btn = nil;
-    answerCheck2Btn = nil;
-    answerCheck3Btn = nil;
-    answerCheck4Btn = nil;
-    answerHiddenBtn1 = nil;
-    answerHiddenBtn2 = nil;
-    answerHiddenBtn3 = nil;
-    answerHiddenBtn4 = nil;
-    saveBtn = nil;
     [super viewDidUnload];
 }
 - (IBAction)backEvent:(id)sender {
@@ -86,13 +64,12 @@
 }
 
 
-- (void)setInit:(NSString *)name:(NSString *)getSentence:(int)type:(int)_id{
+- (void)setInit:(NSString *)name:(int)_id{
     
     bName = name;
-    examSentence = getSentence;
+//    pNumber = page;
+    examId = _id;
     
-    nowType = type;
-    nowId = _id;
 }
 
 -(void)labelInit{
@@ -105,12 +82,8 @@
 }
 
 - (IBAction)saveExam:(id)sender {
-    [self saveRepository:1];
+    [self saveRepository];
     [self dismissModalViewControllerAnimated:YES];
-}
-
--(void)saveOX{
-    [self saveRepository:2];
 }
 
 - (IBAction)naviEvent:(id)sender {
@@ -127,74 +100,6 @@
     }
 }
 
-- (IBAction)answerCheck1:(id)sender {
-    if (nowCheck != 1) {
-        nowCheck = 1;
-        [answerCheck1Btn setSelected:YES];
-        [answerCheck2Btn setSelected:NO];
-        [answerCheck3Btn setSelected:NO];
-        [answerCheck4Btn setSelected:NO];
-    }else{
-        [self checkAnser:1];
-    }
-}
-
-- (IBAction)answerCheck2:(id)sender {
-    if (nowCheck != 2) {
-        nowCheck = 2;
-        [answerCheck1Btn setSelected:NO];
-        [answerCheck2Btn setSelected:YES];
-        [answerCheck3Btn setSelected:NO];
-        [answerCheck4Btn setSelected:NO];
-    }else{
-        [self checkAnser:2];
-    }
-}
-
-- (IBAction)answerCheck3:(id)sender {
-    if (nowCheck != 3) {
-        nowCheck = 3;
-        [answerCheck1Btn setSelected:NO];
-        [answerCheck2Btn setSelected:NO];
-        [answerCheck3Btn setSelected:YES];
-        [answerCheck4Btn setSelected:NO];
-    }else{
-        [self checkAnser:3];
-    }
-}
-
-- (IBAction)answerCheck4:(id)sender {
-    if (nowCheck != 4) {
-        nowCheck = 4;
-        [answerCheck1Btn setSelected:NO];
-        [answerCheck2Btn setSelected:NO];
-        [answerCheck3Btn setSelected:NO];
-        [answerCheck4Btn setSelected:YES];
-    }else{
-        [self checkAnser:4];
-    }
-}
-
--(void)checkAnser:(int)c{
-    
-    NSString *msg = [NSString stringWithFormat:@"%@ : %@\n%@ : %@\n%@ : %@\n%@ : %@",answerLabel01.text,[dbMsg getMean:answerLabel01.text],answerLabel02.text,[dbMsg getMean:answerLabel02.text],answerLabel03.text,[dbMsg getMean:answerLabel03.text],answerLabel04.text,[dbMsg getMean:answerLabel04.text]];
-    
-    NSString *result;
-    
-    if ([[pArray objectAtIndex:5] intValue] == c) {
-        result = @"정답입니다.";
-    }else{
-        result = @"틀렸습니다.";
-    }
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:result
-                                       message:msg
-                                      delegate:self
-                             cancelButtonTitle:@"확 인"
-                             otherButtonTitles:@"오답노트에 저장", nil];
-    
-    [alert show];
-}
 
 - (void)naviEvent {
     if (navi) {
@@ -212,24 +117,19 @@
 
 
 
-- (void)saveRepository:(int)type{
+- (void)saveRepository{
     
 //    sid = [dbMsg saveRSentence:bName :@"000000" :1];
-    sid = [dbMsg saveRSentence:sentenceTextView.text :@"000000" :type];
-    qid = [dbMsg saveRQuestion:sid :questionLabel.text :1];
+    sid = [dbMsg saveRSentence:sentenceTextView.text :@"000000" :1];
+    qid = [dbMsg saveRQuestion:sid :answerLabel01.text :1];
+    [dbMsg saveRAnswer:sid:answerLabel01.text :0];
+    [dbMsg saveRAnswer:sid:answerLabel02.text :0];
+    [dbMsg saveRAnswer:sid:answerLabel03.text :1];
+    [dbMsg saveRAnswer:sid:answerLabel04.text :0];
     
-    int sol[4];
+    NSMutableArray *rArray = [dbMsg getRSentenceData:1];
     
-    sol[check - 1] = 1;
-    
-    [dbMsg saveRAnswer:qid:answerLabel01.text :sol[0]];
-    [dbMsg saveRAnswer:qid:answerLabel02.text :sol[1]];
-    [dbMsg saveRAnswer:qid:answerLabel03.text :sol[2]];
-    [dbMsg saveRAnswer:qid:answerLabel04.text :sol[3]];
-    
-//    NSMutableArray *rArray = [dbMsg getRSentenceData:1];
-//    
-//    NSLog(@"count :::::: %d",rArray.count);
+    NSLog(@"count :::::: %d",rArray.count);
 }
 
 - (void)setSentence:(NSString *)sentence{
@@ -247,19 +147,19 @@
 - (void)setTexts:(int)poz{
     
     if (poz == 0) {
-        check = [[pArray objectAtIndex:5] intValue];
+        int check = [[pArray objectAtIndex:5] intValue];
         
         for (int i = 0; i < 5; i++) {
-            if (check == i && nowType != 0) {
+            if (check == i) {
                 [label[i] setTextColor:[UIColor redColor]];
             }
             [label[i] setText:[pArray objectAtIndex:i]];
         }
     }else{
-        check = [[pArray objectAtIndex:poz * 5 + 6] intValue];
+        int check = [[pArray objectAtIndex:poz * 5 + 6] intValue];
         
         for (int i = 0; i < 5; i++) {
-            if (check == i && nowType != 0) {
+            if (check == i) {
                 [label[i] setTextColor:[UIColor redColor]];
             }
             [label[i] setText:[pArray objectAtIndex:poz * 5 + (i + 1)]];
@@ -315,42 +215,31 @@
     return eArray;
 }
 
-- (NSMutableArray *)getRepository{
-    NSMutableArray *returnArrray = [NSMutableArray arrayWithCapacity:0];
-    
-    NSArray *problemArray = [dbMsg getRQuestion:nowId];
-    
-    NSArray *itemArray = [dbMsg getRAnswer:[[problemArray objectAtIndex:0] intValue]];
-    
-    [returnArrray insertObject:[problemArray objectAtIndex:1] atIndex:0];
-
-    [returnArrray insertObject:[itemArray objectAtIndex:1] atIndex:1];
-    [returnArrray insertObject:[itemArray objectAtIndex:4] atIndex:2];
-    [returnArrray insertObject:[itemArray objectAtIndex:7] atIndex:3];
-    [returnArrray insertObject:[itemArray objectAtIndex:10] atIndex:4];
-
-    int checkNum;
-    
-    if ([[itemArray objectAtIndex:2] intValue] == 1) {
-        checkNum = 1;
-    }else if ([[itemArray objectAtIndex:5] intValue] == 1) {
-        checkNum = 2;
-    }else if ([[itemArray objectAtIndex:8] intValue] == 1) {
-        checkNum = 3;
-    }else if ([[itemArray objectAtIndex:11] intValue] == 1) {
-        checkNum = 4;
-    }
-    [returnArrray insertObject:[NSNumber numberWithInt:checkNum] atIndex:5];
-
-    [self setSentence:examSentence];
-
-    
-    return returnArrray;
-}
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//    NSLog(@"down");
     [self naviEvent];
+//    if ([[touches anyObject]locationInView:sentenceTextView] )
+//    [touches anyObject]location
+    
+    
+//    UITouch *touch = [[event allTouches] anyObject];
+////.    if(Ball.hidden == YES){
+//    float touch_x = [touch locationInView:touch.view].x;
+//    float touch_y = [touch locationInView:touch.view].y;
+//    
+//    if (sentenceView.frame.origin.x <= touch_x <= sentenceView.frame.origin.x + sentenceView.frame.size.width && sentenceView.frame.origin.y <= touch_y <= sentenceView.frame.origin.y + sentenceView.frame.size.height) {
+//        NSLog(@"down");
+//    }
+    
+//        if(touch_x < 50){ //일정 Y값 범위 내에서만 발사
+//            Ball_move_x = (touch_x - 60) / 10;
+//            Ball_move_y = (touch_y - 30) / 10;
+//            moveSign = YES;
 }
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+}
+
 
 - (void)moveView:(UIView *)view duration:(NSTimeInterval)duration
             curve:(int)curve y:(CGFloat)y
@@ -367,9 +256,15 @@
 }
 
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        [self saveOX];
-    }
-}
+//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView;
+//- (BOOL)textViewShouldEndEditing:(UITextView *)textView;
+//
+//- (void)textViewDidBeginEditing:(UITextView *)textView;
+//- (void)textViewDidEndEditing:(UITextView *)textView;
+
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
+//- (void)textViewDidChange:(UITextView *)textView{
+//    NSLog(@"ohohoh");
+//}
+//
 @end
