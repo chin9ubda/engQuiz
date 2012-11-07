@@ -55,8 +55,13 @@
 		439D2D15163BBFF20071551C /* ExamLoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D13163BBFF20071551C /* ExamLoadViewController.xib */; };
 		439D2D1B163BC6210071551C /* ThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1A163BC6200071551C /* ThemeCell.m */; };
 		439D2D1D163BC6470071551C /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D1C163BC6470071551C /* ThemeCell.xib */; };
-		439D2D21163BC7440071551C /* SentenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1F163BC7430071551C /* SentenceViewController.m */; };
+		439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1F163BC7430071551C /* SentenceViewController.mm */; };
 		439D2D22163BC7440071551C /* SentenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D20163BC7430071551C /* SentenceViewController.xib */; };
+		7D3B07C01648B78000B75F2B /* IProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BA1648B78000B75F2B /* IProblemMaker.cpp */; };
+		7D3B07C11648B78000B75F2B /* SimpleProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BC1648B78000B75F2B /* SimpleProblemMaker.cpp */; };
+		7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BE1648B78000B75F2B /* TextDictionary.cpp */; };
+		7D3B07C51649A72300B75F2B /* Tokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07C31649A72300B75F2B /* Tokenizer.cpp */; };
+		7D3B07C81649EA0100B75F2B /* SQLDictionary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07C61649EA0100B75F2B /* SQLDictionary.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,8 +171,19 @@
 		439D2D1A163BC6200071551C /* ThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeCell.m; path = Classes/ThemeCell.m; sourceTree = "<group>"; };
 		439D2D1C163BC6470071551C /* ThemeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeCell.xib; sourceTree = "<group>"; };
 		439D2D1E163BC7430071551C /* SentenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentenceViewController.h; sourceTree = "<group>"; };
-		439D2D1F163BC7430071551C /* SentenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentenceViewController.m; sourceTree = "<group>"; };
+		439D2D1F163BC7430071551C /* SentenceViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SentenceViewController.mm; sourceTree = "<group>"; };
 		439D2D20163BC7430071551C /* SentenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SentenceViewController.xib; sourceTree = "<group>"; };
+		7D3B07BA1648B78000B75F2B /* IProblemMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IProblemMaker.cpp; sourceTree = "<group>"; };
+		7D3B07BB1648B78000B75F2B /* IProblemMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IProblemMaker.h; sourceTree = "<group>"; };
+		7D3B07BC1648B78000B75F2B /* SimpleProblemMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleProblemMaker.cpp; sourceTree = "<group>"; };
+		7D3B07BD1648B78000B75F2B /* SimpleProblemMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleProblemMaker.h; sourceTree = "<group>"; usesTabs = 0; };
+		7D3B07BE1648B78000B75F2B /* TextDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextDictionary.cpp; sourceTree = "<group>"; };
+		7D3B07BF1648B78000B75F2B /* TextDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextDictionary.h; sourceTree = "<group>"; };
+		7D3B07C31649A72300B75F2B /* Tokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tokenizer.cpp; sourceTree = "<group>"; };
+		7D3B07C41649A72300B75F2B /* Tokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tokenizer.h; sourceTree = "<group>"; };
+		7D3B07C61649EA0100B75F2B /* SQLDictionary.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SQLDictionary.mm; sourceTree = "<group>"; };
+		7D3B07C71649EA0100B75F2B /* SQLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLDictionary.h; sourceTree = "<group>"; };
+		7D3B07C91649F1A000B75F2B /* IDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDictionary.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +399,7 @@
 		439D2CC3163BB5760071551C /* engQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				7D3B07B81648B3E300B75F2B /* GenProb */,
 				43924D061643BC2F00B05EFE /* TessercatSample */,
 				43924CFE1643BB2E00B05EFE /* TestImage */,
 				438DFD8A163C19AE008AE0A6 /* Repository */,
@@ -437,7 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				439D2D1E163BC7430071551C /* SentenceViewController.h */,
-				439D2D1F163BC7430071551C /* SentenceViewController.m */,
+				439D2D1F163BC7430071551C /* SentenceViewController.mm */,
 				439D2D20163BC7430071551C /* SentenceViewController.xib */,
 				439D2D0C163BBDAB0071551C /* ExViewController.h */,
 				439D2D0D163BBDAB0071551C /* ExViewController.mm */,
@@ -453,6 +470,24 @@
 				43924CE216426A6C00B05EFE /* BookListCell.xib */,
 			);
 			name = Ex;
+			sourceTree = "<group>";
+		};
+		7D3B07B81648B3E300B75F2B /* GenProb */ = {
+			isa = PBXGroup;
+			children = (
+				7D3B07BA1648B78000B75F2B /* IProblemMaker.cpp */,
+				7D3B07BB1648B78000B75F2B /* IProblemMaker.h */,
+				7D3B07BC1648B78000B75F2B /* SimpleProblemMaker.cpp */,
+				7D3B07BD1648B78000B75F2B /* SimpleProblemMaker.h */,
+				7D3B07BE1648B78000B75F2B /* TextDictionary.cpp */,
+				7D3B07BF1648B78000B75F2B /* TextDictionary.h */,
+				7D3B07C31649A72300B75F2B /* Tokenizer.cpp */,
+				7D3B07C41649A72300B75F2B /* Tokenizer.h */,
+				7D3B07C61649EA0100B75F2B /* SQLDictionary.mm */,
+				7D3B07C71649EA0100B75F2B /* SQLDictionary.h */,
+				7D3B07C91649F1A000B75F2B /* IDictionary.h */,
+			);
+			name = GenProb;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -551,7 +586,7 @@
 				439D2D0F163BBDAB0071551C /* ExViewController.mm in Sources */,
 				439D2D14163BBFF20071551C /* ExamLoadViewController.m in Sources */,
 				439D2D1B163BC6210071551C /* ThemeCell.m in Sources */,
-				439D2D21163BC7440071551C /* SentenceViewController.m in Sources */,
+				439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */,
 				439AF569163BD7500016DE4E /* VocaViewController.m in Sources */,
 				439AF56D163BE4220016DE4E /* VocaCell.m in Sources */,
 				438DFD8E163C19FC008AE0A6 /* RepositoryViewController.m in Sources */,
@@ -560,6 +595,11 @@
 				439274161643E79900EA98EF /* MainViewController.mm in Sources */,
 				4392741F1643E89500EA98EF /* ViewController.mm in Sources */,
 				439274581646105D00EA98EF /* EduViewController.m in Sources */,
+				7D3B07C01648B78000B75F2B /* IProblemMaker.cpp in Sources */,
+				7D3B07C11648B78000B75F2B /* SimpleProblemMaker.cpp in Sources */,
+				7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */,
+				7D3B07C51649A72300B75F2B /* Tokenizer.cpp in Sources */,
+				7D3B07C81649EA0100B75F2B /* SQLDictionary.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,4 +45,7 @@
 //-(NSString *)getRQuestion:(int)sid;
 //-(NSString *)getRAnswer:(int)sid;
 
+-(bool)existsWord:(NSString *)word;
+-(NSString *)getRandomWord;
+
 @end

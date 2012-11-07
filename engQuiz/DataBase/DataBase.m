@@ -580,4 +580,52 @@
     return array;
 }
 
+
+
+-(bool)existsWord:(NSString *)word{
+    
+    sqlite3_stmt *selectStatement;
+    NSString *query = [NSString stringWithFormat:@"SELECT word FROM %@ WHERE word = %@",
+                       Dictionary_TableName,word];
+    
+    const char *selectSql = [query UTF8String];
+    bool result = false;
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        if (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            result = true;
+            
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return result;
+}
+
+
+-(NSString*)getRandomWord{
+    
+    sqlite3_stmt *selectStatement;
+    NSString *res = @"";
+    NSString *query = [NSString stringWithFormat:@"SELECT word FROM %@ ORDER BY RANDOM() LIMIT 1",
+                       Dictionary_TableName];
+    
+    const char *selectSql = [query UTF8String];
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        if (sqlite3_step(selectStatement) == SQLITE_ROW)
+        {
+            res = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return res;
+}
 @end
