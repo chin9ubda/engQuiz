@@ -36,10 +36,19 @@
         pArray = [self setExam:examSentence:1 :1];
     }else {
         pArray = [self getRepository];
+        [saveBtn setEnabled:NO];
     }
     
     [self labelInit];
     [self setTexts:0];
+    
+    if (nowType == 2) {
+        [answerHiddenBtn1 setHidden:YES];
+        [answerHiddenBtn2 setHidden:YES];
+        [answerHiddenBtn3 setHidden:YES];
+        [answerHiddenBtn4 setHidden:YES];
+    }
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -65,6 +74,11 @@
     answerCheck2Btn = nil;
     answerCheck3Btn = nil;
     answerCheck4Btn = nil;
+    answerHiddenBtn1 = nil;
+    answerHiddenBtn2 = nil;
+    answerHiddenBtn3 = nil;
+    answerHiddenBtn4 = nil;
+    saveBtn = nil;
     [super viewDidUnload];
 }
 - (IBAction)backEvent:(id)sender {
@@ -91,8 +105,12 @@
 }
 
 - (IBAction)saveExam:(id)sender {
-    [self saveRepository];
+    [self saveRepository:1];
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)saveOX{
+    [self saveRepository:2];
 }
 
 - (IBAction)naviEvent:(id)sender {
@@ -171,9 +189,9 @@
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:result
                                        message:msg
-                                      delegate:nil
+                                      delegate:self
                              cancelButtonTitle:@"확 인"
-                             otherButtonTitles:nil, nil];
+                             otherButtonTitles:@"오답노트에 저장", nil];
     
     [alert show];
 }
@@ -194,10 +212,10 @@
 
 
 
-- (void)saveRepository{
+- (void)saveRepository:(int)type{
     
 //    sid = [dbMsg saveRSentence:bName :@"000000" :1];
-    sid = [dbMsg saveRSentence:sentenceTextView.text :@"000000" :1];
+    sid = [dbMsg saveRSentence:sentenceTextView.text :@"000000" :type];
     qid = [dbMsg saveRQuestion:sid :questionLabel.text :1];
     
     int sol[4];
@@ -298,8 +316,6 @@
 }
 
 - (NSMutableArray *)getRepository{
-//    NSMutableArray *getRArray = [dbMsg getRSentenceData:nowId];
-    
     NSMutableArray *returnArrray = [NSMutableArray arrayWithCapacity:0];
     
     NSArray *problemArray = [dbMsg getRQuestion:nowId];
@@ -325,42 +341,16 @@
         checkNum = 4;
     }
     [returnArrray insertObject:[NSNumber numberWithInt:checkNum] atIndex:5];
-    
-//    [self setSentence:[getRArray objectAtIndex:1]];
 
     [self setSentence:examSentence];
 
     
     return returnArrray;
-    
-//    [self setSentence:<#(NSString *)#>]
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//    NSLog(@"down");
     [self naviEvent];
-//    if ([[touches anyObject]locationInView:sentenceTextView] )
-//    [touches anyObject]location
-    
-    
-//    UITouch *touch = [[event allTouches] anyObject];
-////.    if(Ball.hidden == YES){
-//    float touch_x = [touch locationInView:touch.view].x;
-//    float touch_y = [touch locationInView:touch.view].y;
-//    
-//    if (sentenceView.frame.origin.x <= touch_x <= sentenceView.frame.origin.x + sentenceView.frame.size.width && sentenceView.frame.origin.y <= touch_y <= sentenceView.frame.origin.y + sentenceView.frame.size.height) {
-//        NSLog(@"down");
-//    }
-    
-//        if(touch_x < 50){ //일정 Y값 범위 내에서만 발사
-//            Ball_move_x = (touch_x - 60) / 10;
-//            Ball_move_y = (touch_y - 30) / 10;
-//            moveSign = YES;
 }
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-}
-
 
 - (void)moveView:(UIView *)view duration:(NSTimeInterval)duration
             curve:(int)curve y:(CGFloat)y
@@ -377,15 +367,9 @@
 }
 
 
-//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView;
-//- (BOOL)textViewShouldEndEditing:(UITextView *)textView;
-//
-//- (void)textViewDidBeginEditing:(UITextView *)textView;
-//- (void)textViewDidEndEditing:(UITextView *)textView;
-
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
-//- (void)textViewDidChange:(UITextView *)textView{
-//    NSLog(@"ohohoh");
-//}
-//
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self saveOX];
+    }
+}
 @end

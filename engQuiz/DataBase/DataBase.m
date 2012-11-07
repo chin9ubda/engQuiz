@@ -554,6 +554,56 @@
 
 }
 
+
+-(void)deleteRdata:(int)cid{
+    NSString *query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE cid = %d",Contenttray_TableName,cid];
+    
+    const char *delSql = [query UTF8String];
+    
+    
+    if (sqlite3_exec(database, delSql, nil,nil,nil) != SQLITE_OK) {
+        
+        NSLog(@"Error");
+    }else{
+        NSLog(@"OK");
+        
+        
+        sqlite3_stmt *selectStatement;
+        
+        query = [NSString stringWithFormat:@"SELECT tid FROM %@ WHERE pid = %d",Problem_TableName,cid];
+        
+        const char *selectSql = [query UTF8String];
+        
+        if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+            while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+                NSString *query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE pid = %d",Problemitem_TableName,[[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] intValue]];
+                
+                const char *delSql = [query UTF8String];
+                
+                
+                if (sqlite3_exec(database, delSql, nil,nil,nil) != SQLITE_OK) {
+                    
+                    NSLog(@"Error");
+                }else{
+                    NSLog(@"OK");
+                }
+            }
+        }
+        
+        sqlite3_finalize(selectStatement);
+        
+        
+        query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE pid = %d",Problem_TableName,cid];
+        delSql = [query UTF8String];
+        if (sqlite3_exec(database, delSql, nil,nil,nil) != SQLITE_OK) {
+            
+            NSLog(@"Error");
+        }else{
+            NSLog(@"다 지웠다 ㅋㅋㅋ ");
+        }
+    }
+}
+
 -(NSString *)getMean:(NSString *)word{
     NSString *data;
     sqlite3_stmt *selectStatement;

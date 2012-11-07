@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
 
-@interface SentenceViewController : UIViewController<UITextViewDelegate>{
+@interface SentenceViewController : UIViewController<UITextViewDelegate, UIAlertViewDelegate>{
     
     IBOutlet UILabel *bookName;
     IBOutlet UILabel *pageNumber;
@@ -49,6 +49,15 @@
     IBOutlet UIButton *answerCheck2Btn;
     IBOutlet UIButton *answerCheck3Btn;
     IBOutlet UIButton *answerCheck4Btn;
+    
+    IBOutlet UIButton *answerHiddenBtn1;
+    IBOutlet UIButton *answerHiddenBtn2;
+    IBOutlet UIButton *answerHiddenBtn3;
+    IBOutlet UIButton *answerHiddenBtn4;
+    
+    
+    IBOutlet UIBarButtonItem *saveBtn;
+    
 }
 - (IBAction)backEvent:(id)sender;
 - (void)setInit:(NSString *)name:(NSString *)getSentence:(int)type:(int)_id;

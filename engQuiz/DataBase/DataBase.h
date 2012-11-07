@@ -40,6 +40,8 @@
 -(void)setVocaCheck:(int)did:(int)check;
 
 
+-(void)deleteRdata:(int)cid;
+
 -(NSString *)getMean:(NSString *)word;
 
 -(NSMutableArray *)getRSentenceData:(int)type;
