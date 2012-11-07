@@ -47,5 +47,6 @@
 
 -(bool)existsWord:(NSString *)word;
 -(NSString *)getRandomWord;
+-(NSMutableArray *)getWordInformation:(NSString*)word;
 
 @end

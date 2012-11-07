@@ -37,3 +37,29 @@ std::string SQLDictionary::getRandomWord()
     
     return result;
 }
+
+
+Word SQLDictionary::getWordInfo(std::string word)
+{
+    Word clsword;
+    DataBase *dbMsg;
+    
+    dbMsg = [DataBase getInstance];
+    
+    NSString *nsword = [NSString stringWithUTF8String:word.c_str()];
+    
+    NSMutableArray *result = [dbMsg getWordInformation:nsword];
+    
+    // 단어
+    
+    clsword.word = word;
+    
+    // 의미
+    clsword.mean = std::string([[result objectAtIndex:1] UTF8String]);
+    clsword.dtype = [[result objectAtIndex:2] intValue];
+    clsword.wtype = [[result objectAtIndex:3] intValue];
+    clsword.sim = std::string([[result objectAtIndex:4] UTF8String]);
+    clsword.vcheck = [[result objectAtIndex:5] intValue];
+    
+    return clsword;
+}

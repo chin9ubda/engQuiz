@@ -32,8 +32,8 @@ bool SimpleProblemMaker::makeProblem(string example, int level, int num)
 	///////////////////// 문제생성
 	Problem *prob = new Problem();
     
-    int num_ex = rand() % tokenizer.word_cnt;
-    int num_real = tokenizer.atWordToken(num_ex);
+    int num_ex = rand() % tokenizer.word_cnt_real;
+    int num_real = tokenizer.atWordRealToken(num_ex);
 
     std::string solution = tokenizer.tokens[num_real].getToken();
 

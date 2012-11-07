@@ -41,7 +41,7 @@ void Token::setProbNum(char num)
 }
 
 
-Tokenizer::Tokenizer(std::string origin): word_cnt(0)
+Tokenizer::Tokenizer(std::string origin): word_cnt(0), word_cnt_real(0)
 {
     this->origin = origin;
 }
@@ -67,6 +67,12 @@ void Tokenizer::run()
                 buf[buf_pos] = '\0';
                 Token token(buf);
                 tokens.push_back(token);
+                
+                if (strlen(buf)>2)
+                {
+                    word_cnt_real++;
+                }
+                
                 word_cnt++;
                 buf_pos = 0;
                 sign = false;
@@ -114,6 +120,25 @@ int Tokenizer::atWordToken(int num)
     for(iter = tokens.begin(); iter != tokens.end(); iter++, ret++)
     {
         if (iter->getType() == TOKEN_TYPE_WORD)
+        {
+            if (cnt == num)
+                return ret;
+            cnt++;
+        }
+    }
+    return -1;
+}
+
+
+int Tokenizer::atWordRealToken(int num)
+{
+    int cnt = 0;
+    int ret = 0;
+    std::vector<Token>::iterator iter;
+    
+    for(iter = tokens.begin(); iter != tokens.end(); iter++, ret++)
+    {
+        if (iter->getType() == TOKEN_TYPE_WORD && iter->getToken().length() > 2)
         {
             if (cnt == num)
                 return ret;
