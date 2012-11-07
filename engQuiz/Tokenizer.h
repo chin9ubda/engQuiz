@@ -1,0 +1,51 @@
+//
+//  Tokenizer.h
+//  engQuiz
+//
+//  Created by Baek, Jinuk on 12. 11. 7..
+//  Copyright (c) 2012년 박 찬기. All rights reserved.
+//
+
+#ifndef __engQuiz__Tokenizer__
+#define __engQuiz__Tokenizer__
+
+#include <iostream>
+#include <vector>
+
+
+enum token_type
+{
+    TOKEN_TYPE_WORD,
+    TOKEN_TYPE_SPECIAL,
+};
+
+
+class Token
+{
+    std::string token;
+    enum token_type type;
+    char prob_num;
+public:
+    Token(std::string token);
+    Token(std::string token, enum token_type type);
+    inline std::string getToken();
+    inline enum token_type getType();
+    inline short getProbNum();
+    void setProbNum(char num);
+};
+
+
+class Tokenizer
+{
+public:
+    std::vector<Token> tokens;
+    std::string origin;
+    int word_cnt;
+    
+    Tokenizer(std::string origin);
+    void run();
+    std::string cascadeStr();
+    int atWordToken(int num);
+};
+
+#endif /* defined(__engQuiz__Tokenizer__) */
