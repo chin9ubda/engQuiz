@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ExViewController.h"
+#import "ExamLoadViewController.h"
 #import "VocaViewController.h"
 #import "RepositoryViewController.h"
 #import "ChartViewController.h"
@@ -15,7 +15,7 @@
 
 @interface MainViewController : UIViewController{
     
-    ExViewController *exView;
+    ExamLoadViewController *exView;
     VocaViewController *vocaView;
     RepositoryViewController *repositoryView;
     ChartViewController *chartView;

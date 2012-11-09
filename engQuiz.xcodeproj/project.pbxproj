@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4325C535164CC56A0072195F /* SentenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4325C534164CC56A0072195F /* SentenceViewController.xib */; };
+		4325C539164CC59B0072195F /* RepositoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4325C537164CC59B0072195F /* RepositoryViewController.m */; };
+		4325C53A164CC59B0072195F /* RepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4325C538164CC59B0072195F /* RepositoryViewController.xib */; };
 		433B11011649329C00181487 /* ExamLoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 433B11001649329C00181487 /* ExamLoadViewController.xib */; };
-		433B1106164947CE00181487 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B1104164947CE00181487 /* ChartViewController.m */; };
+		433B1106164947CE00181487 /* ChartViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 433B1104164947CE00181487 /* ChartViewController.mm */; };
 		433B1107164947CE00181487 /* ChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 433B1105164947CE00181487 /* ChartViewController.xib */; };
-		438DFD8E163C19FC008AE0A6 /* RepositoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438DFD8C163C19FC008AE0A6 /* RepositoryViewController.m */; };
-		438DFD8F163C19FC008AE0A6 /* RepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 438DFD8D163C19FC008AE0A6 /* RepositoryViewController.xib */; };
 		43924CE016426A5800B05EFE /* BookListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43924CDF16426A5700B05EFE /* BookListCell.m */; };
 		43924CE316426A6C00B05EFE /* BookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43924CE216426A6C00B05EFE /* BookListCell.xib */; };
 		43924D011643BB4100B05EFE /* test11-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43924D001643BB4100B05EFE /* test11-4.jpg */; };
@@ -58,7 +59,8 @@
 		439D2D1B163BC6210071551C /* ThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1A163BC6200071551C /* ThemeCell.m */; };
 		439D2D1D163BC6470071551C /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D1C163BC6470071551C /* ThemeCell.xib */; };
 		439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1F163BC7430071551C /* SentenceViewController.mm */; };
-		439D2D22163BC7440071551C /* SentenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D20163BC7430071551C /* SentenceViewController.xib */; };
+		43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E25BBE164CEA2100844D78 /* ExSentence.m */; };
+		43E25BC1164CEA4000844D78 /* exSentence.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E25BC0164CEA4000844D78 /* exSentence.xib */; };
 		7D3B07C01648B78000B75F2B /* IProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BA1648B78000B75F2B /* IProblemMaker.cpp */; };
 		7D3B07C11648B78000B75F2B /* SimpleProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BC1648B78000B75F2B /* SimpleProblemMaker.cpp */; };
 		7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BE1648B78000B75F2B /* TextDictionary.cpp */; };
@@ -68,13 +70,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4325C534164CC56A0072195F /* SentenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SentenceViewController.xib; sourceTree = "<group>"; };
+		4325C536164CC59B0072195F /* RepositoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoryViewController.h; sourceTree = "<group>"; };
+		4325C537164CC59B0072195F /* RepositoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepositoryViewController.m; sourceTree = "<group>"; };
+		4325C538164CC59B0072195F /* RepositoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryViewController.xib; sourceTree = "<group>"; };
 		433B11001649329C00181487 /* ExamLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamLoadViewController.xib; sourceTree = "<group>"; };
 		433B1103164947CE00181487 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewController.h; path = Classes/ChartViewController.h; sourceTree = "<group>"; };
-		433B1104164947CE00181487 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartViewController.m; path = Classes/ChartViewController.m; sourceTree = "<group>"; };
+		433B1104164947CE00181487 /* ChartViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ChartViewController.mm; path = Classes/ChartViewController.mm; sourceTree = "<group>"; };
 		433B1105164947CE00181487 /* ChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChartViewController.xib; path = Classes/ChartViewController.xib; sourceTree = "<group>"; };
-		438DFD8B163C19FC008AE0A6 /* RepositoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepositoryViewController.h; path = Classes/RepositoryViewController.h; sourceTree = "<group>"; };
-		438DFD8C163C19FC008AE0A6 /* RepositoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepositoryViewController.m; path = Classes/RepositoryViewController.m; sourceTree = "<group>"; };
-		438DFD8D163C19FC008AE0A6 /* RepositoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RepositoryViewController.xib; path = Classes/RepositoryViewController.xib; sourceTree = "<group>"; };
 		43924CDE16426A5700B05EFE /* BookListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookListCell.h; path = Classes/BookListCell.h; sourceTree = "<group>"; };
 		43924CDF16426A5700B05EFE /* BookListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookListCell.m; path = Classes/BookListCell.m; sourceTree = "<group>"; };
 		43924CE216426A6C00B05EFE /* BookListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListCell.xib; sourceTree = "<group>"; };
@@ -178,7 +181,9 @@
 		439D2D1C163BC6470071551C /* ThemeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeCell.xib; sourceTree = "<group>"; };
 		439D2D1E163BC7430071551C /* SentenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentenceViewController.h; sourceTree = "<group>"; };
 		439D2D1F163BC7430071551C /* SentenceViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SentenceViewController.mm; sourceTree = "<group>"; };
-		439D2D20163BC7430071551C /* SentenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SentenceViewController.xib; sourceTree = "<group>"; };
+		43E25BBD164CEA2100844D78 /* ExSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExSentence.h; path = Classes/ExSentence.h; sourceTree = "<group>"; };
+		43E25BBE164CEA2100844D78 /* ExSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExSentence.m; path = Classes/ExSentence.m; sourceTree = "<group>"; };
+		43E25BC0164CEA4000844D78 /* exSentence.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = exSentence.xib; path = Classes/exSentence.xib; sourceTree = "<group>"; };
 		7D3B07BA1648B78000B75F2B /* IProblemMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IProblemMaker.cpp; sourceTree = "<group>"; };
 		7D3B07BB1648B78000B75F2B /* IProblemMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IProblemMaker.h; sourceTree = "<group>"; };
 		7D3B07BC1648B78000B75F2B /* SimpleProblemMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleProblemMaker.cpp; sourceTree = "<group>"; };
@@ -215,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				433B1103164947CE00181487 /* ChartViewController.h */,
-				433B1104164947CE00181487 /* ChartViewController.m */,
+				433B1104164947CE00181487 /* ChartViewController.mm */,
 				433B1105164947CE00181487 /* ChartViewController.xib */,
 				7D7C32ED164CEC9500901A14 /* GenTable.cpp */,
 				7D7C32EE164CEC9500901A14 /* GenTable.h */,
@@ -226,9 +231,9 @@
 		438DFD8A163C19AE008AE0A6 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				438DFD8B163C19FC008AE0A6 /* RepositoryViewController.h */,
-				438DFD8C163C19FC008AE0A6 /* RepositoryViewController.m */,
-				438DFD8D163C19FC008AE0A6 /* RepositoryViewController.xib */,
+				4325C536164CC59B0072195F /* RepositoryViewController.h */,
+				4325C537164CC59B0072195F /* RepositoryViewController.m */,
+				4325C538164CC59B0072195F /* RepositoryViewController.xib */,
 			);
 			name = Repository;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 		439AF562163BD7070016DE4E /* Voca */ = {
 			isa = PBXGroup;
 			children = (
+				43E25BBB164CEA0100844D78 /* exSentence */,
 				439274541646104300EA98EF /* Edu */,
 				439AF566163BD7500016DE4E /* VocaViewController.h */,
 				439AF567163BD7500016DE4E /* VocaViewController.m */,
@@ -476,7 +482,7 @@
 			children = (
 				439D2D1E163BC7430071551C /* SentenceViewController.h */,
 				439D2D1F163BC7430071551C /* SentenceViewController.mm */,
-				439D2D20163BC7430071551C /* SentenceViewController.xib */,
+				4325C534164CC56A0072195F /* SentenceViewController.xib */,
 				439D2D0C163BBDAB0071551C /* ExViewController.h */,
 				439D2D0D163BBDAB0071551C /* ExViewController.mm */,
 				439D2D0E163BBDAB0071551C /* ExViewController.xib */,
@@ -491,6 +497,16 @@
 				43924CE216426A6C00B05EFE /* BookListCell.xib */,
 			);
 			name = Ex;
+			sourceTree = "<group>";
+		};
+		43E25BBB164CEA0100844D78 /* exSentence */ = {
+			isa = PBXGroup;
+			children = (
+				43E25BBD164CEA2100844D78 /* ExSentence.h */,
+				43E25BBE164CEA2100844D78 /* ExSentence.m */,
+				43E25BC0164CEA4000844D78 /* exSentence.xib */,
+			);
+			name = exSentence;
 			sourceTree = "<group>";
 		};
 		7D3B07B81648B3E300B75F2B /* GenProb */ = {
@@ -569,10 +585,8 @@
 				439D2CDA163BB5770071551C /* MainViewController.xib in Resources */,
 				439D2D10163BBDAB0071551C /* ExViewController.xib in Resources */,
 				439D2D1D163BC6470071551C /* ThemeCell.xib in Resources */,
-				439D2D22163BC7440071551C /* SentenceViewController.xib in Resources */,
 				439AF56A163BD7500016DE4E /* VocaViewController.xib in Resources */,
 				439AF56F163BE4300016DE4E /* VocaCell.xib in Resources */,
-				438DFD8F163C19FC008AE0A6 /* RepositoryViewController.xib in Resources */,
 				43924CE316426A6C00B05EFE /* BookListCell.xib in Resources */,
 				43924D011643BB4100B05EFE /* test11-4.jpg in Resources */,
 				439273DE1643DD5B00EA98EF /* bobtn.png in Resources */,
@@ -592,6 +606,9 @@
 				4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */,
 				433B11011649329C00181487 /* ExamLoadViewController.xib in Resources */,
 				433B1107164947CE00181487 /* ChartViewController.xib in Resources */,
+				4325C535164CC56A0072195F /* SentenceViewController.xib in Resources */,
+				4325C53A164CC59B0072195F /* RepositoryViewController.xib in Resources */,
+				43E25BC1164CEA4000844D78 /* exSentence.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,19 +628,20 @@
 				439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */,
 				439AF569163BD7500016DE4E /* VocaViewController.m in Sources */,
 				439AF56D163BE4220016DE4E /* VocaCell.m in Sources */,
-				438DFD8E163C19FC008AE0A6 /* RepositoryViewController.m in Sources */,
 				43924CE016426A5800B05EFE /* BookListCell.m in Sources */,
 				43924D481643BE4700B05EFE /* MBProgressHUD.m in Sources */,
 				439274161643E79900EA98EF /* MainViewController.mm in Sources */,
 				4392741F1643E89500EA98EF /* ViewController.mm in Sources */,
 				439274581646105D00EA98EF /* EduViewController.m in Sources */,
-				433B1106164947CE00181487 /* ChartViewController.m in Sources */,
+				433B1106164947CE00181487 /* ChartViewController.mm in Sources */,
 				7D3B07C01648B78000B75F2B /* IProblemMaker.cpp in Sources */,
 				7D3B07C11648B78000B75F2B /* SimpleProblemMaker.cpp in Sources */,
 				7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */,
 				7D3B07C51649A72300B75F2B /* Tokenizer.cpp in Sources */,
 				7D3B07C81649EA0100B75F2B /* SQLDictionary.mm in Sources */,
 				7D7C32EF164CEC9500901A14 /* GenTable.cpp in Sources */,
+				4325C539164CC59B0072195F /* RepositoryViewController.m in Sources */,
+				43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

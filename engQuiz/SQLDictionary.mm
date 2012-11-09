@@ -64,7 +64,6 @@ Word SQLDictionary::getWordInfo(std::string word)
     
     return clsword;
 }
-
 bool SQLDictionary::getRandomSimItems(std::string word, std::string data[], int length)
 {
     if (length > 10)

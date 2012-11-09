@@ -42,9 +42,9 @@
         NSLog(@"file exist");
         
         [fileMgr removeItemAtPath:filePath error:&error];
-        
+
         NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
-        
+
         [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
     }else {
@@ -196,7 +196,7 @@
     
     sqlite3_finalize(selectStatement);
     
-//    NSLog(@"count :: %d",array.count);
+    //    NSLog(@"count :: %d",array.count);
     
     return array;
 }
@@ -349,9 +349,9 @@
     NSString *query;
     
     sqlite3_stmt *selectStatement;
-
+    
     query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%'",Dictionary_TableName,msg];
-//    query = [NSString stringWithFormat:@"SELECT word, mean, type, class FROM %@ WHERE word LIKE '%%%@%%'",Voca_TableName,msg];
+    //    query = [NSString stringWithFormat:@"SELECT word, mean, type, class FROM %@ WHERE word LIKE '%%%@%%'",Voca_TableName,msg];
     
     const char *selectSql = [query UTF8String];
     
@@ -398,7 +398,7 @@
             [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
             count++;
             [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
-            count++;            
+            count++;
         }
     }
     
@@ -413,7 +413,7 @@
     sqlite3_stmt *selectStatement;
     int count = 0;
     
-    NSString *query = [NSString stringWithFormat:@"SELECT id, theme FROM %@ WHERE cid = %d",ContentBook_TableName, cid];
+    NSString *query = [NSString stringWithFormat:@"SELECT id, theme, text FROM %@ WHERE cid = %d",ContentBook_TableName, cid];
     
     const char *selectSql = [query UTF8String];
     
@@ -423,6 +423,8 @@
             [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
             count++;
             [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 2) ] atIndex:count];
             count++;
         }
     }
@@ -549,7 +551,111 @@
     }else{
         NSLog(@"OK");
     }
+    
+}
 
+-(NSString *)getAndCheckSentence:(NSString *)word{
+//    NSString *result = [NSString stringWithFormat:@"단어가 없습니다"];
+    NSString *result = @"단어가 없습니다";
+    
+    sqlite3_stmt *selectStatement;
+    NSString *query = [NSString stringWithFormat:@"SELECT text FROM %@ WHERE text LIKE '%%%@%%'",ContentBook_TableName, word];
+    
+    const char *selectSql = [query UTF8String];
+    
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
+            
+//            if ([[temp substringWithRange:(NSRange){0,temp.length}] isEqualToString:word]) {
+//                NSLog(@"ㅇㅇ");
+//                return temp;
+//                break;
+//            }
+            
+            result = temp;
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return result;
+}
+
+-(void)deleteRdata:(int)cid{
+    NSString *query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE cid = %d",Contenttray_TableName,cid];
+    
+    const char *delSql = [query UTF8String];
+    
+    
+    if (sqlite3_exec(database, delSql, nil,nil,nil) != SQLITE_OK) {
+        
+        NSLog(@"Error");
+    }else{
+        NSLog(@"OK");
+        
+        
+        sqlite3_stmt *selectStatement;
+        
+        query = [NSString stringWithFormat:@"SELECT tid FROM %@ WHERE pid = %d",Problem_TableName,cid];
+        
+        const char *selectSql = [query UTF8String];
+        
+        if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+            while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+                NSString *query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE pid = %d",Problemitem_TableName,[[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] intValue]];
+                
+                const char *delSql = [query UTF8String];
+                
+                
+                if (sqlite3_exec(database, delSql, nil,nil,nil) != SQLITE_OK) {
+                    
+                    NSLog(@"Error");
+                }else{
+                    NSLog(@"OK");
+                }
+            }
+        }
+        
+        sqlite3_finalize(selectStatement);
+        
+        
+        query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE pid = %d",Problem_TableName,cid];
+        delSql = [query UTF8String];
+        if (sqlite3_exec(database, delSql, nil,nil,nil) != SQLITE_OK) {
+            
+            NSLog(@"Error");
+        }else{
+            NSLog(@"다 지웠다 ㅋㅋㅋ ");
+        }
+    }
+}
+
+-(NSString *)getMean:(NSString *)word{
+    NSString *data;
+    sqlite3_stmt *selectStatement;
+    
+    NSString *query = [NSString stringWithFormat:@"SELECT mean FROM %@ WHERE word = '%@'",Dictionary_TableName,word];
+    
+    const char *selectSql = [query UTF8String];
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            NSString *msg = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0) ];
+            
+            data = [NSString stringWithFormat:@"%@", msg];
+            
+        }
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return data;
 }
 
 -(NSMutableArray *)getRSentenceData:(int)type{
@@ -557,7 +663,7 @@
     int count = 0;
     
     sqlite3_stmt *selectStatement;
-    NSString *query = [NSString stringWithFormat:@"SELECT cid, content FROM %@ WHERE type = %d",Contenttray_TableName,type];
+    NSString *query = [NSString stringWithFormat:@"SELECT cid, content, gdate FROM %@ WHERE type = %d",Contenttray_TableName,type];
     
     const char *selectSql = [query UTF8String];
     
@@ -570,7 +676,67 @@
             count++;
             [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
             count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 2) ] atIndex:count];
+            count++;
+            
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return array;
+}
 
+-(NSMutableArray *)getRQuestion:(int)tid{
+    NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
+    int count = 0;
+    
+    sqlite3_stmt *selectStatement;
+    NSString *query = [NSString stringWithFormat:@"SELECT pid, pcontent FROM %@ WHERE tid = %d",Problem_TableName,tid];
+    
+    const char *selectSql = [query UTF8String];
+    
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+            count++;
+            
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return array;
+}
+
+-(NSMutableArray *)getRAnswer:(int)pid{
+    NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
+    int count = 0;
+    
+    sqlite3_stmt *selectStatement;
+    NSString *query = [NSString stringWithFormat:@"SELECT piid, qcontent, solution FROM %@ WHERE pid = %d",Problemitem_TableName,pid];
+    
+    const char *selectSql = [query UTF8String];
+    
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+            count++;
+            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 2)] atIndex:count];
+            count++;
+            
         }
         
     }

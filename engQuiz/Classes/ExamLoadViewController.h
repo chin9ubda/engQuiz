@@ -39,11 +39,17 @@
     IBOutlet UIScrollView *scrollView;
     
     BOOL pageControlUsed;
+    
+    UILabel *rootLabel;
+    UIButton *naviButton[2];
+    UILabel *naviLabel[2];
+    IBOutlet UIScrollView *naviScroll;
 }
 
 - (IBAction)publisherSelect:(id)sender;
 - (IBAction)classSelect:(id)sender;
 - (IBAction)numberSelect:(id)sender;
+- (IBAction)addSentence:(id)sender;
 
 - (IBAction)backBtnEvent:(id)sender;
 @end

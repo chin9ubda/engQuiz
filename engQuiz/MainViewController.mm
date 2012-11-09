@@ -22,7 +22,7 @@
     
     [dbMsg LoadDataBaseFile];
     
-    exView = [[ExViewController alloc]init];
+    exView = [[ExamLoadViewController alloc]init];
     vocaView = [[VocaViewController alloc]init];
     repositoryView = [[RepositoryViewController alloc]init];
     chartView = [[ChartViewController alloc]init];

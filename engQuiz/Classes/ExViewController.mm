@@ -41,27 +41,6 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)exLoadEvent:(id)sender {
-    
-    exLoadView = [[ExamLoadViewController alloc]init];
-    
-    [self presentModalViewController:exLoadView animated:YES];
-//    CGRect finalFrame = exLoadView.view.frame;
-//    [exLoadView.view setFrame:CGRectMake(320, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    [UIView animateWithDuration:.4 animations:^{
-//        [self.navigationController setNavigationBarHidden:YES];
-//        [self.view addSubview:exLoadView.view];
-//        [exLoadView.view setFrame:finalFrame];
-//        
-//        [NSTimer scheduledTimerWithTimeInterval:.4
-//                                         target:self
-//                                       selector:@selector(presentView)
-//                                       userInfo:nil
-//                                        repeats:NO];
-//    }];
-
-}
-
 - (IBAction)addBtnEvent:(id)sender {
     UIActionSheet *actionsheet = [[UIActionSheet alloc]
                                   initWithTitle:nil

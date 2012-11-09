@@ -7,6 +7,7 @@
 //
 
 #import "RepositoryViewController.h"
+#import "SentenceViewController.h"
 
 @interface RepositoryViewController ()
 
@@ -43,10 +44,14 @@
 - (void)reLoadTable{
     
     if(rAndi.selectedSegmentIndex == 0)
-        rArray = [dbMsg getRSentenceData:1];
+        type = 1;
     if(rAndi.selectedSegmentIndex == 1)
-        rArray = [dbMsg getRSentenceData:2];
-    cellCount = rArray.count/2;
+        type = 2;
+    
+    
+    
+    rArray = [dbMsg getRSentenceData:type];
+    cellCount = rArray.count/3;
     
     NSLog(@"count :::  %d selected ::: %d",rArray.count, rAndi.selectedSegmentIndex);
     [rTableView reloadData];
@@ -69,7 +74,7 @@
     if (index == 0) {
         cell.textLabel.text = [rArray objectAtIndex:1];
     }else {
-        cell.textLabel.text = [rArray objectAtIndex:(index * 2) - 1];
+        cell.textLabel.text = [rArray objectAtIndex:(index * 3) + 1];
     }
     
     return cell;
@@ -92,8 +97,44 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    int index = [indexPath row];
+    
+    SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
+    
+    if (index == 0) {
+        [sentenceVeiw setInit:@"보관함":[rArray objectAtIndex:1]:type:[[rArray objectAtIndex:0] intValue]];
+    }else {
+        [sentenceVeiw setInit:@"보관함":[rArray objectAtIndex:(index * 3) + 1]:type:[[rArray objectAtIndex:(index * 3)] intValue]];
+    }
+    
+    [self presentModalViewController:sentenceVeiw animated:YES];
 }
 
+
+// --------------- TableView 에서 해당 항목 swipe --------------- //
+/* -----------------------------------------------------------
+ 해당 셀의 EditingStyle을 Delete Style로 설정
+ ----------------------------------------------------------- */
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+// ------------------- EdittingStyle Event ------------------- //
+/* -----------------------------------------------------------
+ Editing 상태일때 삭제 버튼을 누를경우 해당 메시지를 삭제
+ ----------------------------------------------------------- */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int index = [indexPath row];
+    if (index == 0) {
+        [dbMsg deleteRdata:[[rArray objectAtIndex:0] intValue]];
+    }else {
+        [dbMsg deleteRdata:[[rArray objectAtIndex:(index * 3)] intValue]];
+    }
+    
+    [self reLoadTable];
+}
 
 
 
