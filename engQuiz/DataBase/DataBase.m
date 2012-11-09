@@ -566,13 +566,6 @@
     
     if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
 
-//        if (sqlite3_step(selectStatement) == SQLITE_ROW) {
-//            
-//            NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
-//            
-//            result = temp;
-//        }
-
         while (sqlite3_step(selectStatement) == SQLITE_ROW && check == 0) {
             
             NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
