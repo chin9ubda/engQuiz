@@ -11,12 +11,14 @@
 
 #include <iostream>
 #include "IDictionary.h"
+#include "IProblemMaker.h"
 
 class SQLDictionary : public IDictionary<SQLDictionary>
 {
 public:
 	virtual bool exsistWord(std::string word);
 	virtual std::string getRandomWord();
+    Word getWordInfo(std::string word);
 };
 
 #endif /* defined(__engQuiz__SQLDictionary__) */

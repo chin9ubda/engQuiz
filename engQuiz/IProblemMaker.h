@@ -27,6 +27,17 @@ public:
 	~Problem();
 };
 
+class Word
+{
+public:
+    string word;
+    string mean;
+    int dtype;
+    int wtype;
+    string sim;
+    int vcheck;
+};
+
 class IProblemMaker
 {
 public:

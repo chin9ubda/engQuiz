@@ -40,15 +40,13 @@
 -(void)setVocaCheck:(int)did:(int)check;
 
 
--(void)deleteRdata:(int)cid;
-
--(NSString *)getMean:(NSString *)word;
-
 -(NSMutableArray *)getRSentenceData:(int)type;
--(NSMutableArray *)getRQuestion:(int)tid;
--(NSMutableArray *)getRAnswer:(int)pid;
+//-(NSString *)getRSentence:(int)_id;
+//-(NSString *)getRQuestion:(int)sid;
+//-(NSString *)getRAnswer:(int)sid;
 
 -(bool)existsWord:(NSString *)word;
 -(NSString *)getRandomWord;
+-(NSMutableArray *)getWordInformation:(NSString*)word;
 
 @end

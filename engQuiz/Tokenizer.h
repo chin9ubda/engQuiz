@@ -41,11 +41,13 @@ public:
     std::vector<Token> tokens;
     std::string origin;
     int word_cnt;
+    int word_cnt_real;
     
     Tokenizer(std::string origin);
     void run();
     std::string cascadeStr();
     int atWordToken(int num);
+    int atWordRealToken(int num);
 };
 
 #endif /* defined(__engQuiz__Tokenizer__) */
