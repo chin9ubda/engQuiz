@@ -9,7 +9,7 @@
 #include "GenTable.h"
 #include <sstream>
 
-#define HEIGHT_PIXEL 500
+#define HEIGHT_PIXEL 300
 
 
 GenTableData::GenTableData(std::string label, int fail, int success)
@@ -27,7 +27,7 @@ std::string GenTable::run()
     
     std::vector<GenTableData>::iterator iter;
     
-    oss << "<table border=\"0\">";
+    oss << "<table border=\"0\" width=\"90%\" >";
     
     for (iter = datas.begin(); iter!=datas.end(); iter++)
     {
@@ -37,49 +37,55 @@ std::string GenTable::run()
         maxdata = std::max(total, maxdata);
     }
     
+    oss << "<tr>";
     for (iter = datas.begin(); iter!=datas.end(); iter++)
     {
-        oss << "<tr width=\"" << 100/datas.size() << "%\" >";
-        oss << "<td>";
-        oss << "<table border=\"0\">";
+        oss << "<td width=\"" << 100/datas.size() << "%\"  valign=\"bottom\">";
+        oss << "<table border=\"0\" width=\"100%\" height=\"" << HEIGHT_PIXEL << "\">";
         
-        // 위에 공백
+        
+        // 공백
         oss << "<tr>";
-        oss << "<td bgcolor=\"white\" height=\"" << (int)(HEIGHT_PIXEL * ((double)(maxdata-iter->fail-iter->success)/maxdata)) << "%\">";
+        oss << "<td bgcolor=\"white\" height=\"" << (int)(HEIGHT_PIXEL * ((maxdata-iter->success-iter->fail)/(double)maxdata)) << "\">";
         oss << "&nbsp;";
         oss << "</td>";
         oss << "</tr>";
         
+        
         // 성공
         oss << "<tr>";
-        oss << "<td bgcolor=\"blue\" height=\"" << (int)(HEIGHT_PIXEL * ((double)(maxdata-iter->fail)/maxdata)) << "%\">";
+        oss << "<td bgcolor=\"blue\" height=\"" << (int)(HEIGHT_PIXEL * ((iter->success)/(double)maxdata)) << "\">";
+        oss << "<center>";
         oss << iter->success;
+        oss << "</center>";
         oss << "</td>";
         oss << "</tr>";
         
         
         // 실패
         oss << "<tr>";
-        oss << "<td bgcolor=\"blue\" height=\"" << (int)(HEIGHT_PIXEL * ((double)(maxdata-iter->success)/maxdata)) << "%\">";
+        oss << "<td bgcolor=\"red\" height=\"" << (int)(HEIGHT_PIXEL * ((iter->fail)/(double)maxdata)) << "\">";
+        oss << "<center>";
         oss << iter->fail;
+        oss << "</center>";
         oss << "</td>";
         oss << "</tr>";
         
         oss << "</table>";
         oss << "</td>";
-        oss << "</tr>";
     }
+    oss << "</tr>";
     
     
     // 레이블 출력
+    oss << "<tr>";
     for (iter = datas.begin(); iter!=datas.end(); iter++)
     {
-        oss << "<tr>";
         oss << "<td>";
         oss << iter->label;
         oss << "</td>";
-        oss << "</tr>";
     }
+    oss << "</tr>";
     
     oss << "</table>";
     
