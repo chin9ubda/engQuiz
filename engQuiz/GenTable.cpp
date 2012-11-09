@@ -40,6 +40,7 @@ std::string GenTable::run()
     for (iter = datas.begin(); iter!=datas.end(); iter++)
     {
         oss << "<tr width=\"" << 100/datas.size() << "%\" >";
+        oss << "<td>";
         oss << "<table border=\"0\">";
         
         // 위에 공백
@@ -65,6 +66,7 @@ std::string GenTable::run()
         oss << "</tr>";
         
         oss << "</table>";
+        oss << "</td>";
         oss << "</tr>";
     }
     
@@ -81,5 +83,5 @@ std::string GenTable::run()
     
     oss << "</table>";
     
-    return str;
+    return oss.str();
 }
