@@ -9,6 +9,7 @@
 #import "VocaViewController.h"
 #import "VocaCell.h"
 #import "EduViewController.h"
+#import "ExSentence.h"
 
 @interface VocaViewController ()
 
@@ -134,6 +135,17 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    int index = [indexPath row];
+    
+    ExSentence *eSentence = [[ExSentence alloc]init];
+    
+    NSArray *xibs = [[NSBundle mainBundle] loadNibNamed:@"exSentence" owner:self options:nil];
+    eSentence = (ExSentence *)[xibs objectAtIndex:0];
+    [eSentence awakeFromNib];
+    
+    eSentence.frame = CGRectMake(0, 12, 320, 300);
+    
+    [self.view addSubview:eSentence];
 
 }
 
@@ -223,7 +235,6 @@
     [vocaTable scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 //    NSLog(@"check : %d",[item tag]);
 }
-
 
 - (void)viewDidUnload {
     vocaTable = nil;

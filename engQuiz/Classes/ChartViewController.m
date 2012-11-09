@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad
 {
+    NSString *html = @"<html><head><title>Should be half</title></head><body>I wish the answer were just 42</body></html>";
+    [webView loadHTMLString:html baseURL:nil];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -37,5 +39,9 @@
 
 - (IBAction)backBtnEvent:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
+}
+- (void)viewDidUnload {
+    webView = nil;
+    [super viewDidUnload];
 }
 @end

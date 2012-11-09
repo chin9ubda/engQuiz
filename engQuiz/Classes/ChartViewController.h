@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChartViewController : UIViewController
+@interface ChartViewController : UIViewController<UIWebViewDelegate>{
+    
+    IBOutlet UIWebView *webView;
+}
 
 - (IBAction)backBtnEvent:(id)sender;
 @end

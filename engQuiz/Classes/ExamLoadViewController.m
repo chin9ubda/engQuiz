@@ -9,6 +9,7 @@
 #import "ExamLoadViewController.h"
 #import "SentenceViewController.h"
 #import "ThemeCell.h"
+#import "ExViewController.h"
 
 
 #define BookTableTag 1
@@ -43,8 +44,10 @@
     
     [self setScrollViewInit];
     [scrollView setHidden:YES];
+    
+    [self setTableInit];
     [super viewDidLoad];
-
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -86,6 +89,15 @@
     scrollView.scrollsToTop = NO;
     scrollView.delegate = self;
     [scrollView setContentOffset:CGPointMake(0,0) animated:NO];
+    
+    
+    rootLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 10, naviScroll.frame.size.height)];
+    
+    rootLabel.text = @">";
+    
+    [rootLabel sizeToFit];
+    [naviScroll addSubview:rootLabel];
+
 }
 
 - (IBAction)publisherSelect:(id)sender {
@@ -104,6 +116,8 @@
     myView.delegate = self;
     myView.dataSource = self;
     [alert addSubview:myView];
+    
+    [alert setAutoresizesSubviews:YES];
     
     [alert show];
 }
@@ -144,6 +158,12 @@
     [alert show];
 }
 
+- (IBAction)addSentence:(id)sender {
+    ExViewController *exView = [[ExViewController alloc]init];
+    
+    [self presentModalViewController:exView animated:YES];
+}
+
 
 #pragma mark UITableView Delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -166,15 +186,15 @@
             cell.textLabel.text = [cArray objectAtIndex:index * 2 + 1];
         }
     }
-
+    
     else if (tableView.tag == ThemeTableTag) {
         if (index == 0) {
             cell.textLabel.text = [tArray objectAtIndex:1];
         }else {
-            cell.textLabel.text = [tArray objectAtIndex:index * 2 + 1];
+            cell.textLabel.text = [tArray objectAtIndex:index * 3 + 1];
         }
     }
-
+    
     else if (tableView.tag == PublicTag) {
         if (index == 0) {
             cell.textLabel.text = @"전체";
@@ -237,19 +257,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-//    return tableCellCount;
+    //    return tableCellCount;
     if (tableView.tag == PublicTag) {
         return pArray.count + 1;
     }else if (tableView.tag == Class1Tag) {
         return 3;
     }else if (tableView.tag == Class2Tag) {
-        return 3;
+        return 4;
     }else if ( tableView.tag == BookTableTag) {
         return bArray.count;
     }else if ( tableView.tag == ChapterTableTag) {
         return cArray.count / 2;
     }else if ( tableView.tag == ThemeTableTag) {
-        return tArray.count / 2;
+        return tArray.count / 3;
     }
     
     return 0;
@@ -276,6 +296,48 @@
             }else{
                 [self tableRePoz:2];
             }
+            
+            if (naviButton[0] != nil) {
+                [naviButton[0] removeFromSuperview];
+                naviButton[0] = nil;
+            }
+            
+            if (naviLabel[0] != nil) {
+                [naviLabel[0] removeFromSuperview];
+                naviLabel[0] = nil;
+            }
+            
+            if (naviButton[1] != nil) {
+                [naviButton[1] removeFromSuperview];
+                naviButton[1] = nil;
+            }
+            
+            if (naviLabel[1] != nil) {
+                [naviLabel[1] removeFromSuperview];
+                naviLabel[1] = nil;
+            }
+
+            
+            naviButton[0] = [UIButton buttonWithType:UIButtonTypeCustom];
+            [naviButton[0] setFrame:CGRectMake(rootLabel.frame.origin.x + rootLabel.frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+            [naviButton[0] setTitle:[dbMsg getBookName:[[bArray objectAtIndex:index]integerValue]] forState:UIControlStateNormal];
+            [naviButton[0] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [naviButton[0] sizeToFit];
+            naviButton[0].tag = 0;
+            [naviButton[0] addTarget:self action:@selector(naviButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+            
+            naviLabel[0] = [[UILabel alloc]initWithFrame:CGRectMake(naviButton[0].frame.origin.x + naviButton[0].frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+
+            naviLabel[0].text = @">";
+            
+            [naviLabel[0] sizeToFit];
+            [naviScroll addSubview:naviButton[0]];
+            [naviScroll addSubview:naviLabel[0]];
+            
+            naviScroll.contentSize = CGSizeMake(naviLabel[0].frame.origin.x + naviLabel[0].frame.size.width, 0);
+            
+            [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
+            
             [chapterTable reloadData];
         }
         if (cArray.count != 0){
@@ -297,6 +359,41 @@
             }else{
                 [self tableRePoz:1];
             }
+            
+            
+            if (naviButton[1] != nil) {
+                [naviButton[1] removeFromSuperview];
+                naviButton[1] = nil;
+            }
+            
+            if (naviLabel[1] != nil) {
+                [naviLabel[1] removeFromSuperview];
+                naviLabel[1] = nil;
+            }
+            
+            naviButton[1] = [UIButton buttonWithType:UIButtonTypeCustom];
+            [naviButton[1] setFrame:CGRectMake(naviLabel[0].frame.origin.x + naviLabel[0].frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+            [naviButton[1] setTitle:[cArray objectAtIndex:index * 2 + 1] forState:UIControlStateNormal];
+            [naviButton[1] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [naviButton[1] sizeToFit];
+            
+            naviButton[1].tag = 1;
+            [naviButton[1] addTarget:self action:@selector(naviButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+
+            
+            naviLabel[1] = [[UILabel alloc]initWithFrame:CGRectMake(naviButton[1].frame.origin.x + naviButton[1].frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+            
+            naviLabel[1].text = @">";
+            
+            [naviLabel[1] sizeToFit];
+            [naviScroll addSubview:naviButton[1]];
+            [naviScroll addSubview:naviLabel[1]];
+            
+            naviScroll.contentSize = CGSizeMake(naviLabel[1].frame.origin.x + naviLabel[1].frame.size.width + naviScroll.frame.size.width -naviButton[1].frame.origin.x - naviLabel[1].frame.size.width, 0);
+            [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width,0) animated:YES];
+            [naviScroll setContentOffset:CGPointMake(naviButton[1].frame.origin.x,0) animated:YES];
+
+            
             [themeTable reloadData];
         }
         if (tArray.count != 0){
@@ -309,9 +406,9 @@
         SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
         
         if (index == 0) {
-            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[[tArray objectAtIndex:0]integerValue]];
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:2]:0:0];
         }else {
-            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[[tArray objectAtIndex:index * 2]integerValue]];
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:index * 3 + 2]:0:0];
         }
         
         [self presentModalViewController:sentenceVeiw animated:YES];
@@ -321,10 +418,24 @@
             if (index == 0) {
                 pNumber = index;
                 [publisherName setTitle: @"전체" forState:UIControlStateNormal];
+                
             }else {
                 pNumber = [[pArray objectAtIndex:index-1]integerValue];
                 [publisherName setTitle:[dbMsg getPublisherName:pNumber] forState:UIControlStateNormal];
+
             }
+            scrollView.contentSize = CGSizeMake(0, 0);
+            [scrollView setContentOffset:CGPointMake(0,0) animated:NO];
+            for (int i = 0 ; i < 2; i++) {
+                [naviButton[i] removeFromSuperview];
+                [naviLabel[i] removeFromSuperview];
+                
+                naviButton[i] = nil;
+                naviLabel[i] = nil;
+            }
+            naviScroll.contentSize = CGSizeMake(0, 0);
+            [naviScroll setContentOffset:CGPointMake(0,0) animated:YES];
+
         }
         
         else if (tableView.tag == Class1Tag) {
@@ -348,6 +459,19 @@
                 default:
                     break;
             }
+            scrollView.contentSize = CGSizeMake(0, 0);
+            [scrollView setContentOffset:CGPointMake(0,0) animated:NO];
+            
+            for (int i = 0 ; i < 2; i++) {
+                [naviButton[i] removeFromSuperview];
+                [naviLabel[i] removeFromSuperview];
+                
+                naviButton[i] = nil;
+                naviLabel[i] = nil;
+            }
+            naviScroll.contentSize = CGSizeMake(0, 0);
+            [naviScroll setContentOffset:CGPointMake(naviScroll.frame.size.width,0) animated:YES];
+
         }
         
         else if (tableView.tag == Class2Tag) {
@@ -400,7 +524,7 @@
 
 - (void)disAlert{
     [alert dismissWithClickedButtonIndex:0 animated:YES];
-
+    
     bookNumber = 0;
     chapterNumber = 0;
     
@@ -414,25 +538,57 @@
     
     [bookTable reloadData];
 }
+             
+- (void)naviButtonEvent:(UIButton *)btn{
+    switch (btn.tag) {
+        case 0:
+            [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
 
-
-//---------------------------------------------------
-// ScrollView Delegate
-//---------------------------------------------------
-- (void)scrollViewDidScroll:(UIScrollView *)sender {
-    
-    // Update the page when more than 50% of the previous/next page is visible
-//    CGFloat pageWidth = scrollView.frame.size.width;
-//    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+            break;
+        case 1:
+            [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width,0) animated:YES];
+            break;
+            
+        default:
+            break;
+    }
 }
 
-// At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    SJ_DEBUG_LOG(@"page Number :%d", pageController.currentPage);
-//    nowIndex = pageControl.currentPage;
-    pageControlUsed = NO;
+- (void)setTableInit{
+    bookNumber = 0;
+    chapterNumber = 0;
+    pNumber = 1;
+    cNumber = 1;
     
+    bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
+    tableCellCount = bArray.count;
+    
+    if (bArray.count != 0)
+        [scrollView setHidden:NO];
+    else
+        [scrollView setHidden:YES];
+    
+    [bookTable reloadData];
 }
+
+
+////---------------------------------------------------
+//// ScrollView Delegate
+////---------------------------------------------------
+//- (void)scrollViewDidScroll:(UIScrollView *)sender {
+//    
+//    // Update the page when more than 50% of the previous/next page is visible
+//    //    CGFloat pageWidth = scrollView.frame.size.width;
+//    //    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+//}
+//
+//// At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    //    SJ_DEBUG_LOG(@"page Number :%d", pageController.currentPage);
+//    //    nowIndex = pageControl.currentPage;
+////    pageControlUsed = NO;
+//    
+//}
 
 
 - (void)viewDidUnload {
@@ -444,6 +600,7 @@
     chapterTable = nil;
     themeTable = nil;
     scrollView = nil;
+    naviScroll = nil;
     [super viewDidUnload];
 }
 
@@ -461,11 +618,11 @@
 //    [UIView setAnimationDuration:duration];
 //    [UIView setAnimationCurve:curve];
 //    [UIView setAnimationBeginsFromCurrentState:YES];
-//    
+//
 //    // The transform matrix
 //    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
 //    view.transform = transform;
-//    
+//
 //    // Commit the changes
 //    [UIView commitAnimations];
 //
@@ -479,11 +636,11 @@
 //    [UIView setAnimationDuration:duration];
 //    [UIView setAnimationCurve:curve];
 //    [UIView setAnimationBeginsFromCurrentState:YES];
-//    
+//
 //    // The transform matrix
 //    //    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
 //    //    view.transform = transform;
-//    
+//
 //    view.frame = CGRectMake(x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
 //    // Commit the changes
 //    [UIView commitAnimations];

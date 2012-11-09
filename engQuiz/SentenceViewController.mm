@@ -27,15 +27,28 @@
 
 - (void)viewDidLoad
 {
-//    [self setTexts];
+    //    [self setTexts];
     
     navi = true;
     
     // 지문 : 학교 : 학년
-    pArray = [self setExam:[dbMsg getExamSentence:examId]:1 :1];
+    if (nowType == 0) {
+        pArray = [self setExam:examSentence:1 :1];
+    }else {
+        pArray = [self getRepository];
+        [saveBtn setEnabled:NO];
+    }
     
     [self labelInit];
     [self setTexts:0];
+    
+    if (nowType == 2) {
+        [answerHiddenBtn1 setHidden:YES];
+        [answerHiddenBtn2 setHidden:YES];
+        [answerHiddenBtn3 setHidden:YES];
+        [answerHiddenBtn4 setHidden:YES];
+    }
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -57,6 +70,15 @@
     answerLabel04 = nil;
     navigationBar = nil;
     sentenceView = nil;
+    answerCheck1Btn = nil;
+    answerCheck2Btn = nil;
+    answerCheck3Btn = nil;
+    answerCheck4Btn = nil;
+    answerHiddenBtn1 = nil;
+    answerHiddenBtn2 = nil;
+    answerHiddenBtn3 = nil;
+    answerHiddenBtn4 = nil;
+    saveBtn = nil;
     [super viewDidUnload];
 }
 - (IBAction)backEvent:(id)sender {
@@ -64,12 +86,13 @@
 }
 
 
-- (void)setInit:(NSString *)name:(int)_id{
+- (void)setInit:(NSString *)name:(NSString *)getSentence:(int)type:(int)_id{
     
     bName = name;
-//    pNumber = page;
-    examId = _id;
+    examSentence = getSentence;
     
+    nowType = type;
+    nowId = _id;
 }
 
 -(void)labelInit{
@@ -78,24 +101,28 @@
     label[2] = answerLabel02;
     label[3] = answerLabel03;
     label[4] = answerLabel04;
-
+    
 }
 
 - (IBAction)saveExam:(id)sender {
-    [self saveRepository];
+    [self saveRepository:1];
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)saveOX{
+    [self saveRepository:2];
 }
 
 - (IBAction)naviEvent:(id)sender {
     if (navi) {
-//        [navigationBar setHidden:YES];
+        //        [navigationBar setHidden:YES];
         [self moveView:navigationBar duration:0.2 curve:UIViewAnimationCurveLinear y:-44];
         
         navi = false;
     }else{
-//        [navigationBar setHidden:NO];
+        //        [navigationBar setHidden:NO];
         [self moveView:navigationBar duration:0.2 curve:UIViewAnimationCurveLinear y:0];
-
+        
         navi = true;
     }
 }
@@ -176,7 +203,7 @@
     }
     
     [alert show];
-
+    
 }
 
 - (void)naviEvent {
@@ -195,17 +222,13 @@
 
 
 
-- (void)saveRepository{
+- (void)saveRepository:(int)type{
     
-//    sid = [dbMsg saveRSentence:bName :@"000000" :1];
-    sid = [dbMsg saveRSentence:sentenceTextView.text :@"000000" :1];
-    qid = [dbMsg saveRQuestion:sid :answerLabel01.text :1];
-    [dbMsg saveRAnswer:sid:answerLabel01.text :0];
-    [dbMsg saveRAnswer:sid:answerLabel02.text :0];
-    [dbMsg saveRAnswer:sid:answerLabel03.text :1];
-    [dbMsg saveRAnswer:sid:answerLabel04.text :0];
+    //    sid = [dbMsg saveRSentence:bName :@"000000" :1];
+    sid = [dbMsg saveRSentence:sentenceTextView.text :@"000000" :type];
+    qid = [dbMsg saveRQuestion:sid :questionLabel.text :1];
     
-    int sol[4]; 
+    int sol[4];
     
     sol[check - 1] = 1;
     
@@ -213,10 +236,10 @@
     [dbMsg saveRAnswer:qid:answerLabel02.text :sol[1]];
     [dbMsg saveRAnswer:qid:answerLabel03.text :sol[2]];
     [dbMsg saveRAnswer:qid:answerLabel04.text :sol[3]];
-      
-//    NSMutableArray *rArray = [dbMsg getRSentenceData:1];
-//    
-//    NSLog(@"count :::::: %d",rArray.count);
+    
+    //    NSMutableArray *rArray = [dbMsg getRSentenceData:1];
+    //
+    //    NSLog(@"count :::::: %d",rArray.count);
 }
 
 - (void)setSentence:(NSString *)sentence{
@@ -226,15 +249,15 @@
     
     [sentenceTextView setText:sentence];
     
-//    NSLog(@"%d",sentenceTextView.)
-//    [sentenceTextView setText:[dbMsg getExamSentence:examId]];
-//    [sentenceTextView setEditable:NO];
+    //    NSLog(@"%d",sentenceTextView.)
+    //    [sentenceTextView setText:[dbMsg getExamSentence:examId]];
+    //    [sentenceTextView setEditable:NO];
 }
 
 - (void)setTexts:(int)poz{
     
     if (poz == 0) {
-        int check = [[pArray objectAtIndex:5] intValue];
+        check = [[pArray objectAtIndex:5] intValue];
         
         for (int i = 0; i < 5; i++) {
             if (check == i && nowType == 2) {
@@ -243,7 +266,7 @@
             [label[i] setText:[pArray objectAtIndex:i]];
         }
     }else{
-        int check = [[pArray objectAtIndex:poz * 5 + 6] intValue];
+        check = [[pArray objectAtIndex:poz * 5 + 6] intValue];
         
         for (int i = 0; i < 5; i++) {
             if (check == i && nowType == 2) {
@@ -256,7 +279,7 @@
 
 
 /* ----------------------------------------
- 문제 생성.. 
+ 문제 생성..
  msg : 지문
  class : 중 = 1 , 고 = 2
  class2 : 학년
@@ -302,34 +325,45 @@
     return eArray;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//    NSLog(@"down");
-    [self naviEvent];
-//    if ([[touches anyObject]locationInView:sentenceTextView] )
-//    [touches anyObject]location
+- (NSMutableArray *)getRepository{
+    NSMutableArray *returnArrray = [NSMutableArray arrayWithCapacity:0];
+    
+    NSArray *problemArray = [dbMsg getRQuestion:nowId];
+    
+    NSArray *itemArray = [dbMsg getRAnswer:[[problemArray objectAtIndex:0] intValue]];
+    
+    [returnArrray insertObject:[problemArray objectAtIndex:1] atIndex:0];
+    
+    [returnArrray insertObject:[itemArray objectAtIndex:1] atIndex:1];
+    [returnArrray insertObject:[itemArray objectAtIndex:4] atIndex:2];
+    [returnArrray insertObject:[itemArray objectAtIndex:7] atIndex:3];
+    [returnArrray insertObject:[itemArray objectAtIndex:10] atIndex:4];
+    
+    int checkNum;
+    
+    if ([[itemArray objectAtIndex:2] intValue] == 1) {
+        checkNum = 1;
+    }else if ([[itemArray objectAtIndex:5] intValue] == 1) {
+        checkNum = 2;
+    }else if ([[itemArray objectAtIndex:8] intValue] == 1) {
+        checkNum = 3;
+    }else if ([[itemArray objectAtIndex:11] intValue] == 1) {
+        checkNum = 4;
+    }
+    [returnArrray insertObject:[NSNumber numberWithInt:checkNum] atIndex:5];
+    
+    [self setSentence:examSentence];
     
     
-//    UITouch *touch = [[event allTouches] anyObject];
-////.    if(Ball.hidden == YES){
-//    float touch_x = [touch locationInView:touch.view].x;
-//    float touch_y = [touch locationInView:touch.view].y;
-//    
-//    if (sentenceView.frame.origin.x <= touch_x <= sentenceView.frame.origin.x + sentenceView.frame.size.width && sentenceView.frame.origin.y <= touch_y <= sentenceView.frame.origin.y + sentenceView.frame.size.height) {
-//        NSLog(@"down");
-//    }
-    
-//        if(touch_x < 50){ //일정 Y값 범위 내에서만 발사
-//            Ball_move_x = (touch_x - 60) / 10;
-//            Ball_move_y = (touch_y - 30) / 10;
-//            moveSign = YES;
-}
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    
+    return returnArrray;
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self naviEvent];
+}
 
 - (void)moveView:(UIView *)view duration:(NSTimeInterval)duration
-            curve:(int)curve y:(CGFloat)y
+           curve:(int)curve y:(CGFloat)y
 {
     // Setup the animation
     [UIView beginAnimations:nil context:NULL];
@@ -339,19 +373,13 @@
     view.frame = CGRectMake(view.frame.origin.x, y, view.frame.size.width, view.frame.size.height);
     // Commit the changes
     [UIView commitAnimations];
-
+    
 }
 
 
-//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView;
-//- (BOOL)textViewShouldEndEditing:(UITextView *)textView;
-//
-//- (void)textViewDidBeginEditing:(UITextView *)textView;
-//- (void)textViewDidEndEditing:(UITextView *)textView;
-
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
-//- (void)textViewDidChange:(UITextView *)textView{
-//    NSLog(@"ohohoh");
-//}
-//
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self saveOX];
+    }
+}
 @end
