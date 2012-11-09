@@ -58,7 +58,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
- 
+
 - (void)viewDidUnload {
     bookName = nil;
     pageNumber = nil;
@@ -228,7 +228,7 @@
     sid = [dbMsg saveRSentence:sentenceTextView.text :@"000000" :type];
     qid = [dbMsg saveRQuestion:sid :questionLabel.text :1];
     
-    int sol[4];
+    int sol[4]; 
     
     sol[check - 1] = 1;
     
