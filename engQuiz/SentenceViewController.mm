@@ -177,6 +177,7 @@
 
 -(void)checkAnser:(int)c{
     
+    UIAlertView *alert;
     NSString *msg = [NSString stringWithFormat:@"%@ : %@\n%@ : %@\n%@ : %@\n%@ : %@",answerLabel01.text,[dbMsg getMean:answerLabel01.text],answerLabel02.text,[dbMsg getMean:answerLabel02.text],answerLabel03.text,[dbMsg getMean:answerLabel03.text],answerLabel04.text,[dbMsg getMean:answerLabel04.text]];
     
     NSString *result;
@@ -187,13 +188,22 @@
         result = @"틀렸습니다.";
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:result
-                                       message:msg
-                                      delegate:self
-                             cancelButtonTitle:@"확 인"
-                             otherButtonTitles:@"오답노트에 저장", nil];
+    if (nowType == 0) {
+        alert = [[UIAlertView alloc] initWithTitle:result
+                                           message:msg
+                                          delegate:self
+                                 cancelButtonTitle:@"확 인"
+                                 otherButtonTitles:@"오답노트에 저장", nil];
+    }else{
+        alert = [[UIAlertView alloc] initWithTitle:result
+                                           message:msg
+                                          delegate:self
+                                 cancelButtonTitle:@"확 인"
+                                 otherButtonTitles:nil, nil];
+    }
     
     [alert show];
+
 }
 
 - (void)naviEvent {
@@ -250,7 +260,7 @@
         check = [[pArray objectAtIndex:5] intValue];
         
         for (int i = 0; i < 5; i++) {
-            if (check == i && nowType != 0) {
+            if (check == i && nowType == 2) {
                 [label[i] setTextColor:[UIColor redColor]];
             }
             [label[i] setText:[pArray objectAtIndex:i]];
@@ -259,7 +269,7 @@
         check = [[pArray objectAtIndex:poz * 5 + 6] intValue];
         
         for (int i = 0; i < 5; i++) {
-            if (check == i && nowType != 0) {
+            if (check == i && nowType == 2) {
                 [label[i] setTextColor:[UIColor redColor]];
             }
             [label[i] setText:[pArray objectAtIndex:poz * 5 + (i + 1)]];
