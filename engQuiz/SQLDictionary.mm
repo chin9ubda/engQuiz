@@ -8,6 +8,7 @@
 
 #include "SQLDictionary.h"
 #include "DataBase.h"
+#include <sstream>
 
 bool SQLDictionary::exsistWord(std::string word)
 {
@@ -62,4 +63,32 @@ Word SQLDictionary::getWordInfo(std::string word)
     clsword.vcheck = [[result objectAtIndex:5] intValue];
     
     return clsword;
+
+bool SQLDictionary::getRandomSimItems(std::string word, std::string data[], int length)
+{
+    if (length > 10)
+        return false;
+    
+    Word wordinfo = getWordInfo(word);
+    std::vector<std::string> wordtok;
+    
+    std::istringstream iss(wordinfo.sim);
+    std::string substr;
+    
+    while (getline(iss, substr, ','))
+    {
+        wordtok.push_back(substr);
+    }
+    
+    int remain = length;
+    for (int i=0; i<length; i++)
+    {
+        int sel = rand() % remain--;
+        
+        data[i] = wordtok[sel];
+        wordtok.erase(wordtok.begin()+sel);
+    }
+    
+    return true;
+}
 }

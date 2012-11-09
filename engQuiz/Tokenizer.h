@@ -25,11 +25,13 @@ class Token
     std::string token;
     enum token_type type;
     char prob_num;
+    bool existDB;
 public:
-    Token(std::string token);
-    Token(std::string token, enum token_type type);
+    Token(std::string token, bool existDB);
+    Token(std::string token, enum token_type type, bool existDB);
     inline std::string getToken();
     inline enum token_type getType();
+    inline bool getExistDB();
     inline short getProbNum();
     void setProbNum(char num);
 };
@@ -42,12 +44,14 @@ public:
     std::string origin;
     int word_cnt;
     int word_cnt_real;
+    int word_cnt_exist_dic;
     
     Tokenizer(std::string origin);
     void run();
     std::string cascadeStr();
     int atWordToken(int num);
     int atWordRealToken(int num);
+    int atWordExistDBToken(int num);
 };
 
 #endif /* defined(__engQuiz__Tokenizer__) */

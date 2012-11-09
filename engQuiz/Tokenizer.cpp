@@ -7,16 +7,17 @@
 //
 
 #include "Tokenizer.h"
+#include "SQLDictionary.h"
 #include <sstream>
 #include <stack>
 
 
-Token::Token(std::string token, enum token_type type) : type(type), token(token), prob_num(0)
+Token::Token(std::string token, enum token_type type, bool existDB) : type(type), token(token), prob_num(0), existDB(existDB)
 {
 }
 
 
-Token::Token(std::string token) : type(TOKEN_TYPE_WORD), token(token), prob_num(0)
+Token::Token(std::string token, bool existDB) : type(TOKEN_TYPE_WORD), token(token), prob_num(0), existDB(existDB)
 {
 }
 
@@ -40,8 +41,13 @@ void Token::setProbNum(char num)
     this->prob_num = num;
 }
 
+bool Token::getExistDB()
+{
+    return this->existDB;
+}
 
-Tokenizer::Tokenizer(std::string origin): word_cnt(0), word_cnt_real(0)
+
+Tokenizer::Tokenizer(std::string origin): word_cnt(0), word_cnt_real(0), word_cnt_exist_dic(0)
 {
     this->origin = origin;
 }
@@ -53,6 +59,7 @@ void Tokenizer::run()
     char buf[1024];
     //std::stack<char> nor_stack;
     bool sign = false;
+    SQLDictionary dic = SQLDictionary::Instance();
 
     for(i=0;i<origin.length();i++)
     {
@@ -65,12 +72,19 @@ void Tokenizer::run()
             if (sign)
             {
                 buf[buf_pos] = '\0';
-                Token token(buf);
+                bool existDB = dic.exsistWord(buf);
+                
+                Token token(buf, existDB);
                 tokens.push_back(token);
                 
-                if (strlen(buf)>2)
+                if (buf_pos>2)
                 {
                     word_cnt_real++;
+                }
+                
+                if(buf_pos>2 && existDB)
+                {
+                    word_cnt_exist_dic++;
                 }
                 
                 word_cnt++;
@@ -146,4 +160,23 @@ int Tokenizer::atWordRealToken(int num)
         }
     }
     return -1;
+
+int Tokenizer::atWordExistDBToken(int num)
+{
+    int cnt = 0;
+    int ret = 0;
+    std::vector<Token>::iterator iter;
+    
+    for(iter = tokens.begin(); iter != tokens.end(); iter++, ret++)
+    {
+        if (iter->getType() == TOKEN_TYPE_WORD && iter->getToken().length() > 2 && iter->getExistDB())
+        {
+            if (cnt == num)
+                return ret;
+            cnt++;
+        }
+    }
+    return -1;
+}
+
 }
