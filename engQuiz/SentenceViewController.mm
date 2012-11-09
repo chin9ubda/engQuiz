@@ -236,7 +236,7 @@
     [dbMsg saveRAnswer:qid:answerLabel02.text :sol[1]];
     [dbMsg saveRAnswer:qid:answerLabel03.text :sol[2]];
     [dbMsg saveRAnswer:qid:answerLabel04.text :sol[3]];
-    
+      
 //    NSMutableArray *rArray = [dbMsg getRSentenceData:1];
 //    
 //    NSLog(@"count :::::: %d",rArray.count);
