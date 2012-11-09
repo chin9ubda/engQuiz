@@ -13,6 +13,12 @@
     DataBase *dbMsg;
     IBOutlet UILabel *wordLabel;
     IBOutlet UILabel *exLabel;
+    IBOutlet UITextView *exTextView;
+    
+    NSString *word;
 }
+
+-(void)setWord:(NSString *)_word;
+- (IBAction)exitBtn:(id)sender;
 
 @end

@@ -34,6 +34,7 @@
     if (self) {
         dbMsg = [DataBase getInstance];
         bCell = [[BookListCell alloc]init];
+        pArray = [dbMsg getPublisherIds];
         
     }
     return self;
@@ -109,8 +110,6 @@
     
     UITableView *myView = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)];
     
-    pArray = [dbMsg getPublisherIds];
-    
     tableCellCount = pArray.count + 1;
     myView.tag = PublicTag;
     myView.delegate = self;
@@ -170,12 +169,18 @@
 {
     
     int index = [indexPath row];
+    int section = [indexPath section];
     
     UITableViewCell *cell = [[UITableViewCell alloc]init];
     
     if (tableView.tag == BookTableTag) {
-        
-        cell.textLabel.text = [dbMsg getBookName:[[bArray objectAtIndex:index]integerValue]];
+        if (pNumber == 0) {
+            if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
+                cell.textLabel.text = [dbMsg getBookName:[[[dbMsg getBookIds:section+1:cNumber:sNumber] objectAtIndex:index]integerValue]];
+            }
+        }else {
+            cell.textLabel.text = [dbMsg getBookName:[[bArray objectAtIndex:index]integerValue]];
+        }
         
     }
     
@@ -201,6 +206,7 @@
         }else{
             cell.textLabel.text = [dbMsg getPublisherName:[[pArray objectAtIndex:index-1]integerValue]];
         }
+//        cell.textLabel.text = [dbMsg getPublisherName:[[pArray objectAtIndex:index-1]integerValue]];
     }
     
     else if (tableView.tag == Class1Tag) {
@@ -265,7 +271,14 @@
     }else if (tableView.tag == Class2Tag) {
         return 4;
     }else if ( tableView.tag == BookTableTag) {
-        return bArray.count;
+        if (pNumber == 0) {
+            if ([dbMsg getBookIds:section+1:cNumber:sNumber].count == 0) {
+                return 1;
+            }
+            return [dbMsg getBookIds:section+1:cNumber:sNumber].count;
+        }else{
+            return bArray.count;
+        }
     }else if ( tableView.tag == ChapterTableTag) {
         return cArray.count / 2;
     }else if ( tableView.tag == ThemeTableTag) {
@@ -283,62 +296,173 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     int index = [indexPath row];
+    int section = [indexPath section];
     
     if (tableView.tag == BookTableTag) {
         if (bookNumber == index + 1) {
             [cArray removeAllObjects];
             [self tableRePoz:2];
         }else{
-            bookNumber = index + 1;
-            [cArray removeAllObjects];
-            cArray = [dbMsg getChapterData:[[bArray objectAtIndex:index]integerValue]];
-            if (cArray.count != 0) {
-            }else{
-                [self tableRePoz:2];
-            }
             
-            if (naviButton[0] != nil) {
-                [naviButton[0] removeFromSuperview];
-                naviButton[0] = nil;
-            }
-            
-            if (naviLabel[0] != nil) {
-                [naviLabel[0] removeFromSuperview];
-                naviLabel[0] = nil;
-            }
-            
-            if (naviButton[1] != nil) {
-                [naviButton[1] removeFromSuperview];
-                naviButton[1] = nil;
-            }
-            
-            if (naviLabel[1] != nil) {
-                [naviLabel[1] removeFromSuperview];
-                naviLabel[1] = nil;
-            }
+            if (pNumber == 0) {
+                if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
+                    bookNumber = index + 1;
+                    [cArray removeAllObjects];
+                    cArray = [dbMsg getChapterData:[[[dbMsg getBookIds:section+1:cNumber:sNumber] objectAtIndex:index]integerValue]];
+                    
+                    if (cArray.count != 0) {
+                    }else{
+                        [self tableRePoz:2];
+                    }
+                    
+                    if (naviButton[0] != nil) {
+                        [naviButton[0] removeFromSuperview];
+                        naviButton[0] = nil;
+                    }
+                    
+                    if (naviLabel[0] != nil) {
+                        [naviLabel[0] removeFromSuperview];
+                        naviLabel[0] = nil;
+                    }
+                    
+                    if (naviButton[1] != nil) {
+                        [naviButton[1] removeFromSuperview];
+                        naviButton[1] = nil;
+                    }
+                    
+                    if (naviLabel[1] != nil) {
+                        [naviLabel[1] removeFromSuperview];
+                        naviLabel[1] = nil;
+                    }
+                    
+                    
+                    naviButton[0] = [UIButton buttonWithType:UIButtonTypeCustom];
+                    [naviButton[0] setFrame:CGRectMake(rootLabel.frame.origin.x + rootLabel.frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+                    [naviButton[0] setTitle:[dbMsg getBookName:[[bArray objectAtIndex:index]integerValue]] forState:UIControlStateNormal];
+                    [naviButton[0] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                    [naviButton[0] sizeToFit];
+                    naviButton[0].tag = 0;
+                    [naviButton[0] addTarget:self action:@selector(naviButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    naviLabel[0] = [[UILabel alloc]initWithFrame:CGRectMake(naviButton[0].frame.origin.x + naviButton[0].frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+                    
+                    naviLabel[0].text = @">";
+                    
+                    [naviLabel[0] sizeToFit];
+                    [naviScroll addSubview:naviButton[0]];
+                    [naviScroll addSubview:naviLabel[0]];
+                    
+                    naviScroll.contentSize = CGSizeMake(naviLabel[0].frame.origin.x + naviLabel[0].frame.size.width, 0);
+                    
+                    [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
+                    
+                    [chapterTable reloadData];
 
-            
-            naviButton[0] = [UIButton buttonWithType:UIButtonTypeCustom];
-            [naviButton[0] setFrame:CGRectMake(rootLabel.frame.origin.x + rootLabel.frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
-            [naviButton[0] setTitle:[dbMsg getBookName:[[bArray objectAtIndex:index]integerValue]] forState:UIControlStateNormal];
-            [naviButton[0] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [naviButton[0] sizeToFit];
-            naviButton[0].tag = 0;
-            [naviButton[0] addTarget:self action:@selector(naviButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
-            
-            naviLabel[0] = [[UILabel alloc]initWithFrame:CGRectMake(naviButton[0].frame.origin.x + naviButton[0].frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+                }
+            }else {
+                bookNumber = index + 1;
+                [cArray removeAllObjects];
+                cArray = [dbMsg getChapterData:[[bArray objectAtIndex:index]integerValue]];
+                
+                if (cArray.count != 0) {
+                }else{
+                    [self tableRePoz:2];
+                }
+                
+                if (naviButton[0] != nil) {
+                    [naviButton[0] removeFromSuperview];
+                    naviButton[0] = nil;
+                }
+                
+                if (naviLabel[0] != nil) {
+                    [naviLabel[0] removeFromSuperview];
+                    naviLabel[0] = nil;
+                }
+                
+                if (naviButton[1] != nil) {
+                    [naviButton[1] removeFromSuperview];
+                    naviButton[1] = nil;
+                }
+                
+                if (naviLabel[1] != nil) {
+                    [naviLabel[1] removeFromSuperview];
+                    naviLabel[1] = nil;
+                }
+                
+                
+                naviButton[0] = [UIButton buttonWithType:UIButtonTypeCustom];
+                [naviButton[0] setFrame:CGRectMake(rootLabel.frame.origin.x + rootLabel.frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+                [naviButton[0] setTitle:[dbMsg getBookName:[[bArray objectAtIndex:index]integerValue]] forState:UIControlStateNormal];
+                [naviButton[0] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [naviButton[0] sizeToFit];
+                naviButton[0].tag = 0;
+                [naviButton[0] addTarget:self action:@selector(naviButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+                
+                naviLabel[0] = [[UILabel alloc]initWithFrame:CGRectMake(naviButton[0].frame.origin.x + naviButton[0].frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+                
+                naviLabel[0].text = @">";
+                
+                [naviLabel[0] sizeToFit];
+                [naviScroll addSubview:naviButton[0]];
+                [naviScroll addSubview:naviLabel[0]];
+                
+                naviScroll.contentSize = CGSizeMake(naviLabel[0].frame.origin.x + naviLabel[0].frame.size.width, 0);
+                
+                [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
+                
+                [chapterTable reloadData];
 
-            naviLabel[0].text = @">";
+            }
+//            bookNumber = index + 1;
+//            [cArray removeAllObjects];
+//            cArray = [dbMsg getChapterData:[[bArray objectAtIndex:index]integerValue]];
+//            if (cArray.count != 0) {
+//            }else{
+//                [self tableRePoz:2];
+//            }
             
-            [naviLabel[0] sizeToFit];
-            [naviScroll addSubview:naviButton[0]];
-            [naviScroll addSubview:naviLabel[0]];
-            
-            naviScroll.contentSize = CGSizeMake(naviLabel[0].frame.origin.x + naviLabel[0].frame.size.width, 0);
-            
-            [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
-            
-            [chapterTable reloadData];
+//            if (naviButton[0] != nil) {
+//                [naviButton[0] removeFromSuperview];
+//                naviButton[0] = nil;
+//            }
+//            
+//            if (naviLabel[0] != nil) {
+//                [naviLabel[0] removeFromSuperview];
+//                naviLabel[0] = nil;
+//            }
+//            
+//            if (naviButton[1] != nil) {
+//                [naviButton[1] removeFromSuperview];
+//                naviButton[1] = nil;
+//            }
+//            
+//            if (naviLabel[1] != nil) {
+//                [naviLabel[1] removeFromSuperview];
+//                naviLabel[1] = nil;
+//            }
+//
+//            
+//            naviButton[0] = [UIButton buttonWithType:UIButtonTypeCustom];
+//            [naviButton[0] setFrame:CGRectMake(rootLabel.frame.origin.x + rootLabel.frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+//            [naviButton[0] setTitle:[dbMsg getBookName:[[bArray objectAtIndex:index]integerValue]] forState:UIControlStateNormal];
+//            [naviButton[0] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//            [naviButton[0] sizeToFit];
+//            naviButton[0].tag = 0;
+//            [naviButton[0] addTarget:self action:@selector(naviButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+//            
+//            naviLabel[0] = [[UILabel alloc]initWithFrame:CGRectMake(naviButton[0].frame.origin.x + naviButton[0].frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
+//
+//            naviLabel[0].text = @">";
+//            
+//            [naviLabel[0] sizeToFit];
+//            [naviScroll addSubview:naviButton[0]];
+//            [naviScroll addSubview:naviLabel[0]];
+//            
+//            naviScroll.contentSize = CGSizeMake(naviLabel[0].frame.origin.x + naviLabel[0].frame.size.width, 0);
+//            
+//            [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
+//            
+//            [chapterTable reloadData];
         }
         if (cArray.count != 0){
             [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width,0) animated:YES];
@@ -522,6 +646,28 @@
     }
 }
 
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if(tableView.tag == BookTableTag){
+        if (pNumber == 0) {
+            return pArray.count + 1;
+        }
+        
+    }
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (tableView.tag == BookTableTag) {
+        if (section == pArray.count) {
+            return @"기타";
+        }else{
+            return [dbMsg getPublisherName:[[pArray objectAtIndex:section]integerValue]];
+        }
+    }
+    return nil;
+}
+
 - (void)disAlert{
     [alert dismissWithClickedButtonIndex:0 animated:YES];
     
@@ -542,10 +688,25 @@
 - (void)naviButtonEvent:(UIButton *)btn{
     switch (btn.tag) {
         case 0:
+            naviScroll.contentSize = CGSizeMake(naviLabel[0].frame.origin.x + naviLabel[0].frame.size.width, 0);
             [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
+            if (naviButton[1] != nil) {
+                [naviButton[1] removeFromSuperview];
+                naviButton[1] = nil;
+            }
+
+            
+            if (naviLabel[1] != nil) {
+                [naviLabel[1] removeFromSuperview];
+                naviLabel[1] = nil;
+            }
+            
+            [themeTable reloadData];
+            [chapterTable reloadData];
 
             break;
         case 1:
+            naviScroll.contentSize = CGSizeMake(naviLabel[1].frame.origin.x + naviLabel[1].frame.size.width, 0);
             [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width,0) animated:YES];
             break;
             

@@ -555,30 +555,95 @@
 }
 
 -(NSString *)getAndCheckSentence:(NSString *)word{
-//    NSString *result = [NSString stringWithFormat:@"단어가 없습니다"];
     NSString *result = @"단어가 없습니다";
-    
+    int check = 0;
+
     sqlite3_stmt *selectStatement;
-    NSString *query = [NSString stringWithFormat:@"SELECT text FROM %@ WHERE text LIKE '%%%@%%'",ContentBook_TableName, word];
+    NSString *query = [NSString stringWithFormat:@"SELECT text FROM %@ WHERE text LIKE '%%%@%%'",ContentBook_TableName,word];
     
     const char *selectSql = [query UTF8String];
     
     
     if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
-        
-        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+
+//        if (sqlite3_step(selectStatement) == SQLITE_ROW) {
+//            
+//            NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
+//            
+//            result = temp;
+//        }
+
+        while (sqlite3_step(selectStatement) == SQLITE_ROW && check == 0) {
             
             NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
-            
-//            if ([[temp substringWithRange:(NSRange){0,temp.length}] isEqualToString:word]) {
-//                NSLog(@"ㅇㅇ");
-//                return temp;
-//                break;
-//            }
-            
-            result = temp;
+            int tempInt;
+            if ([temp rangeOfString:word options:NSCaseInsensitiveSearch].location != 0) {
+                tempInt = [temp rangeOfString:word options:NSCaseInsensitiveSearch].location;
+                if ([[temp substringWithRange:(NSRange){tempInt - 1, 1}] isEqualToString:@" "]||
+                    [[temp substringWithRange:(NSRange){tempInt - 1, 1}] isEqualToString:@""]||
+                    [[temp substringWithRange:(NSRange){tempInt - 1, 1}] isEqualToString:@"."]){
+                    check++;
+                    NSLog(@"check1");
+                }
+                
+                if ([[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@" "]||
+                    [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@""]||
+                    [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@"."]||
+                    [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@"!"]||
+                    [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@"?"]) {
+                    check++;
+                    NSLog(@"check2");
+                    
+                }
+                
+            }
+
+            if (check == 2) {
+                result = temp;
+                break;
+            }else {
+                check = 0;
+            }
+
         }
         
+//            for (int i = 0; i < temp.length - word.length; i++) {
+//                if([[temp substringWithRange:(NSRange){i,word.length}] isEqualToString:word]){
+//
+//                    if ([[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@" "]||
+//                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@""]||
+//                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@"."]){
+//
+////                    if ([[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@" "]||
+////                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@""]||
+////                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@"."]){
+////                    if ([[temp rangeOfString:(NSRange){i - 1, 1} options:NSCaseInsensitiveSearch] isEqualToString:@" "]||
+////                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@""]||
+////                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@"."]){
+////                        check++;
+//                    
+//                        NSLog(@"check1");
+//                        }
+//                    
+//                    if ([[temp substringWithRange:(NSRange){i + word.length, 1}] isEqualToString:@" "]||
+//                        [[temp substringWithRange:(NSRange){i + word.length, 1}] isEqualToString:@""]||
+//                        [[temp substringWithRange:(NSRange){i + word.length, 1}] isEqualToString:@"."]||
+//                        [[temp substringWithRange:(NSRange){i + word.length, 1}] isEqualToString:@"!"]||
+//                        [[temp substringWithRange:(NSRange){i + word.length, 1}] isEqualToString:@"?"]) {
+//                        check++;
+//                        NSLog(@"check2");
+//
+//                    }
+//                    
+//                    if (check == 2) {
+//                        result = temp;
+//                        break;
+//                    }else {
+//                        check = 0;
+//                    }
+//                }
+//            }
+//        }
     }
     
     sqlite3_finalize(selectStatement);
