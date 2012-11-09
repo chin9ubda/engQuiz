@@ -160,7 +160,7 @@ int Tokenizer::atWordRealToken(int num)
         }
     }
     return -1;
-
+}
 int Tokenizer::atWordExistDBToken(int num)
 {
     int cnt = 0;
@@ -177,6 +177,4 @@ int Tokenizer::atWordExistDBToken(int num)
         }
     }
     return -1;
-}
-
 }

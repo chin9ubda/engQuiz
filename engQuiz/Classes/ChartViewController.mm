@@ -7,6 +7,7 @@
 //
 
 #import "ChartViewController.h"
+#include "GenTable.h"
 
 @interface ChartViewController ()
 
@@ -25,7 +26,17 @@
 
 - (void)viewDidLoad
 {
-    NSString *html = @"<html><head><title>Should be half</title></head><body>I wish the answer were just 42</body></html>";
+    GenTable table;
+    table.datas.push_back(GenTableData("asdf",2,2));
+    table.datas.push_back(GenTableData("asdf3",3,3));
+    
+    std::string temp = table.run();
+    
+    NSString *html = [NSString stringWithUTF8String:temp.c_str()];
+    
+    NSLog(@"test :  %@",html);
+    
+//    NSString *html = @"<html><head><title>Should be half</title></head><body>I wish the answer were just 42</body></html>";
     [webView loadHTMLString:html baseURL:nil];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

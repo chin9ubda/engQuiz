@@ -11,7 +11,7 @@
 		4325C539164CC59B0072195F /* RepositoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4325C537164CC59B0072195F /* RepositoryViewController.m */; };
 		4325C53A164CC59B0072195F /* RepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4325C538164CC59B0072195F /* RepositoryViewController.xib */; };
 		433B11011649329C00181487 /* ExamLoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 433B11001649329C00181487 /* ExamLoadViewController.xib */; };
-		433B1106164947CE00181487 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433B1104164947CE00181487 /* ChartViewController.m */; };
+		433B1106164947CE00181487 /* ChartViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 433B1104164947CE00181487 /* ChartViewController.mm */; };
 		433B1107164947CE00181487 /* ChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 433B1105164947CE00181487 /* ChartViewController.xib */; };
 		43924CE016426A5800B05EFE /* BookListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43924CDF16426A5700B05EFE /* BookListCell.m */; };
 		43924CE316426A6C00B05EFE /* BookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43924CE216426A6C00B05EFE /* BookListCell.xib */; };
@@ -76,7 +76,7 @@
 		4325C538164CC59B0072195F /* RepositoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryViewController.xib; sourceTree = "<group>"; };
 		433B11001649329C00181487 /* ExamLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamLoadViewController.xib; sourceTree = "<group>"; };
 		433B1103164947CE00181487 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewController.h; path = Classes/ChartViewController.h; sourceTree = "<group>"; };
-		433B1104164947CE00181487 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartViewController.m; path = Classes/ChartViewController.m; sourceTree = "<group>"; };
+		433B1104164947CE00181487 /* ChartViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ChartViewController.mm; path = Classes/ChartViewController.mm; sourceTree = "<group>"; };
 		433B1105164947CE00181487 /* ChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChartViewController.xib; path = Classes/ChartViewController.xib; sourceTree = "<group>"; };
 		43924CDE16426A5700B05EFE /* BookListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookListCell.h; path = Classes/BookListCell.h; sourceTree = "<group>"; };
 		43924CDF16426A5700B05EFE /* BookListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookListCell.m; path = Classes/BookListCell.m; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				433B1103164947CE00181487 /* ChartViewController.h */,
-				433B1104164947CE00181487 /* ChartViewController.m */,
+				433B1104164947CE00181487 /* ChartViewController.mm */,
 				433B1105164947CE00181487 /* ChartViewController.xib */,
 				7D7C32ED164CEC9500901A14 /* GenTable.cpp */,
 				7D7C32EE164CEC9500901A14 /* GenTable.h */,
@@ -633,7 +633,7 @@
 				439274161643E79900EA98EF /* MainViewController.mm in Sources */,
 				4392741F1643E89500EA98EF /* ViewController.mm in Sources */,
 				439274581646105D00EA98EF /* EduViewController.m in Sources */,
-				433B1106164947CE00181487 /* ChartViewController.m in Sources */,
+				433B1106164947CE00181487 /* ChartViewController.mm in Sources */,
 				7D3B07C01648B78000B75F2B /* IProblemMaker.cpp in Sources */,
 				7D3B07C11648B78000B75F2B /* SimpleProblemMaker.cpp in Sources */,
 				7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */,

@@ -81,5 +81,5 @@ std::string GenTable::run()
     
     oss << "</table>";
     
-    return str;
+    return oss.str();
 }
