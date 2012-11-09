@@ -19,6 +19,7 @@ public:
 	virtual bool exsistWord(std::string word);
 	virtual std::string getRandomWord();
     Word getWordInfo(std::string word);
+bool getRandomSimItems(std::string word, std::string data[], int length);
 };
 
 #endif /* defined(__engQuiz__SQLDictionary__) */

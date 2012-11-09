@@ -9,6 +9,7 @@ void Problem::addItems(string qcontent, int solution)
 {
 	ProblemItem *item;
 	item = new ProblemItem();
+    std::transform(qcontent.begin(), qcontent.end(), qcontent.begin(), tolower);
 	item->qcontent = qcontent;
 	item->solution = solution;
     

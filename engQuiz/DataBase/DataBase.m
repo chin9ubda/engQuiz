@@ -585,7 +585,7 @@
 -(bool)existsWord:(NSString *)word{
     
     sqlite3_stmt *selectStatement;
-    NSString *query = [NSString stringWithFormat:@"SELECT word FROM %@ WHERE word = %@",
+    NSString *query = [NSString stringWithFormat:@"SELECT word FROM %@ WHERE lower(word) = lower('%@')",
                        Dictionary_TableName,word];
     
     const char *selectSql = [query UTF8String];
@@ -635,7 +635,7 @@
     int count = 0;
     
     sqlite3_stmt *selectStatement;
-    NSString *query = [NSString stringWithFormat:@"SELECT word, mean, dtype, wtype, sim, vcheck FROM %@ WHERE lower(word) = lower(%@);",Dictionary_TableName,word];
+    NSString *query = [NSString stringWithFormat:@"SELECT word, mean, dtype, wtype, sim, vcheck FROM %@ WHERE lower(word) = lower('%@');",Dictionary_TableName,word];
     
     const char *selectSql = [query UTF8String];
     
@@ -644,7 +644,7 @@
         
         while (sqlite3_step(selectStatement) == SQLITE_ROW) {
             
-            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
+            [array insertObject: [NSString stringWithUTF8String: (char *)sqlite3_column_text(selectStatement, 0)] atIndex:count];
             count++;
             [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
             count++;
