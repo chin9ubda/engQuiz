@@ -12,7 +12,14 @@
 @interface ExSentence : UIView{
     DataBase *dbMsg;
     IBOutlet UILabel *wordLabel;
-    IBOutlet UILabel *exLabel;
+    IBOutlet UITextView *exTextView;
+    IBOutlet UILabel *meanLabel;
+    
+    NSString *word;
+    NSString *mean;
 }
+
+-(void)setWord:(NSString *)_word:(NSString *)_mean;
+- (IBAction)exitBtn:(id)sender;
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
+#import "ExSentence.h"
 
 @interface VocaViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate, UIActionSheetDelegate, UITabBarDelegate>{
     
@@ -23,6 +24,8 @@
 
     int cellCount;
     IBOutlet UITabBar *tabbalContoller;
+    
+    ExSentence *eSentence;
 }
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)searchBtnEvent:(id)sender;

@@ -61,13 +61,19 @@
 		439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1F163BC7430071551C /* SentenceViewController.mm */; };
 		43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E25BBE164CEA2100844D78 /* ExSentence.m */; };
 		43E25BC1164CEA4000844D78 /* exSentence.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E25BC0164CEA4000844D78 /* exSentence.xib */; };
-		7D2B8D57164D2E820017C3F0 /* KnownWordHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D54164D2E820017C3F0 /* KnownWordHandler.cpp */; };
-		7D2B8D58164D2E820017C3F0 /* SuffixWordHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D55164D2E820017C3F0 /* SuffixWordHandler.cpp */; };
-		7D2B8D59164D2E820017C3F0 /* WordSuffixTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D56164D2E820017C3F0 /* WordSuffixTree.cpp */; };
-		7D2B8D67164D2E9B0017C3F0 /* BrownCorpusReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D64164D2E9B0017C3F0 /* BrownCorpusReader.cpp */; };
-		7D2B8D68164D2E9B0017C3F0 /* BrownCorpusReaderPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D65164D2E9B0017C3F0 /* BrownCorpusReaderPrivate.cpp */; };
-		7D2B8D6B164D2EA80017C3F0 /* cwrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D69164D2EA80017C3F0 /* cwrap.cpp */; };
-		7D2B8D6C164D2EA80017C3F0 /* cwrap.ih in Resources */ = {isa = PBXBuildFile; fileRef = 7D2B8D6A164D2EA80017C3F0 /* cwrap.ih */; };
+		7D2B8D95164D3B6F0017C3F0 /* BrownCorpusReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D89164D3B6F0017C3F0 /* BrownCorpusReader.cpp */; };
+		7D2B8D96164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8A164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp */; };
+		7D2B8D97164D3B6F0017C3F0 /* cwrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8B164D3B6F0017C3F0 /* cwrap.cpp */; };
+		7D2B8D98164D3B6F0017C3F0 /* HMMTagger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8C164D3B6F0017C3F0 /* HMMTagger.cpp */; };
+		7D2B8D99164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8D164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp */; };
+		7D2B8D9A164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8E164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp */; };
+		7D2B8D9B164D3B6F0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8F164D3B6F0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp */; };
+		7D2B8D9C164D3B6F0017C3F0 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D90164D3B6F0017C3F0 /* Model.cpp */; };
+		7D2B8D9D164D3B6F0017C3F0 /* ModelPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D91164D3B6F0017C3F0 /* ModelPrivate.cpp */; };
+		7D2B8D9E164D3B6F0017C3F0 /* KnownWordHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D92164D3B6F0017C3F0 /* KnownWordHandler.cpp */; };
+		7D2B8D9F164D3B6F0017C3F0 /* SuffixWordHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D93164D3B6F0017C3F0 /* SuffixWordHandler.cpp */; };
+		7D2B8DA0164D3B6F0017C3F0 /* WordSuffixTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D94164D3B6F0017C3F0 /* WordSuffixTree.cpp */; };
+		7D2B8DB6164D3E940017C3F0 /* cwrap.ih in Resources */ = {isa = PBXBuildFile; fileRef = 7D2B8DB1164D3E940017C3F0 /* cwrap.ih */; };
 		7D3B07C01648B78000B75F2B /* IProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BA1648B78000B75F2B /* IProblemMaker.cpp */; };
 		7D3B07C11648B78000B75F2B /* SimpleProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BC1648B78000B75F2B /* SimpleProblemMaker.cpp */; };
 		7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BE1648B78000B75F2B /* TextDictionary.cpp */; };
@@ -191,24 +197,6 @@
 		43E25BBD164CEA2100844D78 /* ExSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExSentence.h; path = Classes/ExSentence.h; sourceTree = "<group>"; };
 		43E25BBE164CEA2100844D78 /* ExSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExSentence.m; path = Classes/ExSentence.m; sourceTree = "<group>"; };
 		43E25BC0164CEA4000844D78 /* exSentence.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = exSentence.xib; path = Classes/exSentence.xib; sourceTree = "<group>"; };
-		7D2B8D54164D2E820017C3F0 /* KnownWordHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KnownWordHandler.cpp; sourceTree = "<group>"; };
-		7D2B8D55164D2E820017C3F0 /* SuffixWordHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SuffixWordHandler.cpp; sourceTree = "<group>"; };
-		7D2B8D56164D2E820017C3F0 /* WordSuffixTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WordSuffixTree.cpp; sourceTree = "<group>"; };
-		7D2B8D5A164D2E8B0017C3F0 /* HMMTagger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HMMTagger.cpp; sourceTree = "<group>"; };
-		7D2B8D5B164D2E8B0017C3F0 /* HMMTaggerPrivate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HMMTaggerPrivate.cpp; sourceTree = "<group>"; };
-		7D2B8D5C164D2E8B0017C3F0 /* HMMTaggerPrivate.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HMMTaggerPrivate.hh; sourceTree = "<group>"; };
-		7D2B8D5D164D2E8B0017C3F0 /* LinearInterpolationSmoothing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LinearInterpolationSmoothing.cpp; sourceTree = "<group>"; };
-		7D2B8D5E164D2E8B0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LinearInterpolationSmoothingPrivate.cpp; sourceTree = "<group>"; };
-		7D2B8D5F164D2E8B0017C3F0 /* LinearInterpolationSmoothingPrivate.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinearInterpolationSmoothingPrivate.hh; sourceTree = "<group>"; };
-		7D2B8D60164D2E8B0017C3F0 /* Model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
-		7D2B8D61164D2E8B0017C3F0 /* ModelPrivate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ModelPrivate.cpp; sourceTree = "<group>"; };
-		7D2B8D62164D2E8B0017C3F0 /* ModelPrivate.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ModelPrivate.hh; sourceTree = "<group>"; };
-		7D2B8D63164D2E8B0017C3F0 /* TagMatrixEntry.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TagMatrixEntry.hh; sourceTree = "<group>"; };
-		7D2B8D64164D2E9B0017C3F0 /* BrownCorpusReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrownCorpusReader.cpp; sourceTree = "<group>"; };
-		7D2B8D65164D2E9B0017C3F0 /* BrownCorpusReaderPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrownCorpusReaderPrivate.cpp; sourceTree = "<group>"; };
-		7D2B8D66164D2E9B0017C3F0 /* BrownCorpusReaderPrivate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BrownCorpusReaderPrivate.hh; sourceTree = "<group>"; };
-		7D2B8D69164D2EA80017C3F0 /* cwrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cwrap.cpp; sourceTree = "<group>"; };
-		7D2B8D6A164D2EA80017C3F0 /* cwrap.ih */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cwrap.ih; sourceTree = "<group>"; };
 		7D2B8D6E164D31320017C3F0 /* config.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hh; sourceTree = "<group>"; };
 		7D2B8D71164D31320017C3F0 /* BrownCorpusReader.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BrownCorpusReader.hh; sourceTree = "<group>"; };
 		7D2B8D72164D31320017C3F0 /* CorpusReader.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CorpusReader.hh; sourceTree = "<group>"; };
@@ -228,6 +216,24 @@
 		7D2B8D83164D31320017C3F0 /* WordSuffixTree.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WordSuffixTree.hh; sourceTree = "<group>"; };
 		7D2B8D85164D31320017C3F0 /* NonCopyable.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NonCopyable.hh; sourceTree = "<group>"; };
 		7D2B8D87164D31320017C3F0 /* PairSecondGtComp.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PairSecondGtComp.hh; sourceTree = "<group>"; };
+		7D2B8D89164D3B6F0017C3F0 /* BrownCorpusReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BrownCorpusReader.cpp; path = citar/BrownCorpusReader.cpp; sourceTree = "<group>"; };
+		7D2B8D8A164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BrownCorpusReaderPrivate.cpp; path = citar/BrownCorpusReaderPrivate.cpp; sourceTree = "<group>"; };
+		7D2B8D8B164D3B6F0017C3F0 /* cwrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cwrap.cpp; path = citar/cwrap.cpp; sourceTree = "<group>"; };
+		7D2B8D8C164D3B6F0017C3F0 /* HMMTagger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HMMTagger.cpp; path = citar/HMMTagger.cpp; sourceTree = "<group>"; };
+		7D2B8D8D164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HMMTaggerPrivate.cpp; path = citar/HMMTaggerPrivate.cpp; sourceTree = "<group>"; };
+		7D2B8D8E164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LinearInterpolationSmoothing.cpp; path = citar/LinearInterpolationSmoothing.cpp; sourceTree = "<group>"; };
+		7D2B8D8F164D3B6F0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LinearInterpolationSmoothingPrivate.cpp; path = citar/LinearInterpolationSmoothingPrivate.cpp; sourceTree = "<group>"; };
+		7D2B8D90164D3B6F0017C3F0 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Model.cpp; path = citar/Model.cpp; sourceTree = "<group>"; };
+		7D2B8D91164D3B6F0017C3F0 /* ModelPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelPrivate.cpp; path = citar/ModelPrivate.cpp; sourceTree = "<group>"; };
+		7D2B8D92164D3B6F0017C3F0 /* KnownWordHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KnownWordHandler.cpp; path = citar/KnownWordHandler.cpp; sourceTree = "<group>"; };
+		7D2B8D93164D3B6F0017C3F0 /* SuffixWordHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SuffixWordHandler.cpp; path = citar/SuffixWordHandler.cpp; sourceTree = "<group>"; };
+		7D2B8D94164D3B6F0017C3F0 /* WordSuffixTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WordSuffixTree.cpp; path = citar/WordSuffixTree.cpp; sourceTree = "<group>"; };
+		7D2B8DB0164D3E940017C3F0 /* BrownCorpusReaderPrivate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BrownCorpusReaderPrivate.hh; path = citar/BrownCorpusReaderPrivate.hh; sourceTree = "<group>"; };
+		7D2B8DB1164D3E940017C3F0 /* cwrap.ih */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cwrap.ih; path = citar/cwrap.ih; sourceTree = "<group>"; };
+		7D2B8DB2164D3E940017C3F0 /* HMMTaggerPrivate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HMMTaggerPrivate.hh; path = citar/HMMTaggerPrivate.hh; sourceTree = "<group>"; };
+		7D2B8DB3164D3E940017C3F0 /* LinearInterpolationSmoothingPrivate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LinearInterpolationSmoothingPrivate.hh; path = citar/LinearInterpolationSmoothingPrivate.hh; sourceTree = "<group>"; };
+		7D2B8DB4164D3E940017C3F0 /* ModelPrivate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ModelPrivate.hh; path = citar/ModelPrivate.hh; sourceTree = "<group>"; };
+		7D2B8DB5164D3E940017C3F0 /* TagMatrixEntry.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TagMatrixEntry.hh; path = citar/TagMatrixEntry.hh; sourceTree = "<group>"; };
 		7D3B07BA1648B78000B75F2B /* IProblemMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IProblemMaker.cpp; sourceTree = "<group>"; };
 		7D3B07BB1648B78000B75F2B /* IProblemMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IProblemMaker.h; sourceTree = "<group>"; };
 		7D3B07BC1648B78000B75F2B /* SimpleProblemMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleProblemMaker.cpp; sourceTree = "<group>"; };
@@ -649,25 +655,25 @@
 		7DCE4B87164D249A00FAC425 /* CitarPOS */ = {
 			isa = PBXGroup;
 			children = (
+				7D2B8DB0164D3E940017C3F0 /* BrownCorpusReaderPrivate.hh */,
+				7D2B8DB1164D3E940017C3F0 /* cwrap.ih */,
+				7D2B8DB2164D3E940017C3F0 /* HMMTaggerPrivate.hh */,
+				7D2B8DB3164D3E940017C3F0 /* LinearInterpolationSmoothingPrivate.hh */,
+				7D2B8DB4164D3E940017C3F0 /* ModelPrivate.hh */,
+				7D2B8DB5164D3E940017C3F0 /* TagMatrixEntry.hh */,
+				7D2B8D89164D3B6F0017C3F0 /* BrownCorpusReader.cpp */,
+				7D2B8D8A164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp */,
+				7D2B8D8B164D3B6F0017C3F0 /* cwrap.cpp */,
+				7D2B8D8C164D3B6F0017C3F0 /* HMMTagger.cpp */,
+				7D2B8D8D164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp */,
+				7D2B8D8E164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp */,
+				7D2B8D8F164D3B6F0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp */,
+				7D2B8D90164D3B6F0017C3F0 /* Model.cpp */,
+				7D2B8D91164D3B6F0017C3F0 /* ModelPrivate.cpp */,
+				7D2B8D92164D3B6F0017C3F0 /* KnownWordHandler.cpp */,
+				7D2B8D93164D3B6F0017C3F0 /* SuffixWordHandler.cpp */,
+				7D2B8D94164D3B6F0017C3F0 /* WordSuffixTree.cpp */,
 				7D2B8D6D164D31320017C3F0 /* citar */,
-				7D2B8D69164D2EA80017C3F0 /* cwrap.cpp */,
-				7D2B8D6A164D2EA80017C3F0 /* cwrap.ih */,
-				7D2B8D64164D2E9B0017C3F0 /* BrownCorpusReader.cpp */,
-				7D2B8D65164D2E9B0017C3F0 /* BrownCorpusReaderPrivate.cpp */,
-				7D2B8D66164D2E9B0017C3F0 /* BrownCorpusReaderPrivate.hh */,
-				7D2B8D5A164D2E8B0017C3F0 /* HMMTagger.cpp */,
-				7D2B8D5B164D2E8B0017C3F0 /* HMMTaggerPrivate.cpp */,
-				7D2B8D5C164D2E8B0017C3F0 /* HMMTaggerPrivate.hh */,
-				7D2B8D5D164D2E8B0017C3F0 /* LinearInterpolationSmoothing.cpp */,
-				7D2B8D5E164D2E8B0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp */,
-				7D2B8D5F164D2E8B0017C3F0 /* LinearInterpolationSmoothingPrivate.hh */,
-				7D2B8D60164D2E8B0017C3F0 /* Model.cpp */,
-				7D2B8D61164D2E8B0017C3F0 /* ModelPrivate.cpp */,
-				7D2B8D62164D2E8B0017C3F0 /* ModelPrivate.hh */,
-				7D2B8D63164D2E8B0017C3F0 /* TagMatrixEntry.hh */,
-				7D2B8D54164D2E820017C3F0 /* KnownWordHandler.cpp */,
-				7D2B8D55164D2E820017C3F0 /* SuffixWordHandler.cpp */,
-				7D2B8D56164D2E820017C3F0 /* WordSuffixTree.cpp */,
 			);
 			name = CitarPOS;
 			sourceTree = "<group>";
@@ -754,7 +760,7 @@
 				4325C535164CC56A0072195F /* SentenceViewController.xib in Resources */,
 				4325C53A164CC59B0072195F /* RepositoryViewController.xib in Resources */,
 				43E25BC1164CEA4000844D78 /* exSentence.xib in Resources */,
-				7D2B8D6C164D2EA80017C3F0 /* cwrap.ih in Resources */,
+				7D2B8DB6164D3E940017C3F0 /* cwrap.ih in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,12 +794,18 @@
 				7D7C32EF164CEC9500901A14 /* GenTable.cpp in Sources */,
 				4325C539164CC59B0072195F /* RepositoryViewController.m in Sources */,
 				43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */,
-				7D2B8D57164D2E820017C3F0 /* KnownWordHandler.cpp in Sources */,
-				7D2B8D58164D2E820017C3F0 /* SuffixWordHandler.cpp in Sources */,
-				7D2B8D59164D2E820017C3F0 /* WordSuffixTree.cpp in Sources */,
-				7D2B8D67164D2E9B0017C3F0 /* BrownCorpusReader.cpp in Sources */,
-				7D2B8D68164D2E9B0017C3F0 /* BrownCorpusReaderPrivate.cpp in Sources */,
-				7D2B8D6B164D2EA80017C3F0 /* cwrap.cpp in Sources */,
+				7D2B8D95164D3B6F0017C3F0 /* BrownCorpusReader.cpp in Sources */,
+				7D2B8D96164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp in Sources */,
+				7D2B8D97164D3B6F0017C3F0 /* cwrap.cpp in Sources */,
+				7D2B8D98164D3B6F0017C3F0 /* HMMTagger.cpp in Sources */,
+				7D2B8D99164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp in Sources */,
+				7D2B8D9A164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp in Sources */,
+				7D2B8D9B164D3B6F0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp in Sources */,
+				7D2B8D9C164D3B6F0017C3F0 /* Model.cpp in Sources */,
+				7D2B8D9D164D3B6F0017C3F0 /* ModelPrivate.cpp in Sources */,
+				7D2B8D9E164D3B6F0017C3F0 /* KnownWordHandler.cpp in Sources */,
+				7D2B8D9F164D3B6F0017C3F0 /* SuffixWordHandler.cpp in Sources */,
+				7D2B8DA0164D3B6F0017C3F0 /* WordSuffixTree.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,6 +890,7 @@
 				CLANG_WARN_EMPTY_BODY = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -906,6 +919,7 @@
 				CLANG_WARN_EMPTY_BODY = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;

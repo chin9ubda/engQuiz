@@ -137,13 +137,25 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     int index = [indexPath row];
     
-    ExSentence *eSentence = [[ExSentence alloc]init];
+    if (eSentence != nil) {
+        [eSentence removeFromSuperview];
+        eSentence = nil;
+    }
+    
+    eSentence = [[ExSentence alloc]init];
     
     NSArray *xibs = [[NSBundle mainBundle] loadNibNamed:@"exSentence" owner:self options:nil];
     eSentence = (ExSentence *)[xibs objectAtIndex:0];
     [eSentence awakeFromNib];
     
-    eSentence.frame = CGRectMake(0, 12, 320, 300);
+    eSentence.frame = CGRectMake(0, 40, 320, 300);
+    
+    if (index == 0) {
+        [eSentence setWord:[vArray objectAtIndex:0]:[vArray objectAtIndex:1]];
+    }else if (index <= vArray.count / 4 - 1){
+        [eSentence setWord:[vArray objectAtIndex:index *4]:[vArray objectAtIndex:index *4 + 1]];
+    }
+    
     
     [self.view addSubview:eSentence];
 
