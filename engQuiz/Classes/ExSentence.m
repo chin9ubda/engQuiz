@@ -37,9 +37,10 @@
     [self getEx];
 }
 
--(void)setWord:(NSString *)_word{
+-(void)setWord:(NSString *)_word:(NSString *)_mean{
     
     word = _word;
+    mean = _mean;
 }
 
 - (IBAction)exitBtn:(id)sender {
@@ -48,6 +49,7 @@
 
 -(void)getEx{    
     wordLabel.text = word;
+    meanLabel.text = mean;
     
     NSString *temp = [dbMsg getAndCheckSentence:word];
     int tempInt;
@@ -56,61 +58,44 @@
             tempInt = [temp rangeOfString:word options:NSCaseInsensitiveSearch].location;
             
             exTextView.text = [temp substringWithRange:(NSRange){[self leftCheck:temp :tempInt] + 1, [self rightCheck:temp :tempInt] - [self leftCheck:temp :tempInt]}];
+            
+            NSLog(@"temp :::: %@",[temp substringWithRange:(NSRange){[self leftCheck:temp :tempInt] + 1, [self rightCheck:temp :tempInt] - [self leftCheck:temp :tempInt]}]);
+            
+            NSLog(@"%d",[self rightCheck:temp :tempInt]);
 
         }
     }
 }
 
 -(int)leftCheck:(NSString *)msg:(int)poz{
-    int result = 0;
+    int result = -1;
     int check = 0;
     for (int i = poz; i > 0; i--) {
-        if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"."]){
+        if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"."]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]){
             check = 1;
             result = i;
             break;
         }
-        
-        if (check == 0) {
-            if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]){
-                check = 1;
-                result = i;
-                break;
-            }
-
-        }
-        if (check == 0) {
-            result = 0;
-        }
     }
-    
     return result;
 }
 
 -(int)rightCheck:(NSString *)msg:(int)poz{
-    int result = 0;
+    int result = msg.length - 1;
     
     int check = 0;
     for (int i = poz; i < msg.length; i++) {
-        if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"."]){
+        if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"."] ||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@""]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"!"]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"?"]){
             check = 1;
             result = i;
             break;
         }
-        
-        if (check == 0) {
-            if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]){
-                check = 1;
-                result = i;
-                break;
-            }
-            
-        }
-        if (check == 0) {
-            result = 0;
-        }
     }
-    
     return result;
 }
 

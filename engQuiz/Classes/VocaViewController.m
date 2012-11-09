@@ -151,9 +151,9 @@
     eSentence.frame = CGRectMake(0, 40, 320, 300);
     
     if (index == 0) {
-        [eSentence setWord:[vArray objectAtIndex:0]];
+        [eSentence setWord:[vArray objectAtIndex:0]:[vArray objectAtIndex:1]];
     }else if (index <= vArray.count / 4 - 1){
-        [eSentence setWord:[vArray objectAtIndex:index *4]];
+        [eSentence setWord:[vArray objectAtIndex:index *4]:[vArray objectAtIndex:index *4 + 1]];
     }
     
     

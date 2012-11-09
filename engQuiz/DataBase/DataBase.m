@@ -600,50 +600,13 @@
 
             if (check == 2) {
                 result = temp;
+                NSLog(@"%@",result);
                 break;
             }else {
                 check = 0;
             }
 
         }
-        
-//            for (int i = 0; i < temp.length - word.length; i++) {
-//                if([[temp substringWithRange:(NSRange){i,word.length}] isEqualToString:word]){
-//
-//                    if ([[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@" "]||
-//                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@""]||
-//                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@"."]){
-//
-////                    if ([[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@" "]||
-////                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@""]||
-////                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@"."]){
-////                    if ([[temp rangeOfString:(NSRange){i - 1, 1} options:NSCaseInsensitiveSearch] isEqualToString:@" "]||
-////                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@""]||
-////                        [[temp substringWithRange:(NSRange){i - 1, 1}] isEqualToString:@"."]){
-////                        check++;
-//                    
-//                        NSLog(@"check1");
-//                        }
-//                    
-//                    if ([[temp substringWithRange:(NSRange){i + word.length, 1}] isEqualToString:@" "]||
-//                        [[temp substringWithRange:(NSRange){i + word.length, 1}] isEqualToString:@""]||
-//                        [[temp substringWithRange:(NSRange){i + word.length, 1}] isEqualToString:@"."]||
-//                        [[temp substringWithRange:(NSRange){i + word.length, 1}] isEqualToString:@"!"]||
-//                        [[temp substringWithRange:(NSRange){i + word.length, 1}] isEqualToString:@"?"]) {
-//                        check++;
-//                        NSLog(@"check2");
-//
-//                    }
-//                    
-//                    if (check == 2) {
-//                        result = temp;
-//                        break;
-//                    }else {
-//                        check = 0;
-//                    }
-//                }
-//            }
-//        }
     }
     
     sqlite3_finalize(selectStatement);
