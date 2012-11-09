@@ -64,6 +64,7 @@
 		7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BE1648B78000B75F2B /* TextDictionary.cpp */; };
 		7D3B07C51649A72300B75F2B /* Tokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07C31649A72300B75F2B /* Tokenizer.cpp */; };
 		7D3B07C81649EA0100B75F2B /* SQLDictionary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07C61649EA0100B75F2B /* SQLDictionary.mm */; };
+		7D7C32EF164CEC9500901A14 /* GenTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D7C32ED164CEC9500901A14 /* GenTable.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +190,8 @@
 		7D3B07C61649EA0100B75F2B /* SQLDictionary.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SQLDictionary.mm; sourceTree = "<group>"; };
 		7D3B07C71649EA0100B75F2B /* SQLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLDictionary.h; sourceTree = "<group>"; };
 		7D3B07C91649F1A000B75F2B /* IDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDictionary.h; sourceTree = "<group>"; };
+		7D7C32ED164CEC9500901A14 /* GenTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenTable.cpp; sourceTree = "<group>"; };
+		7D7C32EE164CEC9500901A14 /* GenTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenTable.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +217,8 @@
 				433B1103164947CE00181487 /* ChartViewController.h */,
 				433B1104164947CE00181487 /* ChartViewController.m */,
 				433B1105164947CE00181487 /* ChartViewController.xib */,
+				7D7C32ED164CEC9500901A14 /* GenTable.cpp */,
+				7D7C32EE164CEC9500901A14 /* GenTable.h */,
 			);
 			name = Chart;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */,
 				7D3B07C51649A72300B75F2B /* Tokenizer.cpp in Sources */,
 				7D3B07C81649EA0100B75F2B /* SQLDictionary.mm in Sources */,
+				7D7C32EF164CEC9500901A14 /* GenTable.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
