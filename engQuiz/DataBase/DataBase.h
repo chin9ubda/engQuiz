@@ -31,7 +31,7 @@
 -(NSString *)getExamSentence:(int)_id;
 
 -(NSMutableArray *)getVocaData:(int)type:(int)check;
--(NSMutableArray *)searchVoca:(NSString *)msg;
+-(NSMutableArray *)searchVoca:(NSString *)msg:(int)type:(int)check;
 
 -(NSMutableArray *)getChapterData:(int)bid;
 -(NSMutableArray *)getThemeData:(int)cid;

@@ -375,14 +375,32 @@
     return array;
 }
 
--(NSMutableArray *)searchVoca:(NSString *)msg{
+-(NSMutableArray *)searchVoca:(NSString *)msg:(int)type:(int)check{
     NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
     int count = 0;
     NSString *query;
     
     sqlite3_stmt *selectStatement;
     
-    query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%'",Dictionary_TableName,msg];
+    
+    
+    if (check == 3) {
+        if (type == 0) {
+            
+            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' ORDER BY word ASC" ,Dictionary_TableName,msg];
+        }else {
+            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' And wtype = %d ORDER BY word ASC",Dictionary_TableName,msg,type];
+        }
+    }else{
+        if (type == 0) {
+            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' And vcheck = %d ORDER BY word ASC",Dictionary_TableName,msg, check];
+        }else {
+            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' And wtype = %d AND vcheck = %d ORDER BY word ASC",Dictionary_TableName,msg,type,check];
+        }
+    }
+    
+    
+//    query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%'",Dictionary_TableName,msg];
     //    query = [NSString stringWithFormat:@"SELECT word, mean, type, class FROM %@ WHERE word LIKE '%%%@%%'",Voca_TableName,msg];
     
     const char *selectSql = [query UTF8String];
