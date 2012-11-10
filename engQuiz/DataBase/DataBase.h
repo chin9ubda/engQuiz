@@ -46,6 +46,8 @@
 
 -(void)deleteRdata:(int)cid;
 
+-(void)deleteInsertSentence:(int)_id;
+
 -(NSString *)getMean:(NSString *)word;
 
 -(NSMutableArray *)getRSentenceData:(int)type;

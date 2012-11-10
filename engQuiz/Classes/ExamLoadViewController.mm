@@ -748,7 +748,39 @@
 }
 
 
+// --------------- TableView 에서 해당 항목 swipe --------------- //
+/* -----------------------------------------------------------
+ 해당 셀의 EditingStyle을 Delete Style로 설정
+ ----------------------------------------------------------- */
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int section = [indexPath section];
+    
+    if (section == pArray.count) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    return nil;
+}
 
+// ------------------- EdittingStyle Event ------------------- //
+/* -----------------------------------------------------------
+ Editing 상태일때 삭제 버튼을 누를경우 해당 메시지를 삭제
+ ----------------------------------------------------------- */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int section = [indexPath section];
+    int index = [indexPath row];
+    
+    if (section == pArray.count) {
+        if (index == 0) {
+            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:0] intValue]];
+        }else{
+            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:index *4] intValue]];
+        }
+        
+        [self setTableInit];
+    }
+}
 
 #pragma mark UIActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -884,9 +916,7 @@
         [scrollView setHidden:NO];
     else
         [scrollView setHidden:YES];
-    
-    NSLog(@"coutn ::%d",gArray.count);
-    
+        
     [bookTable reloadData];
 }
 

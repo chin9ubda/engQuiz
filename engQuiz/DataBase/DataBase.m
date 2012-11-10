@@ -688,6 +688,23 @@
     }
 }
 
+
+
+-(void)deleteInsertSentence:(int)_id{
+    NSString *query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id = %d",GetContentBook_TableName,_id];
+    
+    const char *delSql = [query UTF8String];
+    
+    
+    if (sqlite3_exec(database, delSql, nil,nil,nil) != SQLITE_OK) {
+        
+        NSLog(@"Error");
+    }else{
+        NSLog(@"OK");
+    }
+}
+
+
 -(NSString *)getMean:(NSString *)word{
     NSString *data;
     sqlite3_stmt *selectStatement;

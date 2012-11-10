@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
 
-@interface TextPasteViewController : UIViewController{
+@interface TextPasteViewController : UIViewController<UITextViewDelegate>{
     DataBase *dbMsg;
     IBOutlet UITextView *textView;
 }
