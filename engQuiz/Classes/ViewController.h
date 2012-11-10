@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataBase.h"
 
 @class MBProgressHUD;
 
@@ -24,6 +25,8 @@ namespace tesseract {
     
     Boolean inputCheck;
     int checkNumber;
+    
+    DataBase *dbMsg;
 }
 
 @property (nonatomic, strong) MBProgressHUD *progressHud;

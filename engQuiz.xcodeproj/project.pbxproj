@@ -17,6 +17,8 @@
 		43924CE316426A6C00B05EFE /* BookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43924CE216426A6C00B05EFE /* BookListCell.xib */; };
 		43924D011643BB4100B05EFE /* test11-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43924D001643BB4100B05EFE /* test11-4.jpg */; };
 		43924D481643BE4700B05EFE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 43924D471643BE4700B05EFE /* MBProgressHUD.m */; };
+		4392703C164E329800F38570 /* TextPasteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4392703A164E329800F38570 /* TextPasteViewController.m */; };
+		4392703D164E329800F38570 /* TextPasteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4392703B164E329800F38570 /* TextPasteViewController.xib */; };
 		439273DE1643DD5B00EA98EF /* bobtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 439273D21643DD5B00EA98EF /* bobtn.png */; };
 		439273DF1643DD5B00EA98EF /* bobtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 439273D31643DD5B00EA98EF /* bobtn@2x.png */; };
 		439273E01643DD5B00EA98EF /* danbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 439273D41643DD5B00EA98EF /* danbtn.png */; };
@@ -55,7 +57,7 @@
 		439D2CE6163BB7230071551C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 439D2CE5163BB7230071551C /* libsqlite3.dylib */; };
 		439D2D0F163BBDAB0071551C /* ExViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D0D163BBDAB0071551C /* ExViewController.mm */; };
 		439D2D10163BBDAB0071551C /* ExViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D0E163BBDAB0071551C /* ExViewController.xib */; };
-		439D2D14163BBFF20071551C /* ExamLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D12163BBFF20071551C /* ExamLoadViewController.m */; };
+		439D2D14163BBFF20071551C /* ExamLoadViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D12163BBFF20071551C /* ExamLoadViewController.mm */; };
 		439D2D1B163BC6210071551C /* ThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1A163BC6200071551C /* ThemeCell.m */; };
 		439D2D1D163BC6470071551C /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D1C163BC6470071551C /* ThemeCell.xib */; };
 		439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1F163BC7430071551C /* SentenceViewController.mm */; };
@@ -84,6 +86,9 @@
 		43924D001643BB4100B05EFE /* test11-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "test11-4.jpg"; sourceTree = "<group>"; };
 		43924D461643BE4700B05EFE /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		43924D471643BE4700B05EFE /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		43927039164E329800F38570 /* TextPasteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextPasteViewController.h; path = Classes/TextPasteViewController.h; sourceTree = "<group>"; };
+		4392703A164E329800F38570 /* TextPasteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextPasteViewController.m; path = Classes/TextPasteViewController.m; sourceTree = "<group>"; };
+		4392703B164E329800F38570 /* TextPasteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextPasteViewController.xib; path = Classes/TextPasteViewController.xib; sourceTree = "<group>"; };
 		439273D21643DD5B00EA98EF /* bobtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bobtn.png; path = engQuiz/img/bobtn.png; sourceTree = "<group>"; };
 		439273D31643DD5B00EA98EF /* bobtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bobtn@2x.png"; path = "engQuiz/img/bobtn@2x.png"; sourceTree = "<group>"; };
 		439273D41643DD5B00EA98EF /* danbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = danbtn.png; path = engQuiz/img/danbtn.png; sourceTree = "<group>"; };
@@ -175,7 +180,7 @@
 		439D2D0D163BBDAB0071551C /* ExViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ExViewController.mm; path = Classes/ExViewController.mm; sourceTree = "<group>"; };
 		439D2D0E163BBDAB0071551C /* ExViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExViewController.xib; path = Classes/ExViewController.xib; sourceTree = "<group>"; };
 		439D2D11163BBFF20071551C /* ExamLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExamLoadViewController.h; path = Classes/ExamLoadViewController.h; sourceTree = "<group>"; };
-		439D2D12163BBFF20071551C /* ExamLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExamLoadViewController.m; path = Classes/ExamLoadViewController.m; sourceTree = "<group>"; };
+		439D2D12163BBFF20071551C /* ExamLoadViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ExamLoadViewController.mm; path = Classes/ExamLoadViewController.mm; sourceTree = "<group>"; };
 		439D2D19163BC6200071551C /* ThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeCell.h; path = Classes/ThemeCell.h; sourceTree = "<group>"; };
 		439D2D1A163BC6200071551C /* ThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeCell.m; path = Classes/ThemeCell.m; sourceTree = "<group>"; };
 		439D2D1C163BC6470071551C /* ThemeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeCell.xib; sourceTree = "<group>"; };
@@ -265,6 +270,16 @@
 				43924D471643BE4700B05EFE /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		43927038164E326300F38570 /* TextPaste */ = {
+			isa = PBXGroup;
+			children = (
+				43927039164E329800F38570 /* TextPasteViewController.h */,
+				4392703A164E329800F38570 /* TextPasteViewController.m */,
+				4392703B164E329800F38570 /* TextPasteViewController.xib */,
+			);
+			name = TextPaste;
 			sourceTree = "<group>";
 		};
 		439273EA1643DD6A00EA98EF /* image */ = {
@@ -480,6 +495,7 @@
 		439D2D0B163BBD640071551C /* Ex */ = {
 			isa = PBXGroup;
 			children = (
+				43927038164E326300F38570 /* TextPaste */,
 				439D2D1E163BC7430071551C /* SentenceViewController.h */,
 				439D2D1F163BC7430071551C /* SentenceViewController.mm */,
 				4325C534164CC56A0072195F /* SentenceViewController.xib */,
@@ -487,7 +503,7 @@
 				439D2D0D163BBDAB0071551C /* ExViewController.mm */,
 				439D2D0E163BBDAB0071551C /* ExViewController.xib */,
 				439D2D11163BBFF20071551C /* ExamLoadViewController.h */,
-				439D2D12163BBFF20071551C /* ExamLoadViewController.m */,
+				439D2D12163BBFF20071551C /* ExamLoadViewController.mm */,
 				433B11001649329C00181487 /* ExamLoadViewController.xib */,
 				439D2D19163BC6200071551C /* ThemeCell.h */,
 				439D2D1A163BC6200071551C /* ThemeCell.m */,
@@ -609,6 +625,7 @@
 				4325C535164CC56A0072195F /* SentenceViewController.xib in Resources */,
 				4325C53A164CC59B0072195F /* RepositoryViewController.xib in Resources */,
 				43E25BC1164CEA4000844D78 /* exSentence.xib in Resources */,
+				4392703D164E329800F38570 /* TextPasteViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,7 +640,7 @@
 				439D2CCE163BB5760071551C /* AppDelegate.mm in Sources */,
 				439D2CE2163BB5AE0071551C /* DataBase.m in Sources */,
 				439D2D0F163BBDAB0071551C /* ExViewController.mm in Sources */,
-				439D2D14163BBFF20071551C /* ExamLoadViewController.m in Sources */,
+				439D2D14163BBFF20071551C /* ExamLoadViewController.mm in Sources */,
 				439D2D1B163BC6210071551C /* ThemeCell.m in Sources */,
 				439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */,
 				439AF569163BD7500016DE4E /* VocaViewController.m in Sources */,
@@ -642,6 +659,7 @@
 				7D7C32EF164CEC9500901A14 /* GenTable.cpp in Sources */,
 				4325C539164CC59B0072195F /* RepositoryViewController.m in Sources */,
 				43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */,
+				4392703C164E329800F38570 /* TextPasteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,8 +742,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_EMPTY_BODY = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -737,8 +755,8 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
+				PROVISIONING_PROFILE = "A2A4879D-6174-4A10-A9BD-322B9E377462";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2A4879D-6174-4A10-A9BD-322B9E377462";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -750,8 +768,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_EMPTY_BODY = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -763,8 +781,8 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
+				PROVISIONING_PROFILE = "A2A4879D-6174-4A10-A9BD-322B9E377462";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2A4879D-6174-4A10-A9BD-322B9E377462";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

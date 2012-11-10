@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
 #import "BookListCell.h"
+#import "TextPasteViewController.h"
 
-@interface ExamLoadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>{
+@interface ExamLoadViewController : UIViewController<UIActionSheetDelegate,UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
     
     int tableCellCount;
     int pNumber;
@@ -21,6 +22,7 @@
     NSMutableArray *bArray;
     NSMutableArray *tArray;
     NSMutableArray *cArray;
+    NSMutableArray *gArray;
     
     DataBase *dbMsg;
     
@@ -44,6 +46,9 @@
     UIButton *naviButton[2];
     UILabel *naviLabel[2];
     IBOutlet UIScrollView *naviScroll;
+    
+    UIImagePickerController *imagePickerController;
+    TextPasteViewController *textPasteView;
 }
 
 - (IBAction)publisherSelect:(id)sender;

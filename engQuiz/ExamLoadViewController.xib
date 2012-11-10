@@ -60,7 +60,7 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<int key="IBUIButtonType">1</int>
 								<int key="IBUILineBreakMode">3</int>
-								<string key="IBUINormalTitle">두산 교과서</string>
+								<string key="IBUINormalTitle">전 체</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="355500445">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
@@ -126,7 +126,7 @@
 											<int key="IBUIStyle">1</int>
 											<reference key="IBUINavigationItem" ref="172185606"/>
 										</object>
-										<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="890591710">
+										<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="805220046">
 											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 											<int key="IBUIStyle">1</int>
 											<reference key="IBUINavigationItem" ref="172185606"/>
@@ -458,7 +458,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">addSentence:</string>
-						<reference key="source" ref="890591710"/>
+						<reference key="source" ref="805220046"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">857</int>
@@ -665,7 +665,7 @@
 								<float key="scoringTypeFloat">24</float>
 								<int key="contentType">2</int>
 							</object>
-							<object class="IBNSLayoutConstraint" id="347365469">
+							<object class="IBNSLayoutConstraint" id="130541758">
 								<reference key="firstItem" ref="345076296"/>
 								<int key="firstAttribute">4</int>
 								<int key="relation">0</int>
@@ -978,7 +978,7 @@
 						<reference key="object" ref="172185606"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="192584605"/>
-							<reference ref="890591710"/>
+							<reference ref="805220046"/>
 						</array>
 						<reference key="parent" ref="624979423"/>
 					</object>
@@ -1094,12 +1094,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">855</int>
-						<reference key="object" ref="347365469"/>
+						<reference key="object" ref="130541758"/>
 						<reference key="parent" ref="345076296"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">856</int>
-						<reference key="object" ref="890591710"/>
+						<reference key="object" ref="805220046"/>
 						<reference key="parent" ref="172185606"/>
 					</object>
 				</array>
@@ -1152,7 +1152,7 @@
 					<reference ref="978555777"/>
 					<reference ref="766949147"/>
 					<reference ref="490961094"/>
-					<reference ref="347365469"/>
+					<reference ref="130541758"/>
 					<reference ref="910752816"/>
 					<reference ref="784629381"/>
 					<reference ref="814644757"/>
@@ -1207,8 +1207,10 @@
 						<string key="addSentence:">id</string>
 						<string key="backBtnEvent:">id</string>
 						<string key="classSelect:">id</string>
+						<string key="closeCamer:">id</string>
 						<string key="numberSelect:">id</string>
 						<string key="publisherSelect:">id</string>
+						<string key="tookPicture:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="addSentence:">
@@ -1223,12 +1225,20 @@
 							<string key="name">classSelect:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="closeCamer:">
+							<string key="name">closeCamer:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="numberSelect:">
 							<string key="name">numberSelect:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="publisherSelect:">
 							<string key="name">publisherSelect:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="tookPicture:">
+							<string key="name">tookPicture:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

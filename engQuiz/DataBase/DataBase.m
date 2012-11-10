@@ -20,6 +20,8 @@
 #define Problemitem_TableName @"problemitem"
 #define Contenttray_TableName @"contenttray"
 
+#define GetContentBook_TableName @"getcontentbook"
+
 @implementation DataBase
 + (DataBase*) getInstance{
     static DataBase* _db = nil;
@@ -225,6 +227,36 @@
     return data;
 }
 
+-(NSMutableArray *)getInsertBook{
+    NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
+    int count = 0;
+    
+    sqlite3_stmt *selectStatement;
+    NSString *query = [NSString stringWithFormat:@"SELECT id, content, gdate, filename FROM %@",GetContentBook_TableName];
+    
+    const char *selectSql = [query UTF8String];
+    
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 2) ] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 3) ] atIndex:count];
+            count++;
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return array;
+}
 
 
 -(NSMutableArray *)getExamIds:(int)bId{
@@ -793,7 +825,7 @@
 }
 
 
--(NSString*)getRandomWord{
+-(NSString *)getRandomWord{
     
     sqlite3_stmt *selectStatement;
     NSString *res = @"";
@@ -853,5 +885,29 @@
     return array;
 }
 
+-(void)saveSentence:(NSString *)sentence:(NSString *)gdate:(NSString *)filename{
+    sqlite3_stmt *insertStatement;
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (content,gdate,filename) VALUES('%@','%@','%@')",GetContentBook_TableName,sentence,gdate,filename];
+
+    const char *insertSql = [query UTF8String];
+    
+    //프리페어스테이트먼트를 사용
+    if (sqlite3_prepare_v2(database, insertSql, -1, &insertStatement, NULL) == SQLITE_OK) {
+        
+        sqlite3_bind_text(insertStatement, 2, insertSql,  -1, SQLITE_TRANSIENT);
+        
+        // sql문 실행
+        if (sqlite3_step(insertStatement) != SQLITE_DONE) {
+            NSLog(@"Error");
+            
+        }else {
+            NSLog(@"sentence Save");
+        }
+    }else {
+        NSLog(@"error");
+    }
+    
+    sqlite3_finalize(insertStatement);
+}
 
 @end

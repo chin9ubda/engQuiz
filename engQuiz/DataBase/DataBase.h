@@ -23,6 +23,9 @@
 -(NSMutableArray *)getBookIds:(int)pNum:(int)cNum1:(int)cNum2;
 -(NSString *)getBookName:(int)_id;
 
+-(NSMutableArray *)getInsertBook;
+
+
 -(NSMutableArray *)getExamIds:(int)bId;
 -(NSMutableArray *)getExamTheme:(int)_id;
 -(NSString *)getExamSentence:(int)_id;
@@ -53,5 +56,7 @@
 -(bool)existsWord:(NSString *)word;
 -(NSString *)getRandomWord;
 -(NSMutableArray *)getWordInformation:(NSString*)word;
+
+-(void)saveSentence:(NSString *)sentence:(NSString *)gdate:(NSString *)filename;
 
 @end
