@@ -293,17 +293,50 @@
 //    [self checking:checkNumber :result];
 
 //    SentenceViewController *sentenceView = [[SentenceViewController alloc]init];
-//    
-//    [sentenceView setInit:@"추가지문" :result :0 :0 ];
-//    
-//    [self presentModalViewController:sentenceView animated:YES];
+    
+    
+    
+    NSError *error   = nil;
+    //    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@".+@.+" options:0 error:&error];
+//    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9.-]" options:0 error:&error];
+//    \"c언어\n\"
+    
+    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:]" options:0 error:&error];
+//    [:space:]
+//    [출처] 정규표현식 = [^[:space:]]+|작성자 밍밍
+    
+
+    NSString *resultSentence = @"";
+    for (int i = 0; i < result.length; i++) {
+        NSTextCheckingResult *match = [regexp firstMatchInString:[result substringWithRange:(NSRange){i,1}] options:0 range:NSMakeRange(0, [result substringWithRange:(NSRange){i,1}].length)];
+        if(match.numberOfRanges!=0){
+            resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[result substringWithRange:(NSRange){i,1}]];
+            
+        }else if([[result substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
+                 [[result substringWithRange:(NSRange){i,1}] isEqualToString:@" "]){
+            resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[result substringWithRange:(NSRange){i,1}]];
+        }
+    }
+    
+    NSLog(@"%@",resultSentence);
+    
+    [dbMsg saveSentence:[NSString stringWithFormat:@"%@",resultSentence] :@"000000" :@"filename"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"bookTableReload" object:nil];
+    [self dismissModalViewControllerAnimated:YES];
+    
+    
+    //    [self dismissModalViewControllerAnimated:YES];
+    
+    //    [sentenceView setInit:@"추가지문" :result :0 :0 ];
+
+    
+//    [self presentModalViewController:sentenceView animated:NO];
     
 //    [dbMsg saveSentence:result :@"000000" :@"filename"];
     
-    [dbMsg saveSentence:@"000000" :@"000000" :@"filename"];
+//    [dbMsg saveSentence:[NSString stringWithFormat:@"%@", result] :@"000000" :@"filename"];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"bookTableReload" object:nil];
-    [self dismissModalViewControllerAnimated:YES];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"bookTableReload" object:nil];
 }
 
 - (void)setTesseractImage:(UIImage *)image

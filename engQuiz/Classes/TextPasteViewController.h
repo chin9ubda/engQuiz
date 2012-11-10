@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataBase.h"
 
-@interface TextPasteViewController : UIViewController
+@interface TextPasteViewController : UIViewController{
+    DataBase *dbMsg;
+    IBOutlet UITextView *textView;
+}
 
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)saveBtnEvent:(id)sender;

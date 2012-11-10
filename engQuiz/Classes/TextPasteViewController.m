@@ -19,6 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        dbMsg = [DataBase getInstance];
     }
     return self;
 }
@@ -40,5 +41,30 @@
 }
 
 - (IBAction)saveBtnEvent:(id)sender {
+    NSError *error   = nil;
+//    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@".+@.+" options:0 error:&error];
+    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:]" options:0 error:&error];
+    NSString *temp = textView.text;
+    NSString *resultSentence = @"";
+    for (int i = 0; i < temp.length; i++) {
+        NSTextCheckingResult *match = [regexp firstMatchInString:[temp substringWithRange:(NSRange){i,1}] options:0 range:NSMakeRange(0, [temp substringWithRange:(NSRange){i,1}].length)];
+        if(match.numberOfRanges!=0){
+            resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[temp substringWithRange:(NSRange){i,1}]];
+        
+        }else if([[temp substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
+                 [[temp substringWithRange:(NSRange){i,1}] isEqualToString:@" "]){
+            resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[temp substringWithRange:(NSRange){i,1}]];
+        }
+    }
+    
+    textView.text = resultSentence;
+    
+    [dbMsg saveSentence:[NSString stringWithFormat:@"%@",textView.text] :@"000000" :@"filename"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"bookTableReload" object:nil];
+    [self dismissModalViewControllerAnimated:YES];
+}
+- (void)viewDidUnload {
+    textView = nil;
+    [super viewDidUnload];
 }
 @end

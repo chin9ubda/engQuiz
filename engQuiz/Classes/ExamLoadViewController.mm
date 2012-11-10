@@ -327,7 +327,17 @@
         }else{
             
             if (pNumber == 0) {
-                if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
+                if (section == pArray.count) {
+                    SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
+                    
+                    if (index == 0) {
+                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:1]:0:0];
+                    }else {
+                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:index *4 - 3]:0:0];
+                    }
+                    
+                    [self presentModalViewController:sentenceVeiw animated:YES];
+                }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
                     bookNumber = index + 1;
                     [cArray removeAllObjects];
                     cArray = [dbMsg getChapterData:[[[dbMsg getBookIds:section+1:cNumber:sNumber] objectAtIndex:index]integerValue]];
