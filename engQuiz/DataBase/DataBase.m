@@ -21,6 +21,7 @@
 #define Contenttray_TableName @"contenttray"
 
 #define GetContentBook_TableName @"getcontentbook"
+#define Log_content_TableName @"log_content"
 
 @implementation DataBase
 + (DataBase*) getInstance{
@@ -43,11 +44,11 @@
     if([fileMgr fileExistsAtPath:filePath]){
         NSLog(@"file exist");
         
-        [fileMgr removeItemAtPath:filePath error:&error];
-
-        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
-
-        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
+//        [fileMgr removeItemAtPath:filePath error:&error];
+//
+//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
+//
+//        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
     }else {
         NSLog(@"file not exist");
@@ -989,48 +990,184 @@
     }else{
         NSLog(@"OK");
     }
-    
-    
-    
-//    query = [NSString stringWithFormat:@"SELECT checker FROM %@ WHERE word = '%@'",
-//                       Dictionary_TableName,word];
-//    
-//    selectSql = [query UTF8String];
-//    
-//    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
-//        
-//        if (sqlite3_step(selectStatement) == SQLITE_ROW)
-//        {
-//            NSLog(@"%d", [[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] intValue]);
-//            
-//        }
-//        
-//    }
-//    
-//    sqlite3_finalize(selectStatement);
-//    
-//    sqlite3_stmt *updateStatement;
-//    query = [NSString stringWithFormat:@"REPLACE INTO %@ (word,checker) VALUES(?,?)",Dictionary_TableName];
-//    
-//    const char *updateSql = [query UTF8String];
-//    
-//    //프리페어스테이트먼트를 사용
-//    if (sqlite3_prepare_v2(database, updateSql, -1, &updateStatement, NULL) == SQLITE_OK) {
-//        
-//        //?에 데이터를 바인드
-////        sqlite3_bind_text(updateStatement, 1, [word UTF8String]);
-////        sqlite3_bind_int(updateStatement, 2, checkCount,  -1, SQLITE_TRANSIENT);
-//        
-//        // sql문 실행
-//        if (sqlite3_step(updateStatement) != SQLITE_DONE) {
-//            NSLog(@"Error");
-//            
-//        }
-//    }
-//    
-    
-//    sqlite3_finalize(updateStatement);
 }
 
 
+-(void)logUpdate:(NSString *)date:(NSString *)content:(Boolean)check{
+    sqlite3_stmt *selectStatement;
+    int _id = 0;
+    int trueCount = 0;
+    int falseCount = 0;
+    NSString *query = [NSString stringWithFormat:@"SELECT lcid,truecount,falsecount FROM %@ WHERE lid = '%@' And log_text ='%@'", Log_content_TableName,date,content];
+    
+    const char *selectSql = [query UTF8String];
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        if (sqlite3_step(selectStatement) == SQLITE_ROW)
+        {
+            _id =[[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] intValue];
+            trueCount =[[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 1)] intValue];
+            falseCount =[[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 2)] intValue];
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    
+    if (_id == 0) {
+        if (check) {
+            trueCount++;
+        }else {
+            falseCount++;
+        }
+        sqlite3_stmt *insertStatement;
+        query = [NSString stringWithFormat:@"INSERT INTO %@ (lid,log_text,truecount,falsecount) VALUES('%@','%@',%d,%d)",Log_content_TableName,date,content,trueCount,falseCount];
+        
+        const char *insertSql = [query UTF8String];
+        
+        //프리페어스테이트먼트를 사용
+        if (sqlite3_prepare_v2(database, insertSql, -1, &insertStatement, NULL) == SQLITE_OK) {
+            
+            sqlite3_bind_text(insertStatement, 2, insertSql,  -1, SQLITE_TRANSIENT);
+            
+            // sql문 실행
+            if (sqlite3_step(insertStatement) != SQLITE_DONE) {
+                NSLog(@"Error");
+                
+            }else {
+                NSLog(@"sentence Save");
+            }
+        }else {
+            NSLog(@"error");
+        }
+        
+        sqlite3_finalize(insertStatement);
+
+    }else {
+        if (check) {
+            trueCount++;
+        }else {
+            falseCount++;
+        }
+        query = [NSString stringWithFormat:@"UPDATE %@ SET truecount = %d, falsecount = %d  WHERE lcid = %d",Log_content_TableName,trueCount,falseCount,_id];
+        
+        const char *updateSql = [query UTF8String];
+        
+        if (sqlite3_exec(database, updateSql, nil,nil,nil) != SQLITE_OK) {
+            NSLog(@"Error");
+        }else{
+            NSLog(@"OK");
+        }
+    }
+}
+
+
+-(NSMutableArray *)getLogData:(int)type:(int)yy:(int)mm:(int)dd{
+    NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
+    int count = 0;
+    NSString *query = @"";
+    int maxCount = 0;
+    
+    sqlite3_stmt *selectStatement;
+    
+    if (type == 0) {
+        query = [NSString stringWithFormat:@"SELECT lcid, lid, truecount, falsecount FROM %@ WHERE log_text = 'problem' ORDER BY log_text",Log_content_TableName];
+
+        maxCount = 7 * 4;
+        
+        const char *selectSql = [query UTF8String];
+        
+        
+        if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+            
+            while (sqlite3_step(selectStatement) == SQLITE_ROW && count < maxCount) {
+                
+                [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
+                count++;
+                [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+                count++;
+                [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 2) ] atIndex:count];
+                count++;
+                [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 3)] atIndex:count];
+                count++;
+                
+            }
+            
+        }
+        
+    }else if (type == 1) {
+        
+        int trueCount = 0;
+        int falseCount = 0;
+        
+        int check = 0;
+        int y = yy;
+        int m = mm;
+        
+        for (int i = 0; i < 12; i++) {
+        
+            NSString *date = [NSString stringWithFormat:@"%d%d",y,m];
+            
+            query = [NSString stringWithFormat:@"SELECT truecount, falsecount FROM %@ WHERE log_text = 'problem' And lid LIKE '%@%%' ORDER BY log_text",Log_content_TableName,date];
+            
+            
+            const char *selectSql = [query UTF8String];
+            
+            
+            if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+
+                while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+                    trueCount = trueCount + [[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] intValue];
+                    falseCount = falseCount + [[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 1)] intValue];
+
+                    check = 1;
+                }
+                
+            }
+            
+            if (check == 1) {
+                check = 0;
+                [array insertObject:date atIndex:count];
+                count++;
+                [array insertObject:[NSNumber numberWithInt:trueCount] atIndex:count];
+                count++;
+                [array insertObject:[NSNumber numberWithInt:falseCount] atIndex:count];
+                count++;
+                
+                m--;
+                if (m < 1) {
+                    m = 12;
+                    y = y - 1;
+                }
+            }
+        }
+
+    }
+    
+//    const char *selectSql = [query UTF8String];
+//    
+//    
+//    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+//        
+//        while (sqlite3_step(selectStatement) == SQLITE_ROW && count < maxCount) {
+//            
+//            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
+//            count++;
+//            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+//            count++;
+//            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 2) ] atIndex:count];
+//            count++;
+//            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 3)] atIndex:count];
+//            count++;
+//            
+//        }
+//        
+//    }
+//    
+    sqlite3_finalize(selectStatement);
+    
+    return array;
+}
 @end

@@ -63,4 +63,8 @@
 
 -(void)vocaXUpdate:(NSString *)word:(Boolean)check;
 
+
+-(void)logUpdate:(NSString *)date:(NSString *)content:(Boolean)check;
+
+-(NSMutableArray *)getLogData:(int)type:(int)yy:(int)mm:(int)dd;
 @end

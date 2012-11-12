@@ -33,6 +33,8 @@
     
     BOOL navi;
     
+    BOOL checkState;
+    
     
     IBOutlet UILabel *questionLabel;
     IBOutlet UILabel *answerLabel01;
