@@ -126,25 +126,47 @@
         vocaCell = [array objectAtIndex:0];
 
     }
-
-    if (index == 0) {
-        vocaCell.wordLabel.text = [vArray[section] objectAtIndex:0];
-        vocaCell.meanLabel.text = [vArray[section] objectAtIndex:1];
-        if ([[vArray[section] objectAtIndex:2]integerValue] == 1)
-            vocaCell.classLabel.text = @"중";
-        else if([[vArray[section] objectAtIndex:2]integerValue] == 2)
-            vocaCell.classLabel.text = @"고";
-        else
-            vocaCell.classLabel.text = @"기";
-    }else{
-        vocaCell.wordLabel.text = [vArray[section] objectAtIndex:index * 4];
-        vocaCell.meanLabel.text = [vArray[section] objectAtIndex:index * 4 + 1];
-        if ([[vArray[section] objectAtIndex:index * 4 + 2]integerValue] == 1)
-            vocaCell.classLabel.text = @"중";
-        else if([[vArray[section] objectAtIndex:index * 4 + 2]integerValue] == 2)
-            vocaCell.classLabel.text = @"고";
-        else
-            vocaCell.classLabel.text = @"기";
+    
+    if (check == 2) {
+        if (index == 0) {
+            vocaCell.wordLabel.text = [xArray objectAtIndex:0];
+            vocaCell.meanLabel.text = [xArray objectAtIndex:1];
+            if ([[xArray objectAtIndex:2]integerValue] == 1)
+                vocaCell.classLabel.text = @"중";
+            else if([[xArray objectAtIndex:2]integerValue] == 2)
+                vocaCell.classLabel.text = @"고";
+            else
+                vocaCell.classLabel.text = @"기";
+        }else{
+            vocaCell.wordLabel.text = [xArray objectAtIndex:index * 4];
+            vocaCell.meanLabel.text = [xArray objectAtIndex:index * 4 + 1];
+            if ([[xArray objectAtIndex:index * 4 + 2]integerValue] == 1)
+                vocaCell.classLabel.text = @"중";
+            else if([[xArray objectAtIndex:index * 4 + 2]integerValue] == 2)
+                vocaCell.classLabel.text = @"고";
+            else
+                vocaCell.classLabel.text = @"기";
+        }
+    }else {
+        if (index == 0) {
+            vocaCell.wordLabel.text = [vArray[section] objectAtIndex:0];
+            vocaCell.meanLabel.text = [vArray[section] objectAtIndex:1];
+            if ([[vArray[section] objectAtIndex:2]integerValue] == 1)
+                vocaCell.classLabel.text = @"중";
+            else if([[vArray[section] objectAtIndex:2]integerValue] == 2)
+                vocaCell.classLabel.text = @"고";
+            else
+                vocaCell.classLabel.text = @"기";
+        }else{
+            vocaCell.wordLabel.text = [vArray[section] objectAtIndex:index * 4];
+            vocaCell.meanLabel.text = [vArray[section] objectAtIndex:index * 4 + 1];
+            if ([[vArray[section] objectAtIndex:index * 4 + 2]integerValue] == 1)
+                vocaCell.classLabel.text = @"중";
+            else if([[vArray[section] objectAtIndex:index * 4 + 2]integerValue] == 2)
+                vocaCell.classLabel.text = @"고";
+            else
+                vocaCell.classLabel.text = @"기";
+        }
     }
 
     return vocaCell;
@@ -153,22 +175,30 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
+    if (check == 2) {
+        return 1;
+    }
     return muArray.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     
 //    return [[collation sectionTitles] objectAtIndex:section];
+    if (check == 2) {
+        return nil;
+    }
     return [muArray objectAtIndex:section];
 }
 
 
 
-// ---------------- Section Count Setting ---------------- //
+// ---------------- Row Count Setting ---------------- //
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
+    if (check == 2) {
+        return xArray.count / 4;
+    }
     return vArray[section].count / 4;
 }
 
@@ -206,7 +236,9 @@
 
 }
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    
+    if (check == 2) {
+        return nil;
+    }
     return muArray;
 }
 
@@ -252,7 +284,7 @@
         
         if (buttonIndex == 0) {
             NSLog(@"틀린 단어 위주");
-            [eduView setVocaArray:[dbMsg getVocaData:0:3]];
+            [eduView setVocaArray:[dbMsg searchVoca:@"" :0 :2]];
         }else if(buttonIndex == 1){
             NSLog(@"순서대로");
 //            [eduView setVocaArray:vArray];
@@ -283,7 +315,7 @@
             break;
         case 2:
             type = 0;
-            check = 3;
+            check = 2;
 
             break;
         case 3:
@@ -307,6 +339,11 @@
 - (void)tableReload{
     int count = 0;
     
+    if (check == 2) {
+        xArray = [dbMsg searchVoca:@"" :type :check];
+        NSLog(@"%d",xArray.count / 4);
+    }else {
+    
     [muArray removeAllObjects];
     
     for (int i = 0; i < [[collation sectionIndexTitles] count] - 1; i++) {
@@ -317,6 +354,7 @@
         [muArray insertObject:[[collation sectionIndexTitles] objectAtIndex:i] atIndex:count];
         count++;
         }
+    }
     }
     [vocaTable reloadData];
 

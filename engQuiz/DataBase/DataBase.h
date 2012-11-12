@@ -61,4 +61,6 @@
 
 -(void)saveSentence:(NSString *)sentence:(NSString *)gdate:(NSString *)filename;
 
+-(void)vocaXUpdate:(NSString *)word:(Boolean)check;
+
 @end

@@ -180,15 +180,23 @@
     UIAlertView *alert;
     NSString *msg = [NSString stringWithFormat:@"%@ : %@\n%@ : %@\n%@ : %@\n%@ : %@",answerLabel01.text,[dbMsg getMean:answerLabel01.text],answerLabel02.text,[dbMsg getMean:answerLabel02.text],answerLabel03.text,[dbMsg getMean:answerLabel03.text],answerLabel04.text,[dbMsg getMean:answerLabel04.text]];
     
+    
+    int ox = 0;
+    
     NSString *result;
     
     if ([[pArray objectAtIndex:5] intValue] == c) {
+        ox = 0;
         result = @"정답입니다.";
+        [dbMsg vocaXUpdate:label[c].text :true];
     }else{
+        ox = 1;
         result = @"틀렸습니다.";
+        
+        [dbMsg vocaXUpdate:label[c].text :false];
     }
     
-    if (nowType == 0) {
+    if (nowType == 0 || ox == 1) {
         alert = [[UIAlertView alloc] initWithTitle:result
                                            message:msg
                                           delegate:self

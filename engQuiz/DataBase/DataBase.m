@@ -391,6 +391,12 @@
         }else {
             query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' And wtype = %d ORDER BY word ASC",Dictionary_TableName,msg,type];
         }
+    }else if (check == 2){
+//        if (type == 0) {
+            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' AND checker > 0 ORDER BY checker DESC",Dictionary_TableName,msg];
+//        }else {
+//            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' And wtype = %d AND checker >= '1' ORDER BY word ASC",Dictionary_TableName,msg,type];
+//        }
     }else{
         if (type == 0) {
             query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' And vcheck = %d ORDER BY word ASC",Dictionary_TableName,msg, check];
@@ -944,5 +950,87 @@
     
     sqlite3_finalize(insertStatement);
 }
+
+
+-(void)vocaXUpdate:(NSString *)word:(Boolean)check{
+    
+    
+    sqlite3_stmt *selectStatement;
+    int checkCount = 0;
+    NSString *query = [NSString stringWithFormat:@"SELECT checker FROM %@ WHERE word = '%@'",
+                       Dictionary_TableName,word];
+    
+    const char *selectSql = [query UTF8String];
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        if (sqlite3_step(selectStatement) == SQLITE_ROW)
+        {
+            checkCount =[[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] intValue];
+            if (check) {
+                checkCount = checkCount - 2;
+            }else{
+                checkCount = checkCount + 3;
+            }
+
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+
+    query = [NSString stringWithFormat:@"UPDATE %@ SET checker = %d  WHERE word = '%@'",Dictionary_TableName,checkCount,word];
+    
+    const char *updateSql = [query UTF8String];
+    
+    if (sqlite3_exec(database, updateSql, nil,nil,nil) != SQLITE_OK) {
+        NSLog(@"Error");
+    }else{
+        NSLog(@"OK");
+    }
+    
+    
+    
+//    query = [NSString stringWithFormat:@"SELECT checker FROM %@ WHERE word = '%@'",
+//                       Dictionary_TableName,word];
+//    
+//    selectSql = [query UTF8String];
+//    
+//    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+//        
+//        if (sqlite3_step(selectStatement) == SQLITE_ROW)
+//        {
+//            NSLog(@"%d", [[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] intValue]);
+//            
+//        }
+//        
+//    }
+//    
+//    sqlite3_finalize(selectStatement);
+//    
+//    sqlite3_stmt *updateStatement;
+//    query = [NSString stringWithFormat:@"REPLACE INTO %@ (word,checker) VALUES(?,?)",Dictionary_TableName];
+//    
+//    const char *updateSql = [query UTF8String];
+//    
+//    //프리페어스테이트먼트를 사용
+//    if (sqlite3_prepare_v2(database, updateSql, -1, &updateStatement, NULL) == SQLITE_OK) {
+//        
+//        //?에 데이터를 바인드
+////        sqlite3_bind_text(updateStatement, 1, [word UTF8String]);
+////        sqlite3_bind_int(updateStatement, 2, checkCount,  -1, SQLITE_TRANSIENT);
+//        
+//        // sql문 실행
+//        if (sqlite3_step(updateStatement) != SQLITE_DONE) {
+//            NSLog(@"Error");
+//            
+//        }
+//    }
+//    
+    
+//    sqlite3_finalize(updateStatement);
+}
+
 
 @end

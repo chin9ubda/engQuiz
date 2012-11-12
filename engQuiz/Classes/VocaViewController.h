@@ -21,6 +21,8 @@
     
     NSMutableArray *muArray;
     
+    NSMutableArray *xArray;
+    
     IBOutlet UITextField *searchMsg;
     UITapGestureRecognizer *tap;
 
