@@ -27,7 +27,6 @@
         month = [[dateFormatter stringFromDate:[NSDate date]] intValue];
         [dateFormatter setDateFormat:@"dd"];
         day = [[dateFormatter stringFromDate:[NSDate date]] intValue];
-
         // Custom initialization
     }
     return self;
@@ -50,11 +49,24 @@
     if (cArray.count != 0 ) {
         for (int i = 0;  i < cArray.count / 4; i++) {
             if (i == 0) {
-                std::string cppString = [[cArray objectAtIndex:1] UTF8String];
+//                std::string cppString = [[cArray objectAtIndex:1] UTF8String];
+                
+                NSString *temp = [cArray objectAtIndex:1];
+                temp = [NSString stringWithFormat:@"%@.%@.%@",[temp substringWithRange:(NSRange){0,4}],[temp substringWithRange:(NSRange){4,2}],[temp substringWithRange:(NSRange){6,2}]];
+
+                 std::string cppString = [temp UTF8String];
+                
                 table.datas.push_back(GenTableData(cppString,[[cArray objectAtIndex:2] intValue], [[cArray objectAtIndex:3] intValue]));
                 
             }else {
-                std::string cppString = [[cArray objectAtIndex:i * 4 + 1] UTF8String];
+//                std::string cppString = [[cArray objectAtIndex:i * 4 + 1] UTF8String];
+                
+                NSString *temp = [cArray objectAtIndex:i * 4 + 1];
+                temp = [NSString stringWithFormat:@"%@.%@.%@",[temp substringWithRange:(NSRange){0,4}],[temp substringWithRange:(NSRange){4,2}],[temp substringWithRange:(NSRange){6,2}]];
+                
+                std::string cppString = [temp UTF8String];
+
+                
                 table.datas.push_back(GenTableData(cppString,[[cArray objectAtIndex:i * 4 + 2] intValue], [[cArray objectAtIndex:i * 4 + 3] intValue]));
             }
             // 1 5
@@ -76,7 +88,14 @@
     if (cArray.count != 0 ) {
         for (int i = 0;  i < cArray.count / 3; i++) {
             
-            std::string cppString = [[cArray objectAtIndex:i * 3] UTF8String];
+//            std::string cppString = [[cArray objectAtIndex:i * 3] UTF8String];
+            
+            NSString *temp = [cArray objectAtIndex:i * 3];
+            temp = [NSString stringWithFormat:@"%@.%@",[temp substringWithRange:(NSRange){0,4}],[temp substringWithRange:(NSRange){4,2}]];
+            
+            std::string cppString = [temp UTF8String];
+            
+            
             table.datas.push_back(GenTableData(cppString,[[cArray objectAtIndex:i * 3 + 1] intValue], [[cArray objectAtIndex:i * 3 + 2] intValue]));
         }
     }

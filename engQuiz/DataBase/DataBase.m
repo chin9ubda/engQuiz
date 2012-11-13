@@ -1106,9 +1106,27 @@
         int y = yy;
         int m = mm;
         
+//        NSString *tempMonth = @"";
+//        if (m < 10) {
+//            tempMonth = [NSString stringWithFormat:@"0%d",m];
+//        }else{
+//            tempMonth = [NSString stringWithFormat:@"%d",m];
+//        }
+        
         for (int i = 0; i < 12; i++) {
         
-            NSString *date = [NSString stringWithFormat:@"%d%d",y,m];
+            
+            NSString *tempMonth = @"";
+            if (m < 10) {
+                tempMonth = [NSString stringWithFormat:@"0%d",m];
+            }else{
+                tempMonth = [NSString stringWithFormat:@"%d",m];
+            }
+            
+//            NSString *date = [NSString stringWithFormat:@"%d%d",y,m];
+            
+            NSString *date = [NSString stringWithFormat:@"%d%@",y,tempMonth];
+
             
             query = [NSString stringWithFormat:@"SELECT truecount, falsecount FROM %@ WHERE log_text = 'problem' And lid LIKE '%@%%' ORDER BY log_text",Log_content_TableName,date];
             

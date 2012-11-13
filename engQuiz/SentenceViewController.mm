@@ -190,7 +190,21 @@
     [dateFormatter setDateFormat:@"dd"];
     int day = [[dateFormatter stringFromDate:[NSDate date]] intValue];
     
-    NSString *date =[NSString stringWithFormat:@"%d%d%d",year,month,day];
+    NSString *tempMonth = @"";
+    NSString *tempDay = @"";
+    if (month < 10) {
+        tempMonth = [NSString stringWithFormat:@"0%d",month];
+    }else{
+        tempMonth = [NSString stringWithFormat:@"%d",month];
+    }
+    
+    if (day < 10) {
+        tempDay = [NSString stringWithFormat:@"0%d",day];
+    }else{
+        tempDay = [NSString stringWithFormat:@"%d",day];
+    }
+    
+    NSString *date =[NSString stringWithFormat:@"%d%@%@",year,tempMonth,tempDay];
     
     int ox = 0;
     
