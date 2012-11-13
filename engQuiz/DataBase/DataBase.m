@@ -1073,7 +1073,7 @@
     sqlite3_stmt *selectStatement;
     
     if (type == 0) {
-        query = [NSString stringWithFormat:@"SELECT lcid, lid, truecount, falsecount FROM %@ WHERE log_text = 'problem' ORDER BY log_text",Log_content_TableName];
+        query = [NSString stringWithFormat:@"SELECT lcid, lid, truecount, falsecount FROM %@ WHERE log_text = 'problem' ORDER BY log_text DESC",Log_content_TableName];
 
         maxCount = 7 * 4;
         

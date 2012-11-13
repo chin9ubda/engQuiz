@@ -54,9 +54,10 @@
                 table.datas.push_back(GenTableData(cppString,[[cArray objectAtIndex:2] intValue], [[cArray objectAtIndex:3] intValue]));
                 
             }else {
-                std::string cppString = [[cArray objectAtIndex:i * 4 - 3] UTF8String];
-                table.datas.push_back(GenTableData(cppString,[[cArray objectAtIndex:i * 4 - 2] intValue], [[cArray objectAtIndex:i * 4 - 1] intValue]));
+                std::string cppString = [[cArray objectAtIndex:i * 4 + 1] UTF8String];
+                table.datas.push_back(GenTableData(cppString,[[cArray objectAtIndex:i * 4 + 2] intValue], [[cArray objectAtIndex:i * 4 + 3] intValue]));
             }
+            // 1 5
         }
     }
     
