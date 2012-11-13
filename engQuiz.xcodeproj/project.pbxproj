@@ -38,6 +38,10 @@
 		439274531643EA8400EA98EF /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 439274511643EA8400EA98EF /* libtesseract_all.a */; };
 		439274581646105D00EA98EF /* EduViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439274561646105D00EA98EF /* EduViewController.m */; };
 		439274591646105D00EA98EF /* EduViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439274571646105D00EA98EF /* EduViewController.xib */; };
+		4396967C1651EF4300744631 /* TextFileLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396967A1651EF4300744631 /* TextFileLoadViewController.m */; };
+		4396967D1651EF4300744631 /* TextFileLoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4396967B1651EF4300744631 /* TextFileLoadViewController.xib */; };
+		439696831651FA9300744631 /* test.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 439696821651FA9300744631 /* test.rtf */; };
+		439696861651FB1200744631 /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 439696851651FB1200744631 /* test.txt */; };
 		4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4398BC4916463BA700338CC6 /* engquiz.sqlite */; };
 		439AF569163BD7500016DE4E /* VocaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439AF567163BD7500016DE4E /* VocaViewController.m */; };
 		439AF56A163BD7500016DE4E /* VocaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439AF568163BD7500016DE4E /* VocaViewController.xib */; };
@@ -63,19 +67,6 @@
 		439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1F163BC7430071551C /* SentenceViewController.mm */; };
 		43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E25BBE164CEA2100844D78 /* ExSentence.m */; };
 		43E25BC1164CEA4000844D78 /* exSentence.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E25BC0164CEA4000844D78 /* exSentence.xib */; };
-		7D2B8D95164D3B6F0017C3F0 /* BrownCorpusReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D89164D3B6F0017C3F0 /* BrownCorpusReader.cpp */; };
-		7D2B8D96164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8A164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp */; };
-		7D2B8D97164D3B6F0017C3F0 /* cwrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8B164D3B6F0017C3F0 /* cwrap.cpp */; };
-		7D2B8D98164D3B6F0017C3F0 /* HMMTagger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8C164D3B6F0017C3F0 /* HMMTagger.cpp */; };
-		7D2B8D99164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8D164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp */; };
-		7D2B8D9A164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8E164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp */; };
-		7D2B8D9B164D3B6F0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8F164D3B6F0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp */; };
-		7D2B8D9C164D3B6F0017C3F0 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D90164D3B6F0017C3F0 /* Model.cpp */; };
-		7D2B8D9D164D3B6F0017C3F0 /* ModelPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D91164D3B6F0017C3F0 /* ModelPrivate.cpp */; };
-		7D2B8D9E164D3B6F0017C3F0 /* KnownWordHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D92164D3B6F0017C3F0 /* KnownWordHandler.cpp */; };
-		7D2B8D9F164D3B6F0017C3F0 /* SuffixWordHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D93164D3B6F0017C3F0 /* SuffixWordHandler.cpp */; };
-		7D2B8DA0164D3B6F0017C3F0 /* WordSuffixTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D94164D3B6F0017C3F0 /* WordSuffixTree.cpp */; };
-		7D2B8DB6164D3E940017C3F0 /* cwrap.ih in Resources */ = {isa = PBXBuildFile; fileRef = 7D2B8DB1164D3E940017C3F0 /* cwrap.ih */; };
 		7D3B07C01648B78000B75F2B /* IProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BA1648B78000B75F2B /* IProblemMaker.cpp */; };
 		7D3B07C11648B78000B75F2B /* SimpleProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BC1648B78000B75F2B /* SimpleProblemMaker.cpp */; };
 		7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BE1648B78000B75F2B /* TextDictionary.cpp */; };
@@ -164,6 +155,11 @@
 		439274551646105D00EA98EF /* EduViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EduViewController.h; path = Classes/EduViewController.h; sourceTree = "<group>"; };
 		439274561646105D00EA98EF /* EduViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EduViewController.m; path = Classes/EduViewController.m; sourceTree = "<group>"; };
 		439274571646105D00EA98EF /* EduViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EduViewController.xib; path = Classes/EduViewController.xib; sourceTree = "<group>"; };
+		439696791651EF4300744631 /* TextFileLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFileLoadViewController.h; path = Classes/TextFileLoadViewController.h; sourceTree = "<group>"; };
+		4396967A1651EF4300744631 /* TextFileLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFileLoadViewController.m; path = Classes/TextFileLoadViewController.m; sourceTree = "<group>"; };
+		4396967B1651EF4300744631 /* TextFileLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFileLoadViewController.xib; path = Classes/TextFileLoadViewController.xib; sourceTree = "<group>"; };
+		439696821651FA9300744631 /* test.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = test.rtf; sourceTree = "<group>"; };
+		439696851651FB1200744631 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		4398BC4916463BA700338CC6 /* engquiz.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = engquiz.sqlite; sourceTree = "<group>"; };
 		439AF566163BD7500016DE4E /* VocaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VocaViewController.h; path = Classes/VocaViewController.h; sourceTree = "<group>"; };
 		439AF567163BD7500016DE4E /* VocaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VocaViewController.m; path = Classes/VocaViewController.m; sourceTree = "<group>"; };
@@ -296,6 +292,8 @@
 		43924CFE1643BB2E00B05EFE /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				439696851651FB1200744631 /* test.txt */,
+				439696821651FA9300744631 /* test.rtf */,
 				43924D001643BB4100B05EFE /* test11-4.jpg */,
 			);
 			name = TestImage;
@@ -444,6 +442,16 @@
 			name = Edu;
 			sourceTree = "<group>";
 		};
+		439696781651EF2C00744631 /* TextFileLoad */ = {
+			isa = PBXGroup;
+			children = (
+				439696791651EF4300744631 /* TextFileLoadViewController.h */,
+				4396967A1651EF4300744631 /* TextFileLoadViewController.m */,
+				4396967B1651EF4300744631 /* TextFileLoadViewController.xib */,
+			);
+			name = TextFileLoad;
+			sourceTree = "<group>";
+		};
 		439AF562163BD7070016DE4E /* Voca */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +554,7 @@
 		439D2D0B163BBD640071551C /* Ex */ = {
 			isa = PBXGroup;
 			children = (
+				439696781651EF2C00744631 /* TextFileLoad */,
 				43927038164E326300F38570 /* TextPaste */,
 				439D2D1E163BC7430071551C /* SentenceViewController.h */,
 				439D2D1F163BC7430071551C /* SentenceViewController.mm */,
@@ -777,6 +786,9 @@
 				4325C53A164CC59B0072195F /* RepositoryViewController.xib in Resources */,
 				43E25BC1164CEA4000844D78 /* exSentence.xib in Resources */,
 				4392703D164E329800F38570 /* TextPasteViewController.xib in Resources */,
+				4396967D1651EF4300744631 /* TextFileLoadViewController.xib in Resources */,
+				439696831651FA9300744631 /* test.rtf in Resources */,
+				439696861651FB1200744631 /* test.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +823,7 @@
 				4325C539164CC59B0072195F /* RepositoryViewController.m in Sources */,
 				43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */,
 				4392703C164E329800F38570 /* TextPasteViewController.m in Sources */,
+				4396967C1651EF4300744631 /* TextFileLoadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

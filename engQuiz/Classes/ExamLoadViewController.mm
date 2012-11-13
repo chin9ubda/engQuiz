@@ -13,7 +13,6 @@
 #import "ViewController.h"
 
 
-
 #define BookTableTag 1
 #define ChapterTableTag 2
 #define ThemeTableTag 3
@@ -171,7 +170,7 @@
                                   delegate:self
                                   cancelButtonTitle:@"취소"
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"사진 촬영", @"앨범에서 가져오기",@"텍스트 입력하기", nil];
+                                  otherButtonTitles:@"사진 촬영", @"앨범에서 가져오기",@"직접 입력하기",@"TXT파일 불러오기", nil];
     [actionsheet showInView:self.view];
 }
 
@@ -825,6 +824,16 @@
         textPasteView = [[TextPasteViewController alloc]init];
         
         [self presentModalViewController:textPasteView animated:YES];
+    }else if(buttonIndex == 3){
+        NSLog(@"Txt 파일 불러오기");
+        
+        if (textLoadView != nil) {
+            [textLoadView removeFromParentViewController];
+            textLoadView = nil;
+        }
+        textLoadView = [[TextFileLoadViewController alloc]init];
+        
+        [self presentModalViewController:textLoadView animated:YES];
     }
 }
 

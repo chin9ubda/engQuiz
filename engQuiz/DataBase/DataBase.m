@@ -38,6 +38,9 @@
     
     NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:DataBase_Name];
+
+    NSString *testFilePath = [documentsDirectory stringByAppendingPathComponent:@"test.txt"];
+
     
     NSError *error;
     NSFileManager *fileMgr = [NSFileManager defaultManager];
@@ -57,6 +60,17 @@
         
         [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
+    }
+    
+    if (![fileMgr fileExistsAtPath:testFilePath]) {
+        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
+        
+        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
+    }else{
+        [fileMgr removeItemAtPath:testFilePath error:&error];
+        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
+        
+        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
     }
     
     

@@ -29,6 +29,10 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setTextViewSize:) name:UIKeyboardWillShowNotification object:nil];
     [textView becomeFirstResponder];
     [super viewDidLoad];
+    
+    if (textCheck != 0) {
+        textView.text = text;
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -44,32 +48,16 @@
 
 - (IBAction)saveBtnEvent:(id)sender {
     [self saveEvent];
-//    NSError *error   = nil;
-////    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@".+@.+" options:0 error:&error];
-//    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:]" options:0 error:&error];
-//    NSString *temp = textView.text;
-//    NSString *resultSentence = @"";
-//    for (int i = 0; i < temp.length; i++) {
-//        NSTextCheckingResult *match = [regexp firstMatchInString:[temp substringWithRange:(NSRange){i,1}] options:0 range:NSMakeRange(0, [temp substringWithRange:(NSRange){i,1}].length)];
-//        if(match.numberOfRanges!=0){
-//            resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[temp substringWithRange:(NSRange){i,1}]];
-//        
-//        }else if([[temp substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
-//                 [[temp substringWithRange:(NSRange){i,1}] isEqualToString:@" "]){
-//            resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[temp substringWithRange:(NSRange){i,1}]];
-//        }
-//    }
-//    
-//    textView.text = resultSentence;
-//    
-//    [dbMsg saveSentence:[NSString stringWithFormat:@"%@",textView.text] :@"000000" :@"filename"];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"bookTableReload" object:nil];
-//    [self dismissModalViewControllerAnimated:YES];
 }
+
+- (void)setText:(NSString *)_text{
+    textCheck = 1;
+    text = _text;
+}
+
 
 -(void)saveEvent{
     NSError *error   = nil;
-    //    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@".+@.+" options:0 error:&error];
     NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:]" options:0 error:&error];
     NSString *temp = textView.text;
     NSString *resultSentence = @"";
@@ -86,9 +74,34 @@
     
     textView.text = resultSentence;
     
-    [dbMsg saveSentence:[NSString stringWithFormat:@"%@",textView.text] :@"000000" :@"filename"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy"];
+    int year = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+    [dateFormatter setDateFormat:@"MM"];
+    int month = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+    [dateFormatter setDateFormat:@"dd"];
+    int day = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+    
+    NSString *tempMonth = @"";
+    NSString *tempDay = @"";
+    if (month < 10) {
+        tempMonth = [NSString stringWithFormat:@"0%d",month];
+    }else{
+        tempMonth = [NSString stringWithFormat:@"%d",month];
+    }
+    
+    if (day < 10) {
+        tempDay = [NSString stringWithFormat:@"0%d",day];
+    }else{
+        tempDay = [NSString stringWithFormat:@"%d",day];
+    }
+    
+    NSString *date =[NSString stringWithFormat:@"%d%@%@",year,tempMonth,tempDay];
+    
+    [dbMsg saveSentence:[NSString stringWithFormat:@"%@",textView.text] :date :@"filename"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"bookTableReload" object:nil];
-    [self dismissModalViewControllerAnimated:YES];}
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 /* ----------------------------------------
  Keyboard 높이만큼 TextView 의 사이즈 변경

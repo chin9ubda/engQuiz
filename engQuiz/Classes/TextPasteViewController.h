@@ -12,8 +12,13 @@
 @interface TextPasteViewController : UIViewController<UITextViewDelegate>{
     DataBase *dbMsg;
     IBOutlet UITextView *textView;
+    
+    int textCheck;
+    NSString *text;
 }
 
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)saveBtnEvent:(id)sender;
+
+- (void)setText:(NSString *)_text;
 @end

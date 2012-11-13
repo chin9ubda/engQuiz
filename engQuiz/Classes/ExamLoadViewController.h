@@ -10,6 +10,7 @@
 #import "DataBase.h"
 #import "BookListCell.h"
 #import "TextPasteViewController.h"
+#import "TextFileLoadViewController.h"
 
 @interface ExamLoadViewController : UIViewController<UIActionSheetDelegate,UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
     
@@ -25,6 +26,7 @@
     NSMutableArray *gArray;
     
     DataBase *dbMsg;
+    TextFileLoadViewController *textLoadView;
     
     IBOutlet UIButton *publisherName;
     IBOutlet UIButton *className;
