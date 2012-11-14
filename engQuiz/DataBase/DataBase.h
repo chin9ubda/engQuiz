@@ -42,7 +42,7 @@
 
 -(void)setVocaCheck:(int)did:(int)check;
 
--(NSString *)getAndCheckSentence:(NSString *)word;
+-(NSMutableArray *)getAndCheckSentence:(NSString *)word;
 
 -(void)deleteRdata:(int)cid;
 

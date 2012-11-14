@@ -625,11 +625,14 @@
     
 }
 
--(NSString *)getAndCheckSentence:(NSString *)word{
-    NSString *result = @"단어가 없습니다";
+-(NSMutableArray *)getAndCheckSentence:(NSString *)word{
+    NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
+    
+//    NSString *result = @"단어가 없습니다";
     int check = 0;
     Boolean checkOut = false;
     int index = 0;
+    int count = 0;
     
     sqlite3_stmt *selectStatement;
     NSString *query = [NSString stringWithFormat:@"SELECT text FROM %@ WHERE text LIKE '%%%@%%'",ContentBook_TableName,word];
@@ -644,6 +647,7 @@
             NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
             int tempInt;
             index = 0;
+            check = 0;
             NSString *resultTemp = temp;
             
             while (!checkOut) {
@@ -676,6 +680,7 @@
                         check = 0;
                     }else{
                         index = index + tempInt + 1;
+//                        check = 0;
 //                        NSLog(@"check 2 == %d",index);
                         break;
                     }
@@ -701,9 +706,11 @@
                 
                 NSLog(@"%d",resultTemp.length);
                 resultTemp = [resultTemp substringWithRange:(NSRange){[self leftCheck:resultTemp :index] + 1, [self rightCheck:resultTemp :index] - [self leftCheck:resultTemp :index]}];
-                result = resultTemp;
+//                result = resultTemp;
                 NSLog(@"%@\nindex :: %d",resultTemp,index);
-                break;
+//                break;
+                [array insertObject:resultTemp atIndex:count];
+                count++;
             }else {
                 check = 0;
             }
@@ -713,7 +720,7 @@
     
     sqlite3_finalize(selectStatement);
     
-    return result;
+    return array;
 }
 
 -(int)leftCheck:(NSString *)msg:(int)poz{

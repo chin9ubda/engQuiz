@@ -51,16 +51,20 @@
     wordLabel.text = word;
     meanLabel.text = mean;
     
-    NSString *temp = [dbMsg getAndCheckSentence:word];
+    NSArray *array = [dbMsg getAndCheckSentence:word];
     
-    NSLog(@"%@",temp);
-    if (![temp isEqualToString:@"단어가 없습니다"]) {
+//    NSString *temp = [dbMsg getAndCheckSentence:word];
+    
+//    int x = arc4random() % array.count;
+    
+    
+    if (array.count != 0) {
+        NSString *temp = [array objectAtIndex:arc4random() % array.count];
+
         if ([[temp substringWithRange:(NSRange){0,1}]isEqualToString:@" "]) {
             temp = [temp substringWithRange:(NSRange){1,temp.length-1}];
         }
         exTextView.text = temp;
-        
-        NSLog(@"%@",temp);
     }
 }
 
