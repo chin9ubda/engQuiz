@@ -34,6 +34,7 @@
     UILocalizedIndexedCollation *collation;
     
     int type, check;
+    IBOutlet UITabBarItem *item01;
 }
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)searchBtnEvent:(id)sender;

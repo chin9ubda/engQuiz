@@ -30,9 +30,9 @@
     [textView becomeFirstResponder];
     [super viewDidLoad];
     
-    if (textCheck != 0) {
-        textView.text = text;
-    }
+//    if (textCheck != 0) {
+//        textView.text = text;
+//    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -50,10 +50,10 @@
     [self saveEvent];
 }
 
-- (void)setText:(NSString *)_text{
-    textCheck = 1;
-    text = _text;
-}
+//- (void)setText:(NSString *)_text{
+//    textCheck = 1;
+//    text = _text;
+//}
 
 
 -(void)saveEvent{

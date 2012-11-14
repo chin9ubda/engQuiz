@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad
 {
+    [tabbalContoller setSelectedItem:item01];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -221,12 +222,20 @@
     
     eSentence.frame = CGRectMake(0, 40, 320, 300);
     
-    
-    if (index == 0) {
-        [eSentence setWord:[vArray[section] objectAtIndex:0]:[vArray[section] objectAtIndex:1]];
-    }else{
-        [eSentence setWord:[vArray[section] objectAtIndex:index *4]:[vArray[section] objectAtIndex:index *4 + 1]];
-
+    if (check == 2) {
+        if (index == 0) {
+            [eSentence setWord:[xArray objectAtIndex:0]:[xArray objectAtIndex:1]];
+        }else{
+            [eSentence setWord:[xArray objectAtIndex:index *4]:[xArray objectAtIndex:index *4 + 1]];
+            
+        }
+    }else {
+        if (index == 0) {
+            [eSentence setWord:[vArray[section] objectAtIndex:0]:[vArray[section] objectAtIndex:1]];
+        }else{
+            [eSentence setWord:[vArray[section] objectAtIndex:index *4]:[vArray[section] objectAtIndex:index *4 + 1]];
+            
+        }
     }
     
     [self.view addSubview:eSentence];
@@ -361,6 +370,7 @@
     vocaTable = nil;
     searchMsg = nil;
     tabbalContoller = nil;
+    item01 = nil;
     [super viewDidUnload];
 }
 @end

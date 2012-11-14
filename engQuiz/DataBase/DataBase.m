@@ -628,7 +628,9 @@
 -(NSString *)getAndCheckSentence:(NSString *)word{
     NSString *result = @"단어가 없습니다";
     int check = 0;
-
+    Boolean checkOut = false;
+    int index = 0;
+    
     sqlite3_stmt *selectStatement;
     NSString *query = [NSString stringWithFormat:@"SELECT text FROM %@ WHERE text LIKE '%%%@%%'",ContentBook_TableName,word];
     
@@ -637,34 +639,70 @@
     
     if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
 
-        while (sqlite3_step(selectStatement) == SQLITE_ROW && check == 0) {
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
             
             NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
             int tempInt;
-            if ([temp rangeOfString:word options:NSCaseInsensitiveSearch].location != 0) {
-                tempInt = [temp rangeOfString:word options:NSCaseInsensitiveSearch].location;
-                if ([[temp substringWithRange:(NSRange){tempInt - 1, 1}] isEqualToString:@" "]||
-                    [[temp substringWithRange:(NSRange){tempInt - 1, 1}] isEqualToString:@""]||
-                    [[temp substringWithRange:(NSRange){tempInt - 1, 1}] isEqualToString:@"."]){
-                    check++;
-                    NSLog(@"check1");
-                }
-                
-                if ([[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@" "]||
-                    [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@""]||
-                    [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@"."]||
-                    [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@"!"]||
-                    [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@"?"]) {
-                    check++;
-                    NSLog(@"check2");
+            index = 0;
+            NSString *resultTemp = temp;
+            
+            while (!checkOut) {
+                if ((tempInt = [temp rangeOfString:word options:NSCaseInsensitiveSearch].location) != 0 && [temp rangeOfString:word options:NSCaseInsensitiveSearch].location <= temp.length) {
+                    NSLog(@"check ::: %d",tempInt);
                     
+                    if ([[temp substringWithRange:(NSRange){tempInt - 1, 1}] isEqualToString:@" "]||
+                        [[temp substringWithRange:(NSRange){tempInt - 1, 1}] isEqualToString:@""]||
+                        [[temp substringWithRange:(NSRange){tempInt - 1, 1}] isEqualToString:@"."]){
+                        check++;
+                        NSLog(@"check1");
+                    }
+                    
+                    if ([[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@" "]||
+                        [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@""]||
+                        [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@"."]||
+                        [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@"!"]||
+                        [[temp substringWithRange:(NSRange){tempInt + word.length, 1}] isEqualToString:@"?"]) {
+                        check++;
+                        NSLog(@"check2");
+                        
+                    }
+                    
+                    
+                    if (check != 2) {
+                        index = index + tempInt + 1;
+                        
+                        NSLog(@"check 2 == %d",index);
+                        temp = [temp substringWithRange:(NSRange){tempInt+1, temp.length - (tempInt+1)}];
+                        check = 0;
+                    }else{
+                        index = index + tempInt + 1;
+//                        NSLog(@"check 2 == %d",index);
+                        break;
+                    }
+
+                }else {
+                    checkOut = true;
+                    check = 0;
                 }
                 
+//                if (check != 2) {
+//                    index = index + tempInt + 1;
+//                    temp = [temp substringWithRange:(NSRange){tempInt+1, temp.length - (tempInt+1)}];
+//                    check = 0;
+//                }else{
+//                    index = index + tempInt + 1;
+//                    break;
+//                }
             }
+            
+            checkOut = false;
 
             if (check == 2) {
-                result = temp;
-                NSLog(@"%@",result);
+                
+                NSLog(@"%d",resultTemp.length);
+                resultTemp = [resultTemp substringWithRange:(NSRange){[self leftCheck:resultTemp :index] + 1, [self rightCheck:resultTemp :index] - [self leftCheck:resultTemp :index]}];
+                result = resultTemp;
+                NSLog(@"%@\nindex :: %d",resultTemp,index);
                 break;
             }else {
                 check = 0;
@@ -677,6 +715,42 @@
     
     return result;
 }
+
+-(int)leftCheck:(NSString *)msg:(int)poz{
+    int result = -1;
+    int check = 0;
+    for (int i = poz; i > 0; i--) {
+        if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"."]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@","]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"?"]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"."]){
+            check = 1;
+            result = i;
+            break;
+        }
+    }
+    return result;
+}
+
+-(int)rightCheck:(NSString *)msg:(int)poz{
+    int result = msg.length - 1;
+    
+    int check = 0;
+    for (int i = poz; i < msg.length; i++) {
+        if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"."] ||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@""]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"!"]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"?"]){
+            check = 1;
+            result = i;
+            break;
+        }
+    }
+    return result;
+}
+
 
 -(void)deleteRdata:(int)cid{
     NSString *query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE cid = %d",Contenttray_TableName,cid];
