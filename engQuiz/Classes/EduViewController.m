@@ -83,6 +83,21 @@
             [lastWordBtn setEnabled:NO];
             [nextWordBtn setEnabled:YES];
         }
+        
+        NSArray *array = [dbMsg getAndCheckSentence:[vArray objectAtIndex:0]];
+        
+        if (array.count != 0) {
+            NSString *temp = [array objectAtIndex:arc4random() % array.count];
+            
+            if ([[temp substringWithRange:(NSRange){0,1}]isEqualToString:@" "]) {
+                temp = [temp substringWithRange:(NSRange){1,temp.length-1}];
+            }
+            exLabel.text = temp;
+        }else{
+            exLabel.text = @"";
+        }
+
+        
         wordLabel.text = [vArray objectAtIndex:0];
         meanLabel.text = [vArray objectAtIndex:1];
     }else{
@@ -93,12 +108,28 @@
             [lastWordBtn setEnabled:YES];
             [nextWordBtn setEnabled:YES];
         }
+        
+        NSArray *array = [dbMsg getAndCheckSentence:[vArray objectAtIndex:poz * 4]];
+        
+        if (array.count != 0) {
+            NSString *temp = [array objectAtIndex:arc4random() % array.count];
+            
+            if ([[temp substringWithRange:(NSRange){0,1}]isEqualToString:@" "]) {
+                temp = [temp substringWithRange:(NSRange){1,temp.length-1}];
+            }
+            exLabel.text = temp;
+        }else{
+            exLabel.text = @"";
+        }
+        
         wordLabel.text = [vArray objectAtIndex:poz * 4];
         meanLabel.text = [vArray objectAtIndex:poz * 4 + 1];
     }
     
     [meanBtn setHidden:NO];
 }
+
+
 
 - (void)viewDidUnload {
     wordLabel = nil;
@@ -107,6 +138,7 @@
     nextWordBtn = nil;
     meanBtn = nil;
     vocaCheckBtn = nil;
+    exLabel = nil;
     [super viewDidUnload];
 }
 @end

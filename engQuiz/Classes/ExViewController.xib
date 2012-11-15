@@ -48,7 +48,6 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{0, 44}, {320, 504}}</string>
 								<reference key="NSSuperview" ref="151029912"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -77,7 +76,7 @@
 										<reference key="IBUINavigationBar" ref="354788280"/>
 										<string key="IBUITitle">문제 풀이</string>
 										<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="854354523">
-											<string key="IBUITitle">BACK</string>
+											<string key="IBUITitle">뒤로</string>
 											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 											<int key="IBUIStyle">1</int>
 											<reference key="IBUINavigationItem" ref="813124019"/>

@@ -15,9 +15,13 @@
     IBOutlet UITableView *vocaTable;
     DataBase *dbMsg;
     
-    NSMutableArray *vArray;
+    NSMutableArray *vArray[26];
     NSMutableArray *wArray;
     NSMutableArray *mArray;
+    
+    NSMutableArray *muArray;
+    
+    NSMutableArray *xArray;
     
     IBOutlet UITextField *searchMsg;
     UITapGestureRecognizer *tap;
@@ -26,6 +30,11 @@
     IBOutlet UITabBar *tabbalContoller;
     
     ExSentence *eSentence;
+    
+    UILocalizedIndexedCollation *collation;
+    
+    int type, check;
+    IBOutlet UITabBarItem *item01;
 }
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)searchBtnEvent:(id)sender;

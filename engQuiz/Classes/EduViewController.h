@@ -20,6 +20,7 @@
     IBOutlet UIButton *meanBtn;
     IBOutlet UIButton *vocaCheckBtn;
     
+    IBOutlet UILabel *exLabel;
     DataBase *dbMsg;
 }
 

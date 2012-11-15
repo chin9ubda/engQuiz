@@ -21,6 +21,8 @@
     if (self) {
         // Custom initialization
         dbMsg = [DataBase getInstance];
+        checkState = false;
+        dismissType = YES;
     }
     return self;
 }
@@ -28,7 +30,6 @@
 - (void)viewDidLoad
 {
     //    [self setTexts];
-    
     navi = true;
     
     // 지문 : 학교 : 학년
@@ -82,7 +83,10 @@
     [super viewDidUnload];
 }
 - (IBAction)backEvent:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:dismissType];
+    if (!dismissType) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ocr_dismiss" object:nil];
+    }
 }
 
 
@@ -106,7 +110,10 @@
 
 - (IBAction)saveExam:(id)sender {
     [self saveRepository:1];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:dismissType];
+    if (!dismissType) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ocr_dismiss" object:nil];
+    }
 }
 
 -(void)saveOX{
@@ -180,15 +187,55 @@
     UIAlertView *alert;
     NSString *msg = [NSString stringWithFormat:@"%@ : %@\n%@ : %@\n%@ : %@\n%@ : %@",answerLabel01.text,[dbMsg getMean:answerLabel01.text],answerLabel02.text,[dbMsg getMean:answerLabel02.text],answerLabel03.text,[dbMsg getMean:answerLabel03.text],answerLabel04.text,[dbMsg getMean:answerLabel04.text]];
     
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy"];
+    int year = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+    [dateFormatter setDateFormat:@"MM"];
+    int month = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+    [dateFormatter setDateFormat:@"dd"];
+    int day = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+    
+    NSString *tempMonth = @"";
+    NSString *tempDay = @"";
+    if (month < 10) {
+        tempMonth = [NSString stringWithFormat:@"0%d",month];
+    }else{
+        tempMonth = [NSString stringWithFormat:@"%d",month];
+    }
+    
+    if (day < 10) {
+        tempDay = [NSString stringWithFormat:@"0%d",day];
+    }else{
+        tempDay = [NSString stringWithFormat:@"%d",day];
+    }
+    
+    NSString *date =[NSString stringWithFormat:@"%d%@%@",year,tempMonth,tempDay];
+    
+    int ox = 0;
+    
     NSString *result;
     
     if ([[pArray objectAtIndex:5] intValue] == c) {
+        ox = 0;
         result = @"정답입니다.";
+        [dbMsg vocaXUpdate:label[c].text :true];
+        
+        if (!checkState) {
+            [dbMsg logUpdate:date :@"problem" :true];
+            checkState = true;
+        }
     }else{
+        ox = 1;
         result = @"틀렸습니다.";
+        [dbMsg vocaXUpdate:label[c].text :false];
+        if (!checkState) {
+            [dbMsg logUpdate:date :@"problem" :false];
+            checkState = true;
+        }
     }
     
-    if (nowType == 0) {
+    if (nowType == 0 || ox == 1) {
         alert = [[UIAlertView alloc] initWithTitle:result
                                            message:msg
                                           delegate:self
@@ -225,7 +272,17 @@
 - (void)saveRepository:(int)type{
     
     //    sid = [dbMsg saveRSentence:bName :@"000000" :1];
-    sid = [dbMsg saveRSentence:sentenceTextView.text :@"000000" :type];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy"];
+    int year = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+    [dateFormatter setDateFormat:@"MM"];
+    int month = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+    [dateFormatter setDateFormat:@"dd"];
+    int day = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+    
+    NSString *date =[NSString stringWithFormat:@"%d%d%d",year,month,day];
+
+    sid = [dbMsg saveRSentence:sentenceTextView.text :date :type];
     qid = [dbMsg saveRQuestion:sid :questionLabel.text :1];
     
     int sol[4];
@@ -387,5 +444,9 @@
     if (buttonIndex == 1) {
         [self saveOX];
     }
+}
+
+- (void)setDIsType:(BOOL)type{
+    dismissType = type;
 }
 @end

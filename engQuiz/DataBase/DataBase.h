@@ -23,12 +23,16 @@
 -(NSMutableArray *)getBookIds:(int)pNum:(int)cNum1:(int)cNum2;
 -(NSString *)getBookName:(int)_id;
 
+-(NSMutableArray *)getInsertBook;
+-(NSMutableArray *)getInsertBookGroup;
+
+
 -(NSMutableArray *)getExamIds:(int)bId;
 -(NSMutableArray *)getExamTheme:(int)_id;
 -(NSString *)getExamSentence:(int)_id;
 
 -(NSMutableArray *)getVocaData:(int)type:(int)check;
--(NSMutableArray *)searchVoca:(NSString *)msg;
+-(NSMutableArray *)searchVoca:(NSString *)msg:(int)type:(int)check;
 
 -(NSMutableArray *)getChapterData:(int)bid;
 -(NSMutableArray *)getThemeData:(int)cid;
@@ -39,9 +43,11 @@
 
 -(void)setVocaCheck:(int)did:(int)check;
 
--(NSString *)getAndCheckSentence:(NSString *)word;
+-(NSMutableArray *)getAndCheckSentence:(NSString *)word;
 
 -(void)deleteRdata:(int)cid;
+
+-(void)deleteInsertSentence:(int)_id;
 
 -(NSString *)getMean:(NSString *)word;
 
@@ -54,4 +60,12 @@
 -(NSString *)getRandomWord;
 -(NSMutableArray *)getWordInformation:(NSString*)word;
 
+-(void)saveSentence:(NSString *)sentence:(NSString *)gdate:(NSString *)groupname:(NSString *)theme;
+
+-(void)vocaXUpdate:(NSString *)word:(Boolean)check;
+
+
+-(void)logUpdate:(NSString *)date:(NSString *)content:(Boolean)check;
+
+-(NSMutableArray *)getLogData:(int)type:(int)yy:(int)mm:(int)dd;
 @end

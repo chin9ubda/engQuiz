@@ -117,7 +117,7 @@
     
     ViewController *view = [[ViewController alloc]init];
     
-    [view setimage:image];
+//    [view setimage:image];
     [self presentModalViewController:view animated:YES];
     
 

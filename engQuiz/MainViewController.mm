@@ -71,4 +71,13 @@
     chartView = [[ChartViewController alloc]init];
     [self presentModalViewController:chartView animated:YES];
 }
+
+- (IBAction)settingBtnEvent:(id)sender {
+    if (settingView != nil) {
+        settingView = nil;
+        [settingView removeFromParentViewController];
+    }
+    settingView = [[SettingViewController alloc]init];
+    [self presentModalViewController:settingView animated:YES];
+}
 @end

@@ -394,7 +394,7 @@
 					</object>
 					<object class="IBUILabel" id="919750362">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{5, 18}, {59, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="98006284"/>
@@ -501,7 +501,7 @@
 								<reference key="IBUINavigationBar" ref="419427044"/>
 								<string key="IBUITitle">지문</string>
 								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="684180973">
-									<string key="IBUITitle">BACK</string>
+									<string key="IBUITitle">뒤로</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									<int key="IBUIStyle">1</int>
 									<reference key="IBUINavigationItem" ref="927997404"/>

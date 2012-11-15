@@ -33,6 +33,10 @@
     
     BOOL navi;
     
+    BOOL checkState;
+    
+    BOOL dismissType;
+    
     
     IBOutlet UILabel *questionLabel;
     IBOutlet UILabel *answerLabel01;
@@ -67,4 +71,5 @@
 - (IBAction)answerCheck2:(id)sender;
 - (IBAction)answerCheck3:(id)sender;
 - (IBAction)answerCheck4:(id)sender;
+- (void)setDIsType:(BOOL)type;
 @end

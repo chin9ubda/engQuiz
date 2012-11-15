@@ -9,20 +9,31 @@
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
 #import "BookListCell.h"
+#import "TextPasteViewController.h"
+#import "TextFileLoadViewController.h"
+#import "ImgSelectedOverView.h"
+#import "Camera.h"
 
-@interface ExamLoadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>{
+@interface ExamLoadViewController : UIViewController<UIActionSheetDelegate,UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIGestureRecognizerDelegate>{
     
     int tableCellCount;
     int pNumber;
     int cNumber;
     int sNumber;
     
+    int groupCount;
+    
     NSMutableArray *pArray;
     NSMutableArray *bArray;
     NSMutableArray *tArray;
     NSMutableArray *cArray;
+    NSMutableArray *gArray;
+    NSMutableArray *groupArray;
+    
+    NSMutableArray *imgArray;
     
     DataBase *dbMsg;
+    TextFileLoadViewController *textLoadView;
     
     IBOutlet UIButton *publisherName;
     IBOutlet UIButton *className;
@@ -44,6 +55,18 @@
     UIButton *naviButton[2];
     UILabel *naviLabel[2];
     IBOutlet UIScrollView *naviScroll;
+    
+    UIImagePickerController *imagePickerController;
+    TextPasteViewController *textPasteView;
+    
+    ImgSelectedOverView *selectedOverView;
+    Camera *cameraOverView;
+    
+    Boolean menuState;
+    
+    NSMutableArray *imgViewArray;
+    NSMutableArray *btnArray;
+
 }
 
 - (IBAction)publisherSelect:(id)sender;
