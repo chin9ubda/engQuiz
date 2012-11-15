@@ -11,6 +11,7 @@
 #import "VocaViewController.h"
 #import "RepositoryViewController.h"
 #import "ChartViewController.h"
+#import "SettingViewController.h"
 #import "DataBase.h"
 
 @interface MainViewController : UIViewController{
@@ -19,6 +20,7 @@
     VocaViewController *vocaView;
     RepositoryViewController *repositoryView;
     ChartViewController *chartView;
+    SettingViewController *settingView;
     DataBase *dbMsg;
 }
 
@@ -26,4 +28,5 @@
 - (IBAction)vocaBtnEvent:(id)sender;
 - (IBAction)repositoryBtnEvent:(id)sender;
 - (IBAction)chartBtnEvent:(id)sender;
+- (IBAction)settingBtnEvent:(id)sender;
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "TextFileLoadViewController.h"
+#import "NSStringRegular.h"
+#import "TextCheckViewController.h"
 
 @interface TextFileLoadViewController ()
 
@@ -60,6 +62,7 @@
 }
 
 - (IBAction)backBtnEvent:(id)sender {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ocr_dismiss" object:nil];
     [self dismissModalViewControllerAnimated:YES];
 }
 - (void)viewDidUnload {
@@ -97,16 +100,14 @@
 	
 	// NSData를 화면에 출력할 수 있는 NSString 타입을 변환한다.
 	NSString* sReadString = [[NSString alloc] initWithData:loadData encoding:NSUTF8StringEncoding];
-//	NSLog(@"%@",sReadString);
+    NSStringRegular *regular = [[NSStringRegular alloc]init];
     
+    text = [regular stringChange:sReadString];
+    TextCheckViewController *textCheck = [[TextCheckViewController alloc]init];
     
-    text = sReadString;
+    [textCheck setTextViewMsg:text];
     
-    [[[UIAlertView alloc] initWithTitle:@"확인"
-                                message:[NSString stringWithFormat:@"%@", sReadString]
-                               delegate:self
-                      cancelButtonTitle:nil
-                      otherButtonTitles:@"저장",@"취소", nil] show];
+    [self presentModalViewController:textCheck animated:YES];
 
     
     
@@ -155,61 +156,48 @@
     [self fileRead:[items objectAtIndex:index]];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    switch (buttonIndex) {
-        case 0:
-            [self saveEvent];
-            break;
-        case 1:
-            
-            break;
-        default:
-            break;
-    }
-}
--(void)saveEvent{
-    NSError *error   = nil;
-    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:]" options:0 error:&error];
-    NSString *temp = text;
-    NSString *resultSentence = @"";
-    for (int i = 0; i < temp.length; i++) {
-        NSTextCheckingResult *match = [regexp firstMatchInString:[temp substringWithRange:(NSRange){i,1}] options:0 range:NSMakeRange(0, [temp substringWithRange:(NSRange){i,1}].length)];
-        if(match.numberOfRanges!=0){
-            resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[temp substringWithRange:(NSRange){i,1}]];
-            
-        }else if([[temp substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
-                 [[temp substringWithRange:(NSRange){i,1}] isEqualToString:@" "]){
-            resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[temp substringWithRange:(NSRange){i,1}]];
-        }
-    }
-    
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy"];
-    int year = [[dateFormatter stringFromDate:[NSDate date]] intValue];
-    [dateFormatter setDateFormat:@"MM"];
-    int month = [[dateFormatter stringFromDate:[NSDate date]] intValue];
-    [dateFormatter setDateFormat:@"dd"];
-    int day = [[dateFormatter stringFromDate:[NSDate date]] intValue];
-    
-    NSString *tempMonth = @"";
-    NSString *tempDay = @"";
-    if (month < 10) {
-        tempMonth = [NSString stringWithFormat:@"0%d",month];
-    }else{
-        tempMonth = [NSString stringWithFormat:@"%d",month];
-    }
-    
-    if (day < 10) {
-        tempDay = [NSString stringWithFormat:@"0%d",day];
-    }else{
-        tempDay = [NSString stringWithFormat:@"%d",day];
-    }
-    
-    NSString *date =[NSString stringWithFormat:@"%d%@%@",year,tempMonth,tempDay];
-    
-    [dbMsg saveSentence:[NSString stringWithFormat:@"%@",resultSentence] :date :@"filename"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"bookTableReload" object:nil];
-    [self dismissModalViewControllerAnimated:YES];
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    switch (buttonIndex) {
+//        case 0:
+//            [self saveEvent];
+//            break;
+//        case 1:
+//            
+//            break;
+//        default:
+//            break;
+//    }
+//}
+//-(void)saveEvent{
+////    NSStringRegular *regular = [[NSStringRegular alloc]init];
+//    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy"];
+//    int year = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+//    [dateFormatter setDateFormat:@"MM"];
+//    int month = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+//    [dateFormatter setDateFormat:@"dd"];
+//    int day = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+//    
+//    NSString *tempMonth = @"";
+//    NSString *tempDay = @"";
+//    if (month < 10) {
+//        tempMonth = [NSString stringWithFormat:@"0%d",month];
+//    }else{
+//        tempMonth = [NSString stringWithFormat:@"%d",month];
+//    }
+//    
+//    if (day < 10) {
+//        tempDay = [NSString stringWithFormat:@"0%d",day];
+//    }else{
+//        tempDay = [NSString stringWithFormat:@"%d",day];
+//    }
+//    
+//    NSString *date =[NSString stringWithFormat:@"%d%@%@",year,tempMonth,tempDay];
+//    
+//    [dbMsg saveSentence:[NSString stringWithFormat:@"%@",[regular stringChange:text]] :date :@"filename"];
+////    [dbMsg saveSentence:[NSString stringWithFormat:@"%@",text] :date :@"filename"];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"bookTableReload" object:nil];
+//    [self dismissModalViewControllerAnimated:YES];
+//}
 @end

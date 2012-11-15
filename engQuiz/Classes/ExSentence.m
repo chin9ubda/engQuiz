@@ -37,8 +37,9 @@
     [self getEx];
 }
 
--(void)setWord:(NSString *)_word:(NSString *)_mean{
+-(void)setWord:(NSString *)_word:(NSString *)_mean:(int)_id{
     
+    getId = _id;
     word = _word;
     mean = _mean;
 }
@@ -47,16 +48,15 @@
     [self removeFromSuperview];
 }
 
--(void)getEx{    
+- (IBAction)vocaCheckBtnEvent:(id)sender {
+    [dbMsg setVocaCheck:getId:1];
+}
+
+-(void)getEx{
     wordLabel.text = word;
     meanLabel.text = mean;
     
     NSArray *array = [dbMsg getAndCheckSentence:word];
-    
-//    NSString *temp = [dbMsg getAndCheckSentence:word];
-    
-//    int x = arc4random() % array.count;
-    
     
     if (array.count != 0) {
         NSString *temp = [array objectAtIndex:arc4random() % array.count];

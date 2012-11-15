@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
+#import "NextAddInfoView.h"
+#import "InsertSentence.h"
 
 @interface TextPasteViewController : UIViewController<UITextViewDelegate>{
     DataBase *dbMsg;
     IBOutlet UITextView *textView;
+    
+    NextAddInfoView *nextView;
+    InsertSentence *insertSentence;
 }
 
 - (IBAction)backBtnEvent:(id)sender;

@@ -394,7 +394,7 @@
 					</object>
 					<object class="IBUILabel" id="919750362">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{5, 18}, {59, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="98006284"/>
@@ -501,7 +501,7 @@
 								<reference key="IBUINavigationBar" ref="419427044"/>
 								<string key="IBUITitle">지문</string>
 								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="684180973">
-									<string key="IBUITitle">BACK</string>
+									<string key="IBUITitle">뒤로</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									<int key="IBUIStyle">1</int>
 									<reference key="IBUINavigationItem" ref="927997404"/>
@@ -2782,164 +2782,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">872</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">NSLayoutConstraint</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">SentenceViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="answerCheck1:">id</string>
-						<string key="answerCheck2:">id</string>
-						<string key="answerCheck3:">id</string>
-						<string key="answerCheck4:">id</string>
-						<string key="backEvent:">id</string>
-						<string key="naviEvent:">id</string>
-						<string key="saveExam:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="answerCheck1:">
-							<string key="name">answerCheck1:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="answerCheck2:">
-							<string key="name">answerCheck2:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="answerCheck3:">
-							<string key="name">answerCheck3:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="answerCheck4:">
-							<string key="name">answerCheck4:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="backEvent:">
-							<string key="name">backEvent:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="naviEvent:">
-							<string key="name">naviEvent:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="saveExam:">
-							<string key="name">saveExam:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="answerCheck1Btn">UIButton</string>
-						<string key="answerCheck2Btn">UIButton</string>
-						<string key="answerCheck3Btn">UIButton</string>
-						<string key="answerCheck4Btn">UIButton</string>
-						<string key="answerHiddenBtn1">UIButton</string>
-						<string key="answerHiddenBtn2">UIButton</string>
-						<string key="answerHiddenBtn3">UIButton</string>
-						<string key="answerHiddenBtn4">UIButton</string>
-						<string key="answerLabel01">UILabel</string>
-						<string key="answerLabel02">UILabel</string>
-						<string key="answerLabel03">UILabel</string>
-						<string key="answerLabel04">UILabel</string>
-						<string key="bookName">UILabel</string>
-						<string key="navigationBar">UINavigationBar</string>
-						<string key="pageNumber">UILabel</string>
-						<string key="questionLabel">UILabel</string>
-						<string key="saveBtn">UIBarButtonItem</string>
-						<string key="sentenceTextView">UITextView</string>
-						<string key="sentenceView">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="answerCheck1Btn">
-							<string key="name">answerCheck1Btn</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerCheck2Btn">
-							<string key="name">answerCheck2Btn</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerCheck3Btn">
-							<string key="name">answerCheck3Btn</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerCheck4Btn">
-							<string key="name">answerCheck4Btn</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerHiddenBtn1">
-							<string key="name">answerHiddenBtn1</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerHiddenBtn2">
-							<string key="name">answerHiddenBtn2</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerHiddenBtn3">
-							<string key="name">answerHiddenBtn3</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerHiddenBtn4">
-							<string key="name">answerHiddenBtn4</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerLabel01">
-							<string key="name">answerLabel01</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerLabel02">
-							<string key="name">answerLabel02</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerLabel03">
-							<string key="name">answerLabel03</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="answerLabel04">
-							<string key="name">answerLabel04</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="bookName">
-							<string key="name">bookName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="navigationBar">
-							<string key="name">navigationBar</string>
-							<string key="candidateClassName">UINavigationBar</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="pageNumber">
-							<string key="name">pageNumber</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="questionLabel">
-							<string key="name">questionLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="saveBtn">
-							<string key="name">saveBtn</string>
-							<string key="candidateClassName">UIBarButtonItem</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="sentenceTextView">
-							<string key="name">sentenceTextView</string>
-							<string key="candidateClassName">UITextView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="sentenceView">
-							<string key="name">sentenceView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/SentenceViewController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

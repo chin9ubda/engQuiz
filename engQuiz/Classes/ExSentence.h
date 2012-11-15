@@ -17,9 +17,12 @@
     
     NSString *word;
     NSString *mean;
+    
+    int getId;
 }
 
--(void)setWord:(NSString *)_word:(NSString *)_mean;
+-(void)setWord:(NSString *)_word:(NSString *)_mean:(int)_id;
 - (IBAction)exitBtn:(id)sender;
+- (IBAction)vocaCheckBtnEvent:(id)sender;
 
 @end

@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [tabbalContoller setSelectedItem:item01];
+    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyBoardDown)];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -224,16 +225,16 @@
     
     if (check == 2) {
         if (index == 0) {
-            [eSentence setWord:[xArray objectAtIndex:0]:[xArray objectAtIndex:1]];
+            [eSentence setWord:[xArray objectAtIndex:0]:[xArray objectAtIndex:1]:[[xArray objectAtIndex:3] intValue]];
         }else{
-            [eSentence setWord:[xArray objectAtIndex:index *4]:[xArray objectAtIndex:index *4 + 1]];
+            [eSentence setWord:[xArray objectAtIndex:index *4]:[xArray objectAtIndex:index *4 + 1]:[[xArray objectAtIndex:index * 4 + 3] intValue]];
             
         }
     }else {
         if (index == 0) {
-            [eSentence setWord:[vArray[section] objectAtIndex:0]:[vArray[section] objectAtIndex:1]];
+            [eSentence setWord:[vArray[section] objectAtIndex:0]:[vArray[section] objectAtIndex:1]:[[vArray[section] objectAtIndex:3] intValue]];
         }else{
-            [eSentence setWord:[vArray[section] objectAtIndex:index *4]:[vArray[section] objectAtIndex:index *4 + 1]];
+            [eSentence setWord:[vArray[section] objectAtIndex:index *4]:[vArray[section] objectAtIndex:index *4 + 1]:[[vArray[section] objectAtIndex:index * 4 + 3] intValue]];
             
         }
     }
@@ -342,14 +343,44 @@
     [vocaTable scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
 
+// --------------- TableView 에서 해당 항목 swipe --------------- //
+/* -----------------------------------------------------------
+ 해당 셀의 EditingStyle을 Delete Style로 설정
+ ----------------------------------------------------------- */
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (check == 1) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
+}
+
+// ------------------- EdittingStyle Event ------------------- //
+/* -----------------------------------------------------------
+ Editing 상태일때 삭제 버튼을 누를경우 해당 메시지를 삭제
+ ----------------------------------------------------------- */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int index = [indexPath row];
+    int section = [indexPath section];
+    
+    if (index == 0) {
+        [dbMsg setVocaCheck:[[vArray[section] objectAtIndex:3] intValue] :0];
+    }else {
+        [dbMsg setVocaCheck: [[vArray[section] objectAtIndex:index * 4 + 3] intValue]:0];
+    }
+    
+    [self tableReload];
+}
+
+
 - (void)tableReload{
     int count = 0;
     
     if (check == 2) {
         xArray = [dbMsg searchVoca:@"" :type :check];
-        NSLog(@"%d",xArray.count / 4);
+
     }else {
-    
     [muArray removeAllObjects];
     
     for (int i = 0; i < [[collation sectionIndexTitles] count] - 1; i++) {

@@ -16,6 +16,7 @@
 #import "pix.h"
 
 #import "SentenceViewController.h"
+#import "NSStringRegular.h"
 
 @implementation ViewController
 
@@ -97,11 +98,19 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void)setimage:(UIImage *)image{
-    img = image;
+//-(void)setimage:(UIImage *)image{
+//    img = image;
+//    
+//    inputCheck = true;
+//}
+
+
+-(void)setimage:(NSArray *)_imgArray{
+    imgArray = _imgArray;
     
     inputCheck = true;
 }
+
 
 -(void)setCheckNumber:(int)num{
     checkNumber = num;
@@ -111,16 +120,16 @@
 
 
 - (void)start{
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
-    imageView.frame = self.view.frame;
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.view addSubview:imageView];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
+//    imageView.frame = self.view.frame;
+//    imageView.contentMode = UIViewContentModeScaleAspectFit;
+//    [self.view addSubview:imageView];
     
     self.progressHud = [[MBProgressHUD alloc] initWithView:self.view];
     self.progressHud.labelText = @"Processing OCR";
     
     [self.view addSubview:self.progressHud];
-    [self.progressHud showWhileExecuting:@selector(processOcrAt:) onTarget:self withObject:img animated:YES];
+    [self.progressHud showWhileExecuting:@selector(processOcrAt:) onTarget:self withObject:imgArray animated:YES];
 }
 
 
@@ -270,15 +279,23 @@
 //    }
 //}
 
-- (void)processOcrAt:(UIImage *)image
+- (void)processOcrAt:(NSArray *)_imgArray;
 {
-    [self setTesseractImage:image];
+    NSString *temp = @"";
+    for (int i = 0 ; i < _imgArray.count; i++) {
+        [self setTesseractImage:[_imgArray objectAtIndex:i]];
+        
+        tesseract->Recognize(NULL);
+        char* utf8Text = tesseract->GetUTF8Text();
+
+        temp = [NSString stringWithFormat:@"%@%@",temp,[NSString stringWithUTF8String:utf8Text]];
+    }
     
-    tesseract->Recognize(NULL);
-    char* utf8Text = tesseract->GetUTF8Text();
+
+
     
     [self performSelectorOnMainThread:@selector(ocrProcessingFinished:)
-                           withObject:[NSString stringWithUTF8String:utf8Text]
+                           withObject:temp
                         waitUntilDone:NO];
 }
 
@@ -295,34 +312,42 @@
 //    SentenceViewController *sentenceView = [[SentenceViewController alloc]init];
     
     
+    resultCheckView = [[OcrResultCheckViewController alloc]init];
     
-    NSError *error   = nil;
-    //    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@".+@.+" options:0 error:&error];
-//    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9.-]" options:0 error:&error];
-//    \"c언어\n\"
-    
-    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:]" options:0 error:&error];
-//    [:space:]
-//    [출처] 정규표현식 = [^[:space:]]+|작성자 밍밍
-    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy"];
+//    int year = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+//    [dateFormatter setDateFormat:@"MM"];
+//    int month = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+//    [dateFormatter setDateFormat:@"dd"];
+//    int day = [[dateFormatter stringFromDate:[NSDate date]] intValue];
+//    
+//    NSString *tempMonth = @"";
+//    NSString *tempDay = @"";
+//    if (month < 10) {
+//        tempMonth = [NSString stringWithFormat:@"0%d",month];
+//    }else{
+//        tempMonth = [NSString stringWithFormat:@"%d",month];
+//    }
+//    
+//    if (day < 10) {
+//        tempDay = [NSString stringWithFormat:@"0%d",day];
+//    }else{
+//        tempDay = [NSString stringWithFormat:@"%d",day];
+//    }
+//    
+//    NSString *date =[NSString stringWithFormat:@"%d%@%@",year,tempMonth,tempDay];
+    NSStringRegular *regular = [[NSStringRegular alloc]init];
 
-    NSString *resultSentence = @"";
-    for (int i = 0; i < result.length; i++) {
-        NSTextCheckingResult *match = [regexp firstMatchInString:[result substringWithRange:(NSRange){i,1}] options:0 range:NSMakeRange(0, [result substringWithRange:(NSRange){i,1}].length)];
-        if(match.numberOfRanges!=0){
-            resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[result substringWithRange:(NSRange){i,1}]];
-            
-        }else if([[result substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
-                 [[result substringWithRange:(NSRange){i,1}] isEqualToString:@" "]){
-            resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[result substringWithRange:(NSRange){i,1}]];
-        }
-    }
+//    [resultCheckView setTextView:[regular stringChange:result]];
+    [self presentModalViewController:resultCheckView animated:YES];
+    [self dismissModalViewControllerAnimated:NO];
+
     
-    NSLog(@"%@",resultSentence);
     
-    [dbMsg saveSentence:[NSString stringWithFormat:@"%@",resultSentence] :@"000000" :@"filename"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"bookTableReload" object:nil];
-    [self dismissModalViewControllerAnimated:YES];
+//    [dbMsg saveSentence:[NSString stringWithFormat:@"%@",[regular stringChange:result]] :date :@"filename"];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"bookTableReload" object:nil];
+//    [self dismissModalViewControllerAnimated:YES];
     
     
     //    [self dismissModalViewControllerAnimated:YES];

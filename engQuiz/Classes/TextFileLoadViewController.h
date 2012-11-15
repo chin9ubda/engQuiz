@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
-
 @interface TextFileLoadViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
     NSMutableArray *items;
     IBOutlet UITableView *itemTable;

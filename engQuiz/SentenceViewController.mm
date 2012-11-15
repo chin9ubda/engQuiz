@@ -22,6 +22,7 @@
         // Custom initialization
         dbMsg = [DataBase getInstance];
         checkState = false;
+        dismissType = YES;
     }
     return self;
 }
@@ -29,7 +30,6 @@
 - (void)viewDidLoad
 {
     //    [self setTexts];
-    
     navi = true;
     
     // 지문 : 학교 : 학년
@@ -83,7 +83,10 @@
     [super viewDidUnload];
 }
 - (IBAction)backEvent:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:dismissType];
+    if (!dismissType) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ocr_dismiss" object:nil];
+    }
 }
 
 
@@ -107,7 +110,10 @@
 
 - (IBAction)saveExam:(id)sender {
     [self saveRepository:1];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:dismissType];
+    if (!dismissType) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ocr_dismiss" object:nil];
+    }
 }
 
 -(void)saveOX{
@@ -432,5 +438,9 @@
     if (buttonIndex == 1) {
         [self saveOX];
     }
+}
+
+- (void)setDIsType:(BOOL)type{
+    dismissType = type;
 }
 @end

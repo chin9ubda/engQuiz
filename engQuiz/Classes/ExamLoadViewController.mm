@@ -10,7 +10,8 @@
 #import "SentenceViewController.h"
 #import "ThemeCell.h"
 #import "ExViewController.h"
-#import "ViewController.h"
+//#import "ViewController.h"
+#import "OcrResultCheckViewController.h"
 
 
 #define BookTableTag 1
@@ -36,6 +37,9 @@
         dbMsg = [DataBase getInstance];
         bCell = [[BookListCell alloc]init];
         pArray = [dbMsg getPublisherIds];
+        imgArray = [NSMutableArray arrayWithCapacity:0];
+        imgViewArray = [NSMutableArray arrayWithCapacity:0];
+        btnArray = [NSMutableArray arrayWithCapacity:0];
         
     }
     return self;
@@ -52,6 +56,12 @@
     [self setTableInit];
     [super viewDidLoad];
     
+    
+////    NSLog(@"%d",[dbMsg getInsertBookGroup].count);
+//    
+//    for (int i = 0; i < [dbMsg getInsertBookGroup].count; i++) {
+//        NSLog(@"%@",[dbMsg getInsertBookGroup]);
+//    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -188,9 +198,18 @@
         if (pNumber == 0) {
             if (section == pArray.count) {
                 if (index == 0) {
-                    cell.textLabel.text = [gArray objectAtIndex:1];
+                    if (![[gArray objectAtIndex:3]isEqualToString:@""]) {
+                        cell.textLabel.text = [gArray objectAtIndex:3];
+                    }else{
+                        cell.textLabel.text = [gArray objectAtIndex:1];
+                    }
                 }else {
-                    cell.textLabel.text = [gArray objectAtIndex:index * 4 - 3];
+                    if (![[gArray objectAtIndex:index * 4 + 3]isEqualToString:@""]) {
+                        cell.textLabel.text = [gArray objectAtIndex:index * 4 + 3];
+                    }else{
+                        cell.textLabel.text = [gArray objectAtIndex:index * 4 + 1];
+                    }
+                    
                 }
             }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
                 cell.textLabel.text = [dbMsg getBookName:[[[dbMsg getBookIds:section+1:cNumber:sNumber] objectAtIndex:index]integerValue]];
@@ -332,7 +351,7 @@
                     if (index == 0) {
                         [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:1]:0:0];
                     }else {
-                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:index *4 - 3]:0:0];
+                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:index *4 + 1]:0:0];
                     }
                     
                     [self presentModalViewController:sentenceVeiw animated:YES];
@@ -792,14 +811,14 @@
 
         [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
         
-//        NSArray *xibs = [[NSBundle mainBundle]  loadNibNamed:@"OverlayView" owner:self options:nil];
-//        OverlayView *overlay = (OverlayView *)[xibs objectAtIndex:0];
+        NSArray *xibs = [[NSBundle mainBundle]  loadNibNamed:@"Camera" owner:self options:nil];
+        cameraOverView = (Camera *)[xibs objectAtIndex:0];
 
-//        imagePickerController.allowsEditing=NO;
-//        imagePickerController.showsCameraControls = NO;
-//        imagePickerController.cameraViewTransform = CGAffineTransformScale(imagepickerController.cameraViewTransform,CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
+        imagePickerController.allowsEditing=NO;
+        imagePickerController.showsCameraControls = NO;
+        imagePickerController.cameraViewTransform = CGAffineTransformScale(imagePickerController.cameraViewTransform,1, 1);
 
-//        imagePickerController.cameraOverlayView = overlay;
+        imagePickerController.cameraOverlayView = cameraOverView;
         
         
         [self presentModalViewController:imagePickerController animated:YES];
@@ -807,9 +826,41 @@
     }else if(buttonIndex == 1){
         NSLog(@"앨범에서 불러오기");
         
+        if (imagePickerController != nil) {
+            imagePickerController = nil;
+            [imagePickerController removeFromParentViewController];
+        }
+        
+        if (selectedOverView != nil) {
+            selectedOverView = nil;
+            [selectedOverView removeFromSuperview];
+        }
+        
+        [imgArray removeAllObjects];
+        [imgViewArray removeAllObjects];
+        [btnArray removeAllObjects];
+
+        
         imagePickerController = [[UIImagePickerController alloc] init];
+
         imagePickerController.delegate = self;
         imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        NSArray *xibs = [[NSBundle mainBundle]  loadNibNamed:@"ImgSelectedOverView" owner:self options:nil];
+        selectedOverView = (ImgSelectedOverView *)[xibs objectAtIndex:0];
+        
+        [selectedOverView setFrame:CGRectMake(0, self.view.frame.size.height - 20, self.view.frame.size.width, 120)];
+
+        [selectedOverView awakeFromNib];
+        
+        [imagePickerController.view setFrame:CGRectMake(0, 0, imagePickerController.view.frame.size.width, imagePickerController.view.frame.size.height - 120 - 20)];
+        
+        [selectedOverView.doneBtn addTarget:self action:@selector(imageOcr) forControlEvents:UIControlEventTouchUpInside];
+        [selectedOverView.upAndDownBtn addTarget:self action:@selector(menuUpDown) forControlEvents:UIControlEventTouchUpInside];
+        
+        [imagePickerController.view addSubview:selectedOverView];
+
+        [self setPanGestuer];
         
         [self presentModalViewController:imagePickerController animated:YES];
         
@@ -864,14 +915,69 @@
 		didFinishPickingImage:(UIImage *)image
 				  editingInfo:(NSDictionary *)editingInfo
 {
-	[picker dismissModalViewControllerAnimated:NO];
+    if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        [imgArray insertObject:image atIndex:imgArray.count];
+        
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+        
+        [imageView setFrame:CGRectMake((imgArray.count - 1) * 123, 0, 123, 100)];
+        imageView.tag = imgArray.count-1;
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setFrame:CGRectMake((imgArray.count - 1) * 123, 0, 123, 100)];
+        btn.tag = imgArray.count-1;
+        
+        [btn addTarget:self action:@selector(imageDelete:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [imgViewArray insertObject:imageView atIndex:imgViewArray.count];
+        [btnArray insertObject:btn atIndex:btnArray.count];
+        
+        imageView = nil;
+        btn = nil;
+        
+        [selectedOverView.selectedScrollView addSubview:[imgViewArray objectAtIndex:imgViewArray.count-1]];
+        [selectedOverView.selectedScrollView addSubview:[btnArray objectAtIndex:btnArray.count-1]];
+        
+        [selectedOverView.selectedScrollView setContentSize:CGSizeMake(imgArray.count * 123, 0)];
+        
+        menuState = false;
+        [self menuUpDown];
+    }else {
+        
+    }
+}
+
+- (void)imageDelete:(UIButton *)btn{
     
-    ViewController *view = [[ViewController alloc]init];
+    [[imgViewArray objectAtIndex:btn.tag] removeFromSuperview];
+    [[btnArray objectAtIndex:btn.tag] removeFromSuperview];
     
-    [view setimage:image];
-    [self presentModalViewController:view animated:YES];
+    [imgViewArray removeObjectAtIndex:btn.tag];
+    [btnArray removeObjectAtIndex:btn.tag];
+    [imgArray removeObjectAtIndex:btn.tag];
     
+    for (int i = btn.tag; i < btnArray.count; i++) {
+        [[btnArray objectAtIndex:i]setTag:i];
+        [self moveView2:[imgViewArray objectAtIndex:i] duration:0.2 curve:UIViewAnimationCurveLinear x:i * 123];
+        [[btnArray objectAtIndex:i]setFrame:CGRectMake(i * 123, 0, 123, 100)];
+    }
     
+    [selectedOverView.selectedScrollView setContentSize:CGSizeMake(imgArray.count * 123, 0)];
+}
+
+- (void)imageOcr{
+	[imagePickerController dismissModalViewControllerAnimated:NO];
+
+    
+    OcrResultCheckViewController *ocrView = [[OcrResultCheckViewController alloc]init];
+    
+    [ocrView setimage:imgArray];
+    [self presentModalViewController:ocrView animated:YES];
+//    ViewController *view = [[ViewController alloc]init];
+//    
+//    [view setimage:imgArray];
+//    
+//    [self presentModalViewController:view animated:YES];
 }
 
 //// 3. 가지고 온 사진을 편집한다 (crop, 회전 등)
@@ -929,26 +1035,6 @@
     [bookTable reloadData];
 }
 
-
-////---------------------------------------------------
-//// ScrollView Delegate
-////---------------------------------------------------
-//- (void)scrollViewDidScroll:(UIScrollView *)sender {
-//    
-//    // Update the page when more than 50% of the previous/next page is visible
-//    //    CGFloat pageWidth = scrollView.frame.size.width;
-//    //    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-//}
-//
-//// At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    //    SJ_DEBUG_LOG(@"page Number :%d", pageController.currentPage);
-//    //    nowIndex = pageControl.currentPage;
-////    pageControlUsed = NO;
-//    
-//}
-
-
 - (void)viewDidUnload {
     publisherName = nil;
     className = nil;
@@ -962,6 +1048,112 @@
     [super viewDidUnload];
 }
 
+// ---------- Menu Up & Down Scroll ---------- //
+/* -------------------------------------------
+ menuUpDown 버튼을 클릭했을 경우 발생
+ Menu 위 아래로 스크롤
+ ------------------------------------------- */
+-(void)menuUpDown{
+    if (menuState) {
+        [self moveView:selectedOverView duration:0.3 curve:UIViewAnimationCurveLinear y:self.view.frame.size.height - 20];
+        menuState = false;
+    }else{
+        [self moveView:selectedOverView duration:0.3 curve:UIViewAnimationCurveLinear y:self.view.frame.size.height - 120];
+        menuState = true;
+    }
+}
+
+
+// -------------- setPanGestuer -------------- //
+/* -------------------------------------------
+ 매뉴의 View 에 해당 제스터를 설정
+ ------------------------------------------- */
+-(void)setPanGestuer{
+    UIPanGestureRecognizer* _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureAction:)];
+    _panGestureRecognizer.minimumNumberOfTouches = 1;
+    _panGestureRecognizer.maximumNumberOfTouches = 1;
+    
+    [_panGestureRecognizer setDelegate:self];
+    
+    [selectedOverView addGestureRecognizer:_panGestureRecognizer];
+}
+
+// ------------- panGestureAction ------------ //
+/* -------------------------------------------
+ PanGestuerAction 이벤트
+ ------------------------------------------- */
+- (void)panGestureAction:(UIPanGestureRecognizer *)recognizer
+{
+    float _y = 0;
+    if (recognizer.state == UIGestureRecognizerStateChanged)
+    {
+        CGPoint translation = [recognizer translationInView:selectedOverView];
+        
+        CGRect newFrame = selectedOverView.frame;
+        
+        if (newFrame.origin.y + translation.y >= self.view.frame.size.height - 20 && newFrame.origin.y + translation.y <= self.view.frame.size.height - 120) {
+            newFrame.origin.y = newFrame.origin.y + translation.y;
+            _y = newFrame.origin.x;
+        }
+        selectedOverView.frame = newFrame;
+        [recognizer setTranslation:CGPointZero inView:selectedOverView];
+    }else if (recognizer.state == UIGestureRecognizerStateEnded){
+        CGPoint translation = [recognizer translationInView:selectedOverView];
+        
+        CGRect newFrame = selectedOverView.frame;
+        
+        if (newFrame.origin.y + translation.y <= 0) {
+            [self moveView:selectedOverView duration:0.1 curve:UIViewAnimationCurveLinear y:self.view.frame.size.height - 20];
+        }else if (newFrame.origin.y + translation.y >= 1){
+            [self moveView:selectedOverView duration:0.1 curve:UIViewAnimationCurveLinear y:self.view.frame.size.height - 120];
+        }
+    }
+}
+
+
+/* -------------------------------------------
+ View Animation
+ ------------------------------------------- */
+- (void)moveView:(UIView *)view duration:(NSTimeInterval)duration
+            curve:(int)curve y:(CGFloat)y
+{
+    // Setup the animation
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    // The transform matrix
+    //    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
+    //    view.transform = transform;
+    
+    view.frame = CGRectMake(view.frame.origin.x, y, view.frame.size.width, view.frame.size.height);
+    // Commit the changes
+    [UIView commitAnimations];
+    
+}
+
+/* -------------------------------------------
+ View Animation
+ ------------------------------------------- */
+- (void)moveView2:(UIView *)view duration:(NSTimeInterval)duration
+           curve:(int)curve x:(CGFloat)x
+{
+    // Setup the animation
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    // The transform matrix
+    //    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
+    //    view.transform = transform;
+    
+    view.frame = CGRectMake(x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+    // Commit the changes
+    [UIView commitAnimations];
+    
+}
 
 // ---------------- MoveView ---------------- //
 /* ------------------------------------------

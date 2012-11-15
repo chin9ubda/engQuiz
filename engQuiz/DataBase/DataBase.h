@@ -24,6 +24,7 @@
 -(NSString *)getBookName:(int)_id;
 
 -(NSMutableArray *)getInsertBook;
+-(NSMutableArray *)getInsertBookGroup;
 
 
 -(NSMutableArray *)getExamIds:(int)bId;
@@ -59,7 +60,7 @@
 -(NSString *)getRandomWord;
 -(NSMutableArray *)getWordInformation:(NSString*)word;
 
--(void)saveSentence:(NSString *)sentence:(NSString *)gdate:(NSString *)filename;
+-(void)saveSentence:(NSString *)sentence:(NSString *)gdate:(NSString *)groupname:(NSString *)theme;
 
 -(void)vocaXUpdate:(NSString *)word:(Boolean)check;
 

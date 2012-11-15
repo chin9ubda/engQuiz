@@ -247,7 +247,7 @@
     int count = 0;
     
     sqlite3_stmt *selectStatement;
-    NSString *query = [NSString stringWithFormat:@"SELECT id, content, gdate, filename FROM %@",GetContentBook_TableName];
+    NSString *query = [NSString stringWithFormat:@"SELECT id, content, groupname, theme FROM %@",GetContentBook_TableName];
     
     const char *selectSql = [query UTF8String];
     
@@ -273,6 +273,30 @@
     return array;
 }
 
+-(NSMutableArray *)getInsertBookGroup{
+    NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
+    int count = 0;
+    
+    sqlite3_stmt *selectStatement;
+    NSString *query = [NSString stringWithFormat:@"SELECT DISTINCT groupname FROM %@",GetContentBook_TableName];
+    
+    const char *selectSql = [query UTF8String];
+    
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0) ] atIndex:count];
+            count++;
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return array;
+}
 
 -(NSMutableArray *)getExamIds:(int)bId{
     NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
@@ -731,6 +755,7 @@
            [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
            [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@","]||
            [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"?"]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@":"]||
            [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"."]){
             check = 1;
             result = i;
@@ -749,6 +774,7 @@
            [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
            [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@""]||
            [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"!"]||
+           [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@":"]||
            [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"?"]){
             check = 1;
             result = i;
@@ -1022,9 +1048,9 @@
     return array;
 }
 
--(void)saveSentence:(NSString *)sentence:(NSString *)gdate:(NSString *)filename{
+-(void)saveSentence:(NSString *)sentence:(NSString *)gdate:(NSString *)groupname:(NSString *)theme{
     sqlite3_stmt *insertStatement;
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (content,gdate,filename) VALUES('%@','%@','%@')",GetContentBook_TableName,sentence,gdate,filename];
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (content,gdate,groupname,theme) VALUES('%@','%@','%@', '%@')",GetContentBook_TableName,sentence,gdate,groupname,theme];
 
     const char *insertSql = [query UTF8String];
     

@@ -42,11 +42,30 @@
 		4396967D1651EF4300744631 /* TextFileLoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4396967B1651EF4300744631 /* TextFileLoadViewController.xib */; };
 		439696831651FA9300744631 /* test.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 439696821651FA9300744631 /* test.rtf */; };
 		439696861651FB1200744631 /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 439696851651FB1200744631 /* test.txt */; };
+		4396968E16537D2E00744631 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396968D16537D2E00744631 /* Camera.m */; };
+		4396969016537D4900744631 /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4396968F16537D4900744631 /* Camera.xib */; };
+		4396969F165383DB00744631 /* ImgSelectedOverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396969E165383DB00744631 /* ImgSelectedOverView.m */; };
+		439696A1165383E500744631 /* ImgSelectedOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696A0165383E500744631 /* ImgSelectedOverView.xib */; };
+		439696A51653C88500744631 /* 640-920.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 439696A41653C88500744631 /* 640-920.jpg */; };
+		439696A71653C98F00744631 /* 320-460.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 439696A61653C98F00744631 /* 320-460.jpg */; };
+		439696AB1653C9CF00744631 /* 640-920_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 439696A81653C9CE00744631 /* 640-920_1.jpg */; };
+		439696AC1653C9CF00744631 /* 640-920_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 439696A91653C9CE00744631 /* 640-920_2.jpg */; };
+		439696AD1653C9CF00744631 /* 640-920_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 439696AA1653C9CE00744631 /* 640-920_3.jpg */; };
+		439696B21655034900744631 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696B01655034900744631 /* SettingViewController.m */; };
+		439696B31655034900744631 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696B11655034900744631 /* SettingViewController.xib */; };
+		439696B71655068E00744631 /* NSStringRegular.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696B61655068E00744631 /* NSStringRegular.m */; };
+		439696BC16550E4E00744631 /* OcrResultCheckViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439696BA16550E4E00744631 /* OcrResultCheckViewController.mm */; };
+		439696BD16550E4E00744631 /* OcrResultCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696BB16550E4E00744631 /* OcrResultCheckViewController.xib */; };
+		439696C016550EE300744631 /* InsertSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696BF16550EE300744631 /* InsertSentence.m */; };
+		439696C416551A3800744631 /* NextAddInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696C316551A3800744631 /* NextAddInfoView.m */; };
+		439696C616551A6600744631 /* NextAddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696C516551A6600744631 /* NextAddInfoView.xib */; };
 		4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4398BC4916463BA700338CC6 /* engquiz.sqlite */; };
 		439AF569163BD7500016DE4E /* VocaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439AF567163BD7500016DE4E /* VocaViewController.m */; };
 		439AF56A163BD7500016DE4E /* VocaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439AF568163BD7500016DE4E /* VocaViewController.xib */; };
 		439AF56D163BE4220016DE4E /* VocaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 439AF56C163BE4210016DE4E /* VocaCell.m */; };
 		439AF56F163BE4300016DE4E /* VocaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439AF56E163BE4300016DE4E /* VocaCell.xib */; };
+		439D0A9B1655465B00339459 /* TextCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D0A991655465B00339459 /* TextCheckViewController.m */; };
+		439D0A9C1655465B00339459 /* TextCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D0A9A1655465B00339459 /* TextCheckViewController.xib */; };
 		439D2CBE163BB5760071551C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 439D2CBD163BB5760071551C /* UIKit.framework */; };
 		439D2CC0163BB5760071551C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 439D2CBF163BB5760071551C /* Foundation.framework */; };
 		439D2CC2163BB5760071551C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 439D2CC1163BB5760071551C /* CoreGraphics.framework */; };
@@ -160,6 +179,30 @@
 		4396967B1651EF4300744631 /* TextFileLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFileLoadViewController.xib; path = Classes/TextFileLoadViewController.xib; sourceTree = "<group>"; };
 		439696821651FA9300744631 /* test.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = test.rtf; sourceTree = "<group>"; };
 		439696851651FB1200744631 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
+		4396968C16537D2E00744631 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Classes/Camera.h; sourceTree = "<group>"; };
+		4396968D16537D2E00744631 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = Classes/Camera.m; sourceTree = "<group>"; };
+		4396968F16537D4900744631 /* Camera.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Camera.xib; path = Classes/Camera.xib; sourceTree = "<group>"; };
+		4396969D165383DB00744631 /* ImgSelectedOverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImgSelectedOverView.h; path = Classes/ImgSelectedOverView.h; sourceTree = "<group>"; };
+		4396969E165383DB00744631 /* ImgSelectedOverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImgSelectedOverView.m; path = Classes/ImgSelectedOverView.m; sourceTree = "<group>"; };
+		439696A0165383E500744631 /* ImgSelectedOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImgSelectedOverView.xib; path = Classes/ImgSelectedOverView.xib; sourceTree = "<group>"; };
+		439696A41653C88500744631 /* 640-920.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "640-920.jpg"; sourceTree = "<group>"; };
+		439696A61653C98F00744631 /* 320-460.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "320-460.jpg"; sourceTree = "<group>"; };
+		439696A81653C9CE00744631 /* 640-920_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "640-920_1.jpg"; sourceTree = "<group>"; };
+		439696A91653C9CE00744631 /* 640-920_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "640-920_2.jpg"; sourceTree = "<group>"; };
+		439696AA1653C9CE00744631 /* 640-920_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "640-920_3.jpg"; sourceTree = "<group>"; };
+		439696AF1655034900744631 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = Classes/SettingViewController.h; sourceTree = "<group>"; };
+		439696B01655034900744631 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = Classes/SettingViewController.m; sourceTree = "<group>"; };
+		439696B11655034900744631 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Classes/SettingViewController.xib; sourceTree = "<group>"; };
+		439696B51655068E00744631 /* NSStringRegular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringRegular.h; path = Classes/NSStringRegular.h; sourceTree = "<group>"; };
+		439696B61655068E00744631 /* NSStringRegular.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSStringRegular.m; path = Classes/NSStringRegular.m; sourceTree = "<group>"; };
+		439696B916550E4E00744631 /* OcrResultCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OcrResultCheckViewController.h; path = Classes/OcrResultCheckViewController.h; sourceTree = "<group>"; };
+		439696BA16550E4E00744631 /* OcrResultCheckViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OcrResultCheckViewController.mm; path = Classes/OcrResultCheckViewController.mm; sourceTree = "<group>"; };
+		439696BB16550E4E00744631 /* OcrResultCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OcrResultCheckViewController.xib; path = Classes/OcrResultCheckViewController.xib; sourceTree = "<group>"; };
+		439696BE16550EE300744631 /* InsertSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsertSentence.h; path = Classes/InsertSentence.h; sourceTree = "<group>"; };
+		439696BF16550EE300744631 /* InsertSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsertSentence.m; path = Classes/InsertSentence.m; sourceTree = "<group>"; };
+		439696C216551A3800744631 /* NextAddInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NextAddInfoView.h; path = Classes/NextAddInfoView.h; sourceTree = "<group>"; };
+		439696C316551A3800744631 /* NextAddInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NextAddInfoView.m; path = Classes/NextAddInfoView.m; sourceTree = "<group>"; };
+		439696C516551A6600744631 /* NextAddInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NextAddInfoView.xib; path = Classes/NextAddInfoView.xib; sourceTree = "<group>"; };
 		4398BC4916463BA700338CC6 /* engquiz.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = engquiz.sqlite; sourceTree = "<group>"; };
 		439AF566163BD7500016DE4E /* VocaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VocaViewController.h; path = Classes/VocaViewController.h; sourceTree = "<group>"; };
 		439AF567163BD7500016DE4E /* VocaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VocaViewController.m; path = Classes/VocaViewController.m; sourceTree = "<group>"; };
@@ -167,6 +210,9 @@
 		439AF56B163BE4210016DE4E /* VocaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VocaCell.h; path = Classes/VocaCell.h; sourceTree = "<group>"; };
 		439AF56C163BE4210016DE4E /* VocaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VocaCell.m; path = Classes/VocaCell.m; sourceTree = "<group>"; };
 		439AF56E163BE4300016DE4E /* VocaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VocaCell.xib; sourceTree = "<group>"; };
+		439D0A981655465B00339459 /* TextCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextCheckViewController.h; path = Classes/TextCheckViewController.h; sourceTree = "<group>"; };
+		439D0A991655465B00339459 /* TextCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextCheckViewController.m; path = Classes/TextCheckViewController.m; sourceTree = "<group>"; };
+		439D0A9A1655465B00339459 /* TextCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextCheckViewController.xib; path = Classes/TextCheckViewController.xib; sourceTree = "<group>"; };
 		439D2CB9163BB5760071551C /* engQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = engQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		439D2CBD163BB5760071551C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		439D2CBF163BB5760071551C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -292,6 +338,11 @@
 		43924CFE1643BB2E00B05EFE /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				439696A81653C9CE00744631 /* 640-920_1.jpg */,
+				439696A91653C9CE00744631 /* 640-920_2.jpg */,
+				439696AA1653C9CE00744631 /* 640-920_3.jpg */,
+				439696A61653C98F00744631 /* 320-460.jpg */,
+				439696A41653C88500744631 /* 640-920.jpg */,
 				439696851651FB1200744631 /* test.txt */,
 				439696821651FA9300744631 /* test.rtf */,
 				43924D001643BB4100B05EFE /* test11-4.jpg */,
@@ -445,11 +496,75 @@
 		439696781651EF2C00744631 /* TextFileLoad */ = {
 			isa = PBXGroup;
 			children = (
+				439D0A961655464600339459 /* TextCheck */,
 				439696791651EF4300744631 /* TextFileLoadViewController.h */,
 				4396967A1651EF4300744631 /* TextFileLoadViewController.m */,
 				4396967B1651EF4300744631 /* TextFileLoadViewController.xib */,
 			);
 			name = TextFileLoad;
+			sourceTree = "<group>";
+		};
+		4396968B16537CF900744631 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				4396968C16537D2E00744631 /* Camera.h */,
+				4396968D16537D2E00744631 /* Camera.m */,
+				4396968F16537D4900744631 /* Camera.xib */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		439696971653832500744631 /* ImgSelectedOverView */ = {
+			isa = PBXGroup;
+			children = (
+				4396969D165383DB00744631 /* ImgSelectedOverView.h */,
+				4396969E165383DB00744631 /* ImgSelectedOverView.m */,
+				439696A0165383E500744631 /* ImgSelectedOverView.xib */,
+			);
+			name = ImgSelectedOverView;
+			sourceTree = "<group>";
+		};
+		439696AE1655032C00744631 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				439696AF1655034900744631 /* SettingViewController.h */,
+				439696B01655034900744631 /* SettingViewController.m */,
+				439696B11655034900744631 /* SettingViewController.xib */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		439696B41655066000744631 /* etc */ = {
+			isa = PBXGroup;
+			children = (
+				439696BE16550EE300744631 /* InsertSentence.h */,
+				439696BF16550EE300744631 /* InsertSentence.m */,
+				439696B816550DDF00744631 /* OcrResultCheck */,
+				439696B51655068E00744631 /* NSStringRegular.h */,
+				439696B61655068E00744631 /* NSStringRegular.m */,
+			);
+			name = etc;
+			sourceTree = "<group>";
+		};
+		439696B816550DDF00744631 /* OcrResultCheck */ = {
+			isa = PBXGroup;
+			children = (
+				439696C1165519F400744631 /* NextAddInfoView */,
+				439696B916550E4E00744631 /* OcrResultCheckViewController.h */,
+				439696BA16550E4E00744631 /* OcrResultCheckViewController.mm */,
+				439696BB16550E4E00744631 /* OcrResultCheckViewController.xib */,
+			);
+			name = OcrResultCheck;
+			sourceTree = "<group>";
+		};
+		439696C1165519F400744631 /* NextAddInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				439696C216551A3800744631 /* NextAddInfoView.h */,
+				439696C316551A3800744631 /* NextAddInfoView.m */,
+				439696C516551A6600744631 /* NextAddInfoView.xib */,
+			);
+			name = NextAddInfoView;
 			sourceTree = "<group>";
 		};
 		439AF562163BD7070016DE4E /* Voca */ = {
@@ -465,6 +580,16 @@
 				439AF56E163BE4300016DE4E /* VocaCell.xib */,
 			);
 			name = Voca;
+			sourceTree = "<group>";
+		};
+		439D0A961655464600339459 /* TextCheck */ = {
+			isa = PBXGroup;
+			children = (
+				439D0A981655465B00339459 /* TextCheckViewController.h */,
+				439D0A991655465B00339459 /* TextCheckViewController.m */,
+				439D0A9A1655465B00339459 /* TextCheckViewController.xib */,
+			);
+			name = TextCheck;
 			sourceTree = "<group>";
 		};
 		439D2CAE163BB5760071551C = {
@@ -498,6 +623,8 @@
 		439D2CC3163BB5760071551C /* engQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				439696B41655066000744631 /* etc */,
+				439696AE1655032C00744631 /* Setting */,
 				7DCE4B87164D249A00FAC425 /* CitarPOS */,
 				433B1102164947BA00181487 /* Chart */,
 				7D3B07B81648B3E300B75F2B /* GenProb */,
@@ -554,6 +681,8 @@
 		439D2D0B163BBD640071551C /* Ex */ = {
 			isa = PBXGroup;
 			children = (
+				439696971653832500744631 /* ImgSelectedOverView */,
+				4396968B16537CF900744631 /* Camera */,
 				439696781651EF2C00744631 /* TextFileLoad */,
 				43927038164E326300F38570 /* TextPaste */,
 				439D2D1E163BC7430071551C /* SentenceViewController.h */,
@@ -789,6 +918,17 @@
 				4396967D1651EF4300744631 /* TextFileLoadViewController.xib in Resources */,
 				439696831651FA9300744631 /* test.rtf in Resources */,
 				439696861651FB1200744631 /* test.txt in Resources */,
+				4396969016537D4900744631 /* Camera.xib in Resources */,
+				439696A1165383E500744631 /* ImgSelectedOverView.xib in Resources */,
+				439696A51653C88500744631 /* 640-920.jpg in Resources */,
+				439696A71653C98F00744631 /* 320-460.jpg in Resources */,
+				439696AB1653C9CF00744631 /* 640-920_1.jpg in Resources */,
+				439696AC1653C9CF00744631 /* 640-920_2.jpg in Resources */,
+				439696AD1653C9CF00744631 /* 640-920_3.jpg in Resources */,
+				439696B31655034900744631 /* SettingViewController.xib in Resources */,
+				439696BD16550E4E00744631 /* OcrResultCheckViewController.xib in Resources */,
+				439696C616551A6600744631 /* NextAddInfoView.xib in Resources */,
+				439D0A9C1655465B00339459 /* TextCheckViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,6 +964,14 @@
 				43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */,
 				4392703C164E329800F38570 /* TextPasteViewController.m in Sources */,
 				4396967C1651EF4300744631 /* TextFileLoadViewController.m in Sources */,
+				4396968E16537D2E00744631 /* Camera.m in Sources */,
+				4396969F165383DB00744631 /* ImgSelectedOverView.m in Sources */,
+				439696B21655034900744631 /* SettingViewController.m in Sources */,
+				439696B71655068E00744631 /* NSStringRegular.m in Sources */,
+				439696BC16550E4E00744631 /* OcrResultCheckViewController.mm in Sources */,
+				439696C016550EE300744631 /* InsertSentence.m in Sources */,
+				439696C416551A3800744631 /* NextAddInfoView.m in Sources */,
+				439D0A9B1655465B00339459 /* TextCheckViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
