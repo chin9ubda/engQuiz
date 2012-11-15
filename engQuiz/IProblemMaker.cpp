@@ -1,14 +1,16 @@
 #include "IProblemMaker.h"
+#include <algorithm>
 
 
 Problem::Problem()
 {
 }
 
-void Problem::addItems(string qcontent, int solution)
+void Problem::addItems(std::string qcontent, int solution)
 {
 	ProblemItem *item;
 	item = new ProblemItem();
+    
     std::transform(qcontent.begin(), qcontent.end(), qcontent.begin(), tolower);
 	item->qcontent = qcontent;
 	item->solution = solution;
@@ -19,7 +21,6 @@ void Problem::addItems(string qcontent, int solution)
     {
         this->solution = items.size();
     }
-    
 }
 
 
@@ -33,11 +34,14 @@ Problem::~Problem()
 	}
 }
 
-IProblemMaker::IProblemMaker(void)
+
+IProblemMaker::IProblemMaker(Tokenizer* tokenizer)
 {
+    this->tokenizer = tokenizer;
+    tokenizer->run();
 }
 
-
-IProblemMaker::~IProblemMaker(void)
+IProblemMaker::~IProblemMaker()
 {
+    delete tokenizer;
 }

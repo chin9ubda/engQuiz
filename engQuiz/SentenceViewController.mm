@@ -287,14 +287,20 @@
  %%여기에다 넣어주세요 ㅋㅋ
  ---------------------------------------- */
 
+#define ANALYSIS_LEXICON "brown-simplified.lexicon"
+#define ANALYSIS_NGRAMS "brown-simplified.ngrams"
 - (NSMutableArray *)setExam:(NSString *)msg:(int)class1:(int)class2{
     
     NSMutableArray *eArray = [NSMutableArray arrayWithCapacity:0];
     
     // 문제 생성
     std::string str([msg UTF8String]);
-    SimpleProblemMaker *prob = new SimpleProblemMaker();
-    prob->makeProblem(str, 1, 1);
+    
+    std::string lexicon = std::string([[[NSBundle mainBundle] pathForResource:@"brown-simplified" ofType:@"lexicon"] UTF8String]);
+    std::string ngrams = std::string([[[NSBundle mainBundle] pathForResource:@"brown-simplified" ofType:@"ngrams"] UTF8String]);
+    
+    SimpleProblemMaker *prob = new SimpleProblemMaker(new Tokenizer(str, lexicon, ngrams));
+    prob->makeProblem(1, 1);
     
     // 지문
     NSString *sText = [NSString stringWithUTF8String:prob->getProblemContent().c_str()];

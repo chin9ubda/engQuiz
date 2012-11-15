@@ -1,27 +1,27 @@
 #pragma once
 
+#include "Tokenizer.h"
 #include <string>
 #include <vector>
 
 #define MAX_ITEMS_LENGTH 4
 
-using namespace std;
 
 class ProblemItem
 {
 public:
-	string qcontent;
+    std::string qcontent;
 	int solution;
 };
 
 class Problem
 {
 public:
-	string pcontent;
-	vector <ProblemItem*> items;
+    std::string pcontent;
+    std::vector <ProblemItem*> items;
     int solution;
 
-	void addItems(string qcontent, int solution);
+	void addItems(std::string qcontent, int solution);
 
 	Problem();
 	~Problem();
@@ -30,22 +30,24 @@ public:
 class Word
 {
 public:
-    string word;
-    string mean;
+    std::string word;
+    std::string mean;
     int dtype;
     int wtype;
-    string sim;
+    std::string sim;
     int vcheck;
 };
 
 class IProblemMaker
 {
+protected:
+    Tokenizer *tokenizer;
 public:
-	IProblemMaker(void);
-	virtual ~IProblemMaker(void);
-	virtual bool makeProblem(string example, int level, int num) = 0; 
-	virtual vector<Problem*> &getProblems() = 0;
-	virtual string getProblemContent() = 0; 
+	IProblemMaker(Tokenizer *tokenizer);
+	~IProblemMaker(void);
+	virtual bool makeProblem(int level, int num) = 0;
+	virtual std::vector<Problem*> &getProblems() = 0;
+	virtual std::string getProblemContent() = 0; 
 
 };
 

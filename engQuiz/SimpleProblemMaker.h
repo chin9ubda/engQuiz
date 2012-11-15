@@ -7,17 +7,17 @@
 class SimpleProblemMaker :
 	public IProblemMaker
 {
-    bool procReal(Tokenizer &tokenizer);
-    bool procExistDic(Tokenizer &tokenizer);
+    bool procReal();
+    bool procExistDic();
 public:
-	vector<Problem*> problem;
+	std::vector<Problem*> problem;
 	SQLDictionary *dic;
 	std::string example;
 	std::string problem_content;
-	SimpleProblemMaker(void);
+	SimpleProblemMaker(Tokenizer *tokenizer);
 	~SimpleProblemMaker(void);
-	virtual bool makeProblem(string example, int level, int d); 
-	virtual vector<Problem*> &getProblems();
-	virtual string getProblemContent(); 
+	virtual bool makeProblem(int level, int d); 
+	virtual std::vector<Problem*> &getProblems();
+	virtual std::string getProblemContent(); 
 };
 

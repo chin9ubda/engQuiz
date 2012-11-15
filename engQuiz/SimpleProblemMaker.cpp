@@ -3,7 +3,7 @@
 #include <vector>
 #include <ctime>
 
-SimpleProblemMaker::SimpleProblemMaker(void)
+SimpleProblemMaker::SimpleProblemMaker(Tokenizer *tokenizer) : IProblemMaker(tokenizer)
 {
     dic = SQLDictionary::InstancePtr();
 }
@@ -19,40 +19,37 @@ SimpleProblemMaker::~SimpleProblemMaker(void)
 	}
 }
 
-bool SimpleProblemMaker::makeProblem(string example, int level, int num)
+bool SimpleProblemMaker::makeProblem(int level, int num)
 {
 	std::istringstream iss(example);
-	Tokenizer tokenizer(example);
     this->example = example;
 	std::srand(time(NULL));
     bool res;
     
-    tokenizer.run();
-    
-    if (tokenizer.word_cnt_exist_dic > 0)
+    if (tokenizer->word_cnt_exist_dic > 0)
     {
-        res = procExistDic(tokenizer);
+        res = procExistDic();
     } else {
-        res = procReal(tokenizer);
+        res = procReal();
     }
 
 	return res;
 }
 
-bool SimpleProblemMaker::procReal(Tokenizer &tokenizer)
+bool SimpleProblemMaker::procReal()
 {
     int num_ex, num_real;
 	///////////////////// 문제생성
 	Problem *prob = new Problem();
     
-    num_ex = rand() % tokenizer.word_cnt_real;
-    num_real = tokenizer.atWordRealToken(num_ex);
+    num_ex = rand() % tokenizer->word_cnt_real;
+    num_real = tokenizer->atWordRealToken(num_ex);
     
-    std::string solution = tokenizer.tokens[num_real].getToken();
+    std::string solution = tokenizer->tokens[num_real].getToken();
     
-	tokenizer.tokens[num_real].setProbNum((char)1);
+	tokenizer->tokens[num_real].setProbNum((char)1);
     
-	problem_content = tokenizer.cascadeStr();
+	problem_content = tokenizer->cascadeStr();
     
 	prob->pcontent = "빈칸에 알맞은 단어를 넣으세요.";
 	
@@ -71,29 +68,28 @@ bool SimpleProblemMaker::procReal(Tokenizer &tokenizer)
 	problem.push_back(prob);
     
     return true;
-
-    
 }
 
-bool SimpleProblemMaker::procExistDic(Tokenizer &tokenizer)
+bool SimpleProblemMaker::procExistDic()
 {
     int num_ex, num_real;
 	///////////////////// 문제생성
 	Problem *prob = new Problem();
     
-    num_ex = rand() % tokenizer.word_cnt_exist_dic;
-    num_real = tokenizer.atWordExistDBToken(num_ex);
+    num_ex = rand() % tokenizer->word_cnt_exist_dic;
+    num_real = tokenizer->atWordExistDBToken(num_ex);
     
-    std::string solution = tokenizer.tokens[num_real].getToken();
+    std::string solution = tokenizer->tokens[num_real].getToken();
     
-	tokenizer.tokens[num_real].setProbNum((char)1);
+	tokenizer->tokens[num_real].setProbNum((char)1);
     
-	problem_content = tokenizer.cascadeStr();
+	problem_content = tokenizer->cascadeStr();
     
 	prob->pcontent = "빈칸에 알맞은 단어를 넣으세요.";
 	
 	int sol = rand() % 4;
-    string simstr[3];
+    std::string simstr[3];
+    
     if (!dic->getRandomSimItems(solution, simstr, 3))
     {
         return false;
@@ -120,7 +116,7 @@ std::string SimpleProblemMaker::getProblemContent()
 	return problem_content;
 }
 
-vector<Problem*> &SimpleProblemMaker::getProblems()
+std::vector<Problem*> &SimpleProblemMaker::getProblems()
 {
 	return problem;
 }
