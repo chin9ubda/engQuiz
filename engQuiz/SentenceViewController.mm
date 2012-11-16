@@ -80,6 +80,7 @@
     answerHiddenBtn3 = nil;
     answerHiddenBtn4 = nil;
     saveBtn = nil;
+    webView = nil;
     [super viewDidUnload];
 }
 - (IBAction)backEvent:(id)sender {
@@ -306,9 +307,17 @@
     
     [sentenceTextView setText:sentence];
     
+    [self setWebView:sentence];
     //    NSLog(@"%d",sentenceTextView.)
     //    [sentenceTextView setText:[dbMsg getExamSentence:examId]];
     //    [sentenceTextView setEditable:NO];
+}
+
+//////////
+- (void)setWebView:(NSString *)msg{
+    NSString *html = @"";
+    
+    [webView loadHTMLString:html baseURL:nil];
 }
 
 - (void)setTexts:(int)poz{

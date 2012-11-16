@@ -10,4 +10,8 @@
 
 @interface Camera : UIView
 
+@property (strong, nonatomic) IBOutlet UIButton *cancelBtn;
+@property (strong, nonatomic) IBOutlet UIButton *doneBtn;
+@property (strong, nonatomic) IBOutlet UIButton *takePicture;
+@property (strong, nonatomic) IBOutlet UIView *cropView;
 @end

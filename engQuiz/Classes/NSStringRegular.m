@@ -17,7 +17,6 @@
 //    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:|-|_|?|:|&|;|,|.|!|'|\"]" options:0 error:&error];
     NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:|-|_|?|:|&|;|,|.|!|’|\"]" options:0 error:&error];
     
-    
     NSString *resultSentence = @"";
     for (int i = 0; i < msg.length; i++) {
         NSTextCheckingResult *match = [regexp firstMatchInString:[msg substringWithRange:(NSRange){i,1}] options:0 range:NSMakeRange(0, [msg substringWithRange:(NSRange){i,1}].length)];
