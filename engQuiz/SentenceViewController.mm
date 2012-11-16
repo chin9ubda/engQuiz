@@ -307,17 +307,11 @@
     
     [sentenceTextView setText:sentence];
     
-    [self setWebView:sentence];
+    [webView loadHTMLString:sentence baseURL:nil];
+
     //    NSLog(@"%d",sentenceTextView.)
     //    [sentenceTextView setText:[dbMsg getExamSentence:examId]];
     //    [sentenceTextView setEditable:NO];
-}
-
-//////////
-- (void)setWebView:(NSString *)msg{
-    NSString *html = @"";
-    
-    [webView loadHTMLString:html baseURL:nil];
 }
 
 - (void)setTexts:(int)poz{

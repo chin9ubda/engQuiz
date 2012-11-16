@@ -62,16 +62,16 @@
         
     }
     
-    if (![fileMgr fileExistsAtPath:testFilePath]) {
-        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
-        
-        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
-    }else{
-        [fileMgr removeItemAtPath:testFilePath error:&error];
-        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
-        
-        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
-    }
+//    if (![fileMgr fileExistsAtPath:testFilePath]) {
+//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
+//        
+//        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
+//    }else{
+//        [fileMgr removeItemAtPath:testFilePath error:&error];
+//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
+//        
+//        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
+//    }
 //
     
     if (sqlite3_open([filePath UTF8String], &database) != SQLITE_OK) {

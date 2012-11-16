@@ -176,15 +176,23 @@ std::string Tokenizer::cascadeStr()
     
     std::vector<Token>::iterator iter;
     
+    oss << "<p style=\"font-size: 13px;\">";
     for(iter = tokens.begin(); iter != tokens.end(); iter++)
     {
+        if (iter->getToken() == "\n")
+        {
+            oss << "<br />";
+            continue;
+        }
         if (iter->getProbNum() > 0)
         {
-            oss << "<<" << iter->getProbNum() << ">>";
+            oss << "<span style=\"color: red;\"> [[[" << iter->getProbNum() << "]]]</span>";
         } else {
             oss << iter->getToken();
         }
     }
+    
+    oss << "</p>";
     
     return oss.str();
 }
