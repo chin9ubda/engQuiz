@@ -863,6 +863,10 @@
     if (buttonIndex == 0) {
         NSLog(@"사진 찍기");
         
+        [imgArray removeAllObjects];
+        [imgViewArray removeAllObjects];
+        [btnArray removeAllObjects];
+        
         imagePickerController = [[UIImagePickerController alloc] init];
         imagePickerController.delegate = self;
 
@@ -874,11 +878,43 @@
         imagePickerController.allowsEditing=NO;
         imagePickerController.showsCameraControls = NO;
         imagePickerController.cameraViewTransform = CGAffineTransformScale(imagePickerController.cameraViewTransform,1, 1);
-
+        
+        
+        
         imagePickerController.cameraOverlayView = cameraOverView;
         
+        [cameraOverView.cancelBtn addTarget:self action:@selector(closeCamer:) forControlEvents:UIControlEventTouchUpInside];
+        [cameraOverView.takePicture addTarget:self action:@selector(tookPicture:) forControlEvents:UIControlEventTouchUpInside];
+        [cameraOverView.doneBtn addTarget:self action:@selector(cameraDone:) forControlEvents:UIControlEventTouchUpInside];
         
-        [self presentModalViewController:imagePickerController animated:YES];
+        
+        
+        
+        NSArray *xib = [[NSBundle mainBundle]  loadNibNamed:@"ImgSelectedOverView" owner:self options:nil];
+        selectedOverView = (ImgSelectedOverView *)[xib objectAtIndex:0];
+        
+        [selectedOverView setFrame:CGRectMake(0, self.view.frame.size.height - 20, self.view.frame.size.width, 120)];
+        
+        [selectedOverView awakeFromNib];
+        
+        [imagePickerController.view setFrame:CGRectMake(0, 0, imagePickerController.view.frame.size.width, imagePickerController.view.frame.size.height - 120 - 20)];
+        
+        [selectedOverView.doneBtn addTarget:self action:@selector(imageOcr) forControlEvents:UIControlEventTouchUpInside];
+        [selectedOverView.upAndDownBtn addTarget:self action:@selector(menuUpDown) forControlEvents:UIControlEventTouchUpInside];
+        
+        [imagePickerController.view addSubview:selectedOverView];
+        
+        [self setPanGestuer];
+        
+//        
+//        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(20, 20, 280, 340)];
+//        [view setBackgroundColor:[UIColor blackColor]];
+//        
+//        [imagePickerController.view addSubview:view];
+
+        
+        
+        [self presentModalViewController:imagePickerController animated:NO];
         
     }else if(buttonIndex == 1){
         NSLog(@"앨범에서 불러오기");
@@ -953,17 +989,22 @@
 
 // 사진 찍기 취소
 - (IBAction)closeCamer:(id)sender {
-    //    [imagepickerController dismissModalViewControllerAnimated:YES];
+    [imagePickerController dismissModalViewControllerAnimated:YES];
 }
 
 
 // 사진 찍기 버튼 눌렀을 때
 - (IBAction)tookPicture:(id)sender {
-    //    [imagepickerController takePicture];
+    [imagePickerController takePicture];
     //    SJ_DEBUG_LOG(@"Take Picture");
 }
 
-
+// 사진 찍기 버튼 눌렀을 때
+- (IBAction)cameraDone:(id)sender {
+//    [self imageOcr];
+    //    [imagepickerController takePicture];
+    //    SJ_DEBUG_LOG(@"Take Picture");
+}
 
 
 #pragma mark -
@@ -1001,9 +1042,88 @@
         [self menuUpDown];
     }else {
         
+//        UIImageView *imgView = [[UIImageView alloc]initWithImage:[self cropImage:image:cameraOverView.cropView]];
+//        
+//        [imgView setFrame:CGRectMake(0, 20, 320, 460)];
+//        
+//        [self.view addSubview:imgView];
+        
+        [imgArray insertObject:[self cropImage:image:cameraOverView.cropView] atIndex:imgArray.count];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[self cropImage:image:cameraOverView.cropView]];
+//        280 / 340 
+        [imageView setFrame:CGRectMake((imgArray.count - 1) * 280 / 3.4, 0, 280 / 3.4, 100)];
+        imageView.tag = imgArray.count-1;
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setFrame:CGRectMake((imgArray.count - 1) * 280 / 3.4, 0, 280 / 3.4, 100)];
+        btn.tag = imgArray.count-1;
+        
+        [btn addTarget:self action:@selector(imageDelete:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [imgViewArray insertObject:imageView atIndex:imgViewArray.count];
+        [btnArray insertObject:btn atIndex:btnArray.count];
+        
+        imageView = nil;
+        btn = nil;
+        
+        [selectedOverView.selectedScrollView addSubview:[imgViewArray objectAtIndex:imgViewArray.count-1]];
+        [selectedOverView.selectedScrollView addSubview:[btnArray objectAtIndex:btnArray.count-1]];
+        
+        [selectedOverView.selectedScrollView setContentSize:CGSizeMake(imgArray.count * 123, 0)];
+        
+        menuState = false;
+        [self menuUpDown];
+        
     }
 }
 
+- (UIImage *)cropImage:(UIImage *)img:(UIView *)view{
+    
+    float ratio_x = img.size.width/320;
+    float ratio_y = img.size.height/425;
+
+    float x = ratio_x * view.frame.origin.x;
+    float y = ratio_y * view.frame.origin.y;
+
+    float width = ratio_x * view.frame.size.width;
+    float heigth = ratio_y * view.frame.size.height;
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect([img CGImage], CGRectMake(x, y, heigth, width));
+
+    
+    UIImage *croppedImage =[UIImage imageWithCGImage:imageRef];
+    
+    UIImage *newImage = [[UIImage alloc] initWithCGImage: croppedImage.CGImage
+                                          scale: 1.0
+                                    orientation: UIImageOrientationRight];
+    
+    
+    float resizeRatio_x = 1000 / newImage.size.width ;
+    UIImage *smallImage = [self imageWithImage:newImage scaledToSize:CGSizeMake(1000, newImage.size.height*resizeRatio_x)];
+    
+    return smallImage;
+
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+//- (UIImage*)imageByCropping:(UIImage *)imageToCrop toRect:(CGRect)rect
+//{
+//
+//    CGImageRef imageRef = CGImageCreateWithImageInRect(imageToCrop.CGImage, CGRectMake(x, y, width, height));
+//    UIImage *croppedImage = [UIImage imageWithCGImage:imageRef];
+//    CGImageRelease(imageRef);
+//    
+////    CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], rect);
+////    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+////    CGImageRelease(imageRef);
+////    return cropped;
+//}
 - (void)imageDelete:(UIButton *)btn{
     
     [[imgViewArray objectAtIndex:btn.tag] removeFromSuperview];
@@ -1030,11 +1150,6 @@
     
     [ocrView setimage:imgArray];
     [self presentModalViewController:ocrView animated:YES];
-//    ViewController *view = [[ViewController alloc]init];
-//    
-//    [view setimage:imgArray];
-//    
-//    [self presentModalViewController:view animated:YES];
 }
 
 //// 3. 가지고 온 사진을 편집한다 (crop, 회전 등)

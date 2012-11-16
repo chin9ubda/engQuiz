@@ -48,7 +48,7 @@
 							<object class="IBUIButton" id="91823551">
 								<reference key="NSNextResponder" ref="555675146"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{18, 36}, {15, 15}}</string>
+								<string key="NSFrame">{{18, 35}, {15, 15}}</string>
 								<reference key="NSSuperview" ref="555675146"/>
 								<reference key="NSNextKeyView" ref="952309961"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -89,7 +89,7 @@
 							<object class="IBUIButton" id="764409522">
 								<reference key="NSNextResponder" ref="555675146"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{18, 62}, {15, 15}}</string>
+								<string key="NSFrame">{{18, 61}, {15, 15}}</string>
 								<reference key="NSSuperview" ref="555675146"/>
 								<reference key="NSNextKeyView" ref="203008984"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -139,7 +139,7 @@
 							<object class="IBUIButton" id="438677926">
 								<reference key="NSNextResponder" ref="555675146"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{18, 114}, {15, 16}}</string>
+								<string key="NSFrame">{{18, 113}, {15, 16}}</string>
 								<reference key="NSSuperview" ref="555675146"/>
 								<reference key="NSNextKeyView" ref="629660525"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -195,7 +195,7 @@
 							<object class="IBUILabel" id="952309961">
 								<reference key="NSNextResponder" ref="555675146"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{61, 32}, {25, 22}}</string>
+								<string key="NSFrame">{{61, 32}, {25, 21}}</string>
 								<reference key="NSSuperview" ref="555675146"/>
 								<reference key="NSNextKeyView" ref="181844899"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -216,7 +216,7 @@
 							<object class="IBUILabel" id="203008984">
 								<reference key="NSNextResponder" ref="555675146"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{61, 59}, {25, 21}}</string>
+								<string key="NSFrame">{{61, 58}, {25, 22}}</string>
 								<reference key="NSSuperview" ref="555675146"/>
 								<reference key="NSNextKeyView" ref="566604069"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -237,7 +237,7 @@
 							<object class="IBUILabel" id="837621928">
 								<reference key="NSNextResponder" ref="555675146"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{61, 85}, {25, 21}}</string>
+								<string key="NSFrame">{{61, 84}, {25, 21}}</string>
 								<reference key="NSSuperview" ref="555675146"/>
 								<reference key="NSNextKeyView" ref="875179259"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -278,7 +278,7 @@
 							<object class="IBUIButton" id="854646287">
 								<reference key="NSNextResponder" ref="555675146"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 32}, {280, 22}}</string>
+								<string key="NSFrame">{{0, 32}, {280, 21}}</string>
 								<reference key="NSSuperview" ref="555675146"/>
 								<reference key="NSNextKeyView" ref="91823551"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -297,7 +297,7 @@
 							<object class="IBUIButton" id="181844899">
 								<reference key="NSNextResponder" ref="555675146"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 59}, {280, 21}}</string>
+								<string key="NSFrame">{{0, 58}, {280, 22}}</string>
 								<reference key="NSSuperview" ref="555675146"/>
 								<reference key="NSNextKeyView" ref="764409522"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -317,7 +317,7 @@
 							<object class="IBUIButton" id="566604069">
 								<reference key="NSNextResponder" ref="555675146"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 85}, {280, 21}}</string>
+								<string key="NSFrame">{{0, 84}, {280, 21}}</string>
 								<reference key="NSSuperview" ref="555675146"/>
 								<reference key="NSNextKeyView" ref="954543819"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>

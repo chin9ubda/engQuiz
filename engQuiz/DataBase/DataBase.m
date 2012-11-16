@@ -735,8 +735,6 @@
                         check = 0;
                     }else{
                         index = index + tempInt + 1;
-//                        check = 0;
-//                        NSLog(@"check 2 == %d",index);
                         break;
                     }
 
@@ -744,15 +742,6 @@
                     checkOut = true;
                     check = 0;
                 }
-                
-//                if (check != 2) {
-//                    index = index + tempInt + 1;
-//                    temp = [temp substringWithRange:(NSRange){tempInt+1, temp.length - (tempInt+1)}];
-//                    check = 0;
-//                }else{
-//                    index = index + tempInt + 1;
-//                    break;
-//                }
             }
             
             checkOut = false;
@@ -761,11 +750,13 @@
                 
                 NSLog(@"%d",resultTemp.length);
                 resultTemp = [resultTemp substringWithRange:(NSRange){[self leftCheck:resultTemp :index] + 1, [self rightCheck:resultTemp :index] - [self leftCheck:resultTemp :index]}];
-//                result = resultTemp;
                 NSLog(@"%@\nindex :: %d",resultTemp,index);
-//                break;
                 [array insertObject:resultTemp atIndex:count];
                 count++;
+                
+                if (count == 3) {
+                    break;
+                }
             }else {
                 check = 0;
             }
