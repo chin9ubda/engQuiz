@@ -40,6 +40,8 @@
         imgArray = [NSMutableArray arrayWithCapacity:0];
         imgViewArray = [NSMutableArray arrayWithCapacity:0];
         btnArray = [NSMutableArray arrayWithCapacity:0];
+        gArray = [NSMutableArray arrayWithCapacity:0];
+        groupCountArray = [NSMutableArray arrayWithCapacity:0];
         
     }
     return self;
@@ -123,7 +125,6 @@
     
     UITableView *myView = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)];
     
-    tableCellCount = pArray.count + 1;
     myView.tag = PublicTag;
     myView.delegate = self;
     myView.dataSource = self;
@@ -143,7 +144,6 @@
     
     UITableView *myView = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)];
     
-    tableCellCount = 3;
     myView.tag = Class1Tag;
     myView.delegate = self;
     myView.dataSource = self;
@@ -161,7 +161,6 @@
     
     UITableView *myView = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)];
     
-    tableCellCount = 4;
     myView.tag = Class2Tag;
     myView.delegate = self;
     myView.dataSource = self;
@@ -171,16 +170,12 @@
 }
 
 - (IBAction)addSentence:(id)sender {
-//    ExViewController *exView = [[ExViewController alloc]init];
-//    
-//    [self presentModalViewController:exView animated:YES];
-    
     UIActionSheet *actionsheet = [[UIActionSheet alloc]
                                   initWithTitle:nil
                                   delegate:self
                                   cancelButtonTitle:@"취소"
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"사진 촬영", @"앨범에서 가져오기",@"직접 입력하기",@"TXT파일 불러오기", nil];
+                                  otherButtonTitles:@"사진 촬영", @"앨범에서 가져오기",@"지문 입력하기",@"파일 불러오기", nil];
     [actionsheet showInView:self.view];
 }
 
@@ -197,6 +192,37 @@
     if (tableView.tag == BookTableTag) {
         if (pNumber == 0) {
             if (section == pArray.count) {
+                int poz = (index + section - pArray.count);
+                if (poz == 0) {
+                    if (![[gArray objectAtIndex:3]isEqualToString:@""]) {
+                        cell.textLabel.text = [gArray objectAtIndex:3];
+                    }else{
+                        cell.textLabel.text = [gArray objectAtIndex:1];
+                    }
+                }else {
+                    if (![[gArray objectAtIndex:poz * 4 + 3]isEqualToString:@""]) {
+                        cell.textLabel.text = [gArray objectAtIndex:poz * 4 + 3];
+                    }else{
+                        cell.textLabel.text = [gArray objectAtIndex:poz * 4 + 1];
+                    }
+                    
+                }
+            }else if (section > pArray.count) {
+                int poz = 0;
+                for (int i = 0; i < section - pArray.count; i++) {
+                    poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
+                }
+                if (![[gArray objectAtIndex:poz * 4 + 3]isEqualToString:@""]) {
+                    cell.textLabel.text = [gArray objectAtIndex:poz * 4 + 3];
+                }else{
+                    cell.textLabel.text = [gArray objectAtIndex:poz * 4 + 1];
+                }
+            }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
+                cell.textLabel.text = [dbMsg getBookName:[[[dbMsg getBookIds:section+1:cNumber:sNumber] objectAtIndex:index]integerValue]];
+                
+            }
+        }else if(pNumber == pArray.count + 1){
+            if (section == 0) {
                 if (index == 0) {
                     if (![[gArray objectAtIndex:3]isEqualToString:@""]) {
                         cell.textLabel.text = [gArray objectAtIndex:3];
@@ -211,9 +237,16 @@
                     }
                     
                 }
-            }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
-                cell.textLabel.text = [dbMsg getBookName:[[[dbMsg getBookIds:section+1:cNumber:sNumber] objectAtIndex:index]integerValue]];
-                
+            }else {
+                int poz = 0;
+                for (int i = 0; i < section ; i++) {
+                    poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
+                }
+                if (![[gArray objectAtIndex:poz * 4 + 3]isEqualToString:@""]) {
+                    cell.textLabel.text = [gArray objectAtIndex:poz * 4 + 3];
+                }else{
+                    cell.textLabel.text = [gArray objectAtIndex:poz * 4 + 1];
+                }
             }
         }else {
             cell.textLabel.text = [dbMsg getBookName:[[bArray objectAtIndex:index]integerValue]];
@@ -240,10 +273,11 @@
     else if (tableView.tag == PublicTag) {
         if (index == 0) {
             cell.textLabel.text = @"전체";
-        }else{
+        }else if(index - 1 < pArray.count){
             cell.textLabel.text = [dbMsg getPublisherName:[[pArray objectAtIndex:index-1]integerValue]];
+        }else{
+            cell.textLabel.text = @"등록한 자료";
         }
-//        cell.textLabel.text = [dbMsg getPublisherName:[[pArray objectAtIndex:index-1]integerValue]];
     }
     
     else if (tableView.tag == Class1Tag) {
@@ -296,13 +330,13 @@
 
 
 
-// ---------------- Section Count Setting ---------------- //
+// ---------------- Cell Count Setting ---------------- //
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     //    return tableCellCount;
     if (tableView.tag == PublicTag) {
-        return pArray.count + 1;
+        return pArray.count + 2;
     }else if (tableView.tag == Class1Tag) {
         return 3;
     }else if (tableView.tag == Class2Tag) {
@@ -310,12 +344,15 @@
     }else if ( tableView.tag == BookTableTag) {
         if (pNumber == 0) {
             
-            if (section == pArray.count){
-                return gArray.count / 4;
+            if (section >= pArray.count){
+                return [[groupCountArray objectAtIndex:section - pArray.count]intValue] / 4;
+
             }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count == 0) {
                 return 1;
             }
             return [dbMsg getBookIds:section+1:cNumber:sNumber].count;
+        }else if(pNumber == pArray.count + 1){
+            return [[groupCountArray objectAtIndex:section]intValue] / 4;
         }else{
             return bArray.count;
         }
@@ -346,15 +383,26 @@
             
             if (pNumber == 0) {
                 if (section == pArray.count) {
+                    int poz = (index + section - pArray.count);
                     SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
                     
-                    if (index == 0) {
+                    if (poz == 0) {
                         [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:1]:0:0];
                     }else {
-                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:index *4 + 1]:0:0];
+                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:poz *4 + 1]:0:0];
                     }
                     
                     [self presentModalViewController:sentenceVeiw animated:YES];
+                }else if (section > pArray.count) {
+                    int poz = 0;
+                    for (int i = 0; i < section - pArray.count; i++) {
+                        poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
+                    }
+                    SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
+
+                    [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:poz *4 + 1]:0:0];
+                    [self presentModalViewController:sentenceVeiw animated:YES];
+
                 }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
                     bookNumber = index + 1;
                     [cArray removeAllObjects];
@@ -409,6 +457,25 @@
                     [chapterTable reloadData];
 
                 }
+            }else if(pNumber == pArray.count + 1){
+                SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
+                
+                if (section == 0) {
+                    if (index == 0) {
+                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:1]:0:0];
+                    }else {
+                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:index *4 + 1]:0:0];
+                        
+                    }
+                }else {
+                    int poz = 0;
+                    for (int i = 0; i < section ; i++) {
+                        poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
+                    }
+                    [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:poz *4 + 1]:0:0];
+                }
+                
+                [self presentModalViewController:sentenceVeiw animated:YES];
             }else {
                 bookNumber = index + 1;
                 [cArray removeAllObjects];
@@ -463,56 +530,6 @@
                 [chapterTable reloadData];
 
             }
-//            bookNumber = index + 1;
-//            [cArray removeAllObjects];
-//            cArray = [dbMsg getChapterData:[[bArray objectAtIndex:index]integerValue]];
-//            if (cArray.count != 0) {
-//            }else{
-//                [self tableRePoz:2];
-//            }
-            
-//            if (naviButton[0] != nil) {
-//                [naviButton[0] removeFromSuperview];
-//                naviButton[0] = nil;
-//            }
-//            
-//            if (naviLabel[0] != nil) {
-//                [naviLabel[0] removeFromSuperview];
-//                naviLabel[0] = nil;
-//            }
-//            
-//            if (naviButton[1] != nil) {
-//                [naviButton[1] removeFromSuperview];
-//                naviButton[1] = nil;
-//            }
-//            
-//            if (naviLabel[1] != nil) {
-//                [naviLabel[1] removeFromSuperview];
-//                naviLabel[1] = nil;
-//            }
-//
-//            
-//            naviButton[0] = [UIButton buttonWithType:UIButtonTypeCustom];
-//            [naviButton[0] setFrame:CGRectMake(rootLabel.frame.origin.x + rootLabel.frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
-//            [naviButton[0] setTitle:[dbMsg getBookName:[[bArray objectAtIndex:index]integerValue]] forState:UIControlStateNormal];
-//            [naviButton[0] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//            [naviButton[0] sizeToFit];
-//            naviButton[0].tag = 0;
-//            [naviButton[0] addTarget:self action:@selector(naviButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
-//            
-//            naviLabel[0] = [[UILabel alloc]initWithFrame:CGRectMake(naviButton[0].frame.origin.x + naviButton[0].frame.size.width + 10, 0, 10, naviScroll.frame.size.height)];
-//
-//            naviLabel[0].text = @">";
-//            
-//            [naviLabel[0] sizeToFit];
-//            [naviScroll addSubview:naviButton[0]];
-//            [naviScroll addSubview:naviLabel[0]];
-//            
-//            naviScroll.contentSize = CGSizeMake(naviLabel[0].frame.origin.x + naviLabel[0].frame.size.width, 0);
-//            
-//            [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
-//            
-//            [chapterTable reloadData];
         }
         if (cArray.count != 0){
             [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width,0) animated:YES];
@@ -593,9 +610,12 @@
                 pNumber = index;
                 [publisherName setTitle: @"전체" forState:UIControlStateNormal];
                 
-            }else {
+            }else if(index - 1 < pArray.count){
                 pNumber = [[pArray objectAtIndex:index-1]integerValue];
                 [publisherName setTitle:[dbMsg getPublisherName:pNumber] forState:UIControlStateNormal];
+            }else {
+                pNumber = index;
+                [publisherName setTitle:@"등록한 자료" forState:UIControlStateNormal];
 
             }
             scrollView.contentSize = CGSizeMake(0, 0);
@@ -700,19 +720,30 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(tableView.tag == BookTableTag){
         if (pNumber == 0) {
-            return pArray.count + 1;
+            return pArray.count + groupArray.count;
+        }else if(pNumber == pArray.count + 1) {
+            return groupArray.count;
         }
-        
     }
     return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (tableView.tag == BookTableTag) {
-        if (section == pArray.count) {
-            return @"기타";
+        if(pNumber == pArray.count + 1){
+            if ([[groupArray objectAtIndex:section]isEqualToString:@""]) {
+                return @"기타";
+            }
+            return [groupArray objectAtIndex:section];
         }else{
-            return [dbMsg getPublisherName:[[pArray objectAtIndex:section]integerValue]];
+            if (section >= pArray.count) {
+                if ([[groupArray objectAtIndex:section - pArray.count]isEqualToString:@""]) {
+                    return @"기타";
+                }
+                return [groupArray objectAtIndex:section - pArray.count];
+            }else{
+                return [dbMsg getPublisherName:[[pArray objectAtIndex:section]integerValue]];
+            }
         }
     }
     return nil;
@@ -724,13 +755,17 @@
     bookNumber = 0;
     chapterNumber = 0;
     
-    bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
-    tableCellCount = bArray.count;
-    
-    if (bArray.count != 0)
+    if (pNumber != pArray.count + 1) {
+        bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
+        tableCellCount = bArray.count;
+        if (bArray.count != 0)
+            [scrollView setHidden:NO];
+        else
+            [scrollView setHidden:YES];
+    }else{
         [scrollView setHidden:NO];
-    else
-        [scrollView setHidden:YES];
+    }
+    
     
     [bookTable reloadData];
 }
@@ -774,7 +809,11 @@
 {
     int section = [indexPath section];
     
-    if (section == pArray.count) {
+    if (pNumber == 0) {
+        if (section >= pArray.count) {
+            return UITableViewCellEditingStyleDelete;
+        }
+    }else if(pNumber == pArray.count+1){
         return UITableViewCellEditingStyleDelete;
     }
     return nil;
@@ -788,15 +827,33 @@
 {
     int section = [indexPath section];
     int index = [indexPath row];
+
     
-    if (section == pArray.count) {
-        if (index == 0) {
-            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:0] intValue]];
-        }else{
-            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:index *4] intValue]];
+    if (pNumber == 0) {
+        if (section == pArray.count) {
+            int poz = (index + section - pArray.count);
+            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:poz *4] intValue]];
+        }else if (section > pArray.count) {
+            int poz = 0;
+            for (int i = 0; i < section - pArray.count; i++) {
+                poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
+            }
+            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:poz *4] intValue]];
         }
-        
         [self setTableInit];
+
+    }else if(pNumber == pArray.count + 1){
+        
+        if (section == 0) {
+            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:index *4] intValue]];
+        }else {
+            int poz = 0;
+            for (int i = 0; i < section ; i++) {
+                poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
+            }
+            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:poz *4] intValue]];
+        }
+        [self tableReload];
     }
 }
 
@@ -876,7 +933,7 @@
         
         [self presentModalViewController:textPasteView animated:YES];
     }else if(buttonIndex == 3){
-        NSLog(@"Txt 파일 불러오기");
+        NSLog(@"파일 불러오기");
         
         if (textLoadView != nil) {
             [textLoadView removeFromParentViewController];
@@ -1024,7 +1081,20 @@
     
     bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
     
-    gArray = [dbMsg getInsertBook];
+    [gArray removeAllObjects];
+    [groupCountArray removeAllObjects];
+    
+    groupArray = [dbMsg getInsertBookGroup];
+    if (groupArray.count != 0) {
+        for (int i = 0; i < groupArray.count; i++) {
+            NSArray *tempArray = [dbMsg getInsertBookFromGroup:[groupArray objectAtIndex:i]];
+            [groupCountArray insertObject:[NSNumber numberWithInt:tempArray.count] atIndex:i];
+            for (int j = 0; j < tempArray.count; j++) {
+                [gArray insertObject:[tempArray objectAtIndex:j]atIndex:gArray.count];
+            }
+        }
+    }
+    
     tableCellCount = bArray.count;
     
     if (bArray.count != 0)
@@ -1032,6 +1102,28 @@
     else
         [scrollView setHidden:YES];
         
+    [bookTable reloadData];
+}
+
+- (void)tableReload{
+    [gArray removeAllObjects];
+    [groupCountArray removeAllObjects];
+    
+    groupArray = [dbMsg getInsertBookGroup];
+    if (groupArray.count != 0) {
+        for (int i = 0; i < groupArray.count; i++) {
+            NSArray *tempArray = [dbMsg getInsertBookFromGroup:[groupArray objectAtIndex:i]];
+            [groupCountArray insertObject:[NSNumber numberWithInt:tempArray.count] atIndex:i];
+            for (int j = 0; j < tempArray.count; j++) {
+                [gArray insertObject:[tempArray objectAtIndex:j]atIndex:gArray.count];
+            }
+        }
+    }
+    if (gArray.count != 0)
+        [scrollView setHidden:NO];
+    else
+        [scrollView setHidden:YES];
+    
     [bookTable reloadData];
 }
 

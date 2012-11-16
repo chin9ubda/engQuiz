@@ -21,14 +21,13 @@
     int cNumber;
     int sNumber;
     
-    int groupCount;
-    
     NSMutableArray *pArray;
     NSMutableArray *bArray;
     NSMutableArray *tArray;
     NSMutableArray *cArray;
     NSMutableArray *gArray;
     NSMutableArray *groupArray;
+    NSMutableArray *groupCountArray;
     
     NSMutableArray *imgArray;
     

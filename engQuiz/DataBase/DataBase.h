@@ -25,7 +25,7 @@
 
 -(NSMutableArray *)getInsertBook;
 -(NSMutableArray *)getInsertBookGroup;
-
+-(NSMutableArray *)getInsertBookFromGroup:(NSString *)group;
 
 -(NSMutableArray *)getExamIds:(int)bId;
 -(NSMutableArray *)getExamTheme:(int)_id;

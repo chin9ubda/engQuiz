@@ -131,37 +131,30 @@
 }
 
 - (IBAction)saveCheckBtnEvent:(UIButton *)sender{
-    if (sender.selected) {
-        [sender setSelected:NO];
-    }else{
-        [sender setSelected:YES];
+    if (insertSentence != nil) {
+        insertSentence = nil;
     }
+    insertSentence = [[InsertSentence alloc]init];
+    NSString *theme = nextView.themeTextField.text;
+    NSString *group = nextView.groupTextField.text;
+    
+    [insertSentence insert:textView.text theme:theme group:group];
+    [sender setTitle:@"저장되었습니다." forState:UIControlStateNormal];
+    [sender setEnabled:NO];
 }
-
 - (IBAction)cancelBtnEvent:(id)sender {
     NSLog(@"cancelBtn Event");
     [nextView removeFromSuperview];
 }
 
 - (IBAction)subNextBtnEvent:(id)sender {
-    if (insertSentence != nil) {
-        insertSentence = nil;
-    }
-    
-    if(nextView.saveBtn.selected){
-        insertSentence = [[InsertSentence alloc]init];
-        NSString *theme = nextView.themeTextField.text;
-        NSString *group = nextView.groupTextField.text;
-        
-        [insertSentence insert:textView.text theme:theme group:group];
-    }
-    
     SentenceViewController *sentenceView = [[SentenceViewController alloc]init];
     
     [sentenceView setInit:@"추가지문" :textView.text :0 :0 ];
     [sentenceView setDIsType:NO];
     [self presentModalViewController:sentenceView animated:YES];
 }
+
 
 /* ----------------------------------------
  Keyboard 높이만큼 TextView 의 사이즈 변경
