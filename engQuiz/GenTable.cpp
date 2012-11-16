@@ -7,15 +7,75 @@
 //
 
 #include "GenTable.h"
+#include <fstream>
 #include <sstream>
 
 #define HEIGHT_PIXEL 300
 
 
+std::string replaceAll(const std::string &str, const std::string &pattern, const std::string &replace)
+{
+	std::string result = str;
+	std::string::size_type pos = 0;
+	std::string::size_type offset = 0;
+    
+	while((pos = result.find(pattern, offset)) != std::string::npos)
+	{
+		result.replace(result.begin() + pos, result.begin() + pos + pattern.size(), replace);
+		offset = pos + replace.size();
+	}
+    
+	return result;
+}
+
 GenTableData::GenTableData(std::string label, int fail, int success)
 : label(label), fail(fail), success(success)
 {
     
+}
+
+std::string GenTable::run_gchart(const char *path, std::string title, std::string axisy)
+{
+    std::string str;
+    std::vector<GenTableData>::iterator iter;
+   
+    
+    std::ifstream is(path);
+    std::ostringstream oss;
+    
+    while ( getline(is, str) )
+    {
+        oss << str;
+    }
+    
+    str = oss.str();
+    
+    std::ostringstream oss2;
+    
+    oss2 << "[ ";
+    // 헤더
+    oss2 << "['', 'Total', 'Success', 'Fail'],";
+ 
+    // 내용
+    for (iter = datas.begin(); iter!=datas.end(); iter++)
+    {
+        if (iter != datas.begin())
+        {
+            oss2 << ",";
+        }
+        oss2 << "['" << iter->label << "', ";
+        oss2 << "" << (iter->success+iter->fail) << ", ";
+        oss2 << "" << iter->success << ", ";
+        oss2 << "" << iter->fail << "]";
+    }
+    
+    oss2 << "]";
+    
+    str = replaceAll(str, "{0}", oss2.str());
+    str = replaceAll(str, "{1}", title);
+    str = replaceAll(str, "{2}", axisy);
+    
+    return str;
 }
 
 std::string GenTable::run()

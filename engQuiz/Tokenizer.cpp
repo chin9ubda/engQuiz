@@ -8,17 +8,23 @@
 
 #include "Tokenizer.h"
 #include "SQLDictionary.h"
-#include <sstream>
-#include <stack>
+
+
+std::string token2str(Token &token)
+{
+    return token.getToken();
+}
 
 
 Token::Token(std::string token, enum token_type type, bool existDB) : type(type), token(token), prob_num(0), existDB(existDB)
 {
+    
 }
 
 
 Token::Token(std::string token, bool existDB) : type(TOKEN_TYPE_WORD), token(token), prob_num(0), existDB(existDB)
 {
+
 }
 
 std::string Token::getToken()
@@ -47,9 +53,42 @@ bool Token::getExistDB()
 }
 
 
-Tokenizer::Tokenizer(std::string origin): word_cnt(0), word_cnt_real(0), word_cnt_exist_dic(0)
+Tokenizer::Tokenizer(std::string origin, std::string lexiconPath, std::string ngramsPath): word_cnt(0), word_cnt_real(0), word_cnt_exist_dic(0)
 {
     this->origin = origin;
+    
+    
+    std::string homePath(getenv("HOME"));
+    homePath += "/Resources/";
+    
+//    std::string lexiconPath = homePath + ANALYSIS_LEXICON;
+//    std::string ngramsPath = homePath + ANALYSIS_NGRAMS;
+    
+    
+    std::ifstream lexiconStream(lexiconPath.c_str());
+    std::ifstream nGramStream(ngramsPath.c_str());
+    
+    
+    model = citar::tagger::Model::readModel(lexiconStream, nGramStream);
+    
+	suffixWordHandler = new citar::tagger::SuffixWordHandler(model, 2, 2, 8);
+    
+	knownWordHandler = new citar::tagger::KnownWordHandler(model, suffixWordHandler);
+    
+	smoothing = new citar::tagger::LinearInterpolationSmoothing(model);
+    
+    
+	hmmTagger = std::tr1::shared_ptr<citar::tagger::HMMTagger>(new citar::tagger::HMMTagger(model,
+                                             knownWordHandler, smoothing));
+    
+    
+}
+
+Tokenizer::~Tokenizer()
+{
+    delete suffixWordHandler;
+    delete knownWordHandler;
+    delete smoothing;
 }
 
 void Tokenizer::run()
@@ -60,6 +99,8 @@ void Tokenizer::run()
     //std::stack<char> nor_stack;
     bool sign = false;
     SQLDictionary dic = SQLDictionary::Instance();
+    
+    //tokens.push_back(Token("<BEGIN>", false));
 
     for(i=0;i<origin.length();i++)
     {
@@ -74,7 +115,7 @@ void Tokenizer::run()
                 buf[buf_pos] = '\0';
                 bool existDB = dic.exsistWord(buf);
                 
-                Token token(buf, existDB);
+                Token token(std::string(buf), existDB);
                 tokens.push_back(token);
                 
                 if (buf_pos>2)
@@ -97,8 +138,32 @@ void Tokenizer::run()
         {
             buf[0] = origin[i];
             buf[1] = '\0';
-            Token token(buf, TOKEN_TYPE_SPECIAL);
+            
+            
+            Token token(std::string(buf), TOKEN_TYPE_SPECIAL, false);
             tokens.push_back(token);
+        }
+    }
+    
+    //tokens.push_back(Token("<END>", false));
+    
+    std::vector<std::string> sentents(tokens.size()+1);
+    std::transform(tokens.begin(), tokens.end(), sentents.begin(), token2str);
+
+    tag = hmmTagger->tag(sentents);
+    
+    std::vector<std::string>::iterator iter;
+    std::vector<Token>::iterator iter2;
+    for (iter = tag.begin(), iter2 = tokens.begin(); iter != tag.end(); iter++, iter2++)
+    {
+        if (iter2->getType() == TOKEN_TYPE_SPECIAL)
+            continue;
+        
+        if (analysis.find(*iter) == analysis.end())
+        {
+            analysis[*iter] = 1;
+        } else {
+            analysis[*iter]++;
         }
     }
     

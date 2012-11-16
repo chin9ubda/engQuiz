@@ -17,8 +17,6 @@
 		43924CE316426A6C00B05EFE /* BookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43924CE216426A6C00B05EFE /* BookListCell.xib */; };
 		43924D011643BB4100B05EFE /* test11-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43924D001643BB4100B05EFE /* test11-4.jpg */; };
 		43924D481643BE4700B05EFE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 43924D471643BE4700B05EFE /* MBProgressHUD.m */; };
-		4392703C164E329800F38570 /* TextPasteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4392703A164E329800F38570 /* TextPasteViewController.m */; };
-		4392703D164E329800F38570 /* TextPasteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4392703B164E329800F38570 /* TextPasteViewController.xib */; };
 		439273DE1643DD5B00EA98EF /* bobtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 439273D21643DD5B00EA98EF /* bobtn.png */; };
 		439273DF1643DD5B00EA98EF /* bobtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 439273D31643DD5B00EA98EF /* bobtn@2x.png */; };
 		439273E01643DD5B00EA98EF /* danbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 439273D41643DD5B00EA98EF /* danbtn.png */; };
@@ -38,34 +36,11 @@
 		439274531643EA8400EA98EF /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 439274511643EA8400EA98EF /* libtesseract_all.a */; };
 		439274581646105D00EA98EF /* EduViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439274561646105D00EA98EF /* EduViewController.m */; };
 		439274591646105D00EA98EF /* EduViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439274571646105D00EA98EF /* EduViewController.xib */; };
-		4396967C1651EF4300744631 /* TextFileLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396967A1651EF4300744631 /* TextFileLoadViewController.m */; };
-		4396967D1651EF4300744631 /* TextFileLoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4396967B1651EF4300744631 /* TextFileLoadViewController.xib */; };
-		439696831651FA9300744631 /* test.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 439696821651FA9300744631 /* test.rtf */; };
-		439696861651FB1200744631 /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 439696851651FB1200744631 /* test.txt */; };
-		4396968E16537D2E00744631 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396968D16537D2E00744631 /* Camera.m */; };
-		4396969016537D4900744631 /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4396968F16537D4900744631 /* Camera.xib */; };
-		4396969F165383DB00744631 /* ImgSelectedOverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396969E165383DB00744631 /* ImgSelectedOverView.m */; };
-		439696A1165383E500744631 /* ImgSelectedOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696A0165383E500744631 /* ImgSelectedOverView.xib */; };
-		439696A51653C88500744631 /* 640-920.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 439696A41653C88500744631 /* 640-920.jpg */; };
-		439696A71653C98F00744631 /* 320-460.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 439696A61653C98F00744631 /* 320-460.jpg */; };
-		439696AB1653C9CF00744631 /* 640-920_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 439696A81653C9CE00744631 /* 640-920_1.jpg */; };
-		439696AC1653C9CF00744631 /* 640-920_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 439696A91653C9CE00744631 /* 640-920_2.jpg */; };
-		439696AD1653C9CF00744631 /* 640-920_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 439696AA1653C9CE00744631 /* 640-920_3.jpg */; };
-		439696B21655034900744631 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696B01655034900744631 /* SettingViewController.m */; };
-		439696B31655034900744631 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696B11655034900744631 /* SettingViewController.xib */; };
-		439696B71655068E00744631 /* NSStringRegular.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696B61655068E00744631 /* NSStringRegular.m */; };
-		439696BC16550E4E00744631 /* OcrResultCheckViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439696BA16550E4E00744631 /* OcrResultCheckViewController.mm */; };
-		439696BD16550E4E00744631 /* OcrResultCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696BB16550E4E00744631 /* OcrResultCheckViewController.xib */; };
-		439696C016550EE300744631 /* InsertSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696BF16550EE300744631 /* InsertSentence.m */; };
-		439696C416551A3800744631 /* NextAddInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696C316551A3800744631 /* NextAddInfoView.m */; };
-		439696C616551A6600744631 /* NextAddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696C516551A6600744631 /* NextAddInfoView.xib */; };
 		4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4398BC4916463BA700338CC6 /* engquiz.sqlite */; };
 		439AF569163BD7500016DE4E /* VocaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439AF567163BD7500016DE4E /* VocaViewController.m */; };
 		439AF56A163BD7500016DE4E /* VocaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439AF568163BD7500016DE4E /* VocaViewController.xib */; };
 		439AF56D163BE4220016DE4E /* VocaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 439AF56C163BE4210016DE4E /* VocaCell.m */; };
 		439AF56F163BE4300016DE4E /* VocaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439AF56E163BE4300016DE4E /* VocaCell.xib */; };
-		439D0A9B1655465B00339459 /* TextCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D0A991655465B00339459 /* TextCheckViewController.m */; };
-		439D0A9C1655465B00339459 /* TextCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D0A9A1655465B00339459 /* TextCheckViewController.xib */; };
 		439D2CBE163BB5760071551C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 439D2CBD163BB5760071551C /* UIKit.framework */; };
 		439D2CC0163BB5760071551C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 439D2CBF163BB5760071551C /* Foundation.framework */; };
 		439D2CC2163BB5760071551C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 439D2CC1163BB5760071551C /* CoreGraphics.framework */; };
@@ -86,12 +61,35 @@
 		439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1F163BC7430071551C /* SentenceViewController.mm */; };
 		43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E25BBE164CEA2100844D78 /* ExSentence.m */; };
 		43E25BC1164CEA4000844D78 /* exSentence.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E25BC0164CEA4000844D78 /* exSentence.xib */; };
+		7D19EF5216555AAE007D8563 /* chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D19EF5116555AAE007D8563 /* chart.html */; };
+		7D19EF551655E70D007D8563 /* GrammarProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D19EF531655E70C007D8563 /* GrammarProblemMaker.cpp */; };
+		7D19EF561655EFE7007D8563 /* OcrResultCheckViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439696BA16550E4E00744631 /* OcrResultCheckViewController.mm */; };
+		7D19EF571655F000007D8563 /* InsertSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696BF16550EE300744631 /* InsertSentence.m */; };
+		7D19EF581655F005007D8563 /* NSStringRegular.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696B61655068E00744631 /* NSStringRegular.m */; };
+		7D19EF591655F01A007D8563 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696B01655034900744631 /* SettingViewController.m */; };
+		7D19EF5A1655F025007D8563 /* NextAddInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 439696C316551A3800744631 /* NextAddInfoView.m */; };
+		7D19EF5B1655F03F007D8563 /* TextCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D0A991655465B00339459 /* TextCheckViewController.m */; };
+		7D19EF5C1655F052007D8563 /* TextPasteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4392703A164E329800F38570 /* TextPasteViewController.m */; };
+		7D19EF5D1655F061007D8563 /* TextFileLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396967A1651EF4300744631 /* TextFileLoadViewController.m */; };
+		7D2B8D95164D3B6F0017C3F0 /* BrownCorpusReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D89164D3B6F0017C3F0 /* BrownCorpusReader.cpp */; };
+		7D2B8D96164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8A164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp */; };
+		7D2B8D98164D3B6F0017C3F0 /* HMMTagger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8C164D3B6F0017C3F0 /* HMMTagger.cpp */; };
+		7D2B8D99164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8D164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp */; };
+		7D2B8D9A164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8E164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp */; };
+		7D2B8D9B164D3B6F0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D8F164D3B6F0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp */; };
+		7D2B8D9C164D3B6F0017C3F0 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D90164D3B6F0017C3F0 /* Model.cpp */; };
+		7D2B8D9D164D3B6F0017C3F0 /* ModelPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D91164D3B6F0017C3F0 /* ModelPrivate.cpp */; };
+		7D2B8D9E164D3B6F0017C3F0 /* KnownWordHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D92164D3B6F0017C3F0 /* KnownWordHandler.cpp */; };
+		7D2B8D9F164D3B6F0017C3F0 /* SuffixWordHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D93164D3B6F0017C3F0 /* SuffixWordHandler.cpp */; };
+		7D2B8DA0164D3B6F0017C3F0 /* WordSuffixTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B8D94164D3B6F0017C3F0 /* WordSuffixTree.cpp */; };
 		7D3B07C01648B78000B75F2B /* IProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BA1648B78000B75F2B /* IProblemMaker.cpp */; };
 		7D3B07C11648B78000B75F2B /* SimpleProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BC1648B78000B75F2B /* SimpleProblemMaker.cpp */; };
 		7D3B07C21648B78000B75F2B /* TextDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07BE1648B78000B75F2B /* TextDictionary.cpp */; };
 		7D3B07C51649A72300B75F2B /* Tokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07C31649A72300B75F2B /* Tokenizer.cpp */; };
 		7D3B07C81649EA0100B75F2B /* SQLDictionary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B07C61649EA0100B75F2B /* SQLDictionary.mm */; };
 		7D7C32EF164CEC9500901A14 /* GenTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D7C32ED164CEC9500901A14 /* GenTable.cpp */; };
+		7D7C5FA4165103AB0047E3F5 /* brown-simplified.lexicon in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C5FA2165103AB0047E3F5 /* brown-simplified.lexicon */; };
+		7D7C5FA5165103AB0047E3F5 /* brown-simplified.ngrams in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C5FA3165103AB0047E3F5 /* brown-simplified.ngrams */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -244,12 +242,14 @@
 		43E25BBD164CEA2100844D78 /* ExSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExSentence.h; path = Classes/ExSentence.h; sourceTree = "<group>"; };
 		43E25BBE164CEA2100844D78 /* ExSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExSentence.m; path = Classes/ExSentence.m; sourceTree = "<group>"; };
 		43E25BC0164CEA4000844D78 /* exSentence.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = exSentence.xib; path = Classes/exSentence.xib; sourceTree = "<group>"; };
+		7D19EF5116555AAE007D8563 /* chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = chart.html; sourceTree = "<group>"; };
+		7D19EF531655E70C007D8563 /* GrammarProblemMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GrammarProblemMaker.cpp; sourceTree = "<group>"; };
+		7D19EF541655E70C007D8563 /* GrammarProblemMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrammarProblemMaker.h; sourceTree = "<group>"; };
 		7D2B8D6E164D31320017C3F0 /* config.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hh; sourceTree = "<group>"; };
 		7D2B8D71164D31320017C3F0 /* BrownCorpusReader.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BrownCorpusReader.hh; sourceTree = "<group>"; };
 		7D2B8D72164D31320017C3F0 /* CorpusReader.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CorpusReader.hh; sourceTree = "<group>"; };
 		7D2B8D73164D31320017C3F0 /* SentenceHandler.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SentenceHandler.hh; sourceTree = "<group>"; };
 		7D2B8D74164D31320017C3F0 /* TaggedWord.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TaggedWord.hh; sourceTree = "<group>"; };
-		7D2B8D75164D31320017C3F0 /* cwrap.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cwrap.hh; sourceTree = "<group>"; };
 		7D2B8D78164D31320017C3F0 /* BiGram.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BiGram.hh; sourceTree = "<group>"; };
 		7D2B8D79164D31320017C3F0 /* HMMTagger.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HMMTagger.hh; sourceTree = "<group>"; };
 		7D2B8D7A164D31320017C3F0 /* LinearInterpolationSmoothing.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LinearInterpolationSmoothing.hh; sourceTree = "<group>"; };
@@ -265,7 +265,6 @@
 		7D2B8D87164D31320017C3F0 /* PairSecondGtComp.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PairSecondGtComp.hh; sourceTree = "<group>"; };
 		7D2B8D89164D3B6F0017C3F0 /* BrownCorpusReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BrownCorpusReader.cpp; path = citar/BrownCorpusReader.cpp; sourceTree = "<group>"; };
 		7D2B8D8A164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BrownCorpusReaderPrivate.cpp; path = citar/BrownCorpusReaderPrivate.cpp; sourceTree = "<group>"; };
-		7D2B8D8B164D3B6F0017C3F0 /* cwrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cwrap.cpp; path = citar/cwrap.cpp; sourceTree = "<group>"; };
 		7D2B8D8C164D3B6F0017C3F0 /* HMMTagger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HMMTagger.cpp; path = citar/HMMTagger.cpp; sourceTree = "<group>"; };
 		7D2B8D8D164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HMMTaggerPrivate.cpp; path = citar/HMMTaggerPrivate.cpp; sourceTree = "<group>"; };
 		7D2B8D8E164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LinearInterpolationSmoothing.cpp; path = citar/LinearInterpolationSmoothing.cpp; sourceTree = "<group>"; };
@@ -276,7 +275,6 @@
 		7D2B8D93164D3B6F0017C3F0 /* SuffixWordHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SuffixWordHandler.cpp; path = citar/SuffixWordHandler.cpp; sourceTree = "<group>"; };
 		7D2B8D94164D3B6F0017C3F0 /* WordSuffixTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WordSuffixTree.cpp; path = citar/WordSuffixTree.cpp; sourceTree = "<group>"; };
 		7D2B8DB0164D3E940017C3F0 /* BrownCorpusReaderPrivate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BrownCorpusReaderPrivate.hh; path = citar/BrownCorpusReaderPrivate.hh; sourceTree = "<group>"; };
-		7D2B8DB1164D3E940017C3F0 /* cwrap.ih */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cwrap.ih; path = citar/cwrap.ih; sourceTree = "<group>"; };
 		7D2B8DB2164D3E940017C3F0 /* HMMTaggerPrivate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HMMTaggerPrivate.hh; path = citar/HMMTaggerPrivate.hh; sourceTree = "<group>"; };
 		7D2B8DB3164D3E940017C3F0 /* LinearInterpolationSmoothingPrivate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LinearInterpolationSmoothingPrivate.hh; path = citar/LinearInterpolationSmoothingPrivate.hh; sourceTree = "<group>"; };
 		7D2B8DB4164D3E940017C3F0 /* ModelPrivate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ModelPrivate.hh; path = citar/ModelPrivate.hh; sourceTree = "<group>"; };
@@ -294,6 +292,8 @@
 		7D3B07C91649F1A000B75F2B /* IDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDictionary.h; sourceTree = "<group>"; };
 		7D7C32ED164CEC9500901A14 /* GenTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenTable.cpp; sourceTree = "<group>"; };
 		7D7C32EE164CEC9500901A14 /* GenTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenTable.h; sourceTree = "<group>"; };
+		7D7C5FA2165103AB0047E3F5 /* brown-simplified.lexicon */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "brown-simplified.lexicon"; sourceTree = "<group>"; };
+		7D7C5FA3165103AB0047E3F5 /* brown-simplified.ngrams */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "brown-simplified.ngrams"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +321,7 @@
 				433B1105164947CE00181487 /* ChartViewController.xib */,
 				7D7C32ED164CEC9500901A14 /* GenTable.cpp */,
 				7D7C32EE164CEC9500901A14 /* GenTable.h */,
+				7D19EF5116555AAE007D8563 /* chart.html */,
 			);
 			name = Chart;
 			sourceTree = "<group>";
@@ -719,7 +720,6 @@
 			children = (
 				7D2B8D6E164D31320017C3F0 /* config.hh */,
 				7D2B8D70164D31320017C3F0 /* corpus */,
-				7D2B8D75164D31320017C3F0 /* cwrap.hh */,
 				7D2B8D76164D31320017C3F0 /* tagger */,
 				7D2B8D84164D31320017C3F0 /* util */,
 				7D2B8D86164D31320017C3F0 /* utility */,
@@ -802,22 +802,32 @@
 				7D3B07C61649EA0100B75F2B /* SQLDictionary.mm */,
 				7D3B07C71649EA0100B75F2B /* SQLDictionary.h */,
 				7D3B07C91649F1A000B75F2B /* IDictionary.h */,
+				7D19EF531655E70C007D8563 /* GrammarProblemMaker.cpp */,
+				7D19EF541655E70C007D8563 /* GrammarProblemMaker.h */,
 			);
 			name = GenProb;
+			sourceTree = "<group>";
+		};
+		7D7C5FA0165103880047E3F5 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				7D7C5FA2165103AB0047E3F5 /* brown-simplified.lexicon */,
+				7D7C5FA3165103AB0047E3F5 /* brown-simplified.ngrams */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		7DCE4B87164D249A00FAC425 /* CitarPOS */ = {
 			isa = PBXGroup;
 			children = (
+				7D7C5FA0165103880047E3F5 /* model */,
 				7D2B8DB0164D3E940017C3F0 /* BrownCorpusReaderPrivate.hh */,
-				7D2B8DB1164D3E940017C3F0 /* cwrap.ih */,
 				7D2B8DB2164D3E940017C3F0 /* HMMTaggerPrivate.hh */,
 				7D2B8DB3164D3E940017C3F0 /* LinearInterpolationSmoothingPrivate.hh */,
 				7D2B8DB4164D3E940017C3F0 /* ModelPrivate.hh */,
 				7D2B8DB5164D3E940017C3F0 /* TagMatrixEntry.hh */,
 				7D2B8D89164D3B6F0017C3F0 /* BrownCorpusReader.cpp */,
 				7D2B8D8A164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp */,
-				7D2B8D8B164D3B6F0017C3F0 /* cwrap.cpp */,
 				7D2B8D8C164D3B6F0017C3F0 /* HMMTagger.cpp */,
 				7D2B8D8D164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp */,
 				7D2B8D8E164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp */,
@@ -914,21 +924,9 @@
 				4325C535164CC56A0072195F /* SentenceViewController.xib in Resources */,
 				4325C53A164CC59B0072195F /* RepositoryViewController.xib in Resources */,
 				43E25BC1164CEA4000844D78 /* exSentence.xib in Resources */,
-				4392703D164E329800F38570 /* TextPasteViewController.xib in Resources */,
-				4396967D1651EF4300744631 /* TextFileLoadViewController.xib in Resources */,
-				439696831651FA9300744631 /* test.rtf in Resources */,
-				439696861651FB1200744631 /* test.txt in Resources */,
-				4396969016537D4900744631 /* Camera.xib in Resources */,
-				439696A1165383E500744631 /* ImgSelectedOverView.xib in Resources */,
-				439696A51653C88500744631 /* 640-920.jpg in Resources */,
-				439696A71653C98F00744631 /* 320-460.jpg in Resources */,
-				439696AB1653C9CF00744631 /* 640-920_1.jpg in Resources */,
-				439696AC1653C9CF00744631 /* 640-920_2.jpg in Resources */,
-				439696AD1653C9CF00744631 /* 640-920_3.jpg in Resources */,
-				439696B31655034900744631 /* SettingViewController.xib in Resources */,
-				439696BD16550E4E00744631 /* OcrResultCheckViewController.xib in Resources */,
-				439696C616551A6600744631 /* NextAddInfoView.xib in Resources */,
-				439D0A9C1655465B00339459 /* TextCheckViewController.xib in Resources */,
+				7D7C5FA4165103AB0047E3F5 /* brown-simplified.lexicon in Resources */,
+				7D7C5FA5165103AB0047E3F5 /* brown-simplified.ngrams in Resources */,
+				7D19EF5216555AAE007D8563 /* chart.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -939,6 +937,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D19EF5D1655F061007D8563 /* TextFileLoadViewController.m in Sources */,
+				7D19EF5C1655F052007D8563 /* TextPasteViewController.m in Sources */,
+				7D19EF5B1655F03F007D8563 /* TextCheckViewController.m in Sources */,
+				7D19EF5A1655F025007D8563 /* NextAddInfoView.m in Sources */,
+				7D19EF591655F01A007D8563 /* SettingViewController.m in Sources */,
+				7D19EF581655F005007D8563 /* NSStringRegular.m in Sources */,
+				7D19EF571655F000007D8563 /* InsertSentence.m in Sources */,
+				7D19EF561655EFE7007D8563 /* OcrResultCheckViewController.mm in Sources */,
 				439D2CCA163BB5760071551C /* main.m in Sources */,
 				439D2CCE163BB5760071551C /* AppDelegate.mm in Sources */,
 				439D2CE2163BB5AE0071551C /* DataBase.m in Sources */,
@@ -962,16 +968,18 @@
 				7D7C32EF164CEC9500901A14 /* GenTable.cpp in Sources */,
 				4325C539164CC59B0072195F /* RepositoryViewController.m in Sources */,
 				43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */,
-				4392703C164E329800F38570 /* TextPasteViewController.m in Sources */,
-				4396967C1651EF4300744631 /* TextFileLoadViewController.m in Sources */,
-				4396968E16537D2E00744631 /* Camera.m in Sources */,
-				4396969F165383DB00744631 /* ImgSelectedOverView.m in Sources */,
-				439696B21655034900744631 /* SettingViewController.m in Sources */,
-				439696B71655068E00744631 /* NSStringRegular.m in Sources */,
-				439696BC16550E4E00744631 /* OcrResultCheckViewController.mm in Sources */,
-				439696C016550EE300744631 /* InsertSentence.m in Sources */,
-				439696C416551A3800744631 /* NextAddInfoView.m in Sources */,
-				439D0A9B1655465B00339459 /* TextCheckViewController.m in Sources */,
+				7D2B8D95164D3B6F0017C3F0 /* BrownCorpusReader.cpp in Sources */,
+				7D2B8D96164D3B6F0017C3F0 /* BrownCorpusReaderPrivate.cpp in Sources */,
+				7D2B8D98164D3B6F0017C3F0 /* HMMTagger.cpp in Sources */,
+				7D2B8D99164D3B6F0017C3F0 /* HMMTaggerPrivate.cpp in Sources */,
+				7D2B8D9A164D3B6F0017C3F0 /* LinearInterpolationSmoothing.cpp in Sources */,
+				7D2B8D9B164D3B6F0017C3F0 /* LinearInterpolationSmoothingPrivate.cpp in Sources */,
+				7D2B8D9C164D3B6F0017C3F0 /* Model.cpp in Sources */,
+				7D2B8D9D164D3B6F0017C3F0 /* ModelPrivate.cpp in Sources */,
+				7D2B8D9E164D3B6F0017C3F0 /* KnownWordHandler.cpp in Sources */,
+				7D2B8D9F164D3B6F0017C3F0 /* SuffixWordHandler.cpp in Sources */,
+				7D2B8DA0164D3B6F0017C3F0 /* WordSuffixTree.cpp in Sources */,
+				7D19EF551655E70D007D8563 /* GrammarProblemMaker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,6 +1025,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1038,6 +1047,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1058,7 +1068,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "./**";
 				INFOPLIST_FILE = "engQuiz/engQuiz-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -1086,7 +1096,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "./**";
 				INFOPLIST_FILE = "engQuiz/engQuiz-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;

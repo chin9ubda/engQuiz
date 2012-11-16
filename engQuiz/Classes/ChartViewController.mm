@@ -75,7 +75,7 @@
     
     //    맞은 문제 빨강 ...
     
-    std::string temp = table.run();
+    std::string temp = table.run_gchart([[[NSBundle mainBundle] pathForResource:@"chart" ofType:@"html"] UTF8String], "", "");
     
     NSString *html = [NSString stringWithUTF8String:temp.c_str()];
     
@@ -102,7 +102,7 @@
     
     //    맞은 문제 빨강 ...
     
-    std::string temp = table.run();
+    std::string temp = table.run_gchart([[[NSBundle mainBundle] pathForResource:@"chart" ofType:@"html"] UTF8String], "", "");
     
     NSString *html = [NSString stringWithUTF8String:temp.c_str()];
     

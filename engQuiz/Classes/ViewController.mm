@@ -337,7 +337,7 @@
 //    }
 //    
 //    NSString *date =[NSString stringWithFormat:@"%d%@%@",year,tempMonth,tempDay];
-    NSStringRegular *regular = [[NSStringRegular alloc]init];
+//    NSStringRegular *regular = [[NSStringRegular alloc]init];
 
 //    [resultCheckView setTextView:[regular stringChange:result]];
     [self presentModalViewController:resultCheckView animated:YES];
