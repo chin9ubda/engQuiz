@@ -47,11 +47,11 @@
     if([fileMgr fileExistsAtPath:filePath]){
         NSLog(@"file exist");
         
-//        [fileMgr removeItemAtPath:filePath error:&error];
-//
-//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
-//
-//        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
+        [fileMgr removeItemAtPath:filePath error:&error];
+
+        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
+
+        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
     }else {
         NSLog(@"file not exist");
@@ -62,17 +62,17 @@
         
     }
     
-//    if (![fileMgr fileExistsAtPath:testFilePath]) {
-//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
-//        
-//        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
-//    }else{
-//        [fileMgr removeItemAtPath:testFilePath error:&error];
-//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
-//        
-//        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
-//    }
-//    
+    if (![fileMgr fileExistsAtPath:testFilePath]) {
+        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
+        
+        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
+    }else{
+        [fileMgr removeItemAtPath:testFilePath error:&error];
+        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
+        
+        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
+    }
+//
     
     if (sqlite3_open([filePath UTF8String], &database) != SQLITE_OK) {
         
