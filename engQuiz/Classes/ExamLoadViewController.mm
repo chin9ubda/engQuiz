@@ -1042,15 +1042,9 @@
         [self menuUpDown];
     }else {
         
-//        UIImageView *imgView = [[UIImageView alloc]initWithImage:[self cropImage:image:cameraOverView.cropView]];
-//        
-//        [imgView setFrame:CGRectMake(0, 20, 320, 460)];
-//        
-//        [self.view addSubview:imgView];
-        
         [imgArray insertObject:[self cropImage:image:cameraOverView.cropView] atIndex:imgArray.count];
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[self cropImage:image:cameraOverView.cropView]];
-//        280 / 340 
+        
         [imageView setFrame:CGRectMake((imgArray.count - 1) * 280 / 3.4, 0, 280 / 3.4, 100)];
         imageView.tag = imgArray.count-1;
         
@@ -1112,18 +1106,7 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
-//- (UIImage*)imageByCropping:(UIImage *)imageToCrop toRect:(CGRect)rect
-//{
-//
-//    CGImageRef imageRef = CGImageCreateWithImageInRect(imageToCrop.CGImage, CGRectMake(x, y, width, height));
-//    UIImage *croppedImage = [UIImage imageWithCGImage:imageRef];
-//    CGImageRelease(imageRef);
-//    
-////    CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], rect);
-////    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
-////    CGImageRelease(imageRef);
-////    return cropped;
-//}
+
 - (void)imageDelete:(UIButton *)btn{
     
     [[imgViewArray objectAtIndex:btn.tag] removeFromSuperview];
@@ -1151,42 +1134,6 @@
     [ocrView setimage:imgArray];
     [self presentModalViewController:ocrView animated:YES];
 }
-
-//// 3. 가지고 온 사진을 편집한다 (crop, 회전 등)
-//#pragma mark UIImagePickerContoller Delegate
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-//{
-//    ViewController *view = [[ViewController alloc]init];
-//
-//    [view setimage:image];
-//    [self presentModalViewController:view animated:YES];
-//
-////    SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
-////
-////    if (index == 0) {
-////        [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber + 1]integerValue]]:[[tArray objectAtIndex:0]integerValue]];
-////    }else {
-////        [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber + 1]integerValue]]:[[tArray objectAtIndex:index * 2]integerValue]];
-////    }
-////
-//
-////    SJ_DEBUG_LOG(@"Image Selected");
-////    if(imagepickerController.sourceType == UIImagePickerControllerSourceTypeCamera){
-////        dismiss_type = IMAGEPICKER_CAMERA;
-////    }else{
-////        dismiss_type = IMAGEPICKER_PHOTO_ALBUM;
-////    }
-////    
-////    scanImage = image;
-////    [picker dismissModalViewControllerAnimated:NO];
-////    
-////    return;
-//}
-
-
-
-
-
 
 - (void)setTableInit{
     bookNumber = 0;

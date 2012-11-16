@@ -60,6 +60,7 @@
     IBOutlet UIButton *answerHiddenBtn4;
     
     
+    IBOutlet UIWebView *webView;
     IBOutlet UIBarButtonItem *saveBtn;
     
 }
