@@ -66,6 +66,7 @@ public:
     int word_cnt_exist_dic;
     std::tr1::shared_ptr<citar::tagger::HMMTagger> hmmTagger;
     std::tr1::shared_ptr<citar::tagger::Model> model;
+    std::map<std::string, int> analysis;
     
     Tokenizer(std::string origin, std::string lexiconPath, std::string ngramsPath);
     ~Tokenizer();

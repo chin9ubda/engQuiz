@@ -8,12 +8,11 @@ Problem::Problem()
 
 void Problem::addItems(std::string qcontent, int solution)
 {
-	ProblemItem *item;
-	item = new ProblemItem();
+	ProblemItem item;
     
     std::transform(qcontent.begin(), qcontent.end(), qcontent.begin(), tolower);
-	item->qcontent = qcontent;
-	item->solution = solution;
+	item.qcontent = qcontent;
+	item.solution = solution;
     
 	items.push_back(item);
     
@@ -26,12 +25,6 @@ void Problem::addItems(std::string qcontent, int solution)
 
 Problem::~Problem()
 {
-	std::vector<ProblemItem*>::iterator iter;
-
-	for (iter= items.begin(); iter != items.end(); iter++)
-	{
-		delete (*iter);
-	}
 }
 
 
@@ -44,4 +37,15 @@ IProblemMaker::IProblemMaker(Tokenizer* tokenizer)
 IProblemMaker::~IProblemMaker()
 {
     delete tokenizer;
+}
+
+
+std::string IProblemMaker::getProblemContent()
+{
+	return problem_content;
+}
+
+std::vector<Problem> &IProblemMaker::getProblems()
+{
+	return problem;
 }

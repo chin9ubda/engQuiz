@@ -9,15 +9,10 @@ class SimpleProblemMaker :
 {
     bool procReal();
     bool procExistDic();
-public:
-	std::vector<Problem*> problem;
 	SQLDictionary *dic;
-	std::string example;
-	std::string problem_content;
+public:
 	SimpleProblemMaker(Tokenizer *tokenizer);
 	~SimpleProblemMaker(void);
 	virtual bool makeProblem(int level, int d); 
-	virtual std::vector<Problem*> &getProblems();
-	virtual std::string getProblemContent(); 
 };
 

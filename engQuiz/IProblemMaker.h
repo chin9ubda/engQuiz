@@ -1,11 +1,13 @@
 #pragma once
 
 #include "Tokenizer.h"
+#include "SQLDictionary.h"
 #include <string>
 #include <vector>
 
 #define MAX_ITEMS_LENGTH 4
 
+class SQLDictionary;
 
 class ProblemItem
 {
@@ -18,7 +20,7 @@ class Problem
 {
 public:
     std::string pcontent;
-    std::vector <ProblemItem*> items;
+    std::vector <ProblemItem> items;
     int solution;
 
 	void addItems(std::string qcontent, int solution);
@@ -42,12 +44,16 @@ class IProblemMaker
 {
 protected:
     Tokenizer *tokenizer;
+	std::vector<Problem> problem;
+	std::string example;
+	std::string problem_content;
 public:
+    
 	IProblemMaker(Tokenizer *tokenizer);
 	~IProblemMaker(void);
 	virtual bool makeProblem(int level, int num) = 0;
-	virtual std::vector<Problem*> &getProblems() = 0;
-	virtual std::string getProblemContent() = 0; 
+	std::vector<Problem> &getProblems();
+	std::string getProblemContent();
 
 };
 

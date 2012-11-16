@@ -152,6 +152,21 @@ void Tokenizer::run()
 
     tag = hmmTagger->tag(sentents);
     
+    std::vector<std::string>::iterator iter;
+    std::vector<Token>::iterator iter2;
+    for (iter = tag.begin(), iter2 = tokens.begin(); iter != tag.end(); iter++, iter2++)
+    {
+        if (iter2->getType() == TOKEN_TYPE_SPECIAL)
+            continue;
+        
+        if (analysis.find(*iter) == analysis.end())
+        {
+            analysis[*iter] = 1;
+        } else {
+            analysis[*iter]++;
+        }
+    }
+    
 }
 
 

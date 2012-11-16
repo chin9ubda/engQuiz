@@ -364,22 +364,22 @@
     
     
     // 문제
-    std::vector<Problem*> problems = prob->getProblems();
+    std::vector<Problem> problems = prob->getProblems();
     
-    Problem* nowProb = problems[0];
+    Problem nowProb = problems[0];
     
-    [eArray insertObject:[NSString stringWithUTF8String:nowProb->pcontent.c_str()] atIndex:0];
+    [eArray insertObject:[NSString stringWithUTF8String:nowProb.pcontent.c_str()] atIndex:0];
     
     // 문제 항목
     for (int i=0; i<4; i++)
     {
-        NSString *strprobitem = [NSString stringWithUTF8String:nowProb->items[i]->qcontent.c_str()];
+        NSString *strprobitem = [NSString stringWithUTF8String:nowProb.items[i].qcontent.c_str()];
         
         [eArray insertObject:strprobitem atIndex:i+1];
     }
     
     // 정답 번호
-    [eArray insertObject:[NSNumber numberWithInt:nowProb->solution] atIndex:5];
+    [eArray insertObject:[NSNumber numberWithInt:nowProb.solution] atIndex:5];
     
     delete prob;
     

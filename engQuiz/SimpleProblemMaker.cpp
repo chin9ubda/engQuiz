@@ -11,12 +11,6 @@ SimpleProblemMaker::SimpleProblemMaker(Tokenizer *tokenizer) : IProblemMaker(tok
 
 SimpleProblemMaker::~SimpleProblemMaker(void)
 {
-	std::vector<Problem*>::iterator iter;
-
-	for (iter = problem.begin() ; iter != problem.end(); iter++)
-	{
-		delete *iter;
-	}
 }
 
 bool SimpleProblemMaker::makeProblem(int level, int num)
@@ -40,7 +34,7 @@ bool SimpleProblemMaker::procReal()
 {
     int num_ex, num_real;
 	///////////////////// 문제생성
-	Problem *prob = new Problem();
+	Problem prob;
     
     num_ex = rand() % tokenizer->word_cnt_real;
     num_real = tokenizer->atWordRealToken(num_ex);
@@ -51,7 +45,7 @@ bool SimpleProblemMaker::procReal()
     
 	problem_content = tokenizer->cascadeStr();
     
-	prob->pcontent = "빈칸에 알맞은 단어를 넣으세요.";
+	prob.pcontent = "빈칸에 알맞은 단어를 넣으세요.";
 	
 	int sol = rand() % 4;
     
@@ -59,9 +53,9 @@ bool SimpleProblemMaker::procReal()
 	{
 		if (sol == i)
 		{
-			prob->addItems(solution, 1);
+			prob.addItems(solution, 1);
 		} else {
-			prob->addItems(dic->getRandomWord(), 0);
+			prob.addItems(dic->getRandomWord(), 0);
 		}
 	}
     
@@ -74,7 +68,7 @@ bool SimpleProblemMaker::procExistDic()
 {
     int num_ex, num_real;
 	///////////////////// 문제생성
-	Problem *prob = new Problem();
+	Problem prob;
     
     num_ex = rand() % tokenizer->word_cnt_exist_dic;
     num_real = tokenizer->atWordExistDBToken(num_ex);
@@ -85,7 +79,7 @@ bool SimpleProblemMaker::procExistDic()
     
 	problem_content = tokenizer->cascadeStr();
     
-	prob->pcontent = "빈칸에 알맞은 단어를 넣으세요.";
+	prob.pcontent = "빈칸에 알맞은 단어를 넣으세요.";
 	
 	int sol = rand() % 4;
     std::string simstr[3];
@@ -100,23 +94,13 @@ bool SimpleProblemMaker::procExistDic()
 	{
 		if (sol == i)
 		{
-			prob->addItems(solution, 1);
+			prob.addItems(solution, 1);
 		} else {
-			prob->addItems(simstr[simcnt++], 0);
+			prob.addItems(simstr[simcnt++], 0);
 		}
 	}
     
 	problem.push_back(prob);
     
     return true;
-}
-
-std::string SimpleProblemMaker::getProblemContent()
-{
-	return problem_content;
-}
-
-std::vector<Problem*> &SimpleProblemMaker::getProblems()
-{
-	return problem;
 }

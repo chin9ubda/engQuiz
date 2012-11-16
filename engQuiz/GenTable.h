@@ -27,6 +27,7 @@ class GenTable
 public:
     std::vector<GenTableData> datas;
     std::string run();
+    std::string run_gchart(const char *path, std::string title, std::string axisy);
 };
 
 #endif /* defined(__engQuiz__GenTable__) */
