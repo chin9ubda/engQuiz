@@ -54,7 +54,7 @@ std::string GenTable::run_gchart(const char *path, std::string title, std::strin
     
     oss2 << "[ ";
     // 헤더
-    oss2 << "['', 'Total', 'Success', 'Fail'],";
+    oss2 << "['', 'Success', 'Fail', 'Total'],";
  
     // 내용
     for (iter = datas.begin(); iter!=datas.end(); iter++)
@@ -64,9 +64,9 @@ std::string GenTable::run_gchart(const char *path, std::string title, std::strin
             oss2 << ",";
         }
         oss2 << "['" << iter->label << "', ";
-        oss2 << "" << (iter->success+iter->fail) << ", ";
         oss2 << "" << iter->success << ", ";
-        oss2 << "" << iter->fail << "]";
+        oss2 << "" << iter->fail << ",";
+        oss2 << "" << (iter->success+iter->fail) << "]";
     }
     
     oss2 << "]";
