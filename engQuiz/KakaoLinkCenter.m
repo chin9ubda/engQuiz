@@ -123,6 +123,8 @@ static NSString *const StoryLinkURLBaseString = @"storylink://posting";
 
 
 + (BOOL)canOpenStoryLink {
+//    return NO;
+
 	return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:StoryLinkURLBaseString]];
 }
 

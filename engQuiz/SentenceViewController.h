@@ -22,6 +22,8 @@
     NSString *bName;
     NSString *pNumber;
     
+    NSString *exam;
+    
     int sid;
     int qid;
     

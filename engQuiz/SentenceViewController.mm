@@ -387,6 +387,10 @@
     
     delete prob;
     
+    
+    
+    exam = sText;
+    
     [self setSentence:sText];
     
     return eArray;
@@ -459,8 +463,8 @@
     smsController.messageComposeDelegate = self;
     if([MFMessageComposeViewController canSendText])
     {
-        smsController.body = @"test";
-        smsController.recipients = [NSArray arrayWithObjects:@"asdf", nil];
+        smsController.body = exam;
+        smsController.recipients = nil;
         smsController.messageComposeDelegate = self;
         [self presentModalViewController:smsController animated:YES];
     }
@@ -490,12 +494,9 @@
     [metaInfoArray addObject:metaInfoAndroid];
     [metaInfoArray addObject:metaInfoIOS];
     
-    [KakaoLinkCenter openKakaoAppLinkWithMessage:@"First KakaoLink Message"
-                                             URL:@"http://link.kakao.com/?test-ios-app"
-                                     appBundleID:[[NSBundle mainBundle] bundleIdentifier]
-                                      appVersion:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
-                                         appName:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"]
-                                   metaInfoArray:metaInfoArray];
+
+    [KakaoLinkCenter openKakaoLinkWithURL:@"" appVersion:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] appBundleID:[[NSBundle mainBundle] bundleIdentifier] appName:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"] message:exam];
+
 }
 
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
