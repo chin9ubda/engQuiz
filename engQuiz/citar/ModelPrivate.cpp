@@ -61,7 +61,10 @@ ModelPrivate *ModelPrivate::readModel(std::istream &lexiconStream,
 std::tr1::shared_ptr<NGrams> ModelPrivate::readNGrams(std::istream &lexiconStream)
 {
 	std::tr1::shared_ptr<NGrams> nGrams(new NGrams);
-
+    
+   // nGrams->numberTags.reserve(60000);
+   // nGrams->tagNumbers.reserve(60000);
+    
 	size_t tagNumber = 0;
 	std::string line;
 	while (std::getline(lexiconStream, line)) {

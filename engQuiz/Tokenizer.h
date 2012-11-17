@@ -9,24 +9,9 @@
 #ifndef __engQuiz__Tokenizer__
 #define __engQuiz__Tokenizer__
 
-#include <iostream>
 #include <vector>
-#include <sstream>
-#include <stack>
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <vector>
-
-#include <tr1/memory>
-
-#include <citar/corpus/TaggedWord.hh>
-#include <citar/tagger/hmm/HMMTagger.hh>
-#include <citar/tagger/hmm/LinearInterpolationSmoothing.hh>
-#include <citar/tagger/hmm/Model.hh>
-#include <citar/tagger/wordhandler/KnownWordHandler.hh>
-#include <citar/tagger/wordhandler/SuffixWordHandler.hh>
+#include <string>
+#include <map>
 
 enum token_type
 {
@@ -54,9 +39,6 @@ public:
 
 class Tokenizer
 {
-    citar::tagger::SuffixWordHandler *suffixWordHandler;
-    citar::tagger::KnownWordHandler *knownWordHandler;
-    citar::tagger::LinearInterpolationSmoothing *smoothing;
 public:
     std::vector<Token> tokens;
     std::vector<std::string> tag;
@@ -64,11 +46,9 @@ public:
     int word_cnt;
     int word_cnt_real;
     int word_cnt_exist_dic;
-    std::tr1::shared_ptr<citar::tagger::HMMTagger> hmmTagger;
-    std::tr1::shared_ptr<citar::tagger::Model> model;
     std::map<std::string, int> analysis;
     
-    Tokenizer(std::string origin, std::string lexiconPath, std::string ngramsPath);
+    Tokenizer(std::string origin);
     ~Tokenizer();
     void run();
     std::string cascadeStr();

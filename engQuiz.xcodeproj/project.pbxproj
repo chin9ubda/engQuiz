@@ -90,6 +90,7 @@
 		7D7C32EF164CEC9500901A14 /* GenTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D7C32ED164CEC9500901A14 /* GenTable.cpp */; };
 		7D7C5FA4165103AB0047E3F5 /* brown-simplified.lexicon in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C5FA2165103AB0047E3F5 /* brown-simplified.lexicon */; };
 		7D7C5FA5165103AB0047E3F5 /* brown-simplified.ngrams in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C5FA3165103AB0047E3F5 /* brown-simplified.ngrams */; };
+		7DDE21BE1657636300746F58 /* CitarPOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE21BC1657636300746F58 /* CitarPOS.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -294,6 +295,8 @@
 		7D7C32EE164CEC9500901A14 /* GenTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenTable.h; sourceTree = "<group>"; };
 		7D7C5FA2165103AB0047E3F5 /* brown-simplified.lexicon */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "brown-simplified.lexicon"; sourceTree = "<group>"; };
 		7D7C5FA3165103AB0047E3F5 /* brown-simplified.ngrams */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "brown-simplified.ngrams"; sourceTree = "<group>"; };
+		7DDE21BC1657636300746F58 /* CitarPOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CitarPOS.cpp; sourceTree = "<group>"; };
+		7DDE21BD1657636300746F58 /* CitarPOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitarPOS.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -804,6 +807,8 @@
 				7D3B07C91649F1A000B75F2B /* IDictionary.h */,
 				7D19EF531655E70C007D8563 /* GrammarProblemMaker.cpp */,
 				7D19EF541655E70C007D8563 /* GrammarProblemMaker.h */,
+				7DDE21BC1657636300746F58 /* CitarPOS.cpp */,
+				7DDE21BD1657636300746F58 /* CitarPOS.h */,
 			);
 			name = GenProb;
 			sourceTree = "<group>";
@@ -980,6 +985,7 @@
 				7D2B8D9F164D3B6F0017C3F0 /* SuffixWordHandler.cpp in Sources */,
 				7D2B8DA0164D3B6F0017C3F0 /* WordSuffixTree.cpp in Sources */,
 				7D19EF551655E70D007D8563 /* GrammarProblemMaker.cpp in Sources */,
+				7DDE21BE1657636300746F58 /* CitarPOS.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1061,8 +1067,8 @@
 		439D2CDE163BB5770071551C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_EMPTY_BODY = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
@@ -1089,8 +1095,8 @@
 		439D2CDF163BB5770071551C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_EMPTY_BODY = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
