@@ -179,7 +179,7 @@ std::string Tokenizer::cascadeStr()
     oss << "<p style=\"font-size: 13px;\">";
     for(iter = tokens.begin(); iter != tokens.end(); iter++)
     {
-        if (iter->getToken() == "\n")
+        if (iter->getToken() == "\r")
         {
             oss << "<br />";
             continue;

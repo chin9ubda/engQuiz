@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		431122271657603400F84BCF /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 431122231657603400F84BCF /* CHANGELOG.md */; };
+		431122281657603400F84BCF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 431122251657603400F84BCF /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		431122291657603400F84BCF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 431122261657603400F84BCF /* README.md */; };
 		4325C535164CC56A0072195F /* SentenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4325C534164CC56A0072195F /* SentenceViewController.xib */; };
 		4325C539164CC59B0072195F /* RepositoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4325C537164CC59B0072195F /* RepositoryViewController.m */; };
 		4325C53A164CC59B0072195F /* RepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4325C538164CC59B0072195F /* RepositoryViewController.xib */; };
@@ -59,6 +62,12 @@
 		439D2D1B163BC6210071551C /* ThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1A163BC6200071551C /* ThemeCell.m */; };
 		439D2D1D163BC6470071551C /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D1C163BC6470071551C /* ThemeCell.xib */; };
 		439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1F163BC7430071551C /* SentenceViewController.mm */; };
+		43CF01711656683D00828AA6 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396968D16537D2E00744631 /* Camera.m */; };
+		43CF01721656686800828AA6 /* ImgSelectedOverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396969E165383DB00744631 /* ImgSelectedOverView.m */; };
+		43CF0174165675B500828AA6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CF0173165675B500828AA6 /* MessageUI.framework */; };
+		43CF018D1657557B00828AA6 /* KakaoLinkCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CF018C1657557B00828AA6 /* KakaoLinkCenter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		43CF01921657579900828AA6 /* btn_kakaotalk_logo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 43CF01901657579900828AA6 /* btn_kakaotalk_logo_iphone.png */; };
+		43CF01931657579900828AA6 /* btn_kakaotalk_logo_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43CF01911657579900828AA6 /* btn_kakaotalk_logo_iphone@2x.png */; };
 		43E25BBF164CEA2100844D78 /* ExSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E25BBE164CEA2100844D78 /* ExSentence.m */; };
 		43E25BC1164CEA4000844D78 /* exSentence.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E25BC0164CEA4000844D78 /* exSentence.xib */; };
 		7D19EF5216555AAE007D8563 /* chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D19EF5116555AAE007D8563 /* chart.html */; };
@@ -93,6 +102,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		431122231657603400F84BCF /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		431122241657603400F84BCF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		431122251657603400F84BCF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		431122261657603400F84BCF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		4325C534164CC56A0072195F /* SentenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SentenceViewController.xib; sourceTree = "<group>"; };
 		4325C536164CC59B0072195F /* RepositoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoryViewController.h; sourceTree = "<group>"; };
 		4325C537164CC59B0072195F /* RepositoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepositoryViewController.m; sourceTree = "<group>"; };
@@ -239,6 +252,11 @@
 		439D2D1C163BC6470071551C /* ThemeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeCell.xib; sourceTree = "<group>"; };
 		439D2D1E163BC7430071551C /* SentenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentenceViewController.h; sourceTree = "<group>"; };
 		439D2D1F163BC7430071551C /* SentenceViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SentenceViewController.mm; sourceTree = "<group>"; };
+		43CF0173165675B500828AA6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		43CF018B1657557B00828AA6 /* KakaoLinkCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KakaoLinkCenter.h; sourceTree = "<group>"; };
+		43CF018C1657557B00828AA6 /* KakaoLinkCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KakaoLinkCenter.m; sourceTree = "<group>"; };
+		43CF01901657579900828AA6 /* btn_kakaotalk_logo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_kakaotalk_logo_iphone.png; sourceTree = "<group>"; };
+		43CF01911657579900828AA6 /* btn_kakaotalk_logo_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_kakaotalk_logo_iphone@2x.png"; sourceTree = "<group>"; };
 		43E25BBD164CEA2100844D78 /* ExSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExSentence.h; path = Classes/ExSentence.h; sourceTree = "<group>"; };
 		43E25BBE164CEA2100844D78 /* ExSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExSentence.m; path = Classes/ExSentence.m; sourceTree = "<group>"; };
 		43E25BC0164CEA4000844D78 /* exSentence.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = exSentence.xib; path = Classes/exSentence.xib; sourceTree = "<group>"; };
@@ -301,6 +319,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CF0174165675B500828AA6 /* MessageUI.framework in Frameworks */,
 				439D2CE6163BB7230071551C /* libsqlite3.dylib in Frameworks */,
 				439D2CBE163BB5760071551C /* UIKit.framework in Frameworks */,
 				439D2CC0163BB5760071551C /* Foundation.framework in Frameworks */,
@@ -313,6 +332,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		431122221657603400F84BCF /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				431122231657603400F84BCF /* CHANGELOG.md */,
+				431122241657603400F84BCF /* JSONKit.h */,
+				431122251657603400F84BCF /* JSONKit.m */,
+				431122261657603400F84BCF /* README.md */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
 		433B1102164947BA00181487 /* Chart */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,9 +568,10 @@
 		439696B41655066000744631 /* etc */ = {
 			isa = PBXGroup;
 			children = (
+				43CF018A1657556600828AA6 /* KakaoLink */,
+				439696B816550DDF00744631 /* OcrResultCheck */,
 				439696BE16550EE300744631 /* InsertSentence.h */,
 				439696BF16550EE300744631 /* InsertSentence.m */,
-				439696B816550DDF00744631 /* OcrResultCheck */,
 				439696B51655068E00744631 /* NSStringRegular.h */,
 				439696B61655068E00744631 /* NSStringRegular.m */,
 			);
@@ -613,7 +644,9 @@
 		439D2CBC163BB5760071551C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				431122221657603400F84BCF /* JSONKit */,
 				439D2CE5163BB7230071551C /* libsqlite3.dylib */,
+				43CF0173165675B500828AA6 /* MessageUI.framework */,
 				439D2CBD163BB5760071551C /* UIKit.framework */,
 				439D2CBF163BB5760071551C /* Foundation.framework */,
 				439D2CC1163BB5760071551C /* CoreGraphics.framework */,
@@ -682,6 +715,7 @@
 		439D2D0B163BBD640071551C /* Ex */ = {
 			isa = PBXGroup;
 			children = (
+				43CF018F1657578C00828AA6 /* img */,
 				439696971653832500744631 /* ImgSelectedOverView */,
 				4396968B16537CF900744631 /* Camera */,
 				439696781651EF2C00744631 /* TextFileLoad */,
@@ -703,6 +737,24 @@
 				43924CE216426A6C00B05EFE /* BookListCell.xib */,
 			);
 			name = Ex;
+			sourceTree = "<group>";
+		};
+		43CF018A1657556600828AA6 /* KakaoLink */ = {
+			isa = PBXGroup;
+			children = (
+				43CF018B1657557B00828AA6 /* KakaoLinkCenter.h */,
+				43CF018C1657557B00828AA6 /* KakaoLinkCenter.m */,
+			);
+			name = KakaoLink;
+			sourceTree = "<group>";
+		};
+		43CF018F1657578C00828AA6 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				43CF01901657579900828AA6 /* btn_kakaotalk_logo_iphone.png */,
+				43CF01911657579900828AA6 /* btn_kakaotalk_logo_iphone@2x.png */,
+			);
+			name = img;
 			sourceTree = "<group>";
 		};
 		43E25BBB164CEA0100844D78 /* exSentence */ = {
@@ -927,6 +979,10 @@
 				7D7C5FA4165103AB0047E3F5 /* brown-simplified.lexicon in Resources */,
 				7D7C5FA5165103AB0047E3F5 /* brown-simplified.ngrams in Resources */,
 				7D19EF5216555AAE007D8563 /* chart.html in Resources */,
+				43CF01921657579900828AA6 /* btn_kakaotalk_logo_iphone.png in Resources */,
+				43CF01931657579900828AA6 /* btn_kakaotalk_logo_iphone@2x.png in Resources */,
+				431122271657603400F84BCF /* CHANGELOG.md in Resources */,
+				431122291657603400F84BCF /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,6 +993,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CF01721656686800828AA6 /* ImgSelectedOverView.m in Sources */,
+				43CF01711656683D00828AA6 /* Camera.m in Sources */,
 				7D19EF5D1655F061007D8563 /* TextFileLoadViewController.m in Sources */,
 				7D19EF5C1655F052007D8563 /* TextPasteViewController.m in Sources */,
 				7D19EF5B1655F03F007D8563 /* TextCheckViewController.m in Sources */,
@@ -980,6 +1038,8 @@
 				7D2B8D9F164D3B6F0017C3F0 /* SuffixWordHandler.cpp in Sources */,
 				7D2B8DA0164D3B6F0017C3F0 /* WordSuffixTree.cpp in Sources */,
 				7D19EF551655E70D007D8563 /* GrammarProblemMaker.cpp in Sources */,
+				43CF018D1657557B00828AA6 /* KakaoLinkCenter.m in Sources */,
+				431122281657603400F84BCF /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,8 +1124,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_EMPTY_BODY = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
 				GCC_VERSION = "";
@@ -1079,8 +1139,8 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
+				PROVISIONING_PROFILE = "A2A4879D-6174-4A10-A9BD-322B9E377462";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2A4879D-6174-4A10-A9BD-322B9E377462";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1092,8 +1152,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_WARN_EMPTY_BODY = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
 				GCC_VERSION = "";
@@ -1107,8 +1167,8 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
+				PROVISIONING_PROFILE = "A2A4879D-6174-4A10-A9BD-322B9E377462";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2A4879D-6174-4A10-A9BD-322B9E377462";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

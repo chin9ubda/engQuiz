@@ -8,6 +8,7 @@
 
 #import "SentenceViewController.h"
 #include "SimpleProblemMaker.h"
+#import "KakaoLinkCenter.h"
 
 @interface SentenceViewController ()
 
@@ -451,5 +452,57 @@
 
 - (void)setDIsType:(BOOL)type{
     dismissType = type;
+}
+
+- (IBAction)messageSend:(id)sender {
+    MFMessageComposeViewController *smsController = [[MFMessageComposeViewController alloc] init];
+    smsController.messageComposeDelegate = self;
+    if([MFMessageComposeViewController canSendText])
+    {
+        smsController.body = @"test";
+        smsController.recipients = [NSArray arrayWithObjects:@"asdf", nil];
+        smsController.messageComposeDelegate = self;
+        [self presentModalViewController:smsController animated:YES];
+    }
+}
+
+- (IBAction)kakaoSend:(id)sender {
+    if (![KakaoLinkCenter canOpenKakaoLink]) {
+        return;
+    }
+    
+    NSMutableArray *metaInfoArray = [NSMutableArray array];
+    
+    NSDictionary *metaInfoAndroid = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"android", @"os",
+                                     @"phone", @"devicetype",
+                                     @"market://details?id=com.kakao.talk", @"installurl",
+                                     @"example://example", @"executeurl",
+                                     nil];
+    
+    NSDictionary *metaInfoIOS = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"ios", @"os",
+                                 @"phone", @"devicetype",
+                                 @"http://itunes.apple.com/app/id362057947?mt=8", @"installurl",
+                                 @"example://example", @"executeurl",
+                                 nil];
+    
+    [metaInfoArray addObject:metaInfoAndroid];
+    [metaInfoArray addObject:metaInfoIOS];
+    
+    [KakaoLinkCenter openKakaoAppLinkWithMessage:@"First KakaoLink Message"
+                                             URL:@"http://link.kakao.com/?test-ios-app"
+                                     appBundleID:[[NSBundle mainBundle] bundleIdentifier]
+                                      appVersion:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+                                         appName:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"]
+                                   metaInfoArray:metaInfoArray];
+}
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
+    if (result == MessageComposeResultCancelled) {
+        [self dismissModalViewControllerAnimated:YES];
+    }else if (result == MessageComposeResultSent) {
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 @end
