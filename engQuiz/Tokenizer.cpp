@@ -68,7 +68,7 @@ Tokenizer::Tokenizer(std::string origin, std::string lexiconPath, std::string ng
     std::ifstream lexiconStream(lexiconPath.c_str());
     std::ifstream nGramStream(ngramsPath.c_str());
     
-    
+    /*
     model = citar::tagger::Model::readModel(lexiconStream, nGramStream);
     
 	suffixWordHandler = new citar::tagger::SuffixWordHandler(model, 2, 2, 8);
@@ -80,15 +80,15 @@ Tokenizer::Tokenizer(std::string origin, std::string lexiconPath, std::string ng
     
 	hmmTagger = std::tr1::shared_ptr<citar::tagger::HMMTagger>(new citar::tagger::HMMTagger(model,
                                              knownWordHandler, smoothing));
-    
+    */
     
 }
 
 Tokenizer::~Tokenizer()
 {
-    delete suffixWordHandler;
-    delete knownWordHandler;
-    delete smoothing;
+//    delete suffixWordHandler;
+//    delete knownWordHandler;
+//    delete smoothing;
 }
 
 void Tokenizer::run()
@@ -146,7 +146,7 @@ void Tokenizer::run()
     }
     
     //tokens.push_back(Token("<END>", false));
-    
+    /*
     std::vector<std::string> sentents(tokens.size()+1);
     std::transform(tokens.begin(), tokens.end(), sentents.begin(), token2str);
 
@@ -166,6 +166,7 @@ void Tokenizer::run()
             analysis[*iter]++;
         }
     }
+     */
     
 }
 
@@ -186,7 +187,9 @@ std::string Tokenizer::cascadeStr()
         }
         if (iter->getProbNum() > 0)
         {
-            oss << "<span style=\"color: red;\"> [[[" << iter->getProbNum() << "]]]</span>";
+            //oss << "<span style=\"color: red;\"> [[[" << iter->getProbNum() << "]]]</span>";
+            oss << "<input type=\"text\" size=\"5\" style=\"text-align:center;color:red;border-color:red;\" value=\"(" << iter->getProbNum() << ")\" />";
+
         } else {
             oss << iter->getToken();
         }
