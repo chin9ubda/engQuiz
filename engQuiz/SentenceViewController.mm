@@ -403,8 +403,7 @@
 
 - (NSMutableArray *)setReservedExam:(NSString *)msg:(int)class1:(int)class2 {
     
-    NSMutableArray *returnArrray = [NSMutableArray arrayWithCapacity:0];
-    
+    return [self getRepository];
     
 }
 
@@ -417,6 +416,7 @@
     
     if (pid > 0)
     {
+        nowId = pid;
         eArray = [self setReservedExam:msg:class1:class2];
     } else {
         eArray = [self setMakeExam:msg:class1:class2];
