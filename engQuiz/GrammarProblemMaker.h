@@ -20,7 +20,7 @@ public IProblemMaker
 {
     SQLDictionary *dic;
 public:
-	GrammarProblemMaker(Tokenizer *tokenizer);
+	GrammarProblemMaker(Tokenizer &tokenizer);
 	~GrammarProblemMaker();
 	virtual bool makeProblem(int level, int d);
 };

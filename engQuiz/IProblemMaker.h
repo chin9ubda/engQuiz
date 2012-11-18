@@ -49,7 +49,7 @@ protected:
 	std::string problem_content;
 public:
     
-	IProblemMaker(Tokenizer *tokenizer);
+	IProblemMaker(Tokenizer &tokenizer);
 	~IProblemMaker(void);
 	virtual bool makeProblem(int level, int num) = 0;
 	std::vector<Problem> &getProblems();

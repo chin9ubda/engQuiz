@@ -144,7 +144,7 @@ void Tokenizer::run()
 }
 
 
-std::string Tokenizer::cascadeStr()
+std::string Tokenizer::cascadeHTML()
 {
     std::ostringstream oss;
     
@@ -169,6 +169,26 @@ std::string Tokenizer::cascadeStr()
     }
     
     oss << "</p>";
+    
+    return oss.str();
+}
+
+std::string Tokenizer::cascadeStr()
+{
+    std::ostringstream oss;
+    
+    std::vector<Token>::iterator iter;
+        for(iter = tokens.begin(); iter != tokens.end(); iter++)
+    {
+        if (iter->getProbNum() > 0)
+        {
+            //oss << "<span style=\"color: red;\"> [[[" << iter->getProbNum() << "]]]</span>";
+            oss << "[[[" << iter->getProbNum() << "]]]";
+            
+        } else {
+            oss << iter->getToken();
+        }
+    }
     
     return oss.str();
 }

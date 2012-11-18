@@ -3,7 +3,7 @@
 #include <vector>
 #include <ctime>
 
-SimpleProblemMaker::SimpleProblemMaker(Tokenizer *tokenizer) : IProblemMaker(tokenizer)
+SimpleProblemMaker::SimpleProblemMaker(Tokenizer &tokenizer) : IProblemMaker(tokenizer)
 {
     dic = SQLDictionary::InstancePtr();
 }

@@ -52,9 +52,11 @@ public:
     ~Tokenizer();
     void run();
     std::string cascadeStr();
+    std::string cascadeHTML();
     int atWordToken(int num);
     int atWordRealToken(int num);
     int atWordExistDBToken(int num);
+    
 };
 
 #endif /* defined(__engQuiz__Tokenizer__) */

@@ -8,6 +8,7 @@
 
 #import "SentenceViewController.h"
 #include "SimpleProblemMaker.h"
+#import "KakaoLinkCenter.h"
 #include "CitarPOS.h"
 
 @interface SentenceViewController ()
@@ -355,7 +356,10 @@
     // 문제 생성
     std::string str([msg UTF8String]);
     
-    SimpleProblemMaker *prob = new SimpleProblemMaker(new Tokenizer(str));
+    Tokenizer tokenizer(str);
+    tokenizer.run();
+    
+    SimpleProblemMaker *prob = new SimpleProblemMaker(tokenizer);
     prob->makeProblem(1, 1);
     
     // 지문
@@ -382,9 +386,16 @@
     
     delete prob;
     
+    // 문자열 문제만들기
+    std::ostringstream oss;
+    oss << tokenizer.cascadeHTML() << std::endl << std::endl;
+    oss << nowProb.pcontent << std::endl;
+    for (int i=0; i<4; i++)
+    {
+        oss << nowProb.items[i].qcontent << std::endl;
+    }
     
-    
-    exam = sText;
+    exam = [NSString stringWithUTF8String:oss.str().c_str()];
     
     [self setSentence:sText];
     
