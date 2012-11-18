@@ -13,7 +13,7 @@
 #define HEIGHT_PIXEL 300
 
 
-GenTableData::GenTableData(std::string label, int fail, int success)
+GenTableData::GenTableData(std::string label, int success, int fail)
 : label(label), fail(fail), success(success)
 {
     
