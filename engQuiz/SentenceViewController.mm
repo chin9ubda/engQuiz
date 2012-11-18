@@ -8,6 +8,7 @@
 
 #import "SentenceViewController.h"
 #include "SimpleProblemMaker.h"
+#include "SentenceProblemMaker.h"
 #import "KakaoLinkCenter.h"
 #include "CitarPOS.h"
 
@@ -356,7 +357,17 @@
     Tokenizer tokenizer(str);
     tokenizer.run();
     
-    SimpleProblemMaker *prob = new SimpleProblemMaker(tokenizer);
+    int what = rand()%2;
+    IProblemMaker *prob;
+    switch (what)
+    {
+        case 0:
+            prob = new SimpleProblemMaker(tokenizer);
+            break;
+        case 1:
+            prob = new SentenceProblemMaker(tokenizer);
+            break;
+    }
     prob->makeProblem(1, 1);
     
     // 지문

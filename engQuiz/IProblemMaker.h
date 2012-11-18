@@ -23,7 +23,7 @@ public:
     std::vector <ProblemItem> items;
     int solution;
 
-	void addItems(std::string qcontent, int solution);
+	void addItems(std::string qcontent, int solution, bool lower=true);
 
 	Problem();
 	~Problem();

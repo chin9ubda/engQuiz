@@ -22,6 +22,7 @@ public:
 	virtual std::string getRandomWord();
     Word getWordInfo(std::string word);
     bool getRandomSimItems(std::string word, std::string data[], int length);
+    std::string getRandomMunzangs(int excnum);
 };
 
 #endif /* defined(__engQuiz__SQLDictionary__) */

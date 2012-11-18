@@ -6,11 +6,12 @@ Problem::Problem()
 {
 }
 
-void Problem::addItems(std::string qcontent, int solution)
+void Problem::addItems(std::string qcontent, int solution, bool lower)
 {
 	ProblemItem item;
     
-    std::transform(qcontent.begin(), qcontent.end(), qcontent.begin(), tolower);
+    if (lower)
+        std::transform(qcontent.begin(), qcontent.end(), qcontent.begin(), tolower);
 	item.qcontent = qcontent;
 	item.solution = solution;
     

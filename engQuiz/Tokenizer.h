@@ -39,8 +39,12 @@ public:
 
 class Tokenizer
 {
+    void analysis_munzang();
+    static void trim_left( std::string& s );
 public:
     std::vector<Token> tokens;
+    std::vector<std::string> munzang;
+    std::vector<int> munzang_count_word;
     std::vector<std::string> tag;
     std::string origin;
     int word_cnt;
