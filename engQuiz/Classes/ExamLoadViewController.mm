@@ -597,10 +597,10 @@
         SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
         
         if (index == 0) {
-            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:2]:0:0];
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:2]:0:[[tArray objectAtIndex:0]intValue]];
 //            /////////
         }else {
-            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:index * 3 + 2]:0:0];
+            [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:index * 3 + 2]:0:[[tArray objectAtIndex:index*3]intValue]];
         }
         
         [self presentModalViewController:sentenceVeiw animated:YES];

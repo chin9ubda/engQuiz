@@ -238,6 +238,7 @@ std::string JimoonMaker::replaceAll(const std::string &str, const std::string &p
 std::string JimoonMaker::getSTRJimoon(std::string gimoon)
 {
     gimoon = replaceAll(gimoon, "{1}", "[[[1]]]");
+    gimoon = replaceAll(gimoon, "\r\n", "\n");
     
     return gimoon;
 }
