@@ -453,6 +453,14 @@
     }
     [returnArrray insertObject:[NSNumber numberWithInt:checkNum] atIndex:5];
     
+    
+    originJimoon = examSentence;
+    std::string originJimoon_str = std::string([originJimoon UTF8String]);
+    
+    exam = [NSString stringWithUTF8String:JimoonMaker::getSTRJimoon(originJimoon_str).c_str()];
+    examSentence = [NSString stringWithUTF8String:JimoonMaker::getHTMLJimoon(originJimoon_str).c_str()];
+    
+    
     [self setSentence:examSentence];
     
     
