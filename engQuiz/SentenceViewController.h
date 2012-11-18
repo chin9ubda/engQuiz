@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
+#import "MessageUI/MessageUI.h"
 
-@interface SentenceViewController : UIViewController<UITextViewDelegate, UIAlertViewDelegate>{
+@interface SentenceViewController : UIViewController<UITextViewDelegate, UIAlertViewDelegate,MFMessageComposeViewControllerDelegate>{
     
     IBOutlet UILabel *bookName;
     IBOutlet UILabel *pageNumber;
@@ -20,6 +21,8 @@
     DataBase *dbMsg;
     NSString *bName;
     NSString *pNumber;
+    
+    NSString *exam;
     
     int sid;
     int qid;
@@ -73,4 +76,6 @@
 - (IBAction)answerCheck3:(id)sender;
 - (IBAction)answerCheck4:(id)sender;
 - (void)setDIsType:(BOOL)type;
+- (IBAction)messageSend:(id)sender;
+- (IBAction)kakaoSend:(id)sender;
 @end
