@@ -51,12 +51,19 @@ public:
     Tokenizer(std::string origin);
     ~Tokenizer();
     void run();
-    std::string cascadeStr();
-    std::string cascadeHTML();
+    std::string cascadeData();
     int atWordToken(int num);
     int atWordRealToken(int num);
     int atWordExistDBToken(int num);
     
+};
+
+class JimoonMaker
+{
+public:
+    static std::string replaceAll(const std::string &str, const std::string &pattern, const std::string &replace);
+    static std::string getSTRJimoon(std::string gimoon);
+    static std::string getHTMLJimoon(std::string gimoon);
 };
 
 #endif /* defined(__engQuiz__Tokenizer__) */

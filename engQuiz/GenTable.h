@@ -24,10 +24,12 @@ public:
 
 class GenTable
 {
+    static std::string replaceAll(const std::string &str, const std::string &pattern, const std::string &replace);
 public:
     std::vector<GenTableData> datas;
     std::string run();
     std::string run_gchart(const char *path, std::string title, std::string axisy);
+    
 };
 
 #endif /* defined(__engQuiz__GenTable__) */

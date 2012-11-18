@@ -285,7 +285,7 @@
     
     NSString *date =[NSString stringWithFormat:@"%d%d%d",year,month,day];
 
-    sid = [dbMsg saveRSentence:sentenceTextView.text :date :type];
+    sid = [dbMsg saveRSentence:originJimoon :date :type];
     qid = [dbMsg saveRQuestion:sid :questionLabel.text :1];
     
     int sol[4];
@@ -364,7 +364,10 @@
     prob->makeProblem(1, 1);
     
     // 지문
-    [self setSentence: [NSString stringWithUTF8String:prob->getProblemContent().c_str()]];
+    std::string str_ji = prob->getProblemContent().c_str();
+    originJimoon = [NSString stringWithUTF8String:str_ji.c_str()];
+    
+    [self setSentence: [NSString stringWithUTF8String:JimoonMaker::getHTMLJimoon(str_ji).c_str()]];
     
     
     // 문제
@@ -389,7 +392,7 @@
     
     // 문자열 문제만들기
     std::ostringstream oss;
-    oss << tokenizer.cascadeStr() << std::endl << std::endl;
+    oss << JimoonMaker::getSTRJimoon(str_ji) << std::endl << std::endl;
     oss << nowProb.pcontent << std::endl;
     for (int i=0; i<4; i++)
     {
