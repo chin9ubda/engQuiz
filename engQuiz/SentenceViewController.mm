@@ -284,7 +284,7 @@
     
     NSString *date =[NSString stringWithFormat:@"%d%d%d",year,month,day];
 
-    sid = [dbMsg saveRSentence:exam2 :date :type];
+    sid = [dbMsg saveRSentence:originJimoon :date :type];
     qid = [dbMsg saveRQuestion:sid :questionLabel.text :1];
     
     int sol[4];
@@ -396,8 +396,32 @@
     }
     
     exam = [NSString stringWithUTF8String:oss.str().c_str()];
-    exam2 = sText;
-    [self setSentence:sText];
+    
+    return eArray;
+}
+
+
+- (NSMutableArray *)setReservedExam:(NSString *)msg:(int)class1:(int)class2 {
+    
+    NSMutableArray *returnArrray = [NSMutableArray arrayWithCapacity:0];
+    
+    
+}
+
+- (NSMutableArray *)setExam:(NSString *)msg:(int)class1:(int)class2{
+    NSMutableArray *eArray;
+    
+    // 제출된 문제인지 확인
+    int pid = [dbMsg checkMakedProblem:nowId];
+    
+    
+    if (pid > 0)
+    {
+        eArray = [self setReservedExam:msg:class1:class2];
+    } else {
+        eArray = [self setMakeExam:msg:class1:class2];
+    }
+    
     
     return eArray;
 }
