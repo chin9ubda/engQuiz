@@ -21,10 +21,15 @@ GenTableData::GenTableData(std::string label, int fail, int success)
 
 std::string GenTable::run_gchart(const char *path, std::string title, std::string axisy)
 {
+    // 자료가 없으면 출력 안함
+    if (datas.size() == 0)
+    {
+        return "자료가 없습니다.";
+    }
+    
     std::string str;
     std::vector<GenTableData>::iterator iter;
    
-    
     std::ifstream is(path);
     std::ostringstream oss;
     
@@ -82,6 +87,7 @@ std::string GenTable::run()
 {
     std::string str;
     std::ostringstream oss(str);
+    
     
     int maxdata = 0;
     
