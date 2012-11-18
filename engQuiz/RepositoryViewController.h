@@ -9,15 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
 
-@interface RepositoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+@interface RepositoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITabBarDelegate,UITabBarControllerDelegate>{
     
     IBOutlet UITableView *rTableView;
     DataBase *dbMsg;
     NSMutableArray *rArray;
     int cellCount;
-    IBOutlet UISegmentedControl *rAndi;
+//    IBOutlet UISegmentedControl *rAndi;
     
     int type;
+    IBOutlet UITabBar *tabbar;
+    IBOutlet UITabBarItem *item01;
+    IBOutlet UITabBarItem *item02;
 }
 
 - (IBAction)backBtnEvent:(id)sender;

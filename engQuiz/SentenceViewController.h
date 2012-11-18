@@ -10,11 +10,10 @@
 #import "DataBase.h"
 #import "MessageUI/MessageUI.h"
 
-@interface SentenceViewController : UIViewController<UITextViewDelegate, UIAlertViewDelegate,MFMessageComposeViewControllerDelegate>{
+@interface SentenceViewController : UIViewController<UIAlertViewDelegate,MFMessageComposeViewControllerDelegate>{
     
     IBOutlet UILabel *bookName;
     IBOutlet UILabel *pageNumber;
-    IBOutlet UITextView *sentenceTextView;
     
     NSString *examSentence;
     
@@ -23,6 +22,7 @@
     NSString *pNumber;
     
     NSString *exam;
+    NSString *exam2;
     
     int sid;
     int qid;

@@ -65,7 +65,6 @@
 - (void)viewDidUnload {
     bookName = nil;
     pageNumber = nil;
-    sentenceTextView = nil;
     questionLabel = nil;
     answerLabel01 = nil;
     answerLabel02 = nil;
@@ -285,7 +284,7 @@
     
     NSString *date =[NSString stringWithFormat:@"%d%d%d",year,month,day];
 
-    sid = [dbMsg saveRSentence:sentenceTextView.text :date :type];
+    sid = [dbMsg saveRSentence:exam2 :date :type];
     qid = [dbMsg saveRQuestion:sid :questionLabel.text :1];
     
     int sol[4];
@@ -305,10 +304,7 @@
 - (void)setSentence:(NSString *)sentence{
     
     [bookName setText:bName];
-    [pageNumber setText:pNumber];
-    
-    [sentenceTextView setText:sentence];
-    
+    [pageNumber setText:pNumber];    
     [webView loadHTMLString:sentence baseURL:nil];
 
     //    NSLog(@"%d",sentenceTextView.)
@@ -396,7 +392,7 @@
     }
     
     exam = [NSString stringWithUTF8String:oss.str().c_str()];
-    
+    exam2 = sText;
     [self setSentence:sText];
     
     return eArray;
