@@ -972,13 +972,6 @@
     //    SJ_DEBUG_LOG(@"Take Picture");
 }
 
-// 사진 찍기 버튼 눌렀을 때
-- (IBAction)cameraDone:(id)sender {
-//    [self imageOcr];
-    //    [imagepickerController takePicture];
-    //    SJ_DEBUG_LOG(@"Take Picture");
-}
-
 
 #pragma mark -
 #pragma mark UIImagePickerControllerDelegate
@@ -987,9 +980,13 @@
 				  editingInfo:(NSDictionary *)editingInfo
 {
     if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
-        [imgArray insertObject:image atIndex:imgArray.count];
         
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+        float resizeRatio_x = 1000 / image.size.width ;
+        UIImage *smallImage = [self imageWithImage:image scaledToSize:CGSizeMake(1000, image.size.height*resizeRatio_x)];
+        
+        [imgArray insertObject:smallImage atIndex:imgArray.count];
+        
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:smallImage];
         
         [imageView setFrame:CGRectMake((imgArray.count - 1) * 123, 0, 123, 100)];
         imageView.tag = imgArray.count-1;
@@ -1099,13 +1096,15 @@
 }
 
 - (void)imageOcr{
-	[imagePickerController dismissModalViewControllerAnimated:NO];
-
-    
-    OcrResultCheckViewController *ocrView = [[OcrResultCheckViewController alloc]init];
-    
-    [ocrView setimage:imgArray];
-    [self presentModalViewController:ocrView animated:YES];
+    if (imgArray.count != 0) {
+        [imagePickerController dismissModalViewControllerAnimated:NO];
+        
+        
+        OcrResultCheckViewController *ocrView = [[OcrResultCheckViewController alloc]init];
+        
+        [ocrView setimage:imgArray];
+        [self presentModalViewController:ocrView animated:YES];
+    }
 }
 
 - (void)setTableInit{

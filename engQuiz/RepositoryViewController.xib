@@ -169,15 +169,23 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<array class="NSMutableArray" key="IBUIItems">
 							<object class="IBUITabBarItem" id="297324620">
+								<string key="IBUITitle">보관함</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">bo_1.png</string>
+								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<reference key="IBUITabBar" ref="822032602"/>
-								<int key="IBUISystemItemIdentifier">1</int>
 							</object>
 							<object class="IBUITabBarItem" id="753925546">
 								<int key="IBUITag">1</int>
+								<string key="IBUITitle">오답노트</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">bo_2.png</string>
+								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<reference key="IBUITabBar" ref="822032602"/>
-								<int key="IBUISystemItemIdentifier">8</int>
 							</object>
 						</array>
 					</object>
@@ -835,6 +843,8 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bar.png">{320, 44}</string>
 			<string key="bg01.png">{320, 417}</string>
+			<string key="bo_1.png">{30, 30}</string>
+			<string key="bo_2.png">{30, 30}</string>
 			<string key="btn01.png">{56, 28}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>

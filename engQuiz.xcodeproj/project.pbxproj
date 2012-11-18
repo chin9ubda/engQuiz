@@ -36,6 +36,19 @@
 		4393FCF71659073F00BCD53B /* TextPasteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4392703B164E329800F38570 /* TextPasteViewController.xib */; };
 		4393FCFA16590A8600BCD53B /* smsbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FCF816590A8600BCD53B /* smsbtn.png */; };
 		4393FCFB16590A8600BCD53B /* smsbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FCF916590A8600BCD53B /* smsbtn@2x.png */; };
+		4393FCFE1659115000BCD53B /* bo_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FCFC1659115000BCD53B /* bo_1.png */; };
+		4393FCFF1659115000BCD53B /* bo_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FCFD1659115000BCD53B /* bo_1@2x.png */; };
+		4393FD03165912C000BCD53B /* bo_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD01165912C000BCD53B /* bo_2.png */; };
+		4393FD04165912C000BCD53B /* bo_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD02165912C000BCD53B /* bo_2@2x.png */; };
+		4393FD081659178400BCD53B /* checkbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD061659178400BCD53B /* checkbg.png */; };
+		4393FD091659178400BCD53B /* checkbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD071659178400BCD53B /* checkbg@2x.png */; };
+		4393FD0D16593AD600BCD53B /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD0B16593AD600BCD53B /* camera.png */; };
+		4393FD0E16593AD600BCD53B /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD0C16593AD600BCD53B /* camera@2x.png */; };
+		4393FD0F16593BFB00BCD53B /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4396968F16537D4900744631 /* Camera.xib */; };
+		4393FD1216593D4B00BCD53B /* camera_btn1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD1016593D4B00BCD53B /* camera_btn1.png */; };
+		4393FD1316593D4B00BCD53B /* camera_btn1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD1116593D4B00BCD53B /* camera_btn1@2x.png */; };
+		4393FD1616593E7F00BCD53B /* upbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD1416593E7F00BCD53B /* upbar.png */; };
+		4393FD1716593E7F00BCD53B /* upbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD1516593E7F00BCD53B /* upbar@2x.png */; };
 		4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4398BC4916463BA700338CC6 /* engquiz.sqlite */; };
 		43994B941658C78600911C88 /* main_menuoff1.png in Resources */ = {isa = PBXBuildFile; fileRef = 43994B8C1658C78600911C88 /* main_menuoff1.png */; };
 		43994B951658C78600911C88 /* main_menuoff1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43994B8D1658C78600911C88 /* main_menuoff1@2x.png */; };
@@ -243,6 +256,18 @@
 		439274571646105D00EA98EF /* EduViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EduViewController.xib; path = Classes/EduViewController.xib; sourceTree = "<group>"; };
 		4393FCF816590A8600BCD53B /* smsbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smsbtn.png; path = img/smsbtn.png; sourceTree = "<group>"; };
 		4393FCF916590A8600BCD53B /* smsbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "smsbtn@2x.png"; path = "img/smsbtn@2x.png"; sourceTree = "<group>"; };
+		4393FCFC1659115000BCD53B /* bo_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bo_1.png; path = img/bo_1.png; sourceTree = "<group>"; };
+		4393FCFD1659115000BCD53B /* bo_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bo_1@2x.png"; path = "img/bo_1@2x.png"; sourceTree = "<group>"; };
+		4393FD01165912C000BCD53B /* bo_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bo_2.png; path = img/bo_2.png; sourceTree = "<group>"; };
+		4393FD02165912C000BCD53B /* bo_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bo_2@2x.png"; path = "img/bo_2@2x.png"; sourceTree = "<group>"; };
+		4393FD061659178400BCD53B /* checkbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkbg.png; path = img/checkbg.png; sourceTree = "<group>"; };
+		4393FD071659178400BCD53B /* checkbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkbg@2x.png"; path = "img/checkbg@2x.png"; sourceTree = "<group>"; };
+		4393FD0B16593AD600BCD53B /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera.png; path = img/camera.png; sourceTree = "<group>"; };
+		4393FD0C16593AD600BCD53B /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera@2x.png"; path = "img/camera@2x.png"; sourceTree = "<group>"; };
+		4393FD1016593D4B00BCD53B /* camera_btn1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera_btn1.png; path = img/camera_btn1.png; sourceTree = "<group>"; };
+		4393FD1116593D4B00BCD53B /* camera_btn1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_btn1@2x.png"; path = "img/camera_btn1@2x.png"; sourceTree = "<group>"; };
+		4393FD1416593E7F00BCD53B /* upbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upbar.png; path = img/upbar.png; sourceTree = "<group>"; };
+		4393FD1516593E7F00BCD53B /* upbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upbar@2x.png"; path = "img/upbar@2x.png"; sourceTree = "<group>"; };
 		439696791651EF4300744631 /* TextFileLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFileLoadViewController.h; path = Classes/TextFileLoadViewController.h; sourceTree = "<group>"; };
 		4396967A1651EF4300744631 /* TextFileLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFileLoadViewController.m; path = Classes/TextFileLoadViewController.m; sourceTree = "<group>"; };
 		4396967B1651EF4300744631 /* TextFileLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFileLoadViewController.xib; path = Classes/TextFileLoadViewController.xib; sourceTree = "<group>"; };
@@ -488,6 +513,7 @@
 		438DFD8A163C19AE008AE0A6 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				4393FD001659115200BCD53B /* img */,
 				4325C536164CC59B0072195F /* RepositoryViewController.h */,
 				4325C537164CC59B0072195F /* RepositoryViewController.m */,
 				4325C538164CC59B0072195F /* RepositoryViewController.xib */,
@@ -661,6 +687,46 @@
 			name = Edu;
 			sourceTree = "<group>";
 		};
+		4393FD001659115200BCD53B /* img */ = {
+			isa = PBXGroup;
+			children = (
+				4393FD01165912C000BCD53B /* bo_2.png */,
+				4393FD02165912C000BCD53B /* bo_2@2x.png */,
+				4393FCFC1659115000BCD53B /* bo_1.png */,
+				4393FCFD1659115000BCD53B /* bo_1@2x.png */,
+			);
+			name = img;
+			sourceTree = "<group>";
+		};
+		4393FD051659177400BCD53B /* img */ = {
+			isa = PBXGroup;
+			children = (
+				4393FD061659178400BCD53B /* checkbg.png */,
+				4393FD071659178400BCD53B /* checkbg@2x.png */,
+			);
+			name = img;
+			sourceTree = "<group>";
+		};
+		4393FD0A16593AC000BCD53B /* img */ = {
+			isa = PBXGroup;
+			children = (
+				4393FD1016593D4B00BCD53B /* camera_btn1.png */,
+				4393FD1116593D4B00BCD53B /* camera_btn1@2x.png */,
+				4393FD0B16593AD600BCD53B /* camera.png */,
+				4393FD0C16593AD600BCD53B /* camera@2x.png */,
+			);
+			name = img;
+			sourceTree = "<group>";
+		};
+		4393FD1816593E8100BCD53B /* img */ = {
+			isa = PBXGroup;
+			children = (
+				4393FD1416593E7F00BCD53B /* upbar.png */,
+				4393FD1516593E7F00BCD53B /* upbar@2x.png */,
+			);
+			name = img;
+			sourceTree = "<group>";
+		};
 		439696781651EF2C00744631 /* TextFileLoad */ = {
 			isa = PBXGroup;
 			children = (
@@ -675,6 +741,7 @@
 		4396968B16537CF900744631 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				4393FD0A16593AC000BCD53B /* img */,
 				4396968C16537D2E00744631 /* Camera.h */,
 				4396968D16537D2E00744631 /* Camera.m */,
 				4396968F16537D4900744631 /* Camera.xib */,
@@ -685,6 +752,7 @@
 		439696971653832500744631 /* ImgSelectedOverView */ = {
 			isa = PBXGroup;
 			children = (
+				4393FD1816593E8100BCD53B /* img */,
 				4396969D165383DB00744631 /* ImgSelectedOverView.h */,
 				4396969E165383DB00744631 /* ImgSelectedOverView.m */,
 				439696A0165383E500744631 /* ImgSelectedOverView.xib */,
@@ -729,6 +797,7 @@
 		439696C1165519F400744631 /* NextAddInfoView */ = {
 			isa = PBXGroup;
 			children = (
+				4393FD051659177400BCD53B /* img */,
 				439696C216551A3800744631 /* NextAddInfoView.h */,
 				439696C316551A3800744631 /* NextAddInfoView.m */,
 				439696C516551A6600744631 /* NextAddInfoView.xib */,
@@ -1143,6 +1212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4393FD0F16593BFB00BCD53B /* Camera.xib in Resources */,
 				4393FCF71659073F00BCD53B /* TextPasteViewController.xib in Resources */,
 				4393FCF61659072C00BCD53B /* TextFileLoadViewController.xib in Resources */,
 				4393FCF51659072000BCD53B /* ImgSelectedOverView.xib in Resources */,
@@ -1249,6 +1319,18 @@
 				43994C2E1658FE7C00911C88 /* btn08-3@2x.png in Resources */,
 				4393FCFA16590A8600BCD53B /* smsbtn.png in Resources */,
 				4393FCFB16590A8600BCD53B /* smsbtn@2x.png in Resources */,
+				4393FCFE1659115000BCD53B /* bo_1.png in Resources */,
+				4393FCFF1659115000BCD53B /* bo_1@2x.png in Resources */,
+				4393FD03165912C000BCD53B /* bo_2.png in Resources */,
+				4393FD04165912C000BCD53B /* bo_2@2x.png in Resources */,
+				4393FD081659178400BCD53B /* checkbg.png in Resources */,
+				4393FD091659178400BCD53B /* checkbg@2x.png in Resources */,
+				4393FD0D16593AD600BCD53B /* camera.png in Resources */,
+				4393FD0E16593AD600BCD53B /* camera@2x.png in Resources */,
+				4393FD1216593D4B00BCD53B /* camera_btn1.png in Resources */,
+				4393FD1316593D4B00BCD53B /* camera_btn1@2x.png in Resources */,
+				4393FD1616593E7F00BCD53B /* upbar.png in Resources */,
+				4393FD1716593E7F00BCD53B /* upbar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
