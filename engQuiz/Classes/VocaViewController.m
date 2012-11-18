@@ -221,7 +221,7 @@
     eSentence = (ExSentence *)[xibs objectAtIndex:0];
     [eSentence awakeFromNib];
     
-    eSentence.frame = CGRectMake(0, 40, 320, 300);
+    eSentence.frame = CGRectMake(0, 0, 320, 460);
     
     if (check == 2) {
         if (index == 0) {
