@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad
 {
+    [tabbar setSelectedItem:item01];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -41,19 +42,40 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+#pragma mark UITabber Delegate
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{    
+    switch ([item tag] ) {
+        case 0:
+            type = 1;
+            break;
+        case 1:
+            type = 2;
+            break;
+        default:
+            break;
+    }
+    
+    [self reLoadTable];
+}
+
 - (void)reLoadTable{
     
-    if(rAndi.selectedSegmentIndex == 0)
+//    if(rAndi.selectedSegmentIndex == 0)
+//        type = 1;
+//    if(rAndi.selectedSegmentIndex == 1)
+//        type = 2;
+
+//    tabbar.selectedItem =
+    
+    
+    if (type == 0) {
         type = 1;
-    if(rAndi.selectedSegmentIndex == 1)
-        type = 2;
-    
-    
+    }
     
     rArray = [dbMsg getRSentenceData:type];
     cellCount = rArray.count/3;
     
-    NSLog(@"count :::  %d selected ::: %d",rArray.count, rAndi.selectedSegmentIndex);
+    NSLog(@"count :::  %d selected ::: %d",rArray.count, type);
     [rTableView reloadData];
 }
 
@@ -140,7 +162,10 @@
 
 - (void)viewDidUnload {
     rTableView = nil;
-    rAndi = nil;
+//    rAndi = nil;
+    tabbar = nil;
+    item01 = nil;
+    item02 = nil;
     [super viewDidUnload];
 }
 @end

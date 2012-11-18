@@ -65,7 +65,6 @@
 - (void)viewDidUnload {
     bookName = nil;
     pageNumber = nil;
-    sentenceTextView = nil;
     questionLabel = nil;
     answerLabel01 = nil;
     answerLabel02 = nil;
@@ -305,10 +304,7 @@
 - (void)setSentence:(NSString *)sentence{
     
     [bookName setText:bName];
-    [pageNumber setText:pNumber];
-    
-    [sentenceTextView setText:sentence];
-    
+    [pageNumber setText:pNumber];    
     [webView loadHTMLString:sentence baseURL:nil];
 
     //    NSLog(@"%d",sentenceTextView.)
