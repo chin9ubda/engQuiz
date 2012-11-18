@@ -1435,6 +1435,7 @@
 				43CF018D1657557B00828AA6 /* KakaoLinkCenter.m in Sources */,
 				431122281657603400F84BCF /* JSONKit.m in Sources */,
 				7DA1E899165959D6002C8BD2 /* SentenceProblemMaker.cpp in Sources */,
+				4393FD201659455900BCD53B /* CheckAnswer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
