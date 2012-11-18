@@ -34,6 +34,8 @@
 		4393FCF51659072000BCD53B /* ImgSelectedOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696A0165383E500744631 /* ImgSelectedOverView.xib */; };
 		4393FCF61659072C00BCD53B /* TextFileLoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4396967B1651EF4300744631 /* TextFileLoadViewController.xib */; };
 		4393FCF71659073F00BCD53B /* TextPasteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4392703B164E329800F38570 /* TextPasteViewController.xib */; };
+		4393FCFA16590A8600BCD53B /* smsbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FCF816590A8600BCD53B /* smsbtn.png */; };
+		4393FCFB16590A8600BCD53B /* smsbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FCF916590A8600BCD53B /* smsbtn@2x.png */; };
 		4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4398BC4916463BA700338CC6 /* engquiz.sqlite */; };
 		43994B941658C78600911C88 /* main_menuoff1.png in Resources */ = {isa = PBXBuildFile; fileRef = 43994B8C1658C78600911C88 /* main_menuoff1.png */; };
 		43994B951658C78600911C88 /* main_menuoff1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43994B8D1658C78600911C88 /* main_menuoff1@2x.png */; };
@@ -239,6 +241,8 @@
 		439274551646105D00EA98EF /* EduViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EduViewController.h; path = Classes/EduViewController.h; sourceTree = "<group>"; };
 		439274561646105D00EA98EF /* EduViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EduViewController.m; path = Classes/EduViewController.m; sourceTree = "<group>"; };
 		439274571646105D00EA98EF /* EduViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EduViewController.xib; path = Classes/EduViewController.xib; sourceTree = "<group>"; };
+		4393FCF816590A8600BCD53B /* smsbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smsbtn.png; path = img/smsbtn.png; sourceTree = "<group>"; };
+		4393FCF916590A8600BCD53B /* smsbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "smsbtn@2x.png"; path = "img/smsbtn@2x.png"; sourceTree = "<group>"; };
 		439696791651EF4300744631 /* TextFileLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFileLoadViewController.h; path = Classes/TextFileLoadViewController.h; sourceTree = "<group>"; };
 		4396967A1651EF4300744631 /* TextFileLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFileLoadViewController.m; path = Classes/TextFileLoadViewController.m; sourceTree = "<group>"; };
 		4396967B1651EF4300744631 /* TextFileLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFileLoadViewController.xib; path = Classes/TextFileLoadViewController.xib; sourceTree = "<group>"; };
@@ -925,6 +929,8 @@
 		43CF018F1657578C00828AA6 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				4393FCF816590A8600BCD53B /* smsbtn.png */,
+				4393FCF916590A8600BCD53B /* smsbtn@2x.png */,
 				43994BA41658C7CB00911C88 /* bar.png */,
 				43994BA51658C7CB00911C88 /* bar@2x.png */,
 				43994BA61658C7CB00911C88 /* bg01.png */,
@@ -1241,6 +1247,8 @@
 				43994C2C1658FE7C00911C88 /* btn08-2@2x.png in Resources */,
 				43994C2D1658FE7C00911C88 /* btn08-3.png in Resources */,
 				43994C2E1658FE7C00911C88 /* btn08-3@2x.png in Resources */,
+				4393FCFA16590A8600BCD53B /* smsbtn.png in Resources */,
+				4393FCFB16590A8600BCD53B /* smsbtn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
