@@ -64,7 +64,7 @@
     
     
     IBOutlet UIWebView *webView;
-    IBOutlet UIBarButtonItem *saveBtn;
+    IBOutlet UIButton *saveBtn;
     
 }
 - (IBAction)backEvent:(id)sender;
