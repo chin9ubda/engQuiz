@@ -392,7 +392,7 @@
     oss << nowProb.pcontent << std::endl;
     for (int i=0; i<4; i++)
     {
-        oss << nowProb.items[i].qcontent << std::endl;
+        oss << "[" << (i+1) << "] " << nowProb.items[i].qcontent << std::endl;
     }
     
     exam = [NSString stringWithUTF8String:oss.str().c_str()];
