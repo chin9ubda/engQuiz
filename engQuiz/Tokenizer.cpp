@@ -123,7 +123,7 @@ void Tokenizer::run()
     std::vector<std::string> sentents(tokens.size()+1);
     std::transform(tokens.begin(), tokens.end(), sentents.begin(), token2str);
 
-    tag = pos->hmmTagger->tag(sentents);
+    //tag = pos->hmmTagger->tag(sentents);
     
     std::vector<std::string>::iterator iter;
     std::vector<Token>::iterator iter2;
@@ -144,36 +144,8 @@ void Tokenizer::run()
 }
 
 
-std::string Tokenizer::cascadeHTML()
-{
-    std::ostringstream oss;
-    
-    std::vector<Token>::iterator iter;
-    
-    oss << "<p style=\"font-size: 13px;\">";
-    for(iter = tokens.begin(); iter != tokens.end(); iter++)
-    {
-        if (iter->getToken() == "\r")
-        {
-            oss << "<br />";
-            continue;
-        }
-        if (iter->getProbNum() > 0)
-        {
-            //oss << "<span style=\"color: red;\"> [[[" << iter->getProbNum() << "]]]</span>";
-            oss << "<input type=\"text\" size=\"5\" style=\"text-align:center;color:red;border-color:red;\" value=\"(" << iter->getProbNum() << ")\" />";
 
-        } else {
-            oss << iter->getToken();
-        }
-    }
-    
-    oss << "</p>";
-    
-    return oss.str();
-}
-
-std::string Tokenizer::cascadeStr()
+std::string Tokenizer::cascadeData()
 {
     std::ostringstream oss;
     
@@ -182,8 +154,7 @@ std::string Tokenizer::cascadeStr()
     {
         if (iter->getProbNum() > 0)
         {
-            //oss << "<span style=\"color: red;\"> [[[" << iter->getProbNum() << "]]]</span>";
-            oss << "[[[" << iter->getProbNum() << "]]]";
+            oss << "{1}";
             
         } else {
             oss << iter->getToken();
@@ -246,4 +217,51 @@ int Tokenizer::atWordExistDBToken(int num)
         }
     }
     return -1;
+}
+
+
+std::string JimoonMaker::replaceAll(const std::string &str, const std::string &pattern, const std::string &replace)
+{
+	std::string result = str;
+	std::string::size_type pos = 0;
+	std::string::size_type offset = 0;
+    
+	while((pos = result.find(pattern, offset)) != std::string::npos)
+	{
+		result.replace(result.begin() + pos, result.begin() + pos + pattern.size(), replace);
+		offset = pos + replace.size();
+	}
+    
+	return result;
+}
+
+std::string JimoonMaker::getSTRJimoon(std::string gimoon)
+{
+    gimoon = replaceAll(gimoon, "{1}", "[[[1]]]");
+    
+    return gimoon;
+}
+
+
+std::string JimoonMaker::getHTMLJimoon(std::string gimoon)
+{
+    
+    std::ostringstream oss;
+    
+    std::vector<Token>::iterator iter;
+    oss << "<html><body bgcolor=\"#CDE998\">";
+    oss << "<p style=\"font-size: 13px;\">";
+    
+    gimoon = replaceAll(gimoon, "{1}", "<input type=\"text\" size=\"5\" style=\"text-align:center;color:red;border-color:red;\" value=\"(1)\" />");
+    
+    
+    oss << replaceAll(gimoon, "\r", "<br />");
+    
+    oss << "</p>";
+    oss << "</body></html>";
+    
+    return oss.str();
+    
+    
+    return gimoon;
 }

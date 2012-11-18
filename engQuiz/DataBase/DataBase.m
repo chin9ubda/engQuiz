@@ -926,6 +926,62 @@
     return array;
 }
 
+
+
+-(NSMutableArray *)getReservedRSentenceData:(int)cid{
+    NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
+    int count = 0;
+    
+    sqlite3_stmt *selectStatement;
+    NSString *query = [NSString stringWithFormat:@"SELECT cid, content, gdate FROM %@ WHERE cid = %d ",Contenttray_TableName, cid];
+    
+    const char *selectSql = [query UTF8String];
+    
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 2) ] atIndex:count];
+            count++;
+            
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return array;
+}
+
+
+
+-(int)checkMakedProblem:(int)type{    int n = -1;
+    
+    sqlite3_stmt *selectStatement;
+    NSString *query = [NSString stringWithFormat:@"SELECT tid FROM %@ WHERE id = %d",ContentBook_TableName,type];
+    
+    const char *selectSql = [query UTF8String];
+    
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            n = sqlite3_column_int(selectStatement, 0);
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return n;
+}
+
 -(NSMutableArray *)getRQuestion:(int)tid{
     NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
     int count = 0;

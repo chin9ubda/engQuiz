@@ -345,9 +345,10 @@
  %%여기에다 넣어주세요 ㅋㅋ
  ---------------------------------------- */
 
-- (NSMutableArray *)setExam:(NSString *)msg:(int)class1:(int)class2{
+- (NSMutableArray *)setMakeExam:(NSString *)msg:(int)class1:(int)class2 {
     
     NSMutableArray *eArray = [NSMutableArray arrayWithCapacity:0];
+    
     
     // 문제 생성
     std::string str([msg UTF8String]);
@@ -359,7 +360,10 @@
     prob->makeProblem(1, 1);
     
     // 지문
-    NSString *sText = [NSString stringWithUTF8String:prob->getProblemContent().c_str()];
+    std::string str_ji = prob->getProblemContent().c_str();
+    originJimoon = [NSString stringWithUTF8String:str_ji.c_str()];
+    
+    [self setSentence: [NSString stringWithUTF8String:JimoonMaker::getHTMLJimoon(str_ji).c_str()]];
     
     
     // 문제
@@ -384,7 +388,7 @@
     
     // 문자열 문제만들기
     std::ostringstream oss;
-    oss << tokenizer.cascadeHTML() << std::endl << std::endl;
+    oss << JimoonMaker::getSTRJimoon(str_ji) << std::endl << std::endl;
     oss << nowProb.pcontent << std::endl;
     for (int i=0; i<4; i++)
     {

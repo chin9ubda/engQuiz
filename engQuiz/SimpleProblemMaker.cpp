@@ -43,7 +43,7 @@ bool SimpleProblemMaker::procReal()
     
 	tokenizer->tokens[num_real].setProbNum((char)1);
     
-	problem_content = tokenizer->cascadeStr();
+	problem_content = tokenizer->cascadeData();
     
 	prob.pcontent = "빈칸에 알맞은 단어를 넣으세요.";
 	
@@ -77,7 +77,7 @@ bool SimpleProblemMaker::procExistDic()
     
 	tokenizer->tokens[num_real].setProbNum((char)1);
     
-	problem_content = tokenizer->cascadeStr();
+	problem_content = tokenizer->cascadeData();
     
 	prob.pcontent = "빈칸에 알맞은 단어를 넣으세요.";
 	

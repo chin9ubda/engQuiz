@@ -387,9 +387,9 @@
                     SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
                     
                     if (poz == 0) {
-                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:1]:0:0];
+                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:1]:0:[[gArray objectAtIndex:0]intValue]];
                     }else {
-                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:poz *4 + 1]:0:0];
+                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:poz *4 + 1]:0:[[gArray objectAtIndex:poz *4]intValue]];
                     }
                     
                     [self presentModalViewController:sentenceVeiw animated:YES];
@@ -462,9 +462,9 @@
                 
                 if (section == 0) {
                     if (index == 0) {
-                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:1]:0:0];
+                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:1]:0:[[gArray objectAtIndex:1] intValue]];
                     }else {
-                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:index *4 + 1]:0:0];
+                        [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:index *4 + 1]:0:[[gArray objectAtIndex:index *4] intValue]];
                         
                     }
                 }else {
@@ -472,7 +472,7 @@
                     for (int i = 0; i < section ; i++) {
                         poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
                     }
-                    [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:poz *4 + 1]:0:0];
+                    [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:poz *4 + 1]:0:[[gArray objectAtIndex:poz *4]intValue]];
                 }
                 
                 [self presentModalViewController:sentenceVeiw animated:YES];

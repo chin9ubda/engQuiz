@@ -13,21 +13,6 @@
 #define HEIGHT_PIXEL 300
 
 
-std::string replaceAll(const std::string &str, const std::string &pattern, const std::string &replace)
-{
-	std::string result = str;
-	std::string::size_type pos = 0;
-	std::string::size_type offset = 0;
-    
-	while((pos = result.find(pattern, offset)) != std::string::npos)
-	{
-		result.replace(result.begin() + pos, result.begin() + pos + pattern.size(), replace);
-		offset = pos + replace.size();
-	}
-    
-	return result;
-}
-
 GenTableData::GenTableData(std::string label, int fail, int success)
 : label(label), fail(fail), success(success)
 {
@@ -76,6 +61,21 @@ std::string GenTable::run_gchart(const char *path, std::string title, std::strin
     str = replaceAll(str, "{2}", axisy);
     
     return str;
+}
+
+std::string GenTable::replaceAll(const std::string &str, const std::string &pattern, const std::string &replace)
+{
+	std::string result = str;
+	std::string::size_type pos = 0;
+	std::string::size_type offset = 0;
+    
+	while((pos = result.find(pattern, offset)) != std::string::npos)
+	{
+		result.replace(result.begin() + pos, result.begin() + pos + pattern.size(), replace);
+		offset = pos + replace.size();
+	}
+    
+	return result;
 }
 
 std::string GenTable::run()

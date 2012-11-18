@@ -51,6 +51,7 @@
 
 -(NSString *)getMean:(NSString *)word;
 
+-(NSMutableArray *)getReservedRSentenceData:(int)cid;
 -(NSMutableArray *)getRSentenceData:(int)type;
 -(NSMutableArray *)getRQuestion:(int)tid;
 -(NSMutableArray *)getRAnswer:(int)pid;
@@ -64,6 +65,7 @@
 
 -(void)vocaXUpdate:(NSString *)word:(Boolean)check;
 
+-(int)checkMakedProblem:(int)type;
 
 -(void)logUpdate:(NSString *)date:(NSString *)content:(Boolean)check;
 
