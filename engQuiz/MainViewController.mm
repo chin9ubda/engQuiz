@@ -85,7 +85,9 @@
         settingView = nil;
         [settingView removeFromParentViewController];
     }
+    
     settingView = [[SettingViewController alloc]init];
+    
     [self presentModalViewController:settingView animated:YES];
 }
 @end
