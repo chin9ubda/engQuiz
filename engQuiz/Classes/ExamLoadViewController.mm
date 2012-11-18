@@ -9,7 +9,7 @@
 #import "ExamLoadViewController.h"
 #import "SentenceViewController.h"
 #import "ThemeCell.h"
-#import "ExViewController.h"
+//#import "ExViewController.h"
 //#import "ViewController.h"
 #import "OcrResultCheckViewController.h"
 
@@ -598,6 +598,7 @@
         
         if (index == 0) {
             [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:2]:0:0];
+//            /////////
         }else {
             [sentenceVeiw setInit:[dbMsg getBookName:[[bArray objectAtIndex:bookNumber - 1]integerValue]]:[tArray objectAtIndex:index * 3 + 2]:0:0];
         }
@@ -666,34 +667,6 @@
             naviScroll.contentSize = CGSizeMake(0, 0);
             [naviScroll setContentOffset:CGPointMake(naviScroll.frame.size.width,0) animated:YES];
 
-        }
-        
-        else if (tableView.tag == Class2Tag) {
-            
-            switch (index) {
-                case 0:
-                    sNumber = index;
-                    [classNumber setTitle: @"전체" forState:UIControlStateNormal];
-                    break;
-                    
-                case 1:
-                    sNumber = index;
-                    [classNumber setTitle: @"1 학년" forState:UIControlStateNormal];
-                    break;
-                    
-                case 2:
-                    sNumber = index;
-                    [classNumber setTitle: @"2 학년" forState:UIControlStateNormal];
-                    break;
-                    
-                case 3:
-                    sNumber = index;
-                    [classNumber setTitle: @"3 학년" forState:UIControlStateNormal];
-                    break;
-                    
-                default:
-                    break;
-            }
         }
         [self disAlert];
     }
