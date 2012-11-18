@@ -15,7 +15,7 @@
 class GenTableData
 {
 public:
-    GenTableData(std::string label, int fail, int success);
+    GenTableData(std::string label, int success, int fail);
     
     std::string label;
     int fail;
