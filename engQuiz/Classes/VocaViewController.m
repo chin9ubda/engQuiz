@@ -58,7 +58,7 @@
                                   delegate:self
                                   cancelButtonTitle:@"취소"
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"틀린 단어 위주", @"순서대로",@"단어",@"숙어", nil];
+                                  otherButtonTitles:@"필수 영단어", @"틀린 단어",@"단어",@"숙어", nil];
     [actionsheet showInView:self.view];
 }
 
@@ -289,11 +289,13 @@
     if (buttonIndex != actionSheet.cancelButtonIndex) {
         EduViewController *eduView = [[EduViewController alloc]init];
         
-        if (buttonIndex == 0) {
-            NSLog(@"틀린 단어 위주");
+        if (buttonIndex == 1) {
+            NSLog(@"틀린 단어");
             [eduView setVocaArray:[dbMsg searchVoca:@"" :0 :2]];
-        }else if(buttonIndex == 1){
-            NSLog(@"순서대로");
+        }else if(buttonIndex == 0){
+            NSLog(@"필수 영단어");
+            [eduView setVocaArray:[dbMsg getVocaData:0 :0]];
+//            [eduView setVocaArray:[dbMsg searchVoca:@"" :0 :0]];
 //            [eduView setVocaArray:vArray];
         }else if(buttonIndex == 2){
             NSLog(@"단어");

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DataBase.h"
+#import "CheckAnswer.h"
 #import "MessageUI/MessageUI.h"
 
 @interface SentenceViewController : UIViewController<UIAlertViewDelegate,MFMessageComposeViewControllerDelegate>{
@@ -67,6 +68,8 @@
     
     IBOutlet UIWebView *webView;
     IBOutlet UIButton *saveBtn;
+    
+    CheckAnswer *checkView;
     
 }
 - (IBAction)backEvent:(id)sender;
