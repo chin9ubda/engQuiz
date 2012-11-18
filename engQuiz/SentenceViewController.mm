@@ -349,9 +349,10 @@
  %%여기에다 넣어주세요 ㅋㅋ
  ---------------------------------------- */
 
-- (NSMutableArray *)setExam:(NSString *)msg:(int)class1:(int)class2{
+- (NSMutableArray *)setMakeExam:(NSString *)msg:(int)class1:(int)class2 {
     
     NSMutableArray *eArray = [NSMutableArray arrayWithCapacity:0];
+    
     
     // 문제 생성
     std::string str([msg UTF8String]);
@@ -363,7 +364,7 @@
     prob->makeProblem(1, 1);
     
     // 지문
-    NSString *sText = [NSString stringWithUTF8String:prob->getProblemContent().c_str()];
+    [self setSentence: [NSString stringWithUTF8String:prob->getProblemContent().c_str()]];
     
     
     // 문제
@@ -388,7 +389,7 @@
     
     // 문자열 문제만들기
     std::ostringstream oss;
-    oss << tokenizer.cascadeHTML() << std::endl << std::endl;
+    oss << tokenizer.cascadeStr() << std::endl << std::endl;
     oss << nowProb.pcontent << std::endl;
     for (int i=0; i<4; i++)
     {
@@ -397,7 +398,31 @@
     
     exam = [NSString stringWithUTF8String:oss.str().c_str()];
     
-    [self setSentence:sText];
+    return eArray;
+}
+
+
+- (NSMutableArray *)setReservedExam:(NSString *)msg:(int)class1:(int)class2 {
+    
+    NSMutableArray *returnArrray = [NSMutableArray arrayWithCapacity:0];
+    
+    
+}
+
+- (NSMutableArray *)setExam:(NSString *)msg:(int)class1:(int)class2{
+    NSMutableArray *eArray;
+    
+    // 제출된 문제인지 확인
+    int pid = [dbMsg checkMakedProblem:nowId];
+    
+    
+    if (pid > 0)
+    {
+        eArray = [self setReservedExam:msg:class1:class2];
+    } else {
+        eArray = [self setMakeExam:msg:class1:class2];
+    }
+    
     
     return eArray;
 }

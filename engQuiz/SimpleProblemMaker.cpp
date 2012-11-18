@@ -77,7 +77,7 @@ bool SimpleProblemMaker::procExistDic()
     
 	tokenizer->tokens[num_real].setProbNum((char)1);
     
-	problem_content = tokenizer->cascadeStr();
+	problem_content = tokenizer->cascadeHTML();
     
 	prob.pcontent = "빈칸에 알맞은 단어를 넣으세요.";
 	
