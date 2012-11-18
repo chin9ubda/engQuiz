@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#include "CitarPOS.h"
 
 @interface MainViewController ()
 
@@ -21,6 +22,13 @@
     dbMsg = [DataBase getInstance];
     
     [dbMsg LoadDataBaseFile];
+    
+    NSLog(@"initialize citarpos");
+    std::string lexicon = std::string([[[NSBundle mainBundle] pathForResource:@"brown-simplified" ofType:@"lexicon"] UTF8String]);
+    std::string ngrams = std::string([[[NSBundle mainBundle] pathForResource:@"brown-simplified" ofType:@"ngrams"] UTF8String]);
+    
+    CitarPOS::initInstance(lexicon, ngrams);
+    
     
 //    exView = [[ExamLoadViewController alloc]init];
 //    vocaView = [[VocaViewController alloc]init];

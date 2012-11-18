@@ -9,7 +9,7 @@
 #include "GrammarProblemMaker.h"
 
 
-GrammarProblemMaker::GrammarProblemMaker(Tokenizer *tokenizer) : IProblemMaker(tokenizer)
+GrammarProblemMaker::GrammarProblemMaker(Tokenizer &tokenizer) : IProblemMaker(tokenizer)
 {
     
 }

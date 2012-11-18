@@ -11,7 +11,7 @@ class SimpleProblemMaker :
     bool procExistDic();
 	SQLDictionary *dic;
 public:
-	SimpleProblemMaker(Tokenizer *tokenizer);
+	SimpleProblemMaker(Tokenizer &tokenizer);
 	~SimpleProblemMaker(void);
 	virtual bool makeProblem(int level, int d); 
 };

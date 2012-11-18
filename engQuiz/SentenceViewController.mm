@@ -9,6 +9,7 @@
 #import "SentenceViewController.h"
 #include "SimpleProblemMaker.h"
 #import "KakaoLinkCenter.h"
+#include "CitarPOS.h"
 
 @interface SentenceViewController ()
 
@@ -348,8 +349,6 @@
  %%여기에다 넣어주세요 ㅋㅋ
  ---------------------------------------- */
 
-#define ANALYSIS_LEXICON "brown-simplified.lexicon"
-#define ANALYSIS_NGRAMS "brown-simplified.ngrams"
 - (NSMutableArray *)setExam:(NSString *)msg:(int)class1:(int)class2{
     
     NSMutableArray *eArray = [NSMutableArray arrayWithCapacity:0];
@@ -357,10 +356,10 @@
     // 문제 생성
     std::string str([msg UTF8String]);
     
-    std::string lexicon = std::string([[[NSBundle mainBundle] pathForResource:@"brown-simplified" ofType:@"lexicon"] UTF8String]);
-    std::string ngrams = std::string([[[NSBundle mainBundle] pathForResource:@"brown-simplified" ofType:@"ngrams"] UTF8String]);
+    Tokenizer tokenizer(str);
+    tokenizer.run();
     
-    SimpleProblemMaker *prob = new SimpleProblemMaker(new Tokenizer(str, lexicon, ngrams));
+    SimpleProblemMaker *prob = new SimpleProblemMaker(tokenizer);
     prob->makeProblem(1, 1);
     
     // 지문
@@ -387,9 +386,16 @@
     
     delete prob;
     
+    // 문자열 문제만들기
+    std::ostringstream oss;
+    oss << tokenizer.cascadeHTML() << std::endl << std::endl;
+    oss << nowProb.pcontent << std::endl;
+    for (int i=0; i<4; i++)
+    {
+        oss << nowProb.items[i].qcontent << std::endl;
+    }
     
-    
-    exam = sText;
+    exam = [NSString stringWithUTF8String:oss.str().c_str()];
     
     [self setSentence:sText];
     

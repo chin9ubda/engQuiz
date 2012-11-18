@@ -28,15 +28,13 @@ Problem::~Problem()
 }
 
 
-IProblemMaker::IProblemMaker(Tokenizer* tokenizer)
+IProblemMaker::IProblemMaker(Tokenizer& tokenizer)
 {
-    this->tokenizer = tokenizer;
-    tokenizer->run();
+    this->tokenizer = &tokenizer;
 }
 
 IProblemMaker::~IProblemMaker()
 {
-    delete tokenizer;
 }
 
 
