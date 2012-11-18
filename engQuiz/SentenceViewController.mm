@@ -187,7 +187,19 @@
 
 -(void)checkAnser:(int)c{
     
-    UIAlertView *alert;
+    if (checkView != nil) {
+        [checkView removeFromSuperview];
+        checkView = nil;
+    }
+    
+    NSArray *xib = [[NSBundle mainBundle]  loadNibNamed:@"CheckAnswer" owner:self options:nil];
+    checkView = (CheckAnswer *)[xib objectAtIndex:0];
+    
+    [checkView setFrame:CGRectMake(0, 0, 320, 460)];
+    
+    [checkView awakeFromNib];
+    
+//    UIAlertView *alert;
     NSString *msg = [NSString stringWithFormat:@"%@ : %@\n%@ : %@\n%@ : %@\n%@ : %@",answerLabel01.text,[dbMsg getMean:answerLabel01.text],answerLabel02.text,[dbMsg getMean:answerLabel02.text],answerLabel03.text,[dbMsg getMean:answerLabel03.text],answerLabel04.text,[dbMsg getMean:answerLabel04.text]];
     
     
@@ -230,30 +242,27 @@
         }
     }else{
         ox = 1;
-        result = @"틀렸습니다.";
+        result = [NSString stringWithFormat:@"틀렸습니다. (정답 : %d)",[[pArray objectAtIndex:5] intValue]];
         [dbMsg vocaXUpdate:label[c].text :false];
         if (!checkState) {
             [dbMsg logUpdate:date :@"problem" :false];
             checkState = true;
+            [self saveOX];
         }
     }
     
+    [checkView.feedbackTextView setText:msg];
+    [checkView.resultLabel setText:result];
+    
+    [checkView.reBtn addTarget:self action:@selector(closeCheck) forControlEvents:UIControlEventTouchUpInside];
+    [checkView.nextBtn addTarget:self action:@selector(reExam) forControlEvents:UIControlEventTouchUpInside];
+    
     if (nowType == 0 || ox == 1) {
-        alert = [[UIAlertView alloc] initWithTitle:result
-                                           message:msg
-                                          delegate:self
-                                 cancelButtonTitle:@"확 인"
-                                 otherButtonTitles:@"오답노트에 저장", nil];
+        [self.view addSubview:checkView];
     }else{
-        alert = [[UIAlertView alloc] initWithTitle:result
-                                           message:msg
-                                          delegate:self
-                                 cancelButtonTitle:@"확 인"
-                                 otherButtonTitles:nil, nil];
+        [checkView.nextBtn setEnabled:NO];
+        [self.view addSubview:checkView];
     }
-    
-    [alert show];
-    
 }
 
 - (void)naviEvent {
@@ -270,8 +279,41 @@
     }
 }
 
+- (void)closeCheck{
+    [checkView removeFromSuperview];
+}
+
+- (void)reExam{
+    if (nowType == 0) {
+        pArray = [self setExam:examSentence:1 :1];
+    }else {
+        pArray = [self getRepository];
+        [saveBtn setEnabled:NO];
+    }
+    
+    [self labelInit];
+    [self setTexts:0];
+    
+    if (nowType == 2) {
+        [answerHiddenBtn1 setHidden:YES];
+        [answerHiddenBtn2 setHidden:YES];
+        [answerHiddenBtn3 setHidden:YES];
+        [answerHiddenBtn4 setHidden:YES];
+    }
+    
+    checkState = false;
+    
+    nowCheck = 0;
+    
+    [answerCheck1Btn setSelected:NO];
+    [answerCheck2Btn setSelected:NO];
+    [answerCheck3Btn setSelected:NO];
+    [answerCheck4Btn setSelected:NO];
+    
+    [checkView removeFromSuperview];
 
 
+}
 - (void)saveRepository:(int)type{
     
     //    sid = [dbMsg saveRSentence:bName :@"000000" :1];
