@@ -56,8 +56,8 @@ bool Token::getExistDB()
 
 Tokenizer::Tokenizer(std::string origin): word_cnt(0), word_cnt_real(0), word_cnt_exist_dic(0)
 {
-    this->origin = origin;
-      
+    this->origin = JimoonMaker::replaceAll(origin, "\r\n", "\r");
+    this->origin = JimoonMaker::replaceAll(this->origin, "\n", "\r");
 }
 
 Tokenizer::~Tokenizer()
@@ -123,7 +123,7 @@ void Tokenizer::run()
     std::vector<std::string> sentents(tokens.size()+1);
     std::transform(tokens.begin(), tokens.end(), sentents.begin(), token2str);
 
-    //tag = pos->hmmTagger->tag(sentents);
+    tag = pos->hmmTagger->tag(sentents);
     
     std::vector<std::string>::iterator iter;
     std::vector<Token>::iterator iter2;
