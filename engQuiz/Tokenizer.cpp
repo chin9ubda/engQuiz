@@ -177,7 +177,7 @@ void Tokenizer::analysis_munzang()
             iter->getToken() == "!" ||
             iter->getToken() == "?" ||
             iter->getToken() == "\r" ||
-            iter->getToken() == ":")
+            (iter->getToken() == ":" && (iter-1)->getType() == TOKEN_TYPE_WORD ))
         {
             if (munzang_word >= 3)
             {
