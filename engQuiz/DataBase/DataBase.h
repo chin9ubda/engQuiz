@@ -71,4 +71,9 @@
 -(void)logUpdate:(NSString *)date:(NSString *)content:(Boolean)check;
 
 -(NSMutableArray *)getLogData:(int)type:(int)yy:(int)mm:(int)dd;
+
+-(void)dataInit;
+
+-(int)getStteingData;
+-(void)updateClass:(int)c;
 @end

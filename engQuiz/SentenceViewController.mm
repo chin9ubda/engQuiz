@@ -39,6 +39,7 @@
     if (nowType == 0) {
         pArray = [self setExam:examSentence:1 :1];
     }else {
+        [reExamBtn setHidden:YES];
         pArray = [self getRepository];
         [saveBtn setEnabled:NO];
     }
@@ -47,10 +48,10 @@
     [self setTexts:0];
     
     if (nowType == 2) {
-        [answerHiddenBtn1 setHidden:YES];
-        [answerHiddenBtn2 setHidden:YES];
-        [answerHiddenBtn3 setHidden:YES];
-        [answerHiddenBtn4 setHidden:YES];
+        [answerHiddenBtn1 setEnabled:NO];
+        [answerHiddenBtn2 setEnabled:NO];
+        [answerHiddenBtn3 setEnabled:NO];
+        [answerHiddenBtn4 setEnabled:NO];
     }
     
     [super viewDidLoad];
@@ -83,6 +84,7 @@
     answerHiddenBtn4 = nil;
     saveBtn = nil;
     webView = nil;
+    reExamBtn = nil;
     [super viewDidUnload];
 }
 - (IBAction)backEvent:(id)sender {
@@ -112,15 +114,15 @@
 }
 
 - (IBAction)saveExam:(id)sender {
-    [self saveRepository:1];
+    [self saveRepository:1:0];
     [self dismissModalViewControllerAnimated:dismissType];
     if (!dismissType) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ocr_dismiss" object:nil];
     }
 }
 
--(void)saveOX{
-    [self saveRepository:2];
+-(void)saveOX:(int)c{
+    [self saveRepository:2:c];
 }
 
 - (IBAction)naviEvent:(id)sender {
@@ -247,7 +249,7 @@
         if (!checkState) {
             [dbMsg logUpdate:date :@"problem" :false];
             checkState = true;
-            [self saveOX];
+            [self saveOX:c];
         }
     }
     
@@ -295,10 +297,10 @@
     [self setTexts:0];
     
     if (nowType == 2) {
-        [answerHiddenBtn1 setHidden:YES];
-        [answerHiddenBtn2 setHidden:YES];
-        [answerHiddenBtn3 setHidden:YES];
-        [answerHiddenBtn4 setHidden:YES];
+        [answerHiddenBtn1 setEnabled:NO];
+        [answerHiddenBtn2 setEnabled:NO];
+        [answerHiddenBtn3 setEnabled:NO];
+        [answerHiddenBtn4 setEnabled:NO];
     }
     
     checkState = false;
@@ -314,7 +316,7 @@
 
 
 }
-- (void)saveRepository:(int)type{
+- (void)saveRepository:(int)type:(int)c{
     
     //    sid = [dbMsg saveRSentence:bName :@"000000" :1];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -333,6 +335,10 @@
     int sol[4];
     
     sol[check - 1] = 1;
+    
+    if (type == 2) {
+        sol[c - 1] = 2;
+    }
     
     [dbMsg saveRAnswer:qid:answerLabel01.text :sol[0]];
     [dbMsg saveRAnswer:qid:answerLabel02.text :sol[1]];
@@ -363,6 +369,8 @@
         for (int i = 0; i < 5; i++) {
             if (check == i && nowType == 2) {
                 [label[i] setTextColor:[UIColor redColor]];
+            }else if ( checkedNumber == i && i != 0  && nowType == 2){
+                [label[i] setTextColor:[UIColor blueColor]];
             }
             [label[i] setText:[pArray objectAtIndex:i]];
         }
@@ -372,6 +380,8 @@
         for (int i = 0; i < 5; i++) {
             if (check == i && nowType == 2) {
                 [label[i] setTextColor:[UIColor redColor]];
+            }else if ( checkedNumber == i && i != 0  && nowType == 2){
+                [label[i] setTextColor:[UIColor blueColor]];
             }
             [label[i] setText:[pArray objectAtIndex:poz * 5 + (i + 1)]];
         }
@@ -504,6 +514,16 @@
     }else if ([[itemArray objectAtIndex:11] intValue] == 1) {
         checkNum = 4;
     }
+    
+    if ([[itemArray objectAtIndex:2] intValue] == 2) {
+        checkedNumber = 1;
+    }else if ([[itemArray objectAtIndex:5] intValue] == 2) {
+        checkedNumber = 2;
+    }else if ([[itemArray objectAtIndex:8] intValue] == 2) {
+        checkedNumber = 3;
+    }else if ([[itemArray objectAtIndex:11] intValue] == 2) {
+        checkedNumber = 4;
+    }
     [returnArrray insertObject:[NSNumber numberWithInt:checkNum] atIndex:5];
     
     
@@ -539,11 +559,11 @@
 }
 
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        [self saveOX];
-    }
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if (buttonIndex == 1) {
+//        [self saveOX];
+//    }
+//}
 
 - (void)setDIsType:(BOOL)type{
     dismissType = type;
@@ -588,6 +608,10 @@
 
     [KakaoLinkCenter openKakaoLinkWithURL:@"" appVersion:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] appBundleID:[[NSBundle mainBundle] bundleIdentifier] appName:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"] message:exam];
 
+}
+
+- (IBAction)reExamBtnEvent:(id)sender {
+    [self reExam];
 }
 
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{

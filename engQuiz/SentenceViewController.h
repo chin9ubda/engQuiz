@@ -37,6 +37,8 @@
     
     int nowCheck;
     
+    int checkedNumber;
+    
     BOOL navi;
     
     BOOL checkState;
@@ -70,6 +72,7 @@
     IBOutlet UIButton *saveBtn;
     
     CheckAnswer *checkView;
+    IBOutlet UIButton *reExamBtn;
     
 }
 - (IBAction)backEvent:(id)sender;
@@ -83,4 +86,5 @@
 - (void)setDIsType:(BOOL)type;
 - (IBAction)messageSend:(id)sender;
 - (IBAction)kakaoSend:(id)sender;
+- (IBAction)reExamBtnEvent:(id)sender;
 @end

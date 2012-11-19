@@ -43,6 +43,8 @@
         gArray = [NSMutableArray arrayWithCapacity:0];
         groupCountArray = [NSMutableArray arrayWithCapacity:0];
         
+//        cNumber = [dbMsg getStteingData] + 1;
+        
     }
     return self;
 }
@@ -55,15 +57,16 @@
     [self setScrollViewInit];
     [scrollView setHidden:YES];
     
+    bookNumber = 0;
+    chapterNumber = 0;
+    pNumber = 0;
+    cNumber = [dbMsg getStteingData] + 1;
+
+    [self setClassNameData:cNumber];
+    
     [self setTableInit];
     [super viewDidLoad];
     
-    
-////    NSLog(@"%d",[dbMsg getInsertBookGroup].count);
-//    
-//    for (int i = 0; i < [dbMsg getInsertBookGroup].count; i++) {
-//        NSLog(@"%@",[dbMsg getInsertBookGroup]);
-//    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -75,6 +78,24 @@
 
 - (IBAction)backBtnEvent:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)setClassNameData:(int)c{
+    switch (c) {
+        case 0:
+            [className setTitle: @"전체" forState:UIControlStateNormal];
+            break;
+        case 1:
+            [className setTitle: @"중학교" forState:UIControlStateNormal];
+            break;
+        case 2:
+            [className setTitle: @"고등학교" forState:UIControlStateNormal];
+            break;
+            
+        default:
+            break;
+    }
+    
 }
 
 - (void)setScrollViewInit{
@@ -213,9 +234,9 @@
                     poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
                 }
                 if (![[gArray objectAtIndex:poz * 4 + 3]isEqualToString:@""]) {
-                    cell.textLabel.text = [gArray objectAtIndex:poz * 4 + 3];
+                    cell.textLabel.text = [gArray objectAtIndex:(poz + index) * 4 + 3];
                 }else{
-                    cell.textLabel.text = [gArray objectAtIndex:poz * 4 + 1];
+                    cell.textLabel.text = [gArray objectAtIndex:(poz + index) * 4 + 1];
                 }
             }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
                 cell.textLabel.text = [dbMsg getBookName:[[[dbMsg getBookIds:section+1:cNumber:sNumber] objectAtIndex:index]integerValue]];
@@ -348,7 +369,8 @@
                 return [[groupCountArray objectAtIndex:section - pArray.count]intValue] / 4;
 
             }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count == 0) {
-                return 1;
+//                return 1;
+                return 0;
             }
             return [dbMsg getBookIds:section+1:cNumber:sNumber].count;
         }else if(pNumber == pArray.count + 1){
@@ -400,7 +422,7 @@
                     }
                     SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
 
-                    [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:poz *4 + 1]:0:0];
+                    [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:(poz + index) *4 + 1]:0:0];
                     [self presentModalViewController:sentenceVeiw animated:YES];
 
                 }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
@@ -1108,10 +1130,10 @@
 }
 
 - (void)setTableInit{
-    bookNumber = 0;
-    chapterNumber = 0;
-    pNumber = 0;
-    cNumber = 1;
+//    bookNumber = 0;
+//    chapterNumber = 0;
+//    pNumber = 0;
+//    cNumber = 1;
     
     bArray = [dbMsg getBookIds:pNumber:cNumber:sNumber];
     
@@ -1131,7 +1153,7 @@
     
     tableCellCount = bArray.count;
     
-    if (bArray.count != 0)
+    if (bArray.count + gArray.count != 0)
         [scrollView setHidden:NO];
     else
         [scrollView setHidden:YES];

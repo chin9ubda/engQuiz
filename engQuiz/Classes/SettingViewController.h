@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataBase.h"
+#import "MessageUI/MessageUI.h"
 
-@interface SettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+@interface SettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MFMailComposeViewControllerDelegate, UIActionSheetDelegate>{
     
     IBOutlet UITableView *settingTable;
+    
+    DataBase *dbMsg;
+    
+    NSString *tempClass;
 }
 
 - (IBAction)backBtnEvent:(id)sender;

@@ -22,6 +22,7 @@
 
 #define GetContentBook_TableName @"getcontentbook"
 #define Log_content_TableName @"log_content"
+#define settingtable_TableName @"settingtable"
 
 @implementation DataBase
 + (DataBase*) getInstance{
@@ -47,11 +48,11 @@
     if([fileMgr fileExistsAtPath:filePath]){
         NSLog(@"file exist");
         
-        [fileMgr removeItemAtPath:filePath error:&error];
-
-        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
-
-        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
+//        [fileMgr removeItemAtPath:filePath error:&error];
+//
+//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
+//
+//        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
     }else {
         NSLog(@"file not exist");
@@ -1385,29 +1386,82 @@
         }
 
     }
-    
-//    const char *selectSql = [query UTF8String];
-//    
-//    
-//    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
-//        
-//        while (sqlite3_step(selectStatement) == SQLITE_ROW && count < maxCount) {
-//            
-//            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
-//            count++;
-//            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
-//            count++;
-//            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 2) ] atIndex:count];
-//            count++;
-//            [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 3)] atIndex:count];
-//            count++;
-//            
-//        }
-//        
-//    }
-//    
     sqlite3_finalize(selectStatement);
     
     return array;
 }
+
+-(void)dataInit{
+    
+    sqlite3_close(database);
+    
+    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:DataBase_Name];
+
+    
+    NSError *error;
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    if([fileMgr fileExistsAtPath:filePath]){
+        NSLog(@"file exist");
+        
+        [fileMgr removeItemAtPath:filePath error:&error];
+
+        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
+
+        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
+        
+    }else {
+        NSLog(@"file not exist");
+        
+        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
+        
+        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
+        
+    }
+    
+    
+    if (sqlite3_open([filePath UTF8String], &database) != SQLITE_OK) {
+        
+        sqlite3_close(database);
+        
+        NSLog(@"Error");
+    }else{
+        NSLog(@"Create / Open DataBase");
+    }
+}
+
+-(int)getStteingData{
+    sqlite3_stmt *selectStatement;
+    int res = 0;
+    NSString *query = [NSString stringWithFormat:@"SELECT class FROM %@",
+                       settingtable_TableName];
+    
+    const char *selectSql = [query UTF8String];
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        if (sqlite3_step(selectStatement) == SQLITE_ROW)
+        {
+            res = sqlite3_column_int(selectStatement, 0);
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return res;
+}
+-(void)updateClass:(int)c{
+    NSString *query = [NSString stringWithFormat:@"UPDATE %@ SET class = %d",settingtable_TableName,c];
+    
+    const char *updateSql = [query UTF8String];
+    
+    if (sqlite3_exec(database, updateSql, nil,nil,nil) != SQLITE_OK) {
+        NSLog(@"Error");
+    }else{
+        NSLog(@"OK");
+    }
+
+}
+
 @end
