@@ -63,7 +63,7 @@
 
 - (IBAction)meanBtnEvent:(id)sender {
     [meanBtn setHidden:YES];
-}
+} 
 
 - (IBAction)vocaCheckBtnEvent:(id)sender {
     if (nowPoz == 0) {
