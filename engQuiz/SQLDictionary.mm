@@ -77,7 +77,15 @@ bool SQLDictionary::getRandomSimItems(std::string word, std::string data[], int 
     
     while (getline(iss, substr, ','))
     {
-        wordtok.push_back(substr);
+        int t;
+        for (t=0; t<wordtok.size(); t++)
+        {
+            if (substr == wordtok[t])
+                break;
+        }
+        
+        if(t==wordtok.size())
+            wordtok.push_back(substr);
     }
     
     int remain = length;
@@ -102,5 +110,17 @@ std::string SQLDictionary::getRandomMunzangs(int excnum)
     Tokenizer tok(result);
     tok.run();
     
-    return tok.munzang[rand()%tok.munzang.size()];
+    /// 너무 긴거 자르기;
+    for (std::vector<std::string>::iterator iter = tok.munzang.begin(); iter != tok.munzang.end(); iter++)
+    {
+        if (iter->size() > 40)
+        {
+            tok.munzang.erase(iter);
+            iter = tok.munzang.begin();
+        }
+    }
+    
+    std::string ret = tok.munzang[rand()%tok.munzang.size()];
+    
+    return ret;
 }
