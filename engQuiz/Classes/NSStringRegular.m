@@ -14,6 +14,7 @@
     NSError *error   = nil;
     
     msg = [msg stringByReplacingOccurrencesOfString :@"'" withString:@"’"];
+    msg = [msg stringByReplacingOccurrencesOfString :@"\n" withString:@"\r"];
 //    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:|-|_|?|:|&|;|,|.|!|'|\"]" options:0 error:&error];
     NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:|-|_|?|:|&|;|,|.|!|’|\"]" options:0 error:&error];
     
@@ -23,7 +24,7 @@
         if(match.numberOfRanges!=0){
             resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[msg substringWithRange:(NSRange){i,1}]];
             
-        }else if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
+        }else if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\r"]||
                  [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@" "]){
             resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[msg substringWithRange:(NSRange){i,1}]];
         }

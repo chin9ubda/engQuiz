@@ -122,15 +122,14 @@
     
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
+- (BOOL)textView:(UITextView *)textview shouldChangeTextInRange:(NSRange)range
  replacementText:(NSString *)text
 {
     //textView에 어느 글을 쓰더라도 이 메소드를 호출합니다.
-    //    if ([text isEqualToString:@"\n"]) {
-    //        // return키를 누루면 원래 줄바꿈이 일어나므로 \n을 입력하는데 \n을 입력하면 실행하게 합니다.
-    //        [self saveEvent];
-    //        return FALSE; //리턴값이 FALSE이면, 입력한 값이 입력되지 않습니다.
-    //    }
+    if ([text isEqualToString:@"\n"]) {
+        textView.text = [textview.text stringByReplacingCharactersInRange:range withString:@"\r"];
+        return false;
+    }
     return TRUE; //평소에 경우에는 입력을 해줘야 하므로, TRUE를 리턴하면 TEXT가 입력됩니다.
 }
 @end
