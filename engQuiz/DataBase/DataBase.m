@@ -61,7 +61,7 @@
         [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
     }
-    
+//    
 //    if (![fileMgr fileExistsAtPath:testFilePath]) {
 //        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
 //        
