@@ -39,6 +39,7 @@
     if (nowType == 0) {
         pArray = [self setExam:examSentence:1 :1];
     }else {
+        [reExamBtn setHidden:YES];
         pArray = [self getRepository];
         [saveBtn setEnabled:NO];
     }
@@ -47,16 +48,10 @@
     [self setTexts:0];
     
     if (nowType == 2) {
-//        [answerHiddenBtn1 setHidden:YES];
-//        [answerHiddenBtn2 setHidden:YES];
-//        [answerHiddenBtn3 setHidden:YES];
-//        [answerHiddenBtn4 setHidden:YES];
-
         [answerHiddenBtn1 setEnabled:NO];
         [answerHiddenBtn2 setEnabled:NO];
         [answerHiddenBtn3 setEnabled:NO];
         [answerHiddenBtn4 setEnabled:NO];
-
     }
     
     [super viewDidLoad];
@@ -89,6 +84,7 @@
     answerHiddenBtn4 = nil;
     saveBtn = nil;
     webView = nil;
+    reExamBtn = nil;
     [super viewDidUnload];
 }
 - (IBAction)backEvent:(id)sender {
@@ -301,10 +297,10 @@
     [self setTexts:0];
     
     if (nowType == 2) {
-        [answerHiddenBtn1 setHidden:YES];
-        [answerHiddenBtn2 setHidden:YES];
-        [answerHiddenBtn3 setHidden:YES];
-        [answerHiddenBtn4 setHidden:YES];
+        [answerHiddenBtn1 setEnabled:NO];
+        [answerHiddenBtn2 setEnabled:NO];
+        [answerHiddenBtn3 setEnabled:NO];
+        [answerHiddenBtn4 setEnabled:NO];
     }
     
     checkState = false;

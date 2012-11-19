@@ -72,6 +72,7 @@
     IBOutlet UIButton *saveBtn;
     
     CheckAnswer *checkView;
+    IBOutlet UIButton *reExamBtn;
     
 }
 - (IBAction)backEvent:(id)sender;
