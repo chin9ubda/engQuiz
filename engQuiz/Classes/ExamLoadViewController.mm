@@ -213,9 +213,9 @@
                     poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
                 }
                 if (![[gArray objectAtIndex:poz * 4 + 3]isEqualToString:@""]) {
-                    cell.textLabel.text = [gArray objectAtIndex:poz * 4 + 3];
+                    cell.textLabel.text = [gArray objectAtIndex:(poz + index) * 4 + 3];
                 }else{
-                    cell.textLabel.text = [gArray objectAtIndex:poz * 4 + 1];
+                    cell.textLabel.text = [gArray objectAtIndex:(poz + index) * 4 + 1];
                 }
             }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
                 cell.textLabel.text = [dbMsg getBookName:[[[dbMsg getBookIds:section+1:cNumber:sNumber] objectAtIndex:index]integerValue]];
@@ -400,7 +400,7 @@
                     }
                     SentenceViewController *sentenceVeiw = [[SentenceViewController alloc]init];
 
-                    [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:poz *4 + 1]:0:0];
+                    [sentenceVeiw setInit:@"기타":[gArray objectAtIndex:(poz + index) *4 + 1]:0:0];
                     [self presentModalViewController:sentenceVeiw animated:YES];
 
                 }else if ([dbMsg getBookIds:section+1:cNumber:sNumber].count != 0) {
