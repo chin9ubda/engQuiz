@@ -412,6 +412,11 @@
     tokenizer.run();
     
     int what = rand()%2;
+    
+    // 두문장 이상일때만 출력
+    if (tokenizer.munzang.size() < 3)
+        what = 0;
+    
     IProblemMaker *prob;
     switch (what)
     {
