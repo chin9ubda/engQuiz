@@ -492,7 +492,6 @@
         eArray = [self setMakeExam:msg:class1:class2];
     }
     
-    
     return eArray;
 }
 
@@ -564,13 +563,6 @@
     [UIView commitAnimations];
     
 }
-
-
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//    if (buttonIndex == 1) {
-//        [self saveOX];
-//    }
-//}
 
 - (void)setDIsType:(BOOL)type{
     dismissType = type;
