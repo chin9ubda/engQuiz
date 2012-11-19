@@ -57,6 +57,10 @@
 		4393FD2B1659476D00BCD53B /* checkbg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4393FD291659476D00BCD53B /* checkbg2@2x.png */; };
 		43965D90165A12E800357471 /* InfoSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43965D8F165A12E800357471 /* InfoSubCell.m */; };
 		43965D92165A12FC00357471 /* InfoSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43965D91165A12FC00357471 /* InfoSubCell.xib */; };
+		43965D99165A685D00357471 /* rebtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965D97165A685D00357471 /* rebtn.png */; };
+		43965D9A165A685D00357471 /* rebtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965D98165A685D00357471 /* rebtn@2x.png */; };
+		43965D9D165A6B8A00357471 /* btnbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965D9B165A6B8A00357471 /* btnbg.png */; };
+		43965D9E165A6B8A00357471 /* btnbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965D9C165A6B8A00357471 /* btnbg@2x.png */; };
 		4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4398BC4916463BA700338CC6 /* engquiz.sqlite */; };
 		43994B941658C78600911C88 /* main_menuoff1.png in Resources */ = {isa = PBXBuildFile; fileRef = 43994B8C1658C78600911C88 /* main_menuoff1.png */; };
 		43994B951658C78600911C88 /* main_menuoff1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43994B8D1658C78600911C88 /* main_menuoff1@2x.png */; };
@@ -287,6 +291,10 @@
 		43965D8E165A12E800357471 /* InfoSubCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoSubCell.h; path = Classes/InfoSubCell.h; sourceTree = "<group>"; };
 		43965D8F165A12E800357471 /* InfoSubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoSubCell.m; path = Classes/InfoSubCell.m; sourceTree = "<group>"; };
 		43965D91165A12FC00357471 /* InfoSubCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoSubCell.xib; path = Classes/InfoSubCell.xib; sourceTree = "<group>"; };
+		43965D97165A685D00357471 /* rebtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rebtn.png; path = img/rebtn.png; sourceTree = "<group>"; };
+		43965D98165A685D00357471 /* rebtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rebtn@2x.png"; path = "img/rebtn@2x.png"; sourceTree = "<group>"; };
+		43965D9B165A6B8A00357471 /* btnbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnbg.png; path = img/btnbg.png; sourceTree = "<group>"; };
+		43965D9C165A6B8A00357471 /* btnbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnbg@2x.png"; path = "img/btnbg@2x.png"; sourceTree = "<group>"; };
 		439696791651EF4300744631 /* TextFileLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFileLoadViewController.h; path = Classes/TextFileLoadViewController.h; sourceTree = "<group>"; };
 		4396967A1651EF4300744631 /* TextFileLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFileLoadViewController.m; path = Classes/TextFileLoadViewController.m; sourceTree = "<group>"; };
 		4396967B1651EF4300744631 /* TextFileLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFileLoadViewController.xib; path = Classes/TextFileLoadViewController.xib; sourceTree = "<group>"; };
@@ -1053,6 +1061,10 @@
 		43CF018F1657578C00828AA6 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				43965D9B165A6B8A00357471 /* btnbg.png */,
+				43965D9C165A6B8A00357471 /* btnbg@2x.png */,
+				43965D97165A685D00357471 /* rebtn.png */,
+				43965D98165A685D00357471 /* rebtn@2x.png */,
 				4393FCF816590A8600BCD53B /* smsbtn.png */,
 				4393FCF916590A8600BCD53B /* smsbtn@2x.png */,
 				43994BA41658C7CB00911C88 /* bar.png */,
@@ -1394,6 +1406,10 @@
 				4393FD2A1659476D00BCD53B /* checkbg2.png in Resources */,
 				4393FD2B1659476D00BCD53B /* checkbg2@2x.png in Resources */,
 				43965D92165A12FC00357471 /* InfoSubCell.xib in Resources */,
+				43965D99165A685D00357471 /* rebtn.png in Resources */,
+				43965D9A165A685D00357471 /* rebtn@2x.png in Resources */,
+				43965D9D165A6B8A00357471 /* btnbg.png in Resources */,
+				43965D9E165A6B8A00357471 /* btnbg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

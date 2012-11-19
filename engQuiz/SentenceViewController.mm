@@ -614,6 +614,10 @@
 
 }
 
+- (IBAction)reExamBtnEvent:(id)sender {
+    [self reExam];
+}
+
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     if (result == MessageComposeResultCancelled) {
         [self dismissModalViewControllerAnimated:YES];

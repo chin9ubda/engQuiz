@@ -85,4 +85,5 @@
 - (void)setDIsType:(BOOL)type;
 - (IBAction)messageSend:(id)sender;
 - (IBAction)kakaoSend:(id)sender;
+- (IBAction)reExamBtnEvent:(id)sender;
 @end
