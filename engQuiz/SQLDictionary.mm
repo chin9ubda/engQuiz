@@ -91,3 +91,16 @@ bool SQLDictionary::getRandomSimItems(std::string word, std::string data[], int 
     
     return true;
 }
+
+
+std::string SQLDictionary::getRandomMunzangs(int excnum)
+{
+    DataBase *dMsg = [DataBase getInstance];
+    
+    std::string result([[dMsg getRandomMunzang:excnum] UTF8String]);
+    
+    Tokenizer tok(result);
+    tok.run();
+    
+    return tok.munzang[rand()%tok.munzang.size()];
+}

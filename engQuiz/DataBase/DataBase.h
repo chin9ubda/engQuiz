@@ -59,6 +59,7 @@
 
 -(bool)existsWord:(NSString *)word;
 -(NSString *)getRandomWord;
+-(NSString *)getRandomMunzang:(int)excnum;
 -(NSMutableArray *)getWordInformation:(NSString*)word;
 
 -(void)saveSentence:(NSString *)sentence:(NSString *)gdate:(NSString *)groupname:(NSString *)theme;

@@ -47,11 +47,11 @@
     if([fileMgr fileExistsAtPath:filePath]){
         NSLog(@"file exist");
         
-//        [fileMgr removeItemAtPath:filePath error:&error];
-//
-//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
-//
-//        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
+        [fileMgr removeItemAtPath:filePath error:&error];
+
+        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
+
+        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
     }else {
         NSLog(@"file not exist");
@@ -1072,6 +1072,29 @@
     NSString *res = @"";
     NSString *query = [NSString stringWithFormat:@"SELECT word FROM %@ ORDER BY RANDOM() LIMIT 1",
                        Dictionary_TableName];
+    
+    const char *selectSql = [query UTF8String];
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        if (sqlite3_step(selectStatement) == SQLITE_ROW)
+        {
+            res = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return res;
+}
+
+-(NSString *)getRandomMunzang:(int)excnum{
+    
+    sqlite3_stmt *selectStatement;
+    NSString *res = @"";
+    NSString *query = [NSString stringWithFormat:@"SELECT text FROM %@ where id <> %d ORDER BY RANDOM() LIMIT 1 ;",
+                       ContentBook_TableName, excnum];
     
     const char *selectSql = [query UTF8String];
     

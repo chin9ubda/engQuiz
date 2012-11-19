@@ -9,7 +9,7 @@
 #include "Tokenizer.h"
 #include "SQLDictionary.h"
 #include "CitarPOS.h"
-
+#include <stack>
 
 std::string token2str(Token &token)
 {
@@ -101,7 +101,6 @@ void Tokenizer::run()
                 {
                     word_cnt_exist_dic++;
                 }
-                
                 word_cnt++;
                 buf_pos = 0;
                 sign = false;
@@ -113,9 +112,10 @@ void Tokenizer::run()
             buf[0] = origin[i];
             buf[1] = '\0';
             
-            
             Token token(std::string(buf), TOKEN_TYPE_SPECIAL, false);
             tokens.push_back(token);
+            
+            
         }
     }
     
@@ -139,10 +139,58 @@ void Tokenizer::run()
             analysis[*iter]++;
         }
     }
-     
     
+    analysis_munzang();
 }
 
+void Tokenizer::trim_left( std::string& s )
+{
+    auto it = s.begin(), ite = s.end();
+    
+    while( ( it != ite ) && std::isspace( *it ) ) {
+        ++it;
+    }
+    s.erase( s.begin(), it );
+}
+
+void Tokenizer::analysis_munzang()
+{
+    std::stack<char> data;
+    int munzang_word = 0;
+    std::vector<Token>::iterator iter;
+    std::ostringstream oss;
+    
+    for (iter = tokens.begin(); iter != tokens.end(); iter++)
+    {
+        if (iter->getToken() != "\r" &&
+            iter->getToken() != "\n")
+        {
+            oss << iter->getToken();
+        }
+        
+        if (iter->getType() == TOKEN_TYPE_WORD)
+        {
+            munzang_word++;
+        }
+        
+        if (iter->getToken() == "." ||
+            iter->getToken() == "!" ||
+            iter->getToken() == "?" ||
+            iter->getToken() == "\r" ||
+            iter->getToken() == ":")
+        {
+            if (munzang_word >= 3)
+            {
+                std::string temp(oss.str());
+                trim_left(temp);
+                munzang.push_back(temp);
+                munzang_count_word.push_back(munzang_word);
+            }
+            oss.str("");
+            munzang_word = 0;
+        }
+    }
+}
 
 
 std::string Tokenizer::cascadeData()

@@ -44,7 +44,7 @@ std::string GenTable::run_gchart(const char *path, std::string title, std::strin
     
     oss2 << "[ ";
     // 헤더
-    oss2 << "['', 'Success', 'Fail', 'Total'],";
+    oss2 << "['', '맞은갯수', '틀린갯수', '총합'],";
  
     // 내용
     for (iter = datas.begin(); iter!=datas.end(); iter++)
