@@ -9,7 +9,7 @@
 #import "CheckAnswer.h"
 
 @implementation CheckAnswer
-
+@synthesize answerImg;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -27,5 +27,12 @@
     // Drawing code
 }
 */
+
+-(void)setOimg{
+    [answerImg setImage:[UIImage imageNamed:@"oimg.png"]];
+}
+-(void)setXimg{
+    [answerImg setImage:[UIImage imageNamed:@"ximg.png"]];
+}
 
 @end

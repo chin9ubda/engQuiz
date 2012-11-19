@@ -14,4 +14,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *reBtn;
 @property (strong, nonatomic) IBOutlet UIButton *nextBtn;
 @property (strong, nonatomic) IBOutlet UILabel *resultLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *answerImg;
+
+-(void)setOimg;
+-(void)setXimg;
 @end
