@@ -17,6 +17,10 @@
     
     NextAddInfoView *nextView;
     InsertSentence *insertSentence;
+    
+    float textH;
+    
+    BOOL thisTouch;
 }
 
 - (IBAction)backBtnEvent:(id)sender;

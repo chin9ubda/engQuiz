@@ -18,6 +18,8 @@
     
     InsertSentence *insertSentence;
     NextAddInfoView *nextView;
+    
+    BOOL thisTouch;
 }
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)nextBtnEvent:(id)sender;

@@ -14,6 +14,7 @@
     NSError *error   = nil;
     
     msg = [msg stringByReplacingOccurrencesOfString :@"'" withString:@"’"];
+    msg = [msg stringByReplacingOccurrencesOfString :@"\n" withString:@"\r"];
 //    NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:|-|_|?|:|&|;|,|.|!|'|\"]" options:0 error:&error];
     NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"[a-zA-Z0-9:space:|-|_|?|:|&|;|,|.|!|’|\"]" options:0 error:&error];
     

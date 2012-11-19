@@ -38,6 +38,8 @@ namespace tesseract {
     UITapGestureRecognizer *tap;
     
     Boolean textViewSize;
+    
+    BOOL thisTouch;
 }
 - (IBAction)backBtnEvent:(id)sender;
 - (IBAction)nextBtnEvent:(id)sender;
