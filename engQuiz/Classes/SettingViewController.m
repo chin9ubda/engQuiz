@@ -169,9 +169,14 @@
             [self setClass];
         }else if ([indexPath section] == 1) {
             if ([indexPath row] == 0) {
-                [dbMsg dataInit];
-                [self setClass:[dbMsg getStteingData]];
-                [settingTable reloadData];
+                alert = [[UIAlertView alloc] initWithTitle:@"확  인"
+                                                               message:@"데이터가 모두 삭제됩니다.\n초기화 하시겠습니까?"
+                                                              delegate:self
+                                                     cancelButtonTitle:@"아니요"
+                                                     otherButtonTitles:@"예", nil];
+                
+                alert.tag = 0;
+                [alert show];
 
             }else if ([indexPath row] == 1) {
                 [self sendFeedBack];
@@ -179,16 +184,23 @@
         }
     }else {
         
+        [alert dismissWithClickedButtonIndex:0 animated:YES];
         [dbMsg updateClass:[indexPath row]];
         [self setClass:[dbMsg getStteingData]];
         [settingTable reloadData];
     }
 }
 
+-(void)dataInit{
+    [dbMsg dataInit];
+    [self setClass:[dbMsg getStteingData]];
+    [settingTable reloadData];
+}
+
 -(void)setClass{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"출판사"
+    alert = [[UIAlertView alloc] initWithTitle:@"선  택"
                                                     message:@"\n\n\n\n\n\n\n"
-                                                   delegate:nil
+                                                   delegate:self
                                           cancelButtonTitle:@"Cancel"
                                           otherButtonTitles:nil, nil];
     
@@ -238,4 +250,9 @@
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 0 && buttonIndex == 1) {
+        [self dataInit];
+    }
+}
 @end

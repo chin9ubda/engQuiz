@@ -125,8 +125,12 @@
     
     if (index == 0) {
         [sentenceVeiw setInit:@"보관함":[rArray objectAtIndex:1]:type:[[rArray objectAtIndex:0] intValue]];
+        NSLog(@"%@",[rArray objectAtIndex:0]);
     }else {
         [sentenceVeiw setInit:@"보관함":[rArray objectAtIndex:(index * 3) + 1]:type:[[rArray objectAtIndex:(index * 3)] intValue]];
+        
+        NSLog(@"%@",[rArray objectAtIndex:(index * 3)]);
+//        NSLog(@"%d",rArray.count);
     }
     
     [self presentModalViewController:sentenceVeiw animated:YES];

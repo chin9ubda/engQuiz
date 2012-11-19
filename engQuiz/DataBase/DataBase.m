@@ -566,6 +566,9 @@
     
     int sid;
     
+    NSLog(@"content  :: %@ ,, date :: %@ ,, tyep :: %d",content, date, type);
+
+    
     NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (content,gdate,type) VALUES('%@','%@',%d)",Contenttray_TableName,content,date,type];
     
     const char *insertSql = [query UTF8String];
@@ -588,7 +591,7 @@
             if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
                 
                 // while문을 돌면서 각 레코드의 데이터를 받아서 출력한다.
-                while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+                if (sqlite3_step(selectStatement) == SQLITE_ROW) {
                     sid = sqlite3_column_int(selectStatement, 0);
                 }
                 
@@ -663,7 +666,6 @@
             
         }
     }
-    
     sqlite3_finalize(insertStatement);
 }
 
@@ -749,7 +751,7 @@
 
             if (check == 2) {
                 
-                NSLog(@"%d",resultTemp.length);
+//                NSLog(@"%d",resultTemp.length);
                 resultTemp = [resultTemp substringWithRange:(NSRange){[self leftCheck:resultTemp :index] + 1, [self rightCheck:resultTemp :index] - [self leftCheck:resultTemp :index]}];
                 NSLog(@"%@\nindex :: %d",resultTemp,index);
                 [array insertObject:resultTemp atIndex:count];
