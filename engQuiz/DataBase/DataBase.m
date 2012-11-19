@@ -47,11 +47,11 @@
     if([fileMgr fileExistsAtPath:filePath]){
         NSLog(@"file exist");
         
-        [fileMgr removeItemAtPath:filePath error:&error];
-
-        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
-
-        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
+//        [fileMgr removeItemAtPath:filePath error:&error];
+//
+//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
+//
+//        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
     }else {
         NSLog(@"file not exist");

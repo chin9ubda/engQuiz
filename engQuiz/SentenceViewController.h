@@ -37,6 +37,8 @@
     
     int nowCheck;
     
+    int checkedNumber;
+    
     BOOL navi;
     
     BOOL checkState;
