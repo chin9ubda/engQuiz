@@ -200,8 +200,7 @@
     [checkView setFrame:CGRectMake(0, 0, 320, 460)];
     
     [checkView awakeFromNib];
-    
-//    UIAlertView *alert;
+
     NSString *msg = [NSString stringWithFormat:@"%@ : %@\n%@ : %@\n%@ : %@\n%@ : %@",answerLabel01.text,[dbMsg getMean:answerLabel01.text],answerLabel02.text,[dbMsg getMean:answerLabel02.text],answerLabel03.text,[dbMsg getMean:answerLabel03.text],answerLabel04.text,[dbMsg getMean:answerLabel04.text]];
     
     
@@ -237,6 +236,7 @@
         ox = 0;
         result = @"정답입니다.";
         [dbMsg vocaXUpdate:label[c].text :true];
+        [checkView setOimg];
         
         if (!checkState) {
             [dbMsg logUpdate:date :@"problem" :true];
@@ -245,6 +245,8 @@
     }else{
         ox = 1;
         result = [NSString stringWithFormat:@"틀렸습니다. (정답 : %d)",[[pArray objectAtIndex:5] intValue]];
+        [checkView setXimg];
+
         [dbMsg vocaXUpdate:label[c].text :false];
         if (!checkState) {
             [dbMsg logUpdate:date :@"problem" :false];

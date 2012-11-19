@@ -61,6 +61,10 @@
 		43965D9A165A685D00357471 /* rebtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965D98165A685D00357471 /* rebtn@2x.png */; };
 		43965D9D165A6B8A00357471 /* btnbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965D9B165A6B8A00357471 /* btnbg.png */; };
 		43965D9E165A6B8A00357471 /* btnbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965D9C165A6B8A00357471 /* btnbg@2x.png */; };
+		43965DA1165A76EC00357471 /* oimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965D9F165A76EC00357471 /* oimg.png */; };
+		43965DA2165A76EC00357471 /* oimg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965DA0165A76EC00357471 /* oimg@2x.png */; };
+		43965DA5165A7DAF00357471 /* ximg.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965DA3165A7DAF00357471 /* ximg.png */; };
+		43965DA6165A7DAF00357471 /* ximg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43965DA4165A7DAF00357471 /* ximg@2x.png */; };
 		4398BC4A16463BA700338CC6 /* engquiz.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4398BC4916463BA700338CC6 /* engquiz.sqlite */; };
 		43994B941658C78600911C88 /* main_menuoff1.png in Resources */ = {isa = PBXBuildFile; fileRef = 43994B8C1658C78600911C88 /* main_menuoff1.png */; };
 		43994B951658C78600911C88 /* main_menuoff1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43994B8D1658C78600911C88 /* main_menuoff1@2x.png */; };
@@ -295,6 +299,10 @@
 		43965D98165A685D00357471 /* rebtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rebtn@2x.png"; path = "img/rebtn@2x.png"; sourceTree = "<group>"; };
 		43965D9B165A6B8A00357471 /* btnbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnbg.png; path = img/btnbg.png; sourceTree = "<group>"; };
 		43965D9C165A6B8A00357471 /* btnbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnbg@2x.png"; path = "img/btnbg@2x.png"; sourceTree = "<group>"; };
+		43965D9F165A76EC00357471 /* oimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = oimg.png; path = img/oimg.png; sourceTree = "<group>"; };
+		43965DA0165A76EC00357471 /* oimg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "oimg@2x.png"; path = "img/oimg@2x.png"; sourceTree = "<group>"; };
+		43965DA3165A7DAF00357471 /* ximg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ximg.png; path = img/ximg.png; sourceTree = "<group>"; };
+		43965DA4165A7DAF00357471 /* ximg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ximg@2x.png"; path = "img/ximg@2x.png"; sourceTree = "<group>"; };
 		439696791651EF4300744631 /* TextFileLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFileLoadViewController.h; path = Classes/TextFileLoadViewController.h; sourceTree = "<group>"; };
 		4396967A1651EF4300744631 /* TextFileLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFileLoadViewController.m; path = Classes/TextFileLoadViewController.m; sourceTree = "<group>"; };
 		4396967B1651EF4300744631 /* TextFileLoadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFileLoadViewController.xib; path = Classes/TextFileLoadViewController.xib; sourceTree = "<group>"; };
@@ -772,6 +780,10 @@
 		4393FD23165946FE00BCD53B /* img */ = {
 			isa = PBXGroup;
 			children = (
+				43965DA3165A7DAF00357471 /* ximg.png */,
+				43965DA4165A7DAF00357471 /* ximg@2x.png */,
+				43965D9F165A76EC00357471 /* oimg.png */,
+				43965DA0165A76EC00357471 /* oimg@2x.png */,
 				4393FD241659470800BCD53B /* checkbg.png */,
 				4393FD251659470800BCD53B /* checkbg@2x.png */,
 			);
@@ -1410,6 +1422,10 @@
 				43965D9A165A685D00357471 /* rebtn@2x.png in Resources */,
 				43965D9D165A6B8A00357471 /* btnbg.png in Resources */,
 				43965D9E165A6B8A00357471 /* btnbg@2x.png in Resources */,
+				43965DA1165A76EC00357471 /* oimg.png in Resources */,
+				43965DA2165A76EC00357471 /* oimg@2x.png in Resources */,
+				43965DA5165A7DAF00357471 /* ximg.png in Resources */,
+				43965DA6165A7DAF00357471 /* ximg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
