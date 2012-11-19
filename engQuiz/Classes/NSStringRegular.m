@@ -24,7 +24,7 @@
         if(match.numberOfRanges!=0){
             resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[msg substringWithRange:(NSRange){i,1}]];
             
-        }else if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\n"]||
+        }else if([[msg substringWithRange:(NSRange){i,1}] isEqualToString:@"\r"]||
                  [[msg substringWithRange:(NSRange){i,1}] isEqualToString:@" "]){
             resultSentence = [NSString stringWithFormat:@"%@%@",resultSentence,[msg substringWithRange:(NSRange){i,1}]];
         }
