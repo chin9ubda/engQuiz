@@ -160,6 +160,8 @@
 		439D2D1B163BC6210071551C /* ThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1A163BC6200071551C /* ThemeCell.m */; };
 		439D2D1D163BC6470071551C /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439D2D1C163BC6470071551C /* ThemeCell.xib */; };
 		439D2D21163BC7440071551C /* SentenceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 439D2D1F163BC7430071551C /* SentenceViewController.mm */; };
+		439F2D09165B35630072D737 /* EditThemeAndGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 439F2D08165B35630072D737 /* EditThemeAndGroup.m */; };
+		439F2D0B165B35770072D737 /* EditThemeAndGroup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439F2D0A165B35770072D737 /* EditThemeAndGroup.xib */; };
 		43CF01711656683D00828AA6 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396968D16537D2E00744631 /* Camera.m */; };
 		43CF01721656686800828AA6 /* ImgSelectedOverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396969E165383DB00744631 /* ImgSelectedOverView.m */; };
 		43CF0174165675B500828AA6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CF0173165675B500828AA6 /* MessageUI.framework */; };
@@ -443,6 +445,9 @@
 		439D2D1C163BC6470071551C /* ThemeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeCell.xib; sourceTree = "<group>"; };
 		439D2D1E163BC7430071551C /* SentenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentenceViewController.h; sourceTree = "<group>"; };
 		439D2D1F163BC7430071551C /* SentenceViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SentenceViewController.mm; sourceTree = "<group>"; };
+		439F2D07165B35630072D737 /* EditThemeAndGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditThemeAndGroup.h; path = Classes/EditThemeAndGroup.h; sourceTree = "<group>"; };
+		439F2D08165B35630072D737 /* EditThemeAndGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditThemeAndGroup.m; path = Classes/EditThemeAndGroup.m; sourceTree = "<group>"; };
+		439F2D0A165B35770072D737 /* EditThemeAndGroup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditThemeAndGroup.xib; path = Classes/EditThemeAndGroup.xib; sourceTree = "<group>"; };
 		43CF0173165675B500828AA6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		43CF018B1657557B00828AA6 /* KakaoLinkCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KakaoLinkCenter.h; sourceTree = "<group>"; };
 		43CF018C1657557B00828AA6 /* KakaoLinkCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KakaoLinkCenter.m; sourceTree = "<group>"; };
@@ -1045,6 +1050,7 @@
 		439D2D0B163BBD640071551C /* Ex */ = {
 			isa = PBXGroup;
 			children = (
+				439F2D05165B35370072D737 /* EditThemeAndGroup */,
 				43CF018F1657578C00828AA6 /* img */,
 				439696971653832500744631 /* ImgSelectedOverView */,
 				4396968B16537CF900744631 /* Camera */,
@@ -1065,6 +1071,16 @@
 				43924CE216426A6C00B05EFE /* BookListCell.xib */,
 			);
 			name = Ex;
+			sourceTree = "<group>";
+		};
+		439F2D05165B35370072D737 /* EditThemeAndGroup */ = {
+			isa = PBXGroup;
+			children = (
+				439F2D07165B35630072D737 /* EditThemeAndGroup.h */,
+				439F2D08165B35630072D737 /* EditThemeAndGroup.m */,
+				439F2D0A165B35770072D737 /* EditThemeAndGroup.xib */,
+			);
+			name = EditThemeAndGroup;
 			sourceTree = "<group>";
 		};
 		43CF018A1657556600828AA6 /* KakaoLink */ = {
@@ -1444,6 +1460,7 @@
 				43965DA2165A76EC00357471 /* oimg@2x.png in Resources */,
 				43965DA5165A7DAF00357471 /* ximg.png in Resources */,
 				43965DA6165A7DAF00357471 /* ximg@2x.png in Resources */,
+				439F2D0B165B35770072D737 /* EditThemeAndGroup.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1504,8 +1521,7 @@
 				7DA1E899165959D6002C8BD2 /* SentenceProblemMaker.cpp in Sources */,
 				4393FD201659455900BCD53B /* CheckAnswer.m in Sources */,
 				43965D90165A12E800357471 /* InfoSubCell.m in Sources */,
-				7DB0D636165AA9110047514A /* GenProbUtil.mm in Sources */,
-				7DB0D696165B329C0047514A /* NSData+Additions.m in Sources */,
+				439F2D09165B35630072D737 /* EditThemeAndGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1590,8 +1606,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_EMPTY_BODY = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
 				GCC_VERSION = "";
@@ -1605,8 +1621,8 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
+				PROVISIONING_PROFILE = "A2A4879D-6174-4A10-A9BD-322B9E377462";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2A4879D-6174-4A10-A9BD-322B9E377462";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1618,8 +1634,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_EMPTY_BODY = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jinuk Baek (CXV3FBVAR4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 찬기 박 (GBUJS34PPA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "engQuiz/engQuiz-Prefix.pch";
 				GCC_VERSION = "";
@@ -1633,8 +1649,8 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7FB4E02-7BFB-4463-B709-DE5461D0A406";
+				PROVISIONING_PROFILE = "A2A4879D-6174-4A10-A9BD-322B9E377462";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2A4879D-6174-4A10-A9BD-322B9E377462";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

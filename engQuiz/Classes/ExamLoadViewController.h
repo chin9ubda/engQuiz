@@ -13,6 +13,7 @@
 #import "TextFileLoadViewController.h"
 #import "ImgSelectedOverView.h"
 #import "Camera.h"
+#import "EditThemeAndGroup.h"
 
 @interface ExamLoadViewController : UIViewController<UIActionSheetDelegate,UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIGestureRecognizerDelegate>{
     
@@ -61,10 +62,14 @@
     ImgSelectedOverView *selectedOverView;
     Camera *cameraOverView;
     
+    EditThemeAndGroup *editView;
+    
     Boolean menuState;
     
     NSMutableArray *imgViewArray;
     NSMutableArray *btnArray;
+    
+    int delPoz;
 
 }
 

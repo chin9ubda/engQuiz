@@ -569,7 +569,7 @@
             
             tArray = [dbMsg getThemeData:[[cArray objectAtIndex:index*2]integerValue]];
             
-            NSLog(@" count :: %d",tArray.count);
+//            NSLog(@" count :: %d",tArray.count);
             
             if (tArray.count != 0) {
                 [themeTable setHidden:NO];
@@ -828,32 +828,96 @@
     int index = [indexPath row];
 
     
+    NSArray *xib = [[NSBundle mainBundle]  loadNibNamed:@"EditThemeAndGroup" owner:self options:nil];
+    editView = (EditThemeAndGroup *)[xib objectAtIndex:0];
+    
+    [editView setFrame:CGRectMake(0, 0, 320, 460)];
+    
+    [editView awakeFromNib];
+    
+    
     if (pNumber == 0) {
         if (section == pArray.count) {
             int poz = (index + section - pArray.count);
-            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:poz *4] intValue]];
+//            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:poz *4] intValue]];
+            [self setPoz:poz * 4];
+
         }else if (section > pArray.count) {
             int poz = 0;
             for (int i = 0; i < section - pArray.count; i++) {
                 poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
             }
-            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:poz *4] intValue]];
+            [self setPoz:poz * 4];
+//            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:poz *4] intValue]];
         }
-        [self setTableInit];
+//        [self setTableInit];
+
+        [editView.groupLabel setText:[NSString stringWithFormat:@"%@",[groupArray objectAtIndex:section - pArray.count]]];
 
     }else if(pNumber == pArray.count + 1){
         
         if (section == 0) {
-            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:index *4] intValue]];
+//            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:index *4] intValue]];
+            [self setPoz:index * 4];
+
         }else {
             int poz = 0;
             for (int i = 0; i < section ; i++) {
                 poz = poz + [[groupCountArray objectAtIndex:i]intValue] / 4;
             }
-            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:poz *4] intValue]];
+//            [dbMsg deleteInsertSentence:[[gArray objectAtIndex:poz *4] intValue]];
+            [self setPoz:poz * 4];
         }
+        [editView.groupLabel setText:[NSString stringWithFormat:@"%@",[groupArray objectAtIndex:section]]];
+
+//        [self tableReload];
+    }
+    
+    [editView.cancelBtn addTarget:self action:@selector(cancelBtnEvent) forControlEvents:UIControlEventTouchUpInside];
+    [editView.delBtn addTarget:self action:@selector(deleteSentence) forControlEvents:UIControlEventTouchUpInside];
+    [editView.editBtn addTarget:self action:@selector(updateThemeGroup) forControlEvents:UIControlEventTouchUpInside];
+    [editView.themeLabel setDelegate:editView];
+    [editView.groupLabel setDelegate:editView];
+    
+    [editView.themeLabel setText:[NSString stringWithFormat:@"%@",[gArray objectAtIndex:delPoz + 3]]];
+    
+    [self.view addSubview:editView];
+
+}
+
+-(void)cancelBtnEvent{
+    [editView removeFromSuperview];
+}
+
+-(void)updateThemeGroup{
+    [dbMsg updateThemeAndGroup:[[gArray objectAtIndex:delPoz] intValue] Theme:editView.themeLabel.text Group:editView.groupLabel.text];
+    
+    NSLog(@"%@ , %@",editView.themeLabel.text , editView.groupLabel.text);
+    
+    if (pNumber == 0) {
+        [self setTableInit];
+    }else {
         [self tableReload];
     }
+    
+    [editView removeFromSuperview];
+
+}
+
+- (void)setPoz:(int)poz{
+    delPoz = poz;
+}
+
+- (void)deleteSentence{
+    [dbMsg deleteInsertSentence:[[gArray objectAtIndex:delPoz] intValue]];
+    
+    if (pNumber == 0) {
+        [self setTableInit];
+    }else {
+        [self tableReload];
+    }
+    
+    [editView removeFromSuperview];
 }
 
 #pragma mark UIActionSheet Delegate

@@ -1468,4 +1468,17 @@
 
 }
 
+-(void)updateThemeAndGroup:(int)_id Theme:(NSString *)theme Group:(NSString *)group{
+    NSString *query = [NSString stringWithFormat:@"UPDATE %@ SET theme = '%@', groupname = '%@' WHERE id = %d",GetContentBook_TableName,theme,group,_id];
+    
+    const char *updateSql = [query UTF8String];
+    
+    if (sqlite3_exec(database, updateSql, nil,nil,nil) != SQLITE_OK) {
+        NSLog(@"Error");
+    }else{
+        NSLog(@"OK");
+    }
+}
+
+
 @end

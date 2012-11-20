@@ -76,4 +76,7 @@
 
 -(int)getStteingData;
 -(void)updateClass:(int)c;
+
+
+-(void)updateThemeAndGroup:(int)_id Theme:(NSString *)theme Group:(NSString *)group;
 @end
