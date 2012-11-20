@@ -606,11 +606,11 @@
     
     return sid;
 }
--(int)saveRQuestion:(int)sid:(NSString *)qtext:(int)qnumber{
+-(int)saveRQuestion:(int)sid:(NSString *)qtext:(int)qnumber:(NSString*) feedback{
     sqlite3_stmt *insertStatement;
     int qid;
     
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (pid,level,pcontent) VALUES(%d,%d,'%@')",Problem_TableName,sid,qnumber,qtext];
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (pid,level,pcontent,feedback) VALUES(%d,%d,'%@','%@')",Problem_TableName,sid,qnumber,qtext,feedback];
     
     const char *insertSql = [query UTF8String];
     
@@ -990,7 +990,7 @@
     int count = 0;
     
     sqlite3_stmt *selectStatement;
-    NSString *query = [NSString stringWithFormat:@"SELECT pid, pcontent FROM %@ WHERE tid = %d",Problem_TableName,tid];
+    NSString *query = [NSString stringWithFormat:@"SELECT pid, pcontent, feedback FROM %@ WHERE tid = %d",Problem_TableName,tid];
     
     const char *selectSql = [query UTF8String];
     
@@ -1002,6 +1002,8 @@
             [array insertObject: [NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] atIndex:count];
             count++;
             [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 2) ] atIndex:count];
             count++;
             
         }

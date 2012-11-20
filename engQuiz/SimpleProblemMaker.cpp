@@ -1,4 +1,5 @@
 #include "SimpleProblemMaker.h"
+#include "GenProbUtil.h"
 #include <sstream>
 #include <vector>
 #include <ctime>
@@ -92,12 +93,22 @@ bool SimpleProblemMaker::procExistDic()
     int simcnt = 0;
 	for (int i=0; i<4; i++)
 	{
+        std::string tmp;
+        
 		if (sol == i)
 		{
+            tmp = solution;
 			prob.addItems(solution, 1);
 		} else {
-			prob.addItems(simstr[simcnt++], 0);
+            tmp = simstr[simcnt++];
+			prob.addItems(tmp, 0);
 		}
+        
+        std::string res = dic->getWordInfo(tmp).mean;
+        if (res == "")
+            res = getTranslate(res);
+        
+        prob.feedback += "(" + tmp + "): " + res + "\r";
 	}
     
 	problem.push_back(prob);

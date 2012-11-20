@@ -18,6 +18,7 @@
 //    IBOutlet UISegmentedControl *rAndi;
     
     int type;
+    IBOutlet UILabel *lblTitle;
     IBOutlet UITabBar *tabbar;
     IBOutlet UITabBarItem *item01;
     IBOutlet UITabBarItem *item02;

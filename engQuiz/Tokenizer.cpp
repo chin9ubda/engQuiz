@@ -123,7 +123,7 @@ void Tokenizer::run()
     std::vector<std::string> sentents(tokens.size()+1);
     std::transform(tokens.begin(), tokens.end(), sentents.begin(), token2str);
 
-//    tag = pos->hmmTagger->tag(sentents);
+    //tag = pos->hmmTagger->tag(sentents);
     
     std::vector<std::string>::iterator iter;
     std::vector<Token>::iterator iter2;
@@ -177,7 +177,7 @@ void Tokenizer::analysis_munzang()
             iter->getToken() == "!" ||
             iter->getToken() == "?" ||
             iter->getToken() == "\r" ||
-            iter->getToken() == ":")
+            (iter->getToken() == ":" && (iter-1)->getType() == TOKEN_TYPE_WORD ))
         {
             if (munzang_word >= 3)
             {

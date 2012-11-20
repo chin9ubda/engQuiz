@@ -55,6 +55,9 @@
             break;
     }
     
+    lblTitle.text = [item title];
+    
+    
     [self reLoadTable];
 }
 

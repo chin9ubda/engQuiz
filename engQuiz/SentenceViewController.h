@@ -26,6 +26,7 @@
     NSString *exam2;
     
     NSString *originJimoon;
+    NSString *feedback;
     
     int sid;
     int qid;

@@ -7,6 +7,7 @@
 //
 
 #include "SentenceProblemMaker.h"
+#include "GenProbUtil.h"
 
 SentenceProblemMaker::SentenceProblemMaker(Tokenizer &tokenizer) : IProblemMaker(tokenizer)
 {
@@ -37,12 +38,17 @@ bool SentenceProblemMaker::makeProblem(int level, int d)
     
     for (int i=0; i<4; i++)
     {
+        std::string save = "";
+        
         if (res == i)
         {
+            save = solution;
             prob.addItems(solution, 1, false);
         } else {
-            prob.addItems(dic->getRandomMunzangs(0), 0, false);
+            save = dic->getRandomMunzangs(0);
+            prob.addItems(save, 0, false);
         }
+        prob.feedback += "("+save+") : " + getTranslate(save) + "\r";
     }
     
     problem.push_back(prob);

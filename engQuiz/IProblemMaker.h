@@ -20,8 +20,10 @@ class Problem
 {
 public:
     std::string pcontent;
+    std::string feedback;
     std::vector <ProblemItem> items;
     int solution;
+    std::string getFeedBack();
 
 	void addItems(std::string qcontent, int solution, bool lower=true);
 
