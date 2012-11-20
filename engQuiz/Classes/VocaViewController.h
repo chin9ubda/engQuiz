@@ -28,6 +28,7 @@
 
     int cellCount;
     IBOutlet UITabBar *tabbalContoller;
+    IBOutlet UILabel *lblTitle;
     
     ExSentence *eSentence;
     
