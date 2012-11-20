@@ -48,3 +48,9 @@ std::vector<Problem> &IProblemMaker::getProblems()
 {
 	return problem;
 }
+
+
+std::string IProblemMaker::getFeedBack()
+{
+    return feedback;
+}

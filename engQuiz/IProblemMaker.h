@@ -47,6 +47,7 @@ protected:
 	std::vector<Problem> problem;
 	std::string example;
 	std::string problem_content;
+    std::string feedback;
 public:
     
 	IProblemMaker(Tokenizer &tokenizer);
@@ -54,6 +55,7 @@ public:
 	virtual bool makeProblem(int level, int num) = 0;
 	std::vector<Problem> &getProblems();
 	std::string getProblemContent();
+    std::string getFeedBack();
 
 };
 

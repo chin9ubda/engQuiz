@@ -124,3 +124,4 @@ std::string SQLDictionary::getRandomMunzangs(int excnum)
     
     return ret;
 }
+

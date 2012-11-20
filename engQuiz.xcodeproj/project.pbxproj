@@ -196,6 +196,7 @@
 		7D7C5FA4165103AB0047E3F5 /* brown-simplified.lexicon in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C5FA2165103AB0047E3F5 /* brown-simplified.lexicon */; };
 		7D7C5FA5165103AB0047E3F5 /* brown-simplified.ngrams in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C5FA3165103AB0047E3F5 /* brown-simplified.ngrams */; };
 		7DA1E899165959D6002C8BD2 /* SentenceProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DA1E897165959D6002C8BD2 /* SentenceProblemMaker.cpp */; };
+		7DB0D636165AA9110047514A /* GenProbUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0D634165AA9110047514A /* GenProbUtil.mm */; };
 		7DDE21BE1657636300746F58 /* CitarPOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE21BC1657636300746F58 /* CitarPOS.cpp */; };
 /* End PBXBuildFile section */
 
@@ -501,6 +502,8 @@
 		7D7C5FA3165103AB0047E3F5 /* brown-simplified.ngrams */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "brown-simplified.ngrams"; sourceTree = "<group>"; };
 		7DA1E897165959D6002C8BD2 /* SentenceProblemMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SentenceProblemMaker.cpp; sourceTree = "<group>"; };
 		7DA1E898165959D6002C8BD2 /* SentenceProblemMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentenceProblemMaker.h; sourceTree = "<group>"; };
+		7DB0D634165AA9110047514A /* GenProbUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GenProbUtil.mm; sourceTree = "<group>"; };
+		7DB0D635165AA9110047514A /* GenProbUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenProbUtil.h; sourceTree = "<group>"; };
 		7DDE21BC1657636300746F58 /* CitarPOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CitarPOS.cpp; sourceTree = "<group>"; };
 		7DDE21BD1657636300746F58 /* CitarPOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitarPOS.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1204,6 +1207,8 @@
 				7DDE21BD1657636300746F58 /* CitarPOS.h */,
 				7DA1E897165959D6002C8BD2 /* SentenceProblemMaker.cpp */,
 				7DA1E898165959D6002C8BD2 /* SentenceProblemMaker.h */,
+				7DB0D634165AA9110047514A /* GenProbUtil.mm */,
+				7DB0D635165AA9110047514A /* GenProbUtil.h */,
 			);
 			name = GenProb;
 			sourceTree = "<group>";
@@ -1486,6 +1491,7 @@
 				7DA1E899165959D6002C8BD2 /* SentenceProblemMaker.cpp in Sources */,
 				4393FD201659455900BCD53B /* CheckAnswer.m in Sources */,
 				43965D90165A12E800357471 /* InfoSubCell.m in Sources */,
+				7DB0D636165AA9110047514A /* GenProbUtil.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
