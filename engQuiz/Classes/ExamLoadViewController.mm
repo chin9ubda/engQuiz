@@ -566,7 +566,11 @@
         }else{
             chapterNumber = index + 1;
             [tArray removeAllObjects];
-            tArray = [dbMsg getThemeData:[[cArray objectAtIndex:index]integerValue]];
+            
+            tArray = [dbMsg getThemeData:[[cArray objectAtIndex:index*2]integerValue]];
+            
+            NSLog(@" count :: %d",tArray.count);
+            
             if (tArray.count != 0) {
                 [themeTable setHidden:NO];
             }else{

@@ -10,13 +10,14 @@
 #import "DataBase.h"
 #import "MessageUI/MessageUI.h"
 
-@interface SettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MFMailComposeViewControllerDelegate, UIActionSheetDelegate>{
+@interface SettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MFMailComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate>{
     
     IBOutlet UITableView *settingTable;
     
     DataBase *dbMsg;
     
     NSString *tempClass;
+    UIAlertView *alert;
 }
 
 - (IBAction)backBtnEvent:(id)sender;

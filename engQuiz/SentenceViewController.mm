@@ -11,6 +11,7 @@
 #include "SentenceProblemMaker.h"
 #import "KakaoLinkCenter.h"
 #include "CitarPOS.h"
+#import "NSStringRegular.h"
 
 @interface SentenceViewController ()
 
@@ -331,6 +332,10 @@
     
     NSString *date =[NSString stringWithFormat:@"%d%d%d",year,month,day];
 
+    
+    NSStringRegular *regular = [[NSStringRegular alloc]init];
+    
+    originJimoon = [regular stringChange:originJimoon];
     sid = [dbMsg saveRSentence:originJimoon :date :type];
     qid = [dbMsg saveRQuestion:sid :questionLabel.text :1];
     
@@ -341,6 +346,10 @@
     if (type == 2) {
         sol[c - 1] = 2;
     }
+    
+    
+    NSLog(@"save  :: %d",sid);
+
     
     [dbMsg saveRAnswer:qid:answerLabel01.text :sol[0]];
     [dbMsg saveRAnswer:qid:answerLabel02.text :sol[1]];
@@ -508,6 +517,8 @@
     [returnArrray insertObject:[itemArray objectAtIndex:4] atIndex:2];
     [returnArrray insertObject:[itemArray objectAtIndex:7] atIndex:3];
     [returnArrray insertObject:[itemArray objectAtIndex:10] atIndex:4];
+    
+    NSLog(@"item array :: %d",itemArray.count);
     
     int checkNum;
     
