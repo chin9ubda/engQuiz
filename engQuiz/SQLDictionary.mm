@@ -60,7 +60,9 @@ Word SQLDictionary::getWordInfo(std::string word)
     clsword.dtype = [[result objectAtIndex:2] intValue];
     clsword.wtype = [[result objectAtIndex:3] intValue];
     clsword.sim = std::string([[result objectAtIndex:4] UTF8String]);
-    clsword.vcheck = [[result objectAtIndex:5] intValue];
+    clsword.wclass =std::string([[result objectAtIndex:5] UTF8String]);
+    clsword.exps = std::string([[result objectAtIndex:6] UTF8String]);
+    clsword.vcheck = [[result objectAtIndex:7] intValue];
     
     return clsword;
 }
@@ -100,6 +102,35 @@ bool SQLDictionary::getRandomSimItems(std::string word, std::string data[], int 
     return true;
 }
 
+std::vector<std::string> SQLDictionary::getOriginWord(std::string word)
+{
+    std::vector<std::string> strs;
+    
+    DataBase *dMsg = [DataBase getInstance];
+    
+    NSMutableArray *arr = [dMsg getNormWord:[NSString stringWithUTF8String:word.c_str()]];
+    
+    int cnt = 0;
+    while (cnt<[arr count])
+    {
+        std::string origin([[arr objectAtIndex:cnt] UTF8String]);
+        cnt++;
+        std::istringstream sim([[arr objectAtIndex:cnt] UTF8String]);
+        cnt++;
+        std::string substr;
+        
+        while (getline(sim, substr, ','))
+        {
+            if (word == substr)
+            {
+                strs.push_back(origin);
+                break;
+            }
+        }
+    }
+    
+    return strs;
+}
 
 std::string SQLDictionary::getRandomMunzangs(int excnum)
 {

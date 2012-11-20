@@ -12,6 +12,7 @@
 #include <iostream>
 #include "IDictionary.h"
 #include "IProblemMaker.h"
+#include <vector>
 
 class Word;
 
@@ -23,6 +24,7 @@ public:
     Word getWordInfo(std::string word);
     bool getRandomSimItems(std::string word, std::string data[], int length);
     std::string getRandomMunzangs(int excnum);
+    std::vector<std::string> getOriginWord(std::string word);
 };
 
 #endif /* defined(__engQuiz__SQLDictionary__) */

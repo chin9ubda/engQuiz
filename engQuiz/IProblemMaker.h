@@ -40,6 +40,8 @@ public:
     int wtype;
     std::string sim;
     int vcheck;
+    std::string wclass;
+    std::string exps;
 };
 
 class IProblemMaker

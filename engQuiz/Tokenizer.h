@@ -23,6 +23,7 @@ enum token_type
 class Token
 {
     std::string token;
+    std::string origin;
     enum token_type type;
     char prob_num;
     bool existDB;
@@ -33,7 +34,9 @@ public:
     inline enum token_type getType();
     inline bool getExistDB();
     inline short getProbNum();
+    inline std::string getOrigin();
     void setProbNum(char num);
+    void setOrigin(std::string origin);
 };
 
 
