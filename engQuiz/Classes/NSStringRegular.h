@@ -11,5 +11,6 @@
 @interface NSStringRegular : NSObject
 
 -(NSString *)stringChange:(NSString *)msg;
+-(NSString *)stringPaste:(NSString *)msg;
 
 @end
