@@ -1123,8 +1123,8 @@
     int count = 0;
     
     sqlite3_stmt *selectStatement;
-    NSString *query = [NSString stringWithFormat:@"SELECT word, mean, dtype, wtype, sim, vcheck FROM %@ WHERE lower(word) = lower('%@');",Dictionary_TableName,word];
-     
+    NSString *query = [NSString stringWithFormat:@"SELECT word, mean, dtype, wtype, sim, wclass, exps, vcheck FROM %@ WHERE lower(word) = lower('%@');",Dictionary_TableName,word];
+    
     const char *selectSql = [query UTF8String];
     
     
