@@ -1013,7 +1013,7 @@
     sqlite3_finalize(selectStatement);
     
     return array;
-}
+}	
 
 -(NSMutableArray *)getRAnswer:(int)pid{
     NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
@@ -1123,7 +1123,7 @@
     int count = 0;
     
     sqlite3_stmt *selectStatement;
-    NSString *query = [NSString stringWithFormat:@"SELECT word, mean, dtype, wtype, sim, vcheck FROM %@ WHERE lower(word) = lower('%@');",Dictionary_TableName,word];
+    NSString *query = [NSString stringWithFormat:@"SELECT word, mean, dtype, wtype, sim, wclass, exps, vcheck FROM %@ WHERE lower(word) = lower('%@');",Dictionary_TableName,word];
     
     const char *selectSql = [query UTF8String];
     
@@ -1144,7 +1144,39 @@
             count++;
             [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 5) ] atIndex:count];
             count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 6) ] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 7) ] atIndex:count];
+            count++;
             
+            
+        }
+        
+    }
+    
+    sqlite3_finalize(selectStatement);
+    
+    return array;
+}
+
+-(NSMutableArray *)getNormWord:(NSString*)word{
+    NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
+    int count = 0;
+    
+    sqlite3_stmt *selectStatement;
+    NSString *query = [NSString stringWithFormat:@"SELECT word, exps FROM %@ WHERE exps like lower('%%%@%%');",Dictionary_TableName,word];
+    
+    const char *selectSql = [query UTF8String];
+    
+    
+    if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
+        
+        while (sqlite3_step(selectStatement) == SQLITE_ROW) {
+            
+            [array insertObject: [NSString stringWithUTF8String: (char *)sqlite3_column_text(selectStatement, 0)] atIndex:count];
+            count++;
+            [array insertObject: [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 1) ] atIndex:count];
+            count++;
         }
         
     }

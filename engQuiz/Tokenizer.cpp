@@ -54,6 +54,16 @@ bool Token::getExistDB()
 }
 
 
+std::string Token::getOrigin()
+{
+    return origin;
+}
+
+void Token::setOrigin(std::string origin)
+{
+    this->origin = origin;
+}
+
 Tokenizer::Tokenizer(std::string origin): word_cnt(0), word_cnt_real(0), word_cnt_exist_dic(0)
 {
     this->origin = JimoonMaker::replaceAll(origin, "\r\n", "\r");
@@ -88,8 +98,13 @@ void Tokenizer::run()
             {
                 buf[buf_pos] = '\0';
                 bool existDB = dic.exsistWord(buf);
+                std::vector<std::string> origins = dic.getOriginWord(buf);
+                
                 
                 Token token(std::string(buf), existDB);
+                if (origins.size() > 0)
+                    token.setOrigin(origins[0]);
+                
                 tokens.push_back(token);
                 
                 if (buf_pos>2)
