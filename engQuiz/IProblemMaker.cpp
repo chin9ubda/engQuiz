@@ -24,6 +24,11 @@ void Problem::addItems(std::string qcontent, int solution, bool lower)
 }
 
 
+std::string Problem::getFeedBack()
+{
+    return feedback;
+}
+
 Problem::~Problem()
 {
 }
@@ -47,10 +52,4 @@ std::string IProblemMaker::getProblemContent()
 std::vector<Problem> &IProblemMaker::getProblems()
 {
 	return problem;
-}
-
-
-std::string IProblemMaker::getFeedBack()
-{
-    return feedback;
 }

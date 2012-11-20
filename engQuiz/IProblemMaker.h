@@ -20,8 +20,10 @@ class Problem
 {
 public:
     std::string pcontent;
+    std::string feedback;
     std::vector <ProblemItem> items;
     int solution;
+    std::string getFeedBack();
 
 	void addItems(std::string qcontent, int solution, bool lower=true);
 
@@ -47,7 +49,6 @@ protected:
 	std::vector<Problem> problem;
 	std::string example;
 	std::string problem_content;
-    std::string feedback;
 public:
     
 	IProblemMaker(Tokenizer &tokenizer);
@@ -55,7 +56,6 @@ public:
 	virtual bool makeProblem(int level, int num) = 0;
 	std::vector<Problem> &getProblems();
 	std::string getProblemContent();
-    std::string getFeedBack();
 
 };
 

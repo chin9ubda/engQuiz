@@ -38,14 +38,17 @@ bool SentenceProblemMaker::makeProblem(int level, int d)
     
     for (int i=0; i<4; i++)
     {
+        std::string save = "";
+        
         if (res == i)
         {
+            save = solution;
             prob.addItems(solution, 1, false);
         } else {
-            std::string save = dic->getRandomMunzangs(0);
+            save = dic->getRandomMunzangs(0);
             prob.addItems(save, 0, false);
-            feedback += getTranslate(save) + "\r";
         }
+        prob.feedback += "("+save+") : " + getTranslate(save) + "\r";
     }
     
     problem.push_back(prob);

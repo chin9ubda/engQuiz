@@ -38,7 +38,7 @@
 -(NSMutableArray *)getThemeData:(int)cid;
 
 -(int)saveRSentence:(NSString *)content:(NSString *)date:(int)type;
--(int)saveRQuestion:(int)sid:(NSString *)qtext:(int)qnumber;
+-(int)saveRQuestion:(int)sid:(NSString *)qtext:(int)qnumber:(NSString*) feedback;
 -(void)saveRAnswer:(int)pid:(NSString *)qcontent:(int)solution;
 
 -(void)setVocaCheck:(int)did:(int)check;

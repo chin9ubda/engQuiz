@@ -197,6 +197,7 @@
 		7D7C5FA5165103AB0047E3F5 /* brown-simplified.ngrams in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C5FA3165103AB0047E3F5 /* brown-simplified.ngrams */; };
 		7DA1E899165959D6002C8BD2 /* SentenceProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DA1E897165959D6002C8BD2 /* SentenceProblemMaker.cpp */; };
 		7DB0D636165AA9110047514A /* GenProbUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0D634165AA9110047514A /* GenProbUtil.mm */; };
+		7DB0D696165B329C0047514A /* NSData+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0D695165B329C0047514A /* NSData+Additions.m */; };
 		7DDE21BE1657636300746F58 /* CitarPOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE21BC1657636300746F58 /* CitarPOS.cpp */; };
 /* End PBXBuildFile section */
 
@@ -504,6 +505,8 @@
 		7DA1E898165959D6002C8BD2 /* SentenceProblemMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentenceProblemMaker.h; sourceTree = "<group>"; };
 		7DB0D634165AA9110047514A /* GenProbUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GenProbUtil.mm; sourceTree = "<group>"; };
 		7DB0D635165AA9110047514A /* GenProbUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenProbUtil.h; sourceTree = "<group>"; };
+		7DB0D694165B329C0047514A /* NSData+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Additions.h"; sourceTree = "<group>"; };
+		7DB0D695165B329C0047514A /* NSData+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Additions.m"; sourceTree = "<group>"; };
 		7DDE21BC1657636300746F58 /* CitarPOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CitarPOS.cpp; sourceTree = "<group>"; };
 		7DDE21BD1657636300746F58 /* CitarPOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitarPOS.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1190,6 +1193,7 @@
 		7D3B07B81648B3E300B75F2B /* GenProb */ = {
 			isa = PBXGroup;
 			children = (
+				7DB0D693165B32920047514A /* helper */,
 				7D3B07BA1648B78000B75F2B /* IProblemMaker.cpp */,
 				7D3B07BB1648B78000B75F2B /* IProblemMaker.h */,
 				7D3B07BC1648B78000B75F2B /* SimpleProblemMaker.cpp */,
@@ -1220,6 +1224,15 @@
 				7D7C5FA3165103AB0047E3F5 /* brown-simplified.ngrams */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		7DB0D693165B32920047514A /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				7DB0D694165B329C0047514A /* NSData+Additions.h */,
+				7DB0D695165B329C0047514A /* NSData+Additions.m */,
+			);
+			name = helper;
 			sourceTree = "<group>";
 		};
 		7DCE4B87164D249A00FAC425 /* CitarPOS */ = {
@@ -1492,6 +1505,7 @@
 				4393FD201659455900BCD53B /* CheckAnswer.m in Sources */,
 				43965D90165A12E800357471 /* InfoSubCell.m in Sources */,
 				7DB0D636165AA9110047514A /* GenProbUtil.mm in Sources */,
+				7DB0D696165B329C0047514A /* NSData+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

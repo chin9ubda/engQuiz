@@ -86,6 +86,7 @@
     saveBtn = nil;
     webView = nil;
     reExamBtn = nil;
+    feedback = nil;
     [super viewDidUnload];
 }
 - (IBAction)backEvent:(id)sender {
@@ -202,8 +203,8 @@
     
     [checkView awakeFromNib];
 
-    NSString *msg = [NSString stringWithFormat:@"%@ : %@\n%@ : %@\n%@ : %@\n%@ : %@",answerLabel01.text,[dbMsg getMean:answerLabel01.text],answerLabel02.text,[dbMsg getMean:answerLabel02.text],answerLabel03.text,[dbMsg getMean:answerLabel03.text],answerLabel04.text,[dbMsg getMean:answerLabel04.text]];
-    
+    //NSString *msg = [NSString stringWithFormat:@"%@ : %@\n%@ : %@\n%@ : %@\n%@ : %@",answerLabel01.text,[dbMsg getMean:answerLabel01.text],answerLabel02.text,[dbMsg getMean:answerLabel02.text],answerLabel03.text,[dbMsg getMean:answerLabel03.text],answerLabel04.text,[dbMsg getMean:answerLabel04.text]];
+    NSString *msg = [pArray objectAtIndex:6];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy"];
@@ -337,7 +338,7 @@
     
     originJimoon = [regular stringChange:originJimoon];
     sid = [dbMsg saveRSentence:originJimoon :date :type];
-    qid = [dbMsg saveRQuestion:sid :questionLabel.text :1];
+    qid = [dbMsg saveRQuestion:sid :questionLabel.text :1 :feedback ];
     
     int sol[4];
     
@@ -463,6 +464,11 @@
     // 정답 번호
     [eArray insertObject:[NSNumber numberWithInt:nowProb.solution] atIndex:5];
     
+    
+    // 피드백
+    feedback = [NSString stringWithUTF8String:nowProb.feedback.c_str()];
+    [eArray insertObject:feedback atIndex:6];
+    
     delete prob;
     
     // 문자열 문제만들기
@@ -542,6 +548,8 @@
         checkedNumber = 4;
     }
     [returnArrray insertObject:[NSNumber numberWithInt:checkNum] atIndex:5];
+    // Feedback
+    [returnArrray insertObject:[problemArray objectAtIndex:2] atIndex:6];
     
     
     originJimoon = examSentence;
