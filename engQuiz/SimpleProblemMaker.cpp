@@ -108,7 +108,7 @@ bool SimpleProblemMaker::procExistDic()
         if (res == "")
             res = getTranslate(res);
         
-        prob.feedback += "(tmp): " + res + "\r";
+        prob.feedback += "(" + tmp + "): " + res + "\r";
 	}
     
 	problem.push_back(prob);
