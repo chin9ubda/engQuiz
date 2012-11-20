@@ -343,7 +343,7 @@
     
     [self tableReload];
     [vocaTable scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-    lblTitle.text = [item title];ㄷ
+    lblTitle.text = [item title];
 }
 
 // --------------- TableView 에서 해당 항목 swipe --------------- //

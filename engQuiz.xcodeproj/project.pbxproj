@@ -27,6 +27,8 @@
 		439274531643EA8400EA98EF /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 439274511643EA8400EA98EF /* libtesseract_all.a */; };
 		439274581646105D00EA98EF /* EduViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439274561646105D00EA98EF /* EduViewController.m */; };
 		439274591646105D00EA98EF /* EduViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439274571646105D00EA98EF /* EduViewController.xib */; };
+		43930683165B9E180052444E /* NSData+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0D695165B329C0047514A /* NSData+Additions.m */; };
+		43930684165B9E280052444E /* GenProbUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0D634165AA9110047514A /* GenProbUtil.mm */; };
 		4393FCF0165906FF00BCD53B /* NextAddInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696C516551A6600744631 /* NextAddInfoView.xib */; };
 		4393FCF21659070200BCD53B /* OcrResultCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696BB16550E4E00744631 /* OcrResultCheckViewController.xib */; };
 		4393FCF31659070800BCD53B /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439696B11655034900744631 /* SettingViewController.xib */; };
@@ -198,8 +200,6 @@
 		7D7C5FA4165103AB0047E3F5 /* brown-simplified.lexicon in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C5FA2165103AB0047E3F5 /* brown-simplified.lexicon */; };
 		7D7C5FA5165103AB0047E3F5 /* brown-simplified.ngrams in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C5FA3165103AB0047E3F5 /* brown-simplified.ngrams */; };
 		7DA1E899165959D6002C8BD2 /* SentenceProblemMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DA1E897165959D6002C8BD2 /* SentenceProblemMaker.cpp */; };
-		7DB0D636165AA9110047514A /* GenProbUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0D634165AA9110047514A /* GenProbUtil.mm */; };
-		7DB0D696165B329C0047514A /* NSData+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0D695165B329C0047514A /* NSData+Additions.m */; };
 		7DDE21BE1657636300746F58 /* CitarPOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE21BC1657636300746F58 /* CitarPOS.cpp */; };
 /* End PBXBuildFile section */
 
@@ -1471,6 +1471,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43930684165B9E280052444E /* GenProbUtil.mm in Sources */,
+				43930683165B9E180052444E /* NSData+Additions.m in Sources */,
 				43CF01721656686800828AA6 /* ImgSelectedOverView.m in Sources */,
 				43CF01711656683D00828AA6 /* Camera.m in Sources */,
 				7D19EF5D1655F061007D8563 /* TextFileLoadViewController.m in Sources */,

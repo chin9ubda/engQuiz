@@ -207,7 +207,8 @@
 {
     NSStringRegular *regular = [[NSStringRegular alloc]init];
     
-    [textView setText:[regular stringChange:result]];
+//    [textView setText:[regular stringChange:result]];
+    [textView setText:[regular stringPaste:[regular stringChange:result]]];
 }
 
 - (void)setTesseractImage:(UIImage *)image
