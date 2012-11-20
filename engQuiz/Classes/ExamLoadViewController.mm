@@ -831,7 +831,7 @@
     NSArray *xib = [[NSBundle mainBundle]  loadNibNamed:@"EditThemeAndGroup" owner:self options:nil];
     editView = (EditThemeAndGroup *)[xib objectAtIndex:0];
     
-    [editView setFrame:CGRectMake(0, 20, 320, 460)];
+    [editView setFrame:CGRectMake(0, 0, 320, 460)];
     
     [editView awakeFromNib];
     
