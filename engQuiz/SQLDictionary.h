@@ -25,6 +25,7 @@ public:
     bool getRandomSimItems(std::string word, std::string data[], int length);
     std::string getRandomMunzangs(int excnum);
     std::vector<std::string> getOriginWord(std::string word);
+    std::vector<std::string> getSookEr();
 };
 
 #endif /* defined(__engQuiz__SQLDictionary__) */

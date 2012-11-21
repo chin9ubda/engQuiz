@@ -34,7 +34,7 @@ public:
     inline enum token_type getType();
     inline bool getExistDB();
     inline short getProbNum();
-    inline std::string getOrigin();
+    std::string getOrigin();
     void setProbNum(char num);
     void setOrigin(std::string origin);
 };
@@ -44,6 +44,7 @@ class Tokenizer
 {
     void analysis_munzang();
     static void trim_left( std::string& s );
+    void analysis_sooker();
 public:
     std::vector<Token> tokens;
     std::vector<std::string> munzang;
@@ -54,6 +55,7 @@ public:
     int word_cnt_real;
     int word_cnt_exist_dic;
     std::map<std::string, int> analysis;
+    std::vector<std::string> find_sooker;
     
     Tokenizer(std::string origin);
     ~Tokenizer();

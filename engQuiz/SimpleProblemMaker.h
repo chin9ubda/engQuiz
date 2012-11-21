@@ -5,7 +5,7 @@
 
 
 class SimpleProblemMaker :
-	public IProblemMaker
+public IProblemMaker
 {
     bool procReal();
     bool procExistDic();
@@ -13,6 +13,6 @@ class SimpleProblemMaker :
 public:
 	SimpleProblemMaker(Tokenizer &tokenizer);
 	~SimpleProblemMaker(void);
-	virtual bool makeProblem(int level, int d); 
+	virtual bool makeProblem(int level, int d);
 };
 

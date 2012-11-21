@@ -51,6 +51,12 @@ Word SQLDictionary::getWordInfo(std::string word)
     
     NSMutableArray *result = [dbMsg getWordInformation:nsword];
     
+    if ([result count] == 0)
+    {
+        clsword.word = "";
+        return clsword;
+    }
+    
     // 단어
     
     clsword.word = word;
@@ -72,6 +78,11 @@ bool SQLDictionary::getRandomSimItems(std::string word, std::string data[], int 
         return false;
     
     Word wordinfo = getWordInfo(word);
+    
+    // 사전에 없는 경우.
+    if (wordinfo.word == "")
+        return false;
+    
     std::vector<std::string> wordtok;
     
     std::istringstream iss(wordinfo.sim);
@@ -80,12 +91,17 @@ bool SQLDictionary::getRandomSimItems(std::string word, std::string data[], int 
     while (getline(iss, substr, ','))
     {
         int t;
+        
+        if (substr == word) {
+            continue;
+        }
+        
+        
         for (t=0; t<wordtok.size(); t++)
         {
             if (substr == wordtok[t])
                 break;
         }
-        
         if(t==wordtok.size())
             wordtok.push_back(substr);
     }
@@ -93,7 +109,7 @@ bool SQLDictionary::getRandomSimItems(std::string word, std::string data[], int 
     int remain = length;
     for (int i=0; i<length; i++)
     {
-        int sel = rand() % remain--;
+        int sel = std::rand() % remain--;
         
         data[i] = wordtok[sel];
         wordtok.erase(wordtok.begin()+sel);
@@ -151,8 +167,25 @@ std::string SQLDictionary::getRandomMunzangs(int excnum)
         }
     }
     
-    std::string ret = tok.munzang[rand()%tok.munzang.size()];
+    std::string ret = tok.munzang[std::rand()%tok.munzang.size()];
     
     return ret;
 }
 
+
+std::vector<std::string> SQLDictionary::getSookEr()
+{
+    DataBase *dMsg = [DataBase getInstance];
+    std::vector<std::string> ret;
+    
+    NSMutableArray *arr = [dMsg getVocaData:2:0];
+    
+    
+    for (int i=0; i<[arr count]; i+=4)
+    {
+        std::string tmp = [[arr objectAtIndex:i] UTF8String];
+        ret.push_back(tmp);
+    }
+    
+    return ret;
+}

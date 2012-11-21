@@ -8,8 +8,9 @@
 
 #include "Tokenizer.h"
 #include "SQLDictionary.h"
-#include "CitarPOS.h"
 #include <stack>
+#include <sstream>
+#include <regex.h>
 
 std::string token2str(Token &token)
 {
@@ -25,7 +26,7 @@ Token::Token(std::string token, enum token_type type, bool existDB) : type(type)
 
 Token::Token(std::string token, bool existDB) : type(TOKEN_TYPE_WORD), token(token), prob_num(0), existDB(existDB)
 {
-
+    
 }
 
 std::string Token::getToken()
@@ -82,10 +83,10 @@ void Tokenizer::run()
     //std::stack<char> nor_stack;
     bool sign = false;
     SQLDictionary dic = SQLDictionary::Instance();
-    CitarPOS *pos = CitarPOS::getInstance();
+    //CitarPOS *pos = CitarPOS::getInstance();
     
     //tokens.push_back(Token("<BEGIN>", false));
-
+    
     for(i=0;i<origin.length();i++)
     {
         if ((origin[i] <= 'Z' && origin[i] >= 'A') || (origin[i] <= 'z' && origin[i] >= 'a'))
@@ -103,7 +104,10 @@ void Tokenizer::run()
                 
                 Token token(std::string(buf), existDB);
                 if (origins.size() > 0)
+                {
+                    existDB = dic.exsistWord(origins[0].c_str());
                     token.setOrigin(origins[0]);
+                }
                 
                 tokens.push_back(token);
                 
@@ -135,25 +139,28 @@ void Tokenizer::run()
     }
     
     //tokens.push_back(Token("<END>", false));
-    std::vector<std::string> sentents(tokens.size()+1);
-    std::transform(tokens.begin(), tokens.end(), sentents.begin(), token2str);
-
-    //tag = pos->hmmTagger->tag(sentents);
+    //    std::vector<std::string> sentents(tokens.size()+1);
+    //    std::transform(tokens.begin(), tokens.end(), sentents.begin(), token2str);
     
-    std::vector<std::string>::iterator iter;
-    std::vector<Token>::iterator iter2;
-    for (iter = tag.begin(), iter2 = tokens.begin(); iter != tag.end(); iter++, iter2++)
-    {
-        if (iter2->getType() == TOKEN_TYPE_SPECIAL)
-            continue;
-        
-        if (analysis.find(*iter) == analysis.end())
-        {
-            analysis[*iter] = 1;
-        } else {
-            analysis[*iter]++;
-        }
-    }
+    //    tag = pos->hmmTagger->tag(sentents);
+    
+    //    std::vector<std::string>::iterator iter;
+    //    std::vector<Token>::iterator iter2;
+    //    for (iter = tag.begin(), iter2 = tokens.begin(); iter != tag.end(); iter++, iter2++)
+    //    {
+    //        if (iter2->getType() == TOKEN_TYPE_SPECIAL)
+    //            continue;
+    //
+    //        if (analysis.find(*iter) == analysis.end())
+    //        {
+    //            analysis[*iter] = 1;
+    //        } else {
+    //            analysis[*iter]++;
+    //        }
+    //    }
+    //
+    
+    
     
     analysis_munzang();
 }
@@ -205,6 +212,45 @@ void Tokenizer::analysis_munzang()
             munzang_word = 0;
         }
     }
+    
+    
+    analysis_sooker();
+}
+
+
+
+void Tokenizer::analysis_sooker()
+{
+    SQLDictionary dic = SQLDictionary::Instance();
+    std::vector<std::string> sooker;
+    sooker = dic.getSookEr();
+    std::vector<std::string>::iterator iter;
+    std::vector<std::string>::iterator iter2;
+    
+    
+    for(iter2 = sooker.begin(); iter2 != sooker.end(); iter2++)
+    {
+        regex_t fsm;
+        
+        std::string tmp = JimoonMaker::replaceAll(*iter2, "A ", "([a-zA-Z]+ )+");
+        tmp = JimoonMaker::replaceAll(tmp, "B", "[a-zA-Z]+");
+        tmp = JimoonMaker::replaceAll(tmp, "B ", "([a-zA-Z]+ )+");
+        tmp = JimoonMaker::replaceAll(tmp, "C", "[a-zA-Z]+");
+        
+        if (regcomp(&fsm, tmp.c_str(), REG_ICASE | REG_EXTENDED))
+            return;
+        
+        for(iter = munzang.begin(); iter != munzang.end(); iter++)
+        {
+            regmatch_t str[iter->size()+1];
+            int fMatched = regexec(&fsm, iter->c_str(), iter->size()+1, str, 0);
+            
+            if ( fMatched != REG_NOMATCH )
+            {
+                find_sooker.push_back(*iter2);
+            }
+        }
+    }
 }
 
 
@@ -213,7 +259,7 @@ std::string Tokenizer::cascadeData()
     std::ostringstream oss;
     
     std::vector<Token>::iterator iter;
-        for(iter = tokens.begin(); iter != tokens.end(); iter++)
+    for(iter = tokens.begin(); iter != tokens.end(); iter++)
     {
         if (iter->getProbNum() > 0)
         {
@@ -316,7 +362,7 @@ std::string JimoonMaker::getHTMLJimoon(std::string gimoon)
     oss << "<html><body bgcolor=\"#CDE998\">";
     oss << "<p style=\"font-size: 13px;\">";
     
-    gimoon = replaceAll(gimoon, "{1}", "<input type=\"text\" size=\"5\" style=\"text-align:center;color:red;border-color:red;\" value=\"(1)\" />");
+    gimoon = replaceAll(gimoon, "{1}", "<input type=\"text\" size=\"5\" style=\"text-align:center;color:red;border-color:red;\" value=\"\" />");
     
     
     oss << replaceAll(gimoon, "\r", "<br />");

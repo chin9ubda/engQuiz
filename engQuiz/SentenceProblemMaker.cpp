@@ -26,11 +26,11 @@ bool SentenceProblemMaker::makeProblem(int level, int d)
     SQLDictionary *dic = SQLDictionary::InstancePtr();
     problem_content = tokenizer->cascadeData();
     
-    std::string solution = tokenizer->munzang[rand()%tokenizer->munzang.size()];
+    std::string solution = tokenizer->munzang[std::rand()%tokenizer->munzang.size()];
     
     problem_content = JimoonMaker::replaceAll(problem_content, solution, "______________");
     
-    int res = rand() % 4;
+    int res = std::rand() % 4;
     
     Problem prob;
     prob.pcontent = "및줄 친 곳에 알맞은 문장을 고르시오.";

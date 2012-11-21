@@ -46,7 +46,7 @@ std::string TextDictionary::getRandomWord()
 {
 	//std::srand(time(NULL));
 
-	int n = rand() % dic.size();
+	int n = std::rand() % dic.size();
 
 	std::map<std::string, std::string>::iterator iter;
 	iter = dic.begin();

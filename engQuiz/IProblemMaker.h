@@ -54,7 +54,7 @@ protected:
 public:
     
 	IProblemMaker(Tokenizer &tokenizer);
-	~IProblemMaker(void);
+	virtual ~IProblemMaker(void);
 	virtual bool makeProblem(int level, int num) = 0;
 	std::vector<Problem> &getProblems();
 	std::string getProblemContent();

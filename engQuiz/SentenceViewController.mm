@@ -11,6 +11,7 @@
 #include "SentenceProblemMaker.h"
 #import "KakaoLinkCenter.h"
 #include "CitarPOS.h"
+#include "ProblemMakerFactory.h"
 #import "NSStringRegular.h"
 
 @interface SentenceViewController ()
@@ -421,22 +422,8 @@
     Tokenizer tokenizer(str);
     tokenizer.run();
     
-    int what = rand()%2;
+    IProblemMaker *prob = ProblemMakerFactory::create(tokenizer);
     
-    // 두문장 이상일때만 출력
-    if (tokenizer.munzang.size() < 3)
-        what = 0;
-    
-    IProblemMaker *prob;
-    switch (what)
-    {
-        case 0:
-            prob = new SimpleProblemMaker(tokenizer);
-            break;
-        case 1:
-            prob = new SentenceProblemMaker(tokenizer);
-            break;
-    }
     prob->makeProblem(1, 1);
     
     // 지문

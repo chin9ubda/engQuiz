@@ -39,20 +39,20 @@
     
     NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:DataBase_Name];
-
+    
     NSString *testFilePath = [documentsDirectory stringByAppendingPathComponent:@"test.txt"];
-
+    
     
     NSError *error;
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if([fileMgr fileExistsAtPath:filePath]){
         NSLog(@"file exist");
         
-//        [fileMgr removeItemAtPath:filePath error:&error];
-//
-//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
-//
-//        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
+        //        [fileMgr removeItemAtPath:filePath error:&error];
+        //
+        //        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
+        //
+        //        [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
     }else {
         NSLog(@"file not exist");
@@ -62,18 +62,18 @@
         [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
     }
-//    
-//    if (![fileMgr fileExistsAtPath:testFilePath]) {
-//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
-//        
-//        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
-//    }else{
-//        [fileMgr removeItemAtPath:testFilePath error:&error];
-//        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
-//        
-//        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
-//    }
-
+    //
+    //    if (![fileMgr fileExistsAtPath:testFilePath]) {
+    //        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
+    //
+    //        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
+    //    }else{
+    //        [fileMgr removeItemAtPath:testFilePath error:&error];
+    //        NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"];
+    //
+    //        [fileMgr copyItemAtPath:resourcePath toPath:testFilePath error:&error];
+    //    }
+    
     
     if (sqlite3_open([filePath UTF8String], &database) != SQLITE_OK) {
         
@@ -463,11 +463,11 @@
             query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' And wtype = %d ORDER BY word ASC",Dictionary_TableName,msg,type];
         }
     }else if (check == 2){
-//        if (type == 0) {
-            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' AND checker > 0 ORDER BY checker DESC",Dictionary_TableName,msg];
-//        }else {
-//            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' And wtype = %d AND checker >= '1' ORDER BY word ASC",Dictionary_TableName,msg,type];
-//        }
+        //        if (type == 0) {
+        query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' AND checker > 0 ORDER BY checker DESC",Dictionary_TableName,msg];
+        //        }else {
+        //            query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' And wtype = %d AND checker >= '1' ORDER BY word ASC",Dictionary_TableName,msg,type];
+        //        }
     }else{
         if (type == 0) {
             query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%' And vcheck = %d ORDER BY word ASC",Dictionary_TableName,msg, check];
@@ -477,7 +477,7 @@
     }
     
     
-//    query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%'",Dictionary_TableName,msg];
+    //    query = [NSString stringWithFormat:@"SELECT word, mean, dtype, did FROM %@ WHERE word LIKE '%@%%'",Dictionary_TableName,msg];
     //    query = [NSString stringWithFormat:@"SELECT word, mean, type, class FROM %@ WHERE word LIKE '%%%@%%'",Voca_TableName,msg];
     
     const char *selectSql = [query UTF8String];
@@ -567,7 +567,7 @@
     int sid;
     
     NSLog(@"content  :: %@ ,, date :: %@ ,, tyep :: %d",content, date, type);
-
+    
     
     NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (content,gdate,type) VALUES('%@','%@',%d)",Contenttray_TableName,content,date,type];
     
@@ -686,7 +686,7 @@
 -(NSMutableArray *)getAndCheckSentence:(NSString *)word{
     NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
     
-//    NSString *result = @"단어가 없습니다";
+    //    NSString *result = @"단어가 없습니다";
     int check = 0;
     Boolean checkOut = false;
     int index = 0;
@@ -699,7 +699,7 @@
     
     
     if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
-
+        
         while (sqlite3_step(selectStatement) == SQLITE_ROW) {
             
             NSString *temp = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectStatement, 0)];
@@ -740,7 +740,7 @@
                         index = index + tempInt + 1;
                         break;
                     }
-
+                    
                 }else {
                     checkOut = true;
                     check = 0;
@@ -748,10 +748,10 @@
             }
             
             checkOut = false;
-
+            
             if (check == 2) {
                 
-//                NSLog(@"%d",resultTemp.length);
+                //                NSLog(@"%d",resultTemp.length);
                 resultTemp = [resultTemp substringWithRange:(NSRange){[self leftCheck:resultTemp :index] + 1, [self rightCheck:resultTemp :index] - [self leftCheck:resultTemp :index]}];
                 NSLog(@"%@\nindex :: %d",resultTemp,index);
                 [array insertObject:resultTemp atIndex:count];
@@ -763,7 +763,7 @@
             }else {
                 check = 0;
             }
-
+            
         }
     }
     
@@ -1013,7 +1013,7 @@
     sqlite3_finalize(selectStatement);
     
     return array;
-}	
+}
 
 -(NSMutableArray *)getRAnswer:(int)pid{
     NSMutableArray *array =[NSMutableArray arrayWithCapacity:0];
@@ -1189,7 +1189,7 @@
 -(void)saveSentence:(NSString *)sentence:(NSString *)gdate:(NSString *)groupname:(NSString *)theme{
     sqlite3_stmt *insertStatement;
     NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ (content,gdate,groupname,theme) VALUES('%@','%@','%@', '%@')",GetContentBook_TableName,sentence,gdate,groupname,theme];
-
+    
     const char *insertSql = [query UTF8String];
     
     //프리페어스테이트먼트를 사용
@@ -1232,14 +1232,14 @@
             }else{
                 checkCount = checkCount + 3;
             }
-
+            
         }
         
     }
     
     sqlite3_finalize(selectStatement);
     
-
+    
     query = [NSString stringWithFormat:@"UPDATE %@ SET checker = %d  WHERE word = '%@'",Dictionary_TableName,checkCount,word];
     
     const char *updateSql = [query UTF8String];
@@ -1303,7 +1303,7 @@
         }
         
         sqlite3_finalize(insertStatement);
-
+        
     }else {
         if (check) {
             trueCount++;
@@ -1333,7 +1333,7 @@
     
     if (type == 0) {
         query = [NSString stringWithFormat:@"SELECT lcid, lid, truecount, falsecount FROM %@ WHERE log_text = 'problem' ORDER BY log_text DESC",Log_content_TableName];
-
+        
         maxCount = 7 * 4;
         
         const char *selectSql = [query UTF8String];
@@ -1365,15 +1365,15 @@
         int y = yy;
         int m = mm;
         
-//        NSString *tempMonth = @"";
-//        if (m < 10) {
-//            tempMonth = [NSString stringWithFormat:@"0%d",m];
-//        }else{
-//            tempMonth = [NSString stringWithFormat:@"%d",m];
-//        }
+        //        NSString *tempMonth = @"";
+        //        if (m < 10) {
+        //            tempMonth = [NSString stringWithFormat:@"0%d",m];
+        //        }else{
+        //            tempMonth = [NSString stringWithFormat:@"%d",m];
+        //        }
         
         for (int i = 0; i < 12; i++) {
-        
+            
             
             NSString *tempMonth = @"";
             if (m < 10) {
@@ -1382,10 +1382,10 @@
                 tempMonth = [NSString stringWithFormat:@"%d",m];
             }
             
-//            NSString *date = [NSString stringWithFormat:@"%d%d",y,m];
+            //            NSString *date = [NSString stringWithFormat:@"%d%d",y,m];
             
             NSString *date = [NSString stringWithFormat:@"%d%@",y,tempMonth];
-
+            
             
             query = [NSString stringWithFormat:@"SELECT truecount, falsecount FROM %@ WHERE log_text = 'problem' And lid LIKE '%@%%' ORDER BY log_text",Log_content_TableName,date];
             
@@ -1394,11 +1394,11 @@
             
             
             if (sqlite3_prepare_v2(database, selectSql, -1, &selectStatement, NULL) == SQLITE_OK) {
-
+                
                 while (sqlite3_step(selectStatement) == SQLITE_ROW) {
                     trueCount = trueCount + [[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 0)] intValue];
                     falseCount = falseCount + [[NSNumber numberWithInteger: sqlite3_column_int(selectStatement, 1)] intValue];
-
+                    
                     check = 1;
                 }
                 
@@ -1420,7 +1420,7 @@
                 }
             }
         }
-
+        
     }
     sqlite3_finalize(selectStatement);
     
@@ -1433,7 +1433,7 @@
     
     NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:DataBase_Name];
-
+    
     
     NSError *error;
     NSFileManager *fileMgr = [NSFileManager defaultManager];
@@ -1441,9 +1441,9 @@
         NSLog(@"file exist");
         
         [fileMgr removeItemAtPath:filePath error:&error];
-
+        
         NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"engquiz" ofType:@"sqlite"];
-
+        
         [fileMgr copyItemAtPath:resourcePath toPath:filePath error:&error];
         
     }else {
@@ -1497,7 +1497,7 @@
     }else{
         NSLog(@"OK");
     }
-
+    
 }
 
 -(void)updateThemeAndGroup:(int)_id Theme:(NSString *)theme Group:(NSString *)group{
